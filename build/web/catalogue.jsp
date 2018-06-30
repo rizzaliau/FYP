@@ -202,7 +202,7 @@
                                         </thead>
                                         <tbody>
                                             
-                                        <form action="deleteMultipleController" method="post">
+                                        <form action="deleteMultipleCatalogueConfirmation.jsp" method="post">
 
                                             <%  
                                                 
@@ -218,14 +218,14 @@
                                                 out.print("<td>" + orderItem.getDefaultQuantity() + "</td>");
                                                 out.print("<td>" + orderItem.getQuantityMultiples() + "</td>");
                                                 out.print("<td><a href='catalogueEdit.jsp?serial="+number+"'>Edit</a></td>");
-                                                out.print("<td><a href='deleteConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Delete</a></td>");
+                                                out.print("<td><a href='deleteCatalogueConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Delete</a></td>");
                                                 out.print("</tr>");  
                                             }
                                             
                                             %>
-                                            <a href="search.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
+                                            <a href="searchCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
                                             <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Sales Order" style="margin:1px;" /></a>
-                                            <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Subsequent days order"  value="New Catalogue Item" style="margin:1px;" /></a>
+                                            <a href="newCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New Catalogue Item"  value="New Catalogue Item" style="margin:1px;" /></a>
                                             </tbody>
                                     </table>
                                             <br>

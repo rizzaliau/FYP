@@ -4,10 +4,10 @@
     Author     : Rizza
 --%>
 
-<%@page import="entity.OrderItem"%>
+
 <%@page import="utility.salesOrderUtility"%>
-<%@page import="entity.SalesOrder"%>
-<%@include file="protect.jsp" %>
+<%@page import="entity.OrderItem"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="entity.Debtor"%>
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
@@ -16,7 +16,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -62,7 +62,7 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./salesOrderMGMT.jsp">
+                        <a class="nav-link" href="salesOrderMGMT.jsp">
                             <i class="nc-icon nc-notes"></i>
                             <p>Sales Order Mgmt</p>
                         </a>
@@ -108,7 +108,7 @@
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <span class="d-lg-none">Dashboard</span>
+
                                 </a>
                             </li>
                             <li class="dropdown nav-item">
@@ -142,7 +142,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.jsp">
+                                <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
@@ -151,9 +151,7 @@
                 </div>
             </nav>
             
-            <%
-                Map<Integer, OrderItem> catalogueMap = salesOrderUtility.getCatalogueMap();
-            %>
+
             
             <div class="content">
                 <div class="container-fluid">
@@ -163,79 +161,71 @@
                                 <div class="card-header ">
 
                                     <h4 class="card-title">Sales Order Management</h4>
-                                    <p class="card-category">Catalogue list </p>
+                                    <p class="card-category">New Catalogue Item</p>
                                 </div>
-                                
-                                <div class="col-md-8"><font color="red">
-                                    <%                                
-                                        String msgStatus = (String) request.getAttribute("updateSuccess");
-                                        String msgStatus2 = (String) request.getAttribute("status");
+                            <font color="red"><center>    
+                            <%                                
+                                String msgStatus = (String) request.getAttribute("status");
 
-                                        if (msgStatus != null) {
-                                            out.print("</br>");
-                                            out.print(msgStatus);
-                                            out.print("</br>");
-                                        }
-                                        
-                                        if (msgStatus2 != null) {
-                                            out.print("</br>");
-                                            out.print(msgStatus2);
-                                            out.print("</br>");
-                                        }
+                                if (msgStatus != null) {
+                                    out.print("</br>");
+                                    out.print(msgStatus);
+                                    out.print("</br>");
+                                }
 
-
-                                    %> 
-                                </div></font>
-                                <br>
-
+                            %> 
+                            </font></center>    
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
-                                        <thead>
-                                            <th> </th>
-                                            <th>Item Code</th>
-                                            <th>Picture</th>
-                                            <th>Description</th>
-                                            <th>Description Chinese</th>
-                                            <th>Unit Price</th>
-                                            <th>Default Quantity</th>
-                                            <th>Quantity Multiples</th>
-                                        </thead>
                                         <tbody>
-                                            
-                                        <form action="deleteMultipleCatalogueConfirmation.jsp" method="post">
+                                        
+                                        <center>Please fill-in the form below.</center>
+                                        <br>
 
-                                            <%  
-                                                
-                                            for (Integer number : catalogueMap.keySet()) {
-                                                out.print("<tr>");
-                                                OrderItem orderItem = catalogueMap.get(number);
-                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ orderItem.getItemCode() +"'></td>");
-                                                out.print("<td>" + orderItem.getItemCode() + "</td>");
-                                                out.print("<td><img src='" + orderItem.getImageURL() + "' style='width:50px;height:50px;' ></td>");
-                                                out.print("<td>" + orderItem.getDescription() + "</td>");
-                                                out.print("<td>" + orderItem.getDescriptionChinese() + "</td>");
-                                                out.print("<td>" + orderItem.getUnitPrice() + "</td>");
-                                                out.print("<td>" + orderItem.getDefaultQuantity() + "</td>");
-                                                out.print("<td>" + orderItem.getQuantityMultiples() + "</td>");
-                                                out.print("<td><a href='catalogueEdit.jsp?serial="+number+"'>Edit</a></td>");
-                                                out.print("<td><a href='deleteCatalogueConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Delete</a></td>");
-                                                out.print("</tr>");  
-                                            }
-                                            
-                                            %>
-                                            <a href="searchCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
-                                            <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Sales Order" style="margin:1px;" /></a>
-                                            <a href="newCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New Catalogue Item"  value="New Catalogue Item" style="margin:1px;" /></a>
+                                        <form method="post" action="newCatalogueItemController">
+
+                                            <tr><thead><th>Item Code</th></thead>
+                                            <td><input type="text" size="10" name="itemCode" ></td>
+                                            </tr>
+                                            <tr><thead><th>English Description</th></thead>
+                                            <td><input type="text" size="10" name="description" ></td>
+                                            </tr>
+                                            <tr><thead><th>Chinese Description</th></thead>
+                                            <td><input type="text" size="10" name="descriptionChinese"></td>
+                                            </tr>
+                                            <tr><thead><th>Unit Price</th></thead>
+                                            <td><input type="text" size="10" name="unitPrice" ></td>
+                                            </tr>
+                                            <tr><thead><th>Image URL</th></thead>
+                                            <td><input type="text" size="10" name="imageURL" ></td>
+                                            </tr>
+                                            <tr><thead><th>Default Quantity</th></thead>
+                                            <td><input type="text" size="10" name="defaultQuantity" ></td>
+                                            </tr>
+                                            <tr><thead><th>Quantity Multiples</th></thead>
+                                            <td><input type="text" size="10" name="quantityMultiples"></td>
+                                            </tr>
+       
+
                                             </tbody>
                                     </table>
-                                            <br>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
-                                        
-                                        </form>   
 
+                                    <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+
+                                    </form>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+ 
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
+                       
 
             <footer class="footer">
                 <div class="container">
@@ -274,7 +264,6 @@
             </footer>
         </div>
     </div>
-
 </body>
 <!--   Core JS Files   -->
 <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>

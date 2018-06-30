@@ -75,4 +75,48 @@ public class insertUtility {
         
     }
     
+        public static void newCatalogueItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String itemCodeRetrieved = request.getParameter("itemCode");
+        String descriptionRetrieved = request.getParameter("description");
+        String descriptionChineseRetrieved = request.getParameter("descriptionChinese");
+        String unitPriceRetrieved = request.getParameter("unitPrice");
+        String imageURLRetrieved = request.getParameter("imageURL");
+        String defaultQuantityRetrieved = request.getParameter("defaultQuantity");
+        String quantityMultiplesRetrieved = request.getParameter("quantityMultiples");  
+        
+        
+        if(itemCodeRetrieved.equals("")||descriptionRetrieved.equals("")||descriptionChineseRetrieved.equals("")
+            ||unitPriceRetrieved.equals("")||imageURLRetrieved.equals("")||defaultQuantityRetrieved.equals("")
+            ||quantityMultiplesRetrieved.equals("")){
+            
+            request.setAttribute("status", "Fields cannot be left blank!");
+            request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
+        }
+
+        try {
+
+            Connection conn = ConnectionManager.getConnection();
+            out.println("passes conn");
+
+            String sql = "INSERT INTO order_item " + "VALUES('"+ itemCodeRetrieved+"','"+descriptionRetrieved+"','"+descriptionChineseRetrieved+"',"
+                    + "'"+unitPriceRetrieved+"','"+imageURLRetrieved+"','"+defaultQuantityRetrieved+"','"+quantityMultiplesRetrieved+"')";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            out.println("passes stmt");
+
+            stmt.executeUpdate();
+            out.println("passes rs");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("status", "Error updating!");
+        }
+        
+        request.setAttribute("status", "Record inserted successfully!");
+
+        request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+        
+    }
+    
 }

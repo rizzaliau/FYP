@@ -225,5 +225,75 @@ public class deleteUtility {
         }
     }
     
+    public static void deleteCatalogue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String itemCodeRetrieved = request.getParameter("recordToBeDeleted");
+        
+        //System.out.println("debtorCodeRetrived is : "+debtorCodeRetrived);
+
+        try {
+
+            Connection conn = ConnectionManager.getConnection();
+            out.println("passes conn");
+
+            String sql = "DELETE FROM `order_item` WHERE itemCode = '" + itemCodeRetrieved + "'";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            out.println("passes stmt");
+
+            stmt.executeUpdate();
+            out.println("passes rs");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("status", "Error updating!");
+        }
+        
+        request.setAttribute("status", "Record deleted successfully!");
+
+        request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+        
+    }
+    
+    public static void deleteMultipleCatalogue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        String[] itemCodesRetrieved = (String[])session.getAttribute("itemCodesRetrieved");
+
+        if(itemCodesRetrieved==null){
+            
+            request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+            
+        }else{ 
+            
+            for(int i=0; i<itemCodesRetrieved.length; i++){
+
+                try {
+                    String itemCode = itemCodesRetrieved[i];
+
+                    Connection conn = ConnectionManager.getConnection();
+                    out.println("passes conn");
+
+                    String sql = "DELETE FROM `order_item` WHERE ItemCode = '" + itemCode + "'";
+
+                    PreparedStatement stmt = conn.prepareStatement(sql);
+                    out.println("passes stmt");
+
+                    stmt.executeUpdate();
+                    out.println("passes rs");
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    request.setAttribute("status", "Error updating!");
+                }
+
+            }
+            request.setAttribute("status", "Records deleted successfully!");
+
+            request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+        }
+    }
+    
+    
     
 }
