@@ -152,7 +152,9 @@
             
             <%
                 //Map currently hardcode for the date "2018-06-25", need to change to current date/required date
-                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getSalesOrderMap("Pending Delivery","2018-06-25");
+                Map<Integer, SalesOrder> salesOrderMap = (Map<Integer, SalesOrder>)request.getAttribute("searchMapResults");
+                String deliveryDateRetrieved = request.getParameter("deliveryDate");
+                String statusRetrieved = request.getParameter("status");
             %>
             
             <div class="content">
@@ -163,13 +165,13 @@
                                 <div class="card-header ">
 
                                     <h4 class="card-title">Sales Order Management</h4>
-                                    <p class="card-category">Current Sales Order list (Today) </p>
+                                    <p class="card-category">Search Results </p>
                                 </div>
                                 
                                 <div class="col-md-8"><font color="red">
                                     <%                                
                                         String msgStatus = (String) request.getAttribute("updateSuccess");
-                                        String msgStatus2 = (String) request.getAttribute("status");
+                                        String msgStatus2 = (String) request.getAttribute("searchStatus");
 
                                         if (msgStatus != null) {
                                             out.print("</br>");
@@ -208,13 +210,13 @@
                                                 //out.print("<td>" + salesOrder.getDebtorCode() + "</td>");
                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
-                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery'>Edit/View</a></td>");
-                                                out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Delete</a></td>");
+                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status="+statusRetrieved+"'>Edit/View</a></td>");
+                                                out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status="+statusRetrieved+"&deliveryDate="+deliveryDateRetrieved+"'>Delete</a></td>");
                                                 out.print("</tr>");  
                                             }
                                             
                                             %>
-                                            <a href="searchSalesOrder.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
+                                            <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Reset Search" style="margin:1px;"/></a>
                                             <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Catalogue" style="margin:1px;" /></a>
                                             <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="SubsequentDaysOrder"  value="Subsequent Days Order" style="margin:1px;" /></a>
                                             <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="salesOrderHistory"  value="Sales Order History" style="margin:1px;" /></a>

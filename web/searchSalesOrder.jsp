@@ -159,7 +159,13 @@
             </nav>
             
             <%
-                Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
+                String deliveryDate = request.getParameter("deliveryDate");   
+                String status = request.getParameter("status");
+                
+                if(status.equals("pendingDelivery")){
+                    status = "Pending Delivery";
+                }
+                
             %>
             
             <div class="content">
@@ -179,11 +185,14 @@
                                     Search by:
                                 </label>
                                 
-                                <form method="post" action="searchController">
+                                <form method="post" action="searchSalesOrderController">
+                                    <input type="hidden" name="deliveryDate" value="<%= deliveryDate %>">
+                                    <input type="hidden" name="status" value="<%= status %>">
+                                    
                                     <select name="searchField">
-                                        <option value="debtorCode" selected>Order ID</option>
-                                        <option value="companyCode">Debtor Name</option>
-                                        <option value="hashPassword">Route Number</option>
+                                        <option value="orderID" selected>Order ID</option>
+                                        <option value="debtorName">Debtor Name</option>
+                                        <option value="routeNumber">Route Number</option>
   
                                     </select>
                                     <input type="text" size="10" name="searchValue" >
