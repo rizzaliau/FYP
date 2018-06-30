@@ -152,6 +152,8 @@
             </nav>
             
             <%
+                String status ="Pending Delivery";
+                String deliveryDate = "None";   
                 Map<Integer, SalesOrder> subsequentDaysSalesOrderMap = salesOrderUtility.getSubsequentDaysSalesOrderMap();
             %>
             
@@ -198,7 +200,7 @@
                                         </thead>
                                         <tbody>
                                             
-                                        <form action="deleteMultipleController" method="post">
+                                        <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
 
                                             <%  
                                             for (Integer number : subsequentDaysSalesOrderMap.keySet()) {

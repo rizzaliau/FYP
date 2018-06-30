@@ -152,7 +152,9 @@
             </nav>
             
             <%
-                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getSalesOrderMap("Delivered","None");
+                String status = "Delivered";
+                String deliveryDate = "None";
+                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getSalesOrderMap(status,deliveryDate);
             %>
             
             <div class="content">
@@ -196,7 +198,7 @@
                                         </thead>
                                         <tbody>
                                             
-                                        <form action="deleteMultipleController" method="post">
+                                        <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
 
                                             <%  
                                             for (Integer number : salesOrderMap.keySet()) {
