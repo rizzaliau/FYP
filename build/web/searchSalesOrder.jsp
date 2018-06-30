@@ -180,6 +180,19 @@
                                 </div>
                                 </br>
                                 
+                                <font color="red"><center>
+                                <%
+                                    String msgStatus = (String) request.getAttribute("searchStatus");
+
+                                        if (msgStatus != null) {
+                                            out.print("</br>");
+                                            out.print(msgStatus);
+                                            out.print("</br>");
+                                        }
+
+                                %>
+                                </font></center>
+`                               </br>
                                 <center>    
                                 <label>
                                     Search by:

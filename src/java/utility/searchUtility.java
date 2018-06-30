@@ -106,6 +106,12 @@ public class searchUtility {
         String deliveryDateRetrieved = request.getParameter("deliveryDate");
         String statusRetrieved = request.getParameter("status");
         
+        if(searchValue.equals("")){
+            request.setAttribute("searchStatus","Please enter a search value!");
+            RequestDispatcher view = request.getRequestDispatcher("searchSalesOrder.jsp");
+            view.forward(request,response);
+        }
+        
         //To search orderID for Sales Order
         if(searchType.equals("orderID")){
             searchType = "so.orderID";
