@@ -1,9 +1,13 @@
 <%-- 
-    Document   : searchSalesOrder
-    Created on : 24 Jun, 2018, 1:42:07 PM
+    Document   : userMGMT
+    Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
 --%>
 
+
+<%@page import="utility.salesOrderUtility"%>
+<%@page import="entity.OrderItem"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="entity.Debtor"%>
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
@@ -121,7 +125,6 @@
                                     <a class="dropdown-item" href="#">New Order 5</a>
                                 </ul>
                             </li>
-
                         </ul>
                         <ul class="navbar-nav ml-auto">
 
@@ -139,7 +142,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.jsp">
+                                <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
@@ -149,13 +152,7 @@
             </nav>
             
             <%
-                String deliveryDate = request.getParameter("deliveryDate");   
-                String status = request.getParameter("status");
-                
-                if(status.equals("pendingDelivery")){
-                    status = "Pending Delivery";
-                }
-                
+                //Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
             %>
             
             <div class="content">
@@ -165,44 +162,76 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">User Management</h4>
-                                    <p class="card-category">User list</p>
+                                    <h4 class="card-title">Sales Order Management</h4>
+                                    <p class="card-category">Catalogue Edit</p>
                                 </div>
-                                </br>
-                                
-                                <font color="red"><center>
-                                <%
-                                    String msgStatus = (String) request.getAttribute("searchStatus");
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <tbody>
+                                            
+                                        <%  
+                                        //Map<Integer, Debtor> mapUsed = new HashMap<>();
+                                        
+                                        Map<Integer, OrderItem> catalogueMap = salesOrderUtility.getCatalogueMap();
+                                        String serial = request.getParameter("serial");   
+                                        int numInt = Integer.parseInt(serial);
+                                        
+                                        //String status = request.getParameter("status");
+                                        
+//                                        if(status.equals("active")){
+//                                            mapUsed = debtorUtility.getDebtorMap();
+//                                        }else if(status.equals("inactive")){
+//                                            mapUsed = debtorUtility.getInactiveDebtorMap();
+//                                        }else if (status.equals("search")){
+//                                            mapUsed = (Map<Integer, Debtor>)session.getAttribute("searchMapResults");
+//                                        }
+                                        
+                                        OrderItem orderItem = catalogueMap.get(numInt);
+                                        
+                                        %>
+                                        
 
-                                        if (msgStatus != null) {
-                                            out.print("</br>");
-                                            out.print(msgStatus);
-                                            out.print("</br>");
-                                        }
+                                        <form method="post" action="editCatalogueController">
 
-                                %>
-                                </font></center>
-`                               </br>
-                                <center>    
-                                <label>
-                                    Search by:
-                                </label>
-                                
-                                <form method="post" action="searchSalesOrderController">
-                                    <input type="hidden" name="deliveryDate" value="<%= deliveryDate %>">
-                                    <input type="hidden" name="status" value="<%= status %>">
-                                    
-                                    <select name="searchField">
-                                        <option value="orderID" selected>Order ID</option>
-                                        <option value="debtorName">Debtor Name</option>
-                                        <option value="routeNumber">Route Number</option>
-  
-                                    </select>
-                                    <input type="text" size="10" name="searchValue" >
-                                    <input class="btn btn-info btn-fill" type="submit" name="submit"  value="Search" />
-                                </form>
-                            </center>
-                            <br>
+                                            <tr><thead><th>Item Code</th></thead>
+                                            <td><input type="text" size="10" name="itemCode" value="<%= orderItem.getItemCode()%>"></td>
+                                            </tr>
+                                            <tr><thead><th>English Description</th></thead>
+                                            <td><input type="text" size="10" name="description" value="<%= orderItem.getDescription()%>"></td>
+                                            </tr>
+                                            <tr><thead><th>Chinese Description</th></thead>
+                                            <td><input type="text" size="10" name="descriptionChinese" value="<%= orderItem.getDescriptionChinese()%>"></td>
+                                            </tr>
+                                            <tr><thead><th>Unit Price</th></thead>
+                                            <td><input type="text" size="10" name="unitPrice" value="<%= orderItem.getUnitPrice()%>"></td>
+                                            </tr>
+                                            <tr><thead><th>Image URL</th></thead>
+                                            <td><input type="text" size="10" name="imageURL" value="<%= orderItem.getImageURL()%>"></td>
+                                            </tr>
+                                            <tr><thead><th>Default Quantity</th></thead>
+                                            <td><input type="text" size="10" name="defaultQuantity" value="<%= orderItem.getDefaultQuantity()%>"></td>
+                                            </tr>
+                                            <tr><thead><th>Quantity Multiples</th></thead>
+                                            <td><input type="text" size="10" name="quantityMultiples" value="<%= orderItem.getQuantityMultiples()%>"></td>
+                                            </tr>
+       
+
+                                            </tbody>
+                                    </table>
+
+                                    <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+
+                                    </form>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+ 
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                        
@@ -244,7 +273,6 @@
             </footer>
         </div>
     </div>
-
 </body>
 <!--   Core JS Files   -->
 <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>

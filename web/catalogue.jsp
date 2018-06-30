@@ -205,6 +205,7 @@
                                         <form action="deleteMultipleController" method="post">
 
                                             <%  
+                                                
                                             for (Integer number : catalogueMap.keySet()) {
                                                 out.print("<tr>");
                                                 OrderItem orderItem = catalogueMap.get(number);
@@ -216,7 +217,7 @@
                                                 out.print("<td>" + orderItem.getUnitPrice() + "</td>");
                                                 out.print("<td>" + orderItem.getDefaultQuantity() + "</td>");
                                                 out.print("<td>" + orderItem.getQuantityMultiples() + "</td>");
-                                                out.print("<td><a href='edit.jsp?itemCode="+orderItem.getItemCode()+"'>Edit</a></td>");
+                                                out.print("<td><a href='catalogueEdit.jsp?serial="+number+"'>Edit</a></td>");
                                                 out.print("<td><a href='deleteConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Delete</a></td>");
                                                 out.print("</tr>");  
                                             }
