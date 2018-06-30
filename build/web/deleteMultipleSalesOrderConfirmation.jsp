@@ -180,7 +180,7 @@
                                             //String deliveryDate = request.getParameter("deliveryDate"); 
                                             String statusRetrieved = request.getParameter("status");
                                             String deliveryDateRetrieved = request.getParameter("deliveryDate");
-                                            out.println(orderIDsRetrived[0]);
+                                            //out.println(orderIDsRetrived[0]);
                                             //out.println(orderIDsRetrived[1]);
                                             //out.println(orderIDsRetrived[2]);
                                             //out.println(statusRetrieved);

@@ -223,8 +223,8 @@
                                             
                                             %>
                                             <a href="search.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
-                                            <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Catalogue" style="margin:1px;" /></a>
-                                            <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Subsequent days order"  value="Subsequent days order" style="margin:1px;" /></a>
+                                            <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Sales Order" style="margin:1px;" /></a>
+                                            <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Subsequent days order"  value="New Catalogue Item" style="margin:1px;" /></a>
                                             </tbody>
                                     </table>
                                             <br>
