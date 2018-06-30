@@ -206,7 +206,7 @@
                                                 SalesOrder salesOrder = subsequentDaysSalesOrderMap.get(number);
                                                 SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(salesOrder.getOrderID(),"Pending Delivery");
                                                 
-                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getDebtorCode() +"'></td>");
+                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
                                                 out.print("<td>" + salesOrder.getOrderID() + "</td>");
                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");

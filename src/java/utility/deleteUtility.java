@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -123,7 +124,7 @@ public class deleteUtility {
             statusRetrieved = "Pending Delivery";
         }
         
-        System.out.println("inputs are  : "+orderIDRetrieved+statusRetrieved);
+        //System.out.println("inputs are  : "+orderIDRetrieved+statusRetrieved);
         
         try {
             
@@ -160,7 +161,69 @@ public class deleteUtility {
     }
     
     
-    
+    public static void deleteMultipleSalesOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        //String[] orderIDsRetrived = (String[])request.getAttribute("orderIDArray");
+        String[] orderIDsRetrived = (String[])session.getAttribute("orderIDArrayCancelled");
+        
+        String statusRetrieved = request.getParameter("status");
+        String deliveryDateRetrieved = request.getParameter("deliveryDate");
+        //System.out.println("testing"+orderIDsRetrived[0]);
+        //String[] orderIDsRetrived = request.getParameterValues("recordsToBeDeleted"); 
+
+        if(orderIDsRetrived == null){
+            request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
+        }else{ 
+            
+            int stringArrayCount = getActualSize(orderIDsRetrived);
+            //int count = 0;
+
+            //System.out.println("debtorCodeRetrived is : "+debtorCodesRetrived);
+            for(int i=0; i<stringArrayCount; i++){
+
+                try {
+
+                    Connection conn = ConnectionManager.getConnection();
+                    out.println("passes conn");
+                    out.println("Test "+orderIDsRetrived[i]);
+                    
+                    String salesOrderDetailSql = "";
+                    if(deliveryDateRetrieved.equals("None")){
+                        salesOrderDetailSql = "DELETE FROM `sales_order_detail` WHERE orderID = '" + orderIDsRetrived[i] + "' ";
+                    }else{
+                        salesOrderDetailSql = "DELETE FROM `sales_order_detail` WHERE orderID = '" + orderIDsRetrived[i] + "' "
+                            + "AND DeliveryDate='"+deliveryDateRetrieved+"' ";
+                    }
+                    
+                    String salesOrderQtySql = "DELETE FROM `sales_order_quantity` WHERE orderID = '" + orderIDsRetrived[i] + "' ";
+
+                    String salesOrderSql = "DELETE FROM `sales_order` WHERE orderID = '" + orderIDsRetrived[i] + "' "
+                            + "AND status='"+statusRetrieved+"' ";
+
+                    PreparedStatement stmt1 = conn.prepareStatement(salesOrderDetailSql);
+                    PreparedStatement stmt2 = conn.prepareStatement(salesOrderQtySql);
+                    PreparedStatement stmt3 = conn.prepareStatement(salesOrderSql);
+                    out.println("passes stmt");
+
+                    stmt1.executeUpdate();
+                    stmt2.executeUpdate();
+                    stmt3.executeUpdate();
+                    out.println("passes rs");
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    request.setAttribute("status", "Error updating!");
+                }
+
+                //count++;
+            }
+            
+            request.setAttribute("status", "Records deleted successfully!");
+
+            request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
+        }
+    }
     
     
 }

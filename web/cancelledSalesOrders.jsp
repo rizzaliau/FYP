@@ -152,7 +152,9 @@
             </nav>
             
             <%
-                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getSalesOrderMap("Cancelled","None");
+                String status = "Cancelled";
+                String deliveryDate = "None";
+                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getSalesOrderMap(status,deliveryDate);
             %>
             
             <div class="content">
@@ -196,7 +198,7 @@
                                         </thead>
                                         <tbody>
                                             
-                                        <form action="deleteMultipleController" method="post">
+                                        <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
 
                                             <%  
                                             
@@ -206,7 +208,7 @@
                                                 SalesOrder salesOrder = salesOrderMap.get(number);
                                                 SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(salesOrder.getOrderID(),"Cancelled");    
                                                 
-                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getDebtorCode() +"'></td>");
+                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
                                                 //out.print("<td>" + number + "</td>");
                                                 out.print("<td>" + salesOrder.getOrderID() + "</td>");
                                                 //out.print("<td>" + salesOrder.getDebtorCode() + "</td>");

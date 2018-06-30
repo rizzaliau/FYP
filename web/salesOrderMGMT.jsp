@@ -152,7 +152,9 @@
             
             <%
                 //Map currently hardcode for the date "2018-06-25", need to change to current date/required date
-                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getSalesOrderMap("Pending Delivery","2018-06-25");
+                String status = "Pending Delivery";
+                String deliveryDate = "2018-06-25";
+                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getSalesOrderMap(status,deliveryDate);
             %>
             
             <div class="content">
@@ -196,13 +198,13 @@
                                         </thead>
                                         <tbody>
                                             
-                                        <form action="deleteMultipleController" method="post">
+                                        <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
 
                                             <%  
                                             for (Integer number : salesOrderMap.keySet()) {
                                                 out.print("<tr>");
                                                 SalesOrder salesOrder = salesOrderMap.get(number);
-                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getDebtorCode() +"'></td>");
+                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
                                                 //out.print("<td>" + number + "</td>");
                                                 out.print("<td>" + salesOrder.getOrderID() + "</td>");
                                                 //out.print("<td>" + salesOrder.getDebtorCode() + "</td>");
@@ -214,6 +216,7 @@
                                             }
                                             
                                             %>
+                                            
                                             <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
                                             <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Catalogue" style="margin:1px;" /></a>
                                             <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="SubsequentDaysOrder"  value="Subsequent Days Order" style="margin:1px;" /></a>
@@ -222,6 +225,7 @@
                                             </tbody>
                                     </table>
                                             <br>
+                                            
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
                                         
                                         </form>   
