@@ -8,6 +8,7 @@ package utility;
 import dao.ConnectionManager;
 import dao.UserDAO;
 import entity.Debtor;
+import entity.OrderItem;
 import entity.SalesOrder;
 import java.io.IOException;
 import static java.lang.System.out;
@@ -31,7 +32,7 @@ import javax.servlet.http.HttpSession;
  */
 public class searchUtility {
     
-        public static void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String searchType = (String)request.getParameter("searchField");
         String searchValue = request.getParameter("searchValue");
@@ -202,5 +203,68 @@ public class searchUtility {
         
     }
         
+    
+    public static void searchCatalogue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String searchType = (String)request.getParameter("searchField");
+        String searchValue = request.getParameter("searchValue");
+        
+        if (searchValue.equals("")) {
+            request.setAttribute("searchStatus", "Please enter a search value!");
+            RequestDispatcher view = request.getRequestDispatcher("searchCatalogueItem.jsp");
+            view.forward(request, response);
+        }
+        
+        
+        Map<Integer, OrderItem> searchMap = new HashMap<>();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int count = 1;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            String query = "SELECT * FROM `order_item` WHERE "+searchType+" LIKE '%"+searchValue+"%'";
+            pstmt = conn.prepareStatement(query);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                
+                String itemCodeRetrieved = rs.getString("itemCode");
+                String descriptionRetrieved = rs.getString("description");
+                String descriptionChineseRetrieved = rs.getString("description2");
+                String unitPriceRetrieved = rs.getString("unitPrice");
+                String imageURLRetrieved = rs.getString("imageURL");
+                String defaultQuantityRetrieved = rs.getString("defaultQty");
+                String quantityMultiplesRetrieved = rs.getString("qtyMultiples");
+
+                OrderItem orderItem = new OrderItem (itemCodeRetrieved,descriptionRetrieved,descriptionChineseRetrieved,
+                    unitPriceRetrieved,imageURLRetrieved,defaultQuantityRetrieved,quantityMultiplesRetrieved);
+                
+                searchMap.put(count, orderItem);
+                count++;
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by searchMap method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        request.setAttribute("searchMapResultsCatalogue",searchMap);
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("searchMapResultsCatalogue",searchMap);
+        
+        RequestDispatcher view = request.getRequestDispatcher("searchCatalogueDisplay.jsp");
+        view.forward(request,response);
+        
+    }
+    
     
 }

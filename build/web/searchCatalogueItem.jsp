@@ -155,8 +155,8 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">User Management</h4>
-                                    <p class="card-category">User list</p>
+                                    <h4 class="card-title">Sales Order Management</h4>
+                                    <p class="card-category">Search Catalogue Item</p>
                                 </div>
                                 </br>
                                 
