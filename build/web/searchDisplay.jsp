@@ -224,13 +224,13 @@
                                             }
                                             
                                             %>
-                                            <a href="search.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;" /></a>
-                                            <a href="userMGMT.jsp"><input class="btn btn-info btn-fill" type="button" name="clear"  value="Clear" style="margin:1px;"/></a>
-                                            <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="New User" style="margin:1px;"/></a>
+                                            <a href="search.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin-left:20px;"/></a>
+                                            <a href="userMGMT.jsp"><input class="btn btn-info btn-fill" type="button" name="clear"  value="Clear" style="margin-left:10px;"/></a>
+                                            <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="New User" style="margin-right:20px;"/></a>
                                             </tbody>
                                     </table>
                                             <br>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
+                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records" style="margin-right:20px;"> 
                                         
                                         </form>   
 
