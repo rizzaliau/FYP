@@ -186,7 +186,7 @@
                                         
                                         <form action="deleteController" method="post">
                                             <input id="user-pw" type= "hidden" name="recordToBeDeleted" value='<%= debtorCode %>'/>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete record"> 
+                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete record" style="margin-right: 20px; margin-bottom: 20px;"> 
                                         
                                         </form>   
                                 
