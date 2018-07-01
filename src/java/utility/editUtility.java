@@ -118,13 +118,14 @@ public class editUtility {
         String statusRetrieved = request.getParameter("status");
         String deliveryDateRetrieved = request.getParameter("deliveryDate");
         String[] qtyItemCodeRetrieved = request.getParameterValues("qty"); 
-        //String[] itemCodeRetrieved = request.getParameterValues("itemCode");
+        String[] itemCodeRetrieved = request.getParameterValues("itemCode");
         
-//        out.println("qtyRetrieved " + qtyRetrieved.length);
-//        out.println("qtyRetrieved " + qtyRetrieved[0]);
-//        out.println("qtyRetrieved " + qtyRetrieved[1]);
-//        out.println("qtyRetrieved " + qtyRetrieved[2]);
-//        out.println("qtyRetrieved " + qtyRetrieved[3]);
+        out.println("qtyRetrieved " + qtyItemCodeRetrieved.length);
+        out.println("qtyRetrieved " + qtyItemCodeRetrieved[0]);
+        out.println("qtyRetrieved " + qtyItemCodeRetrieved[1]);
+        out.println("ItemCodeRetrieved " + itemCodeRetrieved.length);
+        out.println("ItemCodeRetrieved " + itemCodeRetrieved[0]);
+        out.println("ItemCodeRetrieved " + itemCodeRetrieved[1]);
 //        out.println("itemCodeRetrieved " + itemCodeRetrieved.length);
 
         try {
@@ -152,8 +153,8 @@ public class editUtility {
 
                 try {
                     
-                    String itemCode = qtyItemCodeRetrieved[i];
-                    String qty = qtyItemCodeRetrieved[i+1];
+                    String itemCode = itemCodeRetrieved[i];
+                    String qty = qtyItemCodeRetrieved[i];
 
                     String salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
                             + "AND itemCode ='"+itemCode+"'";
