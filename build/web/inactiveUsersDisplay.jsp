@@ -55,7 +55,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="userMGMT.jsp">
                             <i class="nc-icon nc-circle-09"></i>
-                            <p>User Mgmt</p>
+                            <p>Customer Mgmt</p>
                         </a>
                     </li>
                     <li>
@@ -159,8 +159,8 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">User Management</h4>
-                                    <p class="card-category">User list</p>
+                                    <h4 class="card-title">Customer Management</h4>
+                                    <p class="card-category">Customer list</p>
                                 </div>
                                 
                                 <div class="col-md-8"><font color="red">
@@ -192,7 +192,7 @@
                                             <th>ID</th>
                                             <th>Company Name</th>
                                             <th>Company Code</th>
-                                            <th>Debtor Name</th>
+                                            <th>Customer Name</th>
                                         </thead>
                                         <tbody>
                                             
@@ -214,8 +214,8 @@
                                             
                                             %>
                                             <a href="search.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin-left:20px;"/></a>
-                                            <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="New User" style="margin-right:20px;"/></a>
-                                            <a href="inactiveUsersDisplay.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Inactive Users"  value="Inactive Users" style="margin-right:10px;"/></a>
+                                            <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="New Customer" style="margin-right:20px;"/></a>
+                                            <a href="inactiveUsersDisplay.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Inactive Users"  value="Inactive Customers" style="margin-right:10px;"/></a>
                                             </tbody>
                                     </table>
                                             <br>

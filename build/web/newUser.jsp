@@ -55,7 +55,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="userMGMT.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>User Mgmt</p>
+                                <p>Customer Mgmt</p>
                             </a>
                         </li>
                         <li>
@@ -169,7 +169,7 @@
                             <div class="col-md-10">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">User Management</h4>
+                                        <h4 class="card-title">Customer Management</h4>
                                         <p>
                                         <h5 class="card-title">Please fill-in the form below</h5>
                                     </div>
@@ -180,14 +180,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Debtor Code</label>
-                                                        <input type="text" class="form-control" placeholder="Debtor Code" value="" size="10" name="debtorCode">
+                                                        <label>Customer Code</label>
+                                                        <input type="text" class="form-control" placeholder="Customer Code" value="" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Debtor Name</label>
-                                                        <input type="text" class="form-control" placeholder="Debtor Name" value="" size="10" name="debtorName">
+                                                        <label>Contact Person</label>
+                                                        <input type="text" class="form-control" placeholder="Customer Name" value="" size="10" name="debtorName">
                                                     </div>
                                                 </div>
 

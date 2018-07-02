@@ -60,7 +60,7 @@
                         <li>
                             <a class="nav-link" href="./userMGMT.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>User Mgmt</p>
+                                <p>Customer Mgmt</p>
                             </a>
                         </li>
                         <li>

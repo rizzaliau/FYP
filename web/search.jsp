@@ -55,7 +55,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="userMGMT.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>User Mgmt</p>
+                                <p>Customer Mgmt</p>
                             </a>
                         </li>
                         <li>
@@ -169,9 +169,9 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">User Management</h4>
+                                        <h4 class="card-title">Customer Management</h4>
                                         <p>
-                                        <h5 class="card-title">User List</h5>
+                                        <h5 class="card-title">Customer List</h5>
                                     </div>
                                     <div class="card-body">
                                         <form method="post" action="searchController">
