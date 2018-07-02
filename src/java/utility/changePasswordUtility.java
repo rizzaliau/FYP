@@ -49,7 +49,7 @@ public class changePasswordUtility {
 
             UserDAO.update(userNameRetrieved,newPasswordHash);
 
-            request.setAttribute("status", "Password updated successfully!");
+            request.setAttribute("status", "Passwords updated successfully!  密码已更改");
 
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
         }
