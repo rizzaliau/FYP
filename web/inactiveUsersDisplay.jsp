@@ -193,6 +193,7 @@
                                             <th>Company Name</th>
                                             <th>Company Code</th>
                                             <th>Customer Name</th>
+                                            <th>Status</th>
                                         </thead>
                                         <tbody>
                                             
@@ -207,6 +208,7 @@
                                                 out.print("<td>" + debtor.getCompanyName() + "</td>");
                                                 out.print("<td>" + debtor.getCompanyCode() + "</td>");
                                                 out.print("<td>" + debtor.getDebtorName() + "</td>");
+                                                out.print("<td>" + debtor.getStatus() + "</td>");
                                                 out.print("<td><a href='edit.jsp?serial="+number+"&status=inactive'>Edit</a></td>");
                                                 out.print("<td><a href='deleteConfirmation.jsp?debtorCode="+debtor.getDebtorCode()+"'>Delete</a></td>");
                                                 out.print("</tr>");  
@@ -215,7 +217,7 @@
                                             %>
                                             <a href="search.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin-left:20px;"/></a>
                                             <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="New Customer" style="margin-right:20px;"/></a>
-                                            <a href="inactiveUsersDisplay.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Inactive Users"  value="Inactive Customers" style="margin-right:10px;"/></a>
+                                            <a href="userMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Active Users"  value="Active Customers" style="margin-right:10px;"/></a>
                                             </tbody>
                                     </table>
                                             <br>
