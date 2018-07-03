@@ -38,7 +38,8 @@
                             LIM KEE Admin Portal 下载谷
                         </a>
                         <!--  Welcome-->
-                        <%                            String userName = request.getParameter("user");
+                        <%                            
+                            String userName = request.getParameter("user");
                             String passWord = request.getParameter("password");
                             //String gender = (String)request.getAttribute("gender");
                             //out.println(userName);
@@ -72,27 +73,22 @@
                         <li>
                             <a class="nav-link" href="analytics.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
-                                <p>Analytics</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./icons.html">
-                                <i class="nc-icon nc-atom"></i>
-                                <p>Delivery Mgmt</p>
+                                <p>Catalogue Mgmt</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="./maps.html">
-                                <i class="nc-icon nc-pin-3"></i>
+                                <i class="nc-icon nc-single-02"></i>
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="./notifications.html">
-                                <i class="nc-icon nc-bell-55"></i>
-                                <p>Notifications</p>
+                                <i class="nc-icon nc-settings-gear-64"></i>
+                                <p>Account Settings</p>
                             </a>
                         </li>
+                        
                     </ul>
                 </div>
             </div>
