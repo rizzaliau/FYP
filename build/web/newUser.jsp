@@ -171,7 +171,7 @@
                                     <div class="card-header">
                                         <h4 class="card-title">Customer Management</h4>
                                         <p>
-                                        <h5 class="card-title">Please fill-in the form below</h5>
+                                         <h5 class="card-title"><font color = "red">Please fill-in the form below</font></h5>
                                     </div>
                                     <div class="card-body">
 

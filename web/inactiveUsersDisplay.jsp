@@ -192,7 +192,7 @@
                                             <th>ID</th>
                                             <th>Company Name</th>
                                             <th>Company Code</th>
-                                            <th>Customer Name</th>
+                                            <th>Contact Person</th>
                                         </thead>
                                         <tbody>
                                             
