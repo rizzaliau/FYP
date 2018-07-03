@@ -197,6 +197,7 @@
                                             <th>Order ID</th>
                                             <th>Debtor Name</th>
                                             <th>Route Number</th>
+                                            <th>Delivery Date</th>
                                         </thead>
                                         <tbody>
                                             
@@ -204,6 +205,7 @@
 
                                             <%  
                                             for (Integer number : subsequentDaysSalesOrderMap.keySet()) {
+                                                
                                                 out.print("<tr>");
                                                 SalesOrder salesOrder = subsequentDaysSalesOrderMap.get(number);
                                                 SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(salesOrder.getOrderID(),"Pending Delivery");
@@ -212,6 +214,7 @@
                                                 out.print("<td>" + salesOrder.getOrderID() + "</td>");
                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
+                                                out.print("<td>" + salesOrderdetails.getDeliveryDate() + "</td>");
                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery'>Edit/View</a></td>");
                                                 out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate="+salesOrderdetails.getDeliveryDate()+"'>Delete</a></td>");
                                                 out.print("</tr>");  
