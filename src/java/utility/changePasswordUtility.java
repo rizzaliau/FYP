@@ -28,18 +28,20 @@ public class changePasswordUtility {
         //out.println("User retrieved is :"+userNameRetrieved);
         
         String newPassword1 = request.getParameter("newPass1");
+        out.println("Password is is :"+newPassword1);
         //out.println("User retrieved is :"+newUserName);
         String newPassword2 = request.getParameter("newPass2");
         //out.println("Password retrieved is :"+newPassword);
+        out.println("Password is is :"+newPassword2);
         
-        if (!(newPassword1.equals(newPassword2))){
+        if ((newPassword1.equals(newPassword2))){
             
             request.setAttribute("status", "Passwords do not match! Please re-enter password. 密码确认不符, 请重新输入密码");
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
             
         }else if(newPassword1.equals("") || newPassword2.equals("")){
             
-            request.setAttribute("status", "Please fill in new password and/or re-enter password 请输入新密码");
+            request.setAttribute("status", "Change password failed, Please enter new password and/or re-enter new password 请输入新密码");
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
         
         }else{
