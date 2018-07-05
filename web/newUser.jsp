@@ -156,7 +156,9 @@
                                     <div class="card-header">
                                         <h4 class="card-title">Customer Management</h4>
                                         <p>
-                                         <h5 class="card-title"><font color = "red">Please fill-in the form below</font></h5>
+                                         <h5 class="card-title"><font color = "red">Please fill-in the form below to create a new customer</font></h5>
+                                         <p>
+                                         <p class="card-category"><font color = "red">*Indicates required fields</font></p>
                                     </div>
                                     <div class="card-body">
 
@@ -165,13 +167,13 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Customer Code</label>
+                                                        <label>Customer Code*</label>
                                                         <input type="text" class="form-control" placeholder="Customer Code" value="" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Contact Person</label>
+                                                        <label>Contact Person*</label>
                                                         <input type="text" class="form-control" placeholder="Customer Name" value="" size="10" name="debtorName">
                                                     </div>
                                                 </div>
@@ -180,7 +182,7 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Billing Address</label>
+                                                        <label>Billing Address*</label>
                                                         <input type="text" class="form-control" placeholder="Billing Address" value="" size="10" name="inAddr1">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr2">
@@ -192,7 +194,7 @@
                                                 </div>
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Delivery Address</label>
+                                                        <label>Delivery Address*</label>
                                                         <input type="text" class="form-control" placeholder="Delivery Address" value="" size="10" name="deliverAddr1">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr2">
@@ -207,7 +209,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Name</label>
+                                                        <label>Company Name*</label>
                                                         <input type="text" class="form-control" placeholder="Company Name" value="" size="10" name="companyName">
                                                     </div>
                                                 </div>
@@ -215,14 +217,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Code</label>
+                                                        <label>Company Code*</label>
                                                         <input type="text" class="form-control" placeholder="Company Code" value="" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
-                                                        <label for = "password">Password</label>
+                                                        <label for = "password">Password*</label>
                                                         <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control" value="" size="10" name="hashPassword">
 
                                                     </div>
@@ -232,7 +234,7 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Contact Number</label>
+                                                        <label>Contact Number*</label>
                                                         <input type="text" class="form-control" placeholder="Contact Number" value="" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
@@ -249,7 +251,7 @@
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Status</label>
+                                                        <label>Status*</label>
                                                         <select name="status" class="form-control" placeholder="Status" value="">
                                                             <option value="active">Active</option>
                                                             <option value="inactive">Inactive</option>
@@ -259,7 +261,7 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Display Term</label>
+                                                        <label>Display Term*</label>
                                                         <select name="displayTerm" class="form-control" placeholder="Display Term" value="" >
                                                             <option value="cod">C.O.D</option>
                                                             <option value="one">1 day</option>
@@ -270,7 +272,7 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Area</label>
+                                                        <label>Area*</label>
                                                         <select name="routeNumber" class="form-control" placeholder="Route Number" value="">
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
@@ -301,6 +303,9 @@
                                             </div>
 
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+                                            <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="reset"  value="Reset" /></a>
+                                            
+                                            
                                             <div class="clearfix"></div>
                                         </form>
 

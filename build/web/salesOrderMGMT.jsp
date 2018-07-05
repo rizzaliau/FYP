@@ -213,7 +213,6 @@
                                             %>
                                             
                                             <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
-                                            <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Catalogue" style="margin:1px;" /></a>
                                             <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="SubsequentDaysOrder"  value="Subsequent Days Order" style="margin:1px;" /></a>
                                             <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="salesOrderHistory"  value="Sales Order History" style="margin:1px;" /></a>
                                             <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin:1px;" /></a>
