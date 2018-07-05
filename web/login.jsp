@@ -24,15 +24,17 @@
 
         <!-- <body style="background-image:url('https://s3-ap-southeast-1.amazonaws.com/media.redmart.com/marketplace/logos/subvendors/unnamed-1497317987343.jpg')"> -->
         
-        <img src="assets/img/Lim Kee Background.jpg" style="width:98vw;height:97vh">
+        <img src="assets/img/limkee_wallpaper.png" style="width:100vw;height:98vh">
 
         <div class="logmod">
             <div class="logmod__wrapper">
 
                 <div class="logmod__heading">
+                    <img src="assets/img/limkee_logo.png" style="width:6vw;height:10vh">
+                    <br>
                     <font size = 5><strong>Lim Kee Admin Portal</strong></font>
                     <font color="red">
-                    <p>
+                    
                     <%                                
                         String errorMsgs = (String) request.getAttribute("errorMsg");
                    
@@ -51,7 +53,7 @@
                     <form method="post" accept-charset="utf-8" action="loginController" class="simform">
                         <div class="sminputs">
                             <div class="input full">
-                                <label class="string optional" for="user-name">User*</label>
+                                <label class="string optional" for="user-name">Username</label>
                                 <input class="string optional" maxlength="255" id="user" placeholder="User" type="user" size="50" name="user"/>
                             </div>
                         </div>
