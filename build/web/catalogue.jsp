@@ -157,7 +157,7 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">Sales Order Management</h4>
+                                    <h4 class="card-title">Catalogue Management</h4>
                                     <p class="card-category">Catalogue list </p>
                                 </div>
                                 
