@@ -167,16 +167,14 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="card strpied-tabled-with-hover">
-                                <div class="card-header ">
-
-                                    <h4 class="card-title">User Management</h4>
-                                    <p class="card-category">User list</p>
-                                </div>
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <tbody>
+                        <div class="col-md-11">
+                            <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Customer Management</h4>
+                                        <p>
+                                        <h5 class="card-title">Customer List</h5>
+                                    </div>
+                                    <div class="card-body">
                                             
                                         <%  
                                         Map<Integer, Debtor> mapUsed = new HashMap<>();
@@ -200,119 +198,190 @@
 
                                         <form method="post" action="editController">
 
-                                            <tr><thead><th>Debtor Code</th></thead>
-                                            <td><input type="text" size="10" name="debtorCode" value="<%= debtor.getDebtorCode()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>Company Code</th></thead>
-                                            <td><input type="text" size="10" name="companyCode" value="<%= debtor.getCompanyCode()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>Hash Password</th></thead>
-                                            <td><input type="text" size="10" name="hashPassword" value="<%= debtor.getPassword()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>Company Name</th></thead>
-                                            <td><input type="text" size="10" name="companyName" value="<%= debtor.getCompanyName()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>Debtor Name</th></thead>
-                                            <td><input type="text" size="10" name="debtorName" value="<%= debtor.getDebtorName()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>Deliver Contact</th></thead>
-                                            <td><input type="text" size="10" name="deliverContact" value="<%= debtor.getDeliverContact()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>Deliver Fax1</th></thead>
-                                            <td><input type="text" size="10" name="deliverFax1" value="<%= debtor.getDeliverFax1()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>invAddr1</th></thead>
-                                            <td><input type="text" size="10" name="invAddr1" value="<%= debtor.getInvAddr1()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>invAddr2</th></thead>
-                                            <td><input type="text" size="10" name="invAddr2" value="<%= debtor.getInvAddr2()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>invAddr3</th></thead>
-                                            <td><input type="text" size="10" name="invAddr3" value="<%= debtor.getInvAddr3()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>invAddr4d</th></thead>
-                                            <td><input type="text" size="10" name="invAddr4" value="<%= debtor.getInvAddr4()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>deliverAddr1</th></thead>
-                                            <td><input type="text" size="10" name="deliverAddr1" value="<%= debtor.getDeliverAddr1()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>deliverAddr2</th></thead>
-                                            <td><input type="text" size="10" name="deliverAddr2" value="<%= debtor.getDeliverAddr2()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>deliverAddr3</th></thead>
-                                            <td><input type="text" size="10" name="deliverAddr3" value="<%= debtor.getDeliverAddr3()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>deliverAddr4</th></thead>
-                                            <td><input type="text" size="10" name="deliverAddr4" value="<%= debtor.getDeliverAddr4()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>displayTerm</th></thead>
-                                            <td><input type="text" size="10" name="displayTerm" value="<%= debtor.getDisplayTerm()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>Status</th></thead>
-                                            <td><input type="text" size="10" name="status" value="<%= debtor.getStatus()%>"></td>
-                                            </tr>
-                                            <tr><thead><th>Route Number</th></thead>
-                                            <td><input type="text" size="10" name="routeNumber" value="<%= debtor.getRouteNumber()%>"></td>
-                                            </tr>
+                                            <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Debtor Code</label>
+                                                        <input type="text" class="form-control" placeholder="Debtor Code" value="<%= debtor.getDebtorCode()%>" size="10" name="debtorCode">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 px-1">
+                                                    <div class="form-group">
+                                                        <label>Debtor Name</label>
+                                                        <input type="text" class="form-control" placeholder="Debtor Name" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
+                                                    </div>
+                                                </div>
 
-                                            </tbody>
-                                    </table>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Billing Address</label>
+                                                        <input type="text" class="form-control" placeholder="Billing Address" value="<%= debtor.getInvAddr1()%>" size="10" name="inAddr1">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr2()%>" size="10" name="invAddr2">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr3()%>" size="10" name="invAddr3" >
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr4()%>" size="10" name="invAddr4d">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Delivery Address</label>
+                                                        <input type="text" class="form-control" placeholder="Delivery Address" value="<%= debtor.getDeliverAddr1()%>" size="10" name="deliverAddr1">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr2()%>" size="10" name="deliverAddr2">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr3()%>" size="10" name="deliverAddr3">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr4()%>" size="10" name="deliverAddr4" >
+                                                    </div>
+                                                </div>
 
-                                    <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Company Name</label>
+                                                        <input type="text" class="form-control" placeholder="Company Name" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Company Code</label>
+                                                        <input type="text" class="form-control" placeholder="Company Code" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
+                                                    </div>
+                                                </div>
 
-                                    </form>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
- 
-                                        </tbody>
-                                    </table>
+                                                <div class="col-md-3 pl-1">
+                                                    <div class="form-group">
+                                                        <label for = "password">Password</label>
+                                                        <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control" value="<%= debtor.getPassword()%>" size="10" name="hashPassword">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Contact Number</label>
+                                                        <input type="text" class="form-control" placeholder="Contact Number" value="<%= debtor.getDeliverContact()%>" size="10" name="deliverContact">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 px-1">
+                                                    <div class="form-group">
+                                                        <label>Fax Number</label>
+                                                        <input type="text" class="form-control" placeholder="Fax Number" value="<%= debtor.getDeliverFax1()%>" size="10" name="deliverFax1">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                             <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Status</label>
+                                                        <select name="status" class="form-control" placeholder="Status" value="">
+                                                            <option value="active">Active</option>
+                                                            <option value="inactive">Inactive</option>
+                                                            <option value="blacklisted">Blacklisted</option>
+                                                        </select>    
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Display Term</label>
+                                                        <select name="displayTerm" class="form-control" placeholder="Display Term" value="" >
+                                                            <option value="cod">C.O.D</option>
+                                                            <option value="one">1 day</option>
+                                                            <option value="fifteen">15 days</option>
+                                                            <option value="thirty">30 days</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Area</label>
+                                                        <select name="routeNumber" class="form-control" placeholder="Route Number" value="">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+
+                                                            <option value="4">5</option>
+                                                            <option value="5">6</option>
+                                                            <option value="6">7</option>
+                                                            <option value="7">8</option>
+                                                            <option value="8">9</option>
+
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                            <option value="13">13</option>
+
+                                                            <option value="14">14</option>
+                                                            <option value="15">15</option>
+                                                            <option value="16">16</option>
+                                                            <option value="17">17</option>
+                                                            <option value="18">18</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                       
 
-            <footer class="footer">
-                <div class="container">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center">
-                            This website's content is Copyright 
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            © Lim Kee Food Manufacturing Pte Ltd
-                        </p>
-                    </nav>
+                        </div>
+                    </div>
                 </div>
-            </footer>
+                <footer class="footer">
+                    <div class="container">
+                        <nav>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="#">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Company
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Portfolio
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Blog
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="copyright text-center">
+                                This website's content is Copyright 
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>
+                                © Lim Kee Food Manufacturing Pte Ltd
+                            </p>
+                        </nav>
+                    </div>
+                </footer>
+            </div>
         </div>
-    </div>
-</body>
 <!--   Core JS Files   -->
 <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
