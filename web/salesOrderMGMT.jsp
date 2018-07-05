@@ -47,8 +47,8 @@
                     </a>
      
                 </div>
-                <ul class="nav">
-                        <li class="nav-item active">
+                    <ul class="nav">
+                        <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
@@ -60,26 +60,26 @@
                                 <p>Customer Mgmt</p>
                             </a>
                         </li>
-                        <li>
+                        <li  class="nav-item active">
                             <a class="nav-link" href="./salesOrderMGMT.jsp">
                                 <i class="nc-icon nc-notes"></i>
                                 <p>Sales Order Mgmt</p>
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="analytics.jsp">
+                            <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
                                 <p>Catalogue Mgmt</p>
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./maps.html">
+                            <a class="nav-link" href="loyaltyProgramme.jsp">
                                 <i class="nc-icon nc-single-02"></i>
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./notifications.html">
+                            <a class="nav-link" href="./accountSettings.jsp">
                                 <i class="nc-icon nc-settings-gear-64"></i>
                                 <p>Account Settings</p>
                             </a>

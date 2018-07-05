@@ -38,12 +38,12 @@ public class changePasswordUtility {
         if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){
             
             request.setAttribute("status", "Change password failed, Please enter new password and/or re-enter new password 请输入新密码");
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
         
         }else if (!(newPassword1.equals(newPassword2))){
             
             request.setAttribute("status", "Passwords do not match! Please re-enter password. 密码确认不符, 请重新输入密码");
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
 
         }else{
             String newPasswordHash = loginUtility.getSha256(newPassword2);
@@ -54,7 +54,7 @@ public class changePasswordUtility {
 
             request.setAttribute("status", "Passwords updated successfully!  密码已更改");
 
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
         }
     }
 }
