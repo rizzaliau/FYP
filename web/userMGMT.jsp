@@ -159,7 +159,7 @@
                                     <div class="card-header ">
 
                                         <h4 class="card-title">Customer Management</h4>
-                                        <p class="card-category">Customer list</p>
+                                        <p class="card-category">Active Customer list</p>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
