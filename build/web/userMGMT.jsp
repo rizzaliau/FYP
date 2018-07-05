@@ -46,14 +46,14 @@
 
                     </div>
                     <ul class="nav">
-                        <li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="userMGMT.jsp">
+                        <li>
+                            <a class="nav-link" href="./userMGMT.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
                                 <p>Customer Mgmt</p>
                             </a>
@@ -67,27 +67,22 @@
                         <li>
                             <a class="nav-link" href="analytics.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
-                                <p>Analytics</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./icons.html">
-                                <i class="nc-icon nc-atom"></i>
-                                <p>Delivery Mgmt</p>
+                                <p>Catalogue Mgmt</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="./maps.html">
-                                <i class="nc-icon nc-pin-3"></i>
+                                <i class="nc-icon nc-single-02"></i>
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="./notifications.html">
-                                <i class="nc-icon nc-bell-55"></i>
-                                <p>Notifications</p>
+                                <i class="nc-icon nc-settings-gear-64"></i>
+                                <p>Account Settings</p>
                             </a>
                         </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -158,8 +153,8 @@
                                 <div class="card strpied-tabled-with-hover">
                                     <div class="card-header ">
 
-                                        <h4 class="card-title">Customer Management</h4>
-                                        <p class="card-category">Customer list</p>
+                                        <h4 class="card-title">Customer Management（用户管理）</h4>
+                                        <p class="card-category">Active User list</p>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">

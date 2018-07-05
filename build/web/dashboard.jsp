@@ -155,7 +155,7 @@
                             <div class="col-md-8">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Edit account</h4>
+                                        <h4 class="card-title">Edit account（修改账户）</h4>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
@@ -187,18 +187,18 @@
                                     <div class="card-body">
                                         <form method="post" accept-charset="utf-8" action="changePasswordController" >
                                             <div class="row">
-                                                <div class="col-md-5 pr-1">
+                                                <div class="col-md-6 pr-1">
                                                     <div class="form-group">
-                                                        <label>New Password</label>
-                                                        <input type="password" name="newPass1" class="form-control" placeholder="Password">
+                                                        <label>New Password（新密码）</label>
+                                                        <input type="password" name="newPass1" class="form-control" placeholder="Password" minLength="8" required placeholder="8 characters minimum" >
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-5 pr-1">
+                                                <div class="col-md-6 pr-1">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Re-enter New Password</label>
-                                                        <input type="password" name="newPass2" class="form-control" placeholder="Password">
+                                                        <label for="exampleInputEmail1">Re-enter New Password（重新输入新密码）</label>
+                                                        <input type="password" name="newPass2" class="form-control" minLength="8" required placeholder="8 characters minimum" placeholder="Password">
                                                     </div>
                                                 </div>
 
@@ -226,8 +226,11 @@
                                             </p>
                                         </div>
                                         <p class="description text-center">
-                                            "1980s Our first production plant started at Ang Mo Kio Industrial Park 1."
-                                            <br>"Sharing our passion and love for steamed buns(paus)since our founding days"
+                                            Lim Kee aims to bring New Traditions to every home,everywhere.
+                                            <br>
+                                            <br>
+                                               We aim to enliven the culture of pau, bringing great tasting quality pau for everyone to enjoy. 
+                                                Anytime, anywhere.
                                         </p>
                                     </div>
                                     <hr>
