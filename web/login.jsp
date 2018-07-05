@@ -24,13 +24,13 @@
 
         <!-- <body style="background-image:url('https://s3-ap-southeast-1.amazonaws.com/media.redmart.com/marketplace/logos/subvendors/unnamed-1497317987343.jpg')"> -->
         
-        <img src="assets/img/limkee_wallpaper.png" style="width:100vw;height:98vh">
+        <img src="assets/img/limkee_wallpaper.jpg" style="width:100vw;height:98vh">
 
         <div class="logmod">
             <div class="logmod__wrapper">
 
                 <div class="logmod__heading">
-                    <img src="assets/img/limkee_logo.png" style="width:6vw;height:10vh">
+                    <img src="assets/img/limkee_logo.png" style="width:6vw;height:10vh; max-width:100%;height:auto;">
                     <br>
                     <font size = 5><strong>Lim Kee Admin Portal</strong></font>
                     <font color="red">
@@ -45,7 +45,8 @@
 
                     %> 
                     </font>
-                    <span class="logmod__heading-subtitle">Enter your user and password <strong>to sign in</strong> 请填写用户名和/或密码</span>
+                    <span class="logmod__heading-subtitle">Enter your user and password <strong>to sign in</strong> 
+                        <br>请填写用户名和/或密码</span>
                 </div> 
                 
                 
@@ -54,7 +55,7 @@
                         <div class="sminputs">
                             <div class="input full">
                                 <label class="string optional" for="user-name">Username</label>
-                                <input class="string optional" maxlength="255" id="user" placeholder="User" type="user" size="50" name="user"/>
+                                <input class="string optional" maxlength="255" id="user" placeholder="Username" type="user" size="50" name="user"/>
                             </div>
                         </div>
                         <div class="sminputs">
