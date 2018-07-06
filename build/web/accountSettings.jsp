@@ -155,7 +155,7 @@
                             <div class="col-md-8">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Edit account</h4>
+                                        <h4 class="card-title">Edit account (修改账户)</h4>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
@@ -189,7 +189,7 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>New Password</label>
+                                                        <label>New Password (新密码)</label>
                                                         <input type="password" name="newPass1" class="form-control" placeholder="Password">
                                                     </div>
                                                 </div>
@@ -197,7 +197,7 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Re-enter New Password</label>
+                                                        <label for="exampleInputEmail1">Re-enter New Password (重新输入新密码)</label>
                                                         <input type="password" name="newPass2" class="form-control" placeholder="Password">
                                                     </div>
                                                 </div>
