@@ -159,8 +159,8 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">Customer Management（用户管理）</h4>
-                                    <p class="card-category">Inactive Customer list</p>
+                                    <h4 class="card-title">Customer Management (用户管理)</h4>
+                                    <p class="card-category">Inactive Customer list (不活跃用户名单)</p>
                                 </div>
                                 
                                 <div class="col-md-8"><font color="red">

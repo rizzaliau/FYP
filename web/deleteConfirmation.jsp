@@ -153,7 +153,7 @@
                     </div>
                 </div>
             </nav>
-            
+        </div>
             <%
                 Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
             %>
@@ -165,12 +165,12 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">Customer Management</h4>
-                                    <p class="card-category">Customer list</p>
+                                    
                                 </div>
                                 </br>
                                 
-                                <center>Are you sure you want to delete this item?</center>
+                                <center>Are you sure you want to delete this item? </center>
+                                <center>你确定要删除此项吗?</center>
 
                                         <%  
                                             
@@ -186,10 +186,11 @@
                                         </form>   
                                 
                                 
-                                
+                            </div>
                             </div>
                         </div>
-                       
+                </div>
+            </div>
 
             <footer class="footer">
                 <div class="container">

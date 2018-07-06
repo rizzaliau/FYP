@@ -154,11 +154,11 @@
                             <div class="col-md-10">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Customer Management</h4>
+                                        <h4 class="card-title">Customer Management (用户管理)</h4>
                                         <p>
-                                         <h5 class="card-title"><font color = "red">Please fill-in the form below to create a new customer</font></h5>
+                                         <h5 class="card-title"><font color = "red">Please fill-in the form below to create a new customer (请填写以下表格以创建新用户)</font></h5>
                                          <p>
-                                         <p class="card-category"><font color = "red">*Indicates required fields</font></p>
+                                         <p class="card-category"><font color = "red">*Indicates required fields (必填)</font></p>
                                     </div>
                                     <div class="card-body">
 
@@ -167,13 +167,13 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Customer Code*</label>
+                                                        <label>Customer Code* (用户代码)</label>
                                                         <input type="text" class="form-control" placeholder="Customer Code" required placeholder="" value="" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Contact Person*</label>
+                                                        <label>Contact Person* (名字)</label>
                                                         <input type="text" class="form-control" placeholder="Customer Name" required placeholder="" value="" size="10" name="debtorName">
                                                     </div>
                                                 </div>
@@ -182,7 +182,7 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Billing Address*</label>
+                                                        <label>Billing Address* (付款地址)</label>
                                                         <input type="text" class="form-control" placeholder="Billing Address" value="" size="10" name="inAddr1" required placeholder="">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr2" required placeholder="">
@@ -194,7 +194,7 @@
                                                 </div>
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Delivery Address*</label>
+                                                        <label>Delivery Address* (送货地址)</label>
                                                         <input type="text" class="form-control" placeholder="Delivery Address" value="" size="10" name="deliverAddr1" required placeholder="">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr2" required placeholder="">
@@ -209,7 +209,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Name*</label>
+                                                        <label>Company Name* (公司名字)</label>
                                                         <input type="text" class="form-control" placeholder="Company Name" required placeholder="" value="" size="10" name="companyName">
                                                     </div>
                                                 </div>
@@ -217,14 +217,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Code*</label>
+                                                        <label>Company Code* (公司代码)</label>
                                                         <input type="text" class="form-control" placeholder="Company Code" required placeholder="" value="" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
-                                                        <label for = "password">Password*</label>
+                                                        <label for = "password">Password* (密码)</label>
                                                         <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control" value="" size="10" name="hashPassword">
 
                                                     </div>
@@ -234,13 +234,13 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Contact Number*</label>
+                                                        <label>Contact Number* (联络号码)</label>
                                                         <input type="text" class="form-control" placeholder="Contact Number" required placeholder="" value="" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
-                                                        <label>Fax Number</label>
+                                                        <label>Fax Number (传真号码)</label>
                                                         <input type="text" class="form-control" placeholder="Fax Number" value="" size="10" name="deliverFax1">
                                                     </div>
                                                 </div>
@@ -251,7 +251,7 @@
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Status*</label>
+                                                        <label>Status* (状态)</label>
                                                         <select name="status" class="form-control" placeholder="Status" value="">
                                                             <option value="active">Active</option>
                                                             <option value="inactive">Inactive</option>
@@ -261,7 +261,7 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Display Term*</label>
+                                                        <label>Display Term* (还钱期限)</label>
                                                         <select name="displayTerm" class="form-control" placeholder="Display Term" value="" >
                                                             <option value="cod">C.O.D</option>
                                                             <option value="one">1 day</option>
@@ -272,7 +272,7 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Area*</label>
+                                                        <label>Area* (路线号)</label>
                                                         <select name="routeNumber" class="form-control" placeholder="Route Number" value="">
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>

@@ -51,8 +51,8 @@
 
                         %>
                     </div>
-                    <ul class="nav">
-                        <li>
+                 <ul class="nav">
+                        <li class="nav-item active">
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
@@ -82,7 +82,7 @@
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li>
                             <a class="nav-link" href="./accountSettings.jsp">
                                 <i class="nc-icon nc-settings-gear-64"></i>
                                 <p>Account Settings</p>
@@ -190,7 +190,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>New Password (新密码)</label>
-                                                        <input type="password" name="newPass1" class="form-control" placeholder="Password">
+                                                        <input type="password" name="newPass1" class="form-control" required placeholder="" placeholder="Password">
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,7 +198,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Re-enter New Password (重新输入新密码)</label>
-                                                        <input type="password" name="newPass2" class="form-control" placeholder="Password">
+                                                        <input type="password" name="newPass2" class="form-control" required placeholder="" placeholder="Password">
                                                     </div>
                                                 </div>
 

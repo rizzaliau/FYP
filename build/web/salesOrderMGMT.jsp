@@ -225,8 +225,11 @@
                                         </form>   
 
                                 </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
             <footer class="footer">
                 <div class="container">

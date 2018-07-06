@@ -165,9 +165,9 @@
                         <div class="col-md-11">
                             <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Customer Management</h4>
-                                        <p>
-                                        <h5 class="card-title">Customer List</h5>
+                                        <h4 class="card-title">Customer Management (用户管理)</h4>
+                                        
+                                       <p class="card-category">Customer List (用户名单)</p>
                                     </div>
                                     <div class="card-body">
                                             
@@ -196,14 +196,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Debtor Code</label>
-                                                        <input type="text" class="form-control" placeholder="Debtor Code" value="<%= debtor.getDebtorCode()%>" size="10" name="debtorCode">
+                                                        <label>Customer Code (用户代码)</label>
+                                                        <input type="text" class="form-control" placeholder="Customer Code" value="<%= debtor.getDebtorCode()%>" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Debtor Name</label>
-                                                        <input type="text" class="form-control" placeholder="Debtor Name" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
+                                                        <label>Contact Person (名字)</label>
+                                                        <input type="text" class="form-control" placeholder="Customer Name" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
                                                     </div>
                                                 </div>
 
@@ -211,7 +211,7 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Billing Address</label>
+                                                        <label>Billing Address (付款地址)</label>
                                                         <input type="text" class="form-control" placeholder="Billing Address" value="<%= debtor.getInvAddr1()%>" size="10" name="inAddr1">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr2()%>" size="10" name="invAddr2">
@@ -223,7 +223,7 @@
                                                 </div>
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Delivery Address</label>
+                                                        <label>Delivery Address (送货地址)</label>
                                                         <input type="text" class="form-control" placeholder="Delivery Address" value="<%= debtor.getDeliverAddr1()%>" size="10" name="deliverAddr1">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr2()%>" size="10" name="deliverAddr2">
@@ -238,7 +238,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Name</label>
+                                                        <label>Company Name (公司名字)</label>
                                                         <input type="text" class="form-control" placeholder="Company Name" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">
                                                     </div>
                                                 </div>
@@ -246,14 +246,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Code</label>
+                                                        <label>Company Code (公司代码)</label>
                                                         <input type="text" class="form-control" placeholder="Company Code" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
-                                                        <label for = "password">Password</label>
+                                                        <label for = "password">Password (密码)</label>
                                                         <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control" value="<%= debtor.getPassword()%>" size="10" name="hashPassword">
 
                                                     </div>
@@ -263,13 +263,13 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Contact Number</label>
+                                                        <label>Contact Number (联络号码)</label>
                                                         <input type="text" class="form-control" placeholder="Contact Number" value="<%= debtor.getDeliverContact()%>" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
-                                                        <label>Fax Number</label>
+                                                        <label>Fax Number (传真号码)</label>
                                                         <input type="text" class="form-control" placeholder="Fax Number" value="<%= debtor.getDeliverFax1()%>" size="10" name="deliverFax1">
                                                     </div>
                                                 </div>
@@ -278,7 +278,7 @@
                                              <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Status</label>
+                                                        <label>Status (状态)</label>
                                                         <select name="status" class="form-control" placeholder="Status" value="">
                                                             <option value="active">Active</option>
                                                             <option value="inactive">Inactive</option>
@@ -288,7 +288,7 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Display Term</label>
+                                                        <label>Display Term (还钱期限)</label>
                                                         <select name="displayTerm" class="form-control" placeholder="Display Term" value="" >
                                                             <option value="cod">C.O.D</option>
                                                             <option value="one">1 day</option>
@@ -299,7 +299,7 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Area</label>
+                                                        <label>Area (路线号)</label>
                                                         <select name="routeNumber" class="form-control" placeholder="Route Number" value="">
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>

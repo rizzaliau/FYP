@@ -164,9 +164,9 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Customer Management</h4>
-                                        <p>
-                                        <h5 class="card-title">Customer List</h5>
+                                        <h4 class="card-title">Customer Management (用户管理)</h4>
+                                       
+                                        <p class="card-category">Customer List (用户名单)</p>
                                     </div>
                                     <div class="card-body">
                                         <form method="post" action="searchController">
