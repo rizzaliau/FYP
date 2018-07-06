@@ -37,6 +37,12 @@ public class searchUtility {
         String searchType = (String)request.getParameter("searchField");
         String searchValue = request.getParameter("searchValue");
         
+        if(searchValue.equals("")){
+            request.setAttribute("searchStatus","Please enter a search value!");
+            RequestDispatcher view = request.getRequestDispatcher("search.jsp");
+            view.forward(request,response);
+        }
+        
         Map<Integer, Debtor> searchMap = new HashMap<>();
 
         Connection conn = null;

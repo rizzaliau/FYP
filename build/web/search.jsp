@@ -100,7 +100,6 @@
                             <ul class="nav navbar-nav mr-auto">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link" data-toggle="dropdown">
-                                        <i class="nc-icon nc-palette"></i>
                                         <span class="d-lg-none">Dashboard</span>
                                     </a>
                                 </li>
@@ -118,19 +117,10 @@
                                         <a class="dropdown-item" href="#">New Order 5</a>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nc-icon nc-zoom-split"></i>
-                                        <span class="d-lg-block">&nbsp;Search</span>
-                                    </a>
-                                </li>
+
                             </ul>
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#pablo">
-                                        <span class="no-icon">Account</span>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="no-icon">Dropdown</span>
@@ -168,6 +158,20 @@
                                        
                                         <p class="card-category">Customer List (用户名单)</p>
                                     </div>
+                                    
+                                <font color="red"><center>
+                                <%
+                                    String msgStatus = (String) request.getAttribute("searchStatus");
+
+                                        if (msgStatus != null) {
+                                            out.print("</br>");
+                                            out.print(msgStatus);
+                                            out.print("</br>");
+                                        }
+
+                                %>
+                                </font></center>
+                                    
                                     <div class="card-body">
                                         <form method="post" action="searchController">
 
