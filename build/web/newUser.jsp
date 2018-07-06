@@ -168,13 +168,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Customer Code*</label>
-                                                        <input type="text" class="form-control" placeholder="Customer Code" value="" size="10" name="debtorCode">
+                                                        <input type="text" class="form-control" placeholder="Customer Code" required placeholder="" value="" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Contact Person*</label>
-                                                        <input type="text" class="form-control" placeholder="Customer Name" value="" size="10" name="debtorName">
+                                                        <input type="text" class="form-control" placeholder="Customer Name" required placeholder="" value="" size="10" name="debtorName">
                                                     </div>
                                                 </div>
 
@@ -183,9 +183,9 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Billing Address*</label>
-                                                        <input type="text" class="form-control" placeholder="Billing Address" value="" size="10" name="inAddr1">
+                                                        <input type="text" class="form-control" placeholder="Billing Address" value="" size="10" name="inAddr1" required placeholder="">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr2">
+                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr2" required placeholder="">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr3" >
                                                         <br>
@@ -195,9 +195,9 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Delivery Address*</label>
-                                                        <input type="text" class="form-control" placeholder="Delivery Address" value="" size="10" name="deliverAddr1">
+                                                        <input type="text" class="form-control" placeholder="Delivery Address" value="" size="10" name="deliverAddr1" required placeholder="">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr2">
+                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr2" required placeholder="">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr3">
                                                         <br>
@@ -210,7 +210,7 @@
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" value="" size="10" name="companyName">
+                                                        <input type="text" class="form-control" placeholder="Company Name" required placeholder="" value="" size="10" name="companyName">
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,7 +218,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Company Code*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Code" value="" size="10" name="companyCode">
+                                                        <input type="text" class="form-control" placeholder="Company Code" required placeholder="" value="" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
@@ -235,7 +235,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Number*</label>
-                                                        <input type="text" class="form-control" placeholder="Contact Number" value="" size="10" name="deliverContact">
+                                                        <input type="text" class="form-control" placeholder="Contact Number" required placeholder="" value="" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
