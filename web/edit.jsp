@@ -47,13 +47,13 @@
      
                 </div>
                  <ul class="nav">
-                        <li class="nav-item active">
+                         <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="./userMGMT.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
                                 <p>Customer Mgmt</p>

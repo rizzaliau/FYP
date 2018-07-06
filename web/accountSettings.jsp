@@ -52,7 +52,7 @@
                         %>
                     </div>
                  <ul class="nav">
-                        <li class="nav-item active">
+                        <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
@@ -82,7 +82,7 @@
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="./accountSettings.jsp">
                                 <i class="nc-icon nc-settings-gear-64"></i>
                                 <p>Account Settings</p>

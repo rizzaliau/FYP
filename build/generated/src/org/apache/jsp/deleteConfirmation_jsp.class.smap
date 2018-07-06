@@ -1,0 +1,16 @@
+SMAP
+deleteConfirmation_jsp.java
+JSP
+*S JSP
+*F
++ 0 deleteConfirmation.jsp
+deleteConfirmation.jsp
+*L
+5,153:47
+158,2:201
+159,17:203
+177,3:222
+179,4:225
+183:229,3
+184,153:232
+*E
