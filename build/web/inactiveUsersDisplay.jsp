@@ -159,7 +159,7 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">Customer Management</h4>
+                                    <h4 class="card-title">Customer Management（用户管理）</h4>
                                     <p class="card-category">Inactive Customer list</p>
                                 </div>
                                 
@@ -189,11 +189,11 @@
                                     <table class="table table-hover table-striped">
                                         <thead>
                                             <th> </th>
-                                            <th>ID</th>
-                                            <th>Company Name</th>
-                                            <th>Company Code</th>
-                                            <th>Contact Person</th>
-                                            <th>Status</th>
+                                            <th>ID (订单 ID)</th>
+                                            <th>Company Name (公司名字)</th>
+                                            <th>Company Code (公司代码)</th>
+                                            <th>Contact Person (名字)</th>
+                                            <th>Status (状态)</th>
                                         </thead>
                                         <tbody>
                                             
