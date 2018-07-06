@@ -84,41 +84,49 @@ public class Debtor {
     }
 
     public String getInvAddr1() {
+        
         return invAddr1;
 
     }
 
     public String getInvAddr2() {
+
         return invAddr2;
 
     }
 
     public String getInvAddr3() {
+
         return invAddr3;
 
     }
 
     public String getInvAddr4() {
+
         return invAddr4;
 
     }
     
     public String getDeliverAddr1() {
+        
         return deliverAddr1;
 
     }
 
     public String getDeliverAddr2() {
+
         return deliverAddr2;
 
     }
 
     public String getDeliverAddr3() {
+        
         return deliverAddr3;
 
     }
 
     public String getDeliverAddr4() {
+        
         return deliverAddr4;
 
     }

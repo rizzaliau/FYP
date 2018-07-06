@@ -8,6 +8,7 @@ package utility;
 import dao.ConnectionManager;
 import entity.Debtor;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -74,6 +75,31 @@ public class debtorUtility {
                 String status = rs.getString("Status");
                 String routeNumber = rs.getString("RouteNumber");
                 
+                if(invAddr1==null){
+                    invAddr1 = "";
+                }
+                if(invAddr2==null){
+                    invAddr2 = "";
+                }
+                if(invAddr3==null){
+                    invAddr3 = "";
+                }
+                if(invAddr4==null){
+                    invAddr4 = "";
+                }
+                
+                if(deliverAddr1==null){
+                    deliverAddr1 = "";
+                }
+                if(deliverAddr2==null){
+                    deliverAddr2 = "";
+                }
+                if(deliverAddr3==null){
+                    deliverAddr3 = "";
+                }
+                if(deliverAddr4==null){
+                    deliverAddr4 = "";
+                }
                 
                 Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverFax1,
                     invAddr1,invAddr2,invAddr3,invAddr4,deliverAddr1,deliverAddr2,
