@@ -31,8 +31,11 @@
 
                 <div class="logmod__heading">
                     <img src="assets/img/limkee_logo.png" style="width:6vw;height:10vh; max-width:100%;height:auto;">
+                    
                     <br>
                     <font size = 5><strong>Lim Kee Admin Portal</strong></font>
+                    <br>
+                    <br>
                     <font color="red">
                     
                     <%                                

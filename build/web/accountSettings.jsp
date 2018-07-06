@@ -226,8 +226,8 @@
                                             </p>
                                         </div>
                                         <p class="description text-center">
-                                            "1980s Our first production plant started at Ang Mo Kio Industrial Park 1."
-                                            <br>"Sharing our passion and love for steamed buns(paus)since our founding days"
+                                            Lim Kee aims to bring New Traditions to every home, everywhere.
+                                            <br><br>We aim to enliven the culture of pau, bringing great tasting quality pau for everyone to enjoy. Anytime, anywhere.
                                         </p>
                                     </div>
                                     <hr>
