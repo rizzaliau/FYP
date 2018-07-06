@@ -32,9 +32,10 @@ public class editUtility {
 
         //out.println("User retrieved is :"+userNameRetrieved);
         //String IDRetrieved = request.getParameter("ID");
+        
         String debtorCodeRetrived = request.getParameter("debtorCode");
         String companyCodeRetrieved = request.getParameter("companyCode");
-        String hashPasswordRetrieved = request.getParameter("hashPassword");
+        String newPasswordRetrieved = request.getParameter("hashPassword");
         String companyNameRetrieved = request.getParameter("companyName");
         String debtorNameRetrieved = request.getParameter("debtorName");
         String deliverContactRetrieved = request.getParameter("deliverContact");
@@ -51,6 +52,9 @@ public class editUtility {
         String statusRetrieved = request.getParameter("status");
         String routeNumberRetrieved = request.getParameter("routeNumber");
         int routeNumber = Integer.parseInt(routeNumberRetrieved);
+        
+        //Converts normal password to hashpassword
+        String newPasswordHash = loginUtility.getSha256(newPasswordRetrieved);
         
 //        out.println(debtorCodeRetrived);
 //        out.println(companyCodeRetrieved);
@@ -79,7 +83,7 @@ public class editUtility {
             out.println("passes conn");
 
             String sql = "UPDATE `debtor` SET CompanyCode='" + companyCodeRetrieved + "',"
-                    + " HashPassword = '" + hashPasswordRetrieved + "', DebtorName = '" +debtorNameRetrieved + "', "
+                    + " HashPassword = '" + newPasswordHash + "', DebtorName = '" +debtorNameRetrieved + "', "
                     + " CompanyName = '" + companyNameRetrieved + "', DeliverContact = '" +deliverContactRetrieved + "', "
                     + " DeliverFax1 = '" + deliverFax1Retrieved + "', invAddr1 = '" +invAddr1Retrieved + "', "
                     + " invAddr2 = '" + invAddr2Retrieved + "', invAddr3 = '" +invAddr3Retrieved + "', "

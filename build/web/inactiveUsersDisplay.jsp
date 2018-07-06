@@ -205,7 +205,7 @@
                                                 out.print("<td>" + debtor.getDebtorName() + "</td>");
                                                 out.print("<td>" + debtor.getStatus() + "</td>");
                                                 out.print("<td><a href='edit.jsp?serial="+number+"&status=inactive'>Edit</a></td>");
-                                                out.print("<td><a href='deleteConfirmation.jsp?debtorCode="+debtor.getDebtorCode()+"'>Delete</a></td>");
+                                                //out.print("<td><a href='deleteConfirmation.jsp?debtorCode="+debtor.getDebtorCode()+"'>Delete</a></td>");
                                                 out.print("</tr>");  
                                             }
                                             

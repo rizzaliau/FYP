@@ -25,7 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 public class insertUtility {
     
     public static void insert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
+        //Gets all the parameters from the form
         String debtorCode = request.getParameter("debtorCode");
         String companyCode = request.getParameter("companyCode");
         String hashPassword = request.getParameter("hashPassword");
@@ -45,13 +46,15 @@ public class insertUtility {
         String status = request.getParameter("status");
         String routeNumber = request.getParameter("routeNumber");
         
-
+        //Converts normal password to hashpassword
+        String newPasswordHash = loginUtility.getSha256(hashPassword);
+        
         try {
 
             Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
 
-            String sql = "INSERT INTO debtor " + "VALUES('"+ debtorCode+"','"+companyCode+"','"+hashPassword+"',"
+            String sql = "INSERT INTO debtor " + "VALUES('"+ debtorCode+"','"+companyCode+"','"+newPasswordHash+"',"
                     + "'"+companyName+"','"+debtorName+"','"+deliverContact+"','"+deliverFax1+"','"+inAddr1+"',"
                     + "'"+inAddr2+"','"+inAddr3+"','"+inAddr4+"','"+deliverAddr1+"','"+deliverAddr2+"',"
                     + "'"+deliverAddr3+"','"+deliverAddr4+"','"+displayTerm+"','"+status+"','"+routeNumber+"')";

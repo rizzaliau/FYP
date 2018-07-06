@@ -78,8 +78,10 @@ public class deleteUtility {
                     Connection conn = ConnectionManager.getConnection();
                     out.println("passes conn");
 
-                    String sql = "DELETE FROM `debtor` WHERE DebtorCode = '" + debtorCode + "'";
-
+                    //String sql = "DELETE FROM `debtor` WHERE DebtorCode = '" + debtorCode + "'";
+                    String sql = "UPDATE `debtor` SET Status='Inactive'"
+                    + "WHERE DebtorCode = '" + debtorCode + "'";
+                    
                     PreparedStatement stmt = conn.prepareStatement(sql);
                     out.println("passes stmt");
 

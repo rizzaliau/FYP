@@ -242,8 +242,8 @@
 
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
-                                                        <label for = "password">Password (密码)</label>
-                                                        <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control" value="<%= debtor.getPassword()%>" size="10" name="hashPassword">
+                                                        <label for = "password">New Password (密码)</label>
+                                                        <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control"  size="10" name="hashPassword">
 
                                                     </div>
                                                 </div>
