@@ -100,6 +100,9 @@ public class debtorUtility {
                 if(deliverAddr4==null){
                     deliverAddr4 = "";
                 }
+                if(deliverFax1==null){
+                    deliverFax1 = "";
+                }
                 
                 Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverFax1,
                     invAddr1,invAddr2,invAddr3,invAddr4,deliverAddr1,deliverAddr2,
@@ -183,6 +186,10 @@ public class debtorUtility {
                 }
                 if(deliverAddr4==null){
                     deliverAddr4 = "";
+                }
+                
+                if(deliverFax1==null){
+                    deliverFax1 = "";
                 }
                 
                 Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverFax1,
