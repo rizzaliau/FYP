@@ -101,7 +101,7 @@
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-palette"></i>
+
                                     <span class="d-lg-none">Dashboard</span>
                                 </a>
                             </li>
@@ -119,19 +119,10 @@
                                     <a class="dropdown-item" href="#">New Order 5</a>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;Search</span>
-                                </a>
-                            </li>
+
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
@@ -170,7 +161,9 @@
                                        <p class="card-category">Customer Details</p>
                                     </div>
                                     <div class="card-body">
-                                            
+                                        
+
+                                    
                                         <%  
                                         Map<Integer, Debtor> mapUsed = new HashMap<>();
                                         
@@ -188,7 +181,6 @@
                                         }
                                         
                                         Debtor debtor = mapUsed.get(numInt);
-                                        
                                         
                                         %>
                                         
@@ -253,7 +245,7 @@
                                                         <input type="text" class="form-control" required placeholder="Company Code" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
                                                     </div>
                                                 </div>
-
+                                                <!--
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
                                                         <label for = "password">Password*</label>
@@ -261,6 +253,7 @@
 
                                                     </div>
                                                 </div>
+                                                -->        
                                             </div>
 
                                             <div class="row">
@@ -358,11 +351,13 @@
                                                 </div>
 
                                             </div>
-
-
-                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+                                                        
+                                             <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" style="margin:1px;" /></a>
+                                             
+                                                <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
                                             <div class="clearfix"></div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
