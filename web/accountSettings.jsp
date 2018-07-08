@@ -155,7 +155,7 @@
                             <div class="col-md-8">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Edit account (修改账户)</h4>
+                                        <h4 class="card-title">Change Password</h4>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
@@ -189,16 +189,24 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>New Password (新密码)</label>
-                                                        <input type="password" name="newPass1" class="form-control" required placeholder="" placeholder="Password">
+                                                        <label>Enter current password</label>
+                                                        <input type="password" name="currentPass" class="form-control" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Re-enter New Password (重新输入新密码)</label>
-                                                        <input type="password" name="newPass2" class="form-control" required placeholder="" placeholder="Password">
+                                                        <label>Enter new password</label>
+                                                        <input type="password" name="newPass1" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Confirm new password</label>
+                                                        <input type="password" name="newPass2" class="form-control">
                                                     </div>
                                                 </div>
 

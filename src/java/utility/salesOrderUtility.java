@@ -119,10 +119,10 @@ public class salesOrderUtility {
 
             while (rs.next()) {
                 
-                String orderID = rs.getString("OrderID");
-                String debtorCode = rs.getString("DebtorCode");
-                String debtorName = rs.getString("DebtorName");
-                String routeNumber = rs.getString("RouteNumber");
+                String orderID = checkForNull(rs.getString("OrderID"));
+                String debtorCode = checkForNull(rs.getString("DebtorCode"));
+                String debtorName = checkForNull(rs.getString("DebtorName"));
+                String routeNumber = checkForNull(rs.getString("RouteNumber"));
 
                 SalesOrder salesOrder = new SalesOrder (orderID,debtorCode,debtorName,routeNumber);
                 
@@ -153,7 +153,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "SELECT * FROM `order_item`";
+            String populateMap = "SELECT * from order_item order by cast(`ItemCode` AS UNSIGNED)asc";
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
             
@@ -161,13 +161,13 @@ public class salesOrderUtility {
 
             while (rs.next()) {
                 
-                String itemCode = rs.getString("ItemCode");
-                String description = rs.getString("Description");
-                String descriptionChinese = rs.getString("Description2");
-                String unitPrice = rs.getString("UnitPrice");
-                String imageURL = rs.getString("imageURL");
-                String defaultQty = rs.getString("defaultQty");
-                String qtyMultiples = rs.getString("qtyMultiples");
+                String itemCode = catalogueCheckForNull(rs.getString("ItemCode"));
+                String description = catalogueCheckForNull(rs.getString("Description"));
+                String descriptionChinese = catalogueCheckForNull(rs.getString("Description2"));
+                String unitPrice = catalogueCheckForNull(rs.getString("UnitPrice"));
+                String imageURL = catalogueCheckForNull(rs.getString("imageURL"));
+                String defaultQty = catalogueCheckForNull(rs.getString("defaultQty"));
+                String qtyMultiples = catalogueCheckForNull(rs.getString("qtyMultiples"));
 
                 OrderItem orderItem = new OrderItem (itemCode,description,descriptionChinese,unitPrice,imageURL
                         ,defaultQty,qtyMultiples);
@@ -277,10 +277,10 @@ public class salesOrderUtility {
             
             while (rs.next()) {
                 
-                String itemCode=rs.getString("ItemCode");
-                String qty=rs.getString("Qty");
-                String returnedQty=rs.getString("ReturnedQty");
-                String unitPrice=rs.getString("UnitPrice");
+                String itemCode=checkForNull(rs.getString("ItemCode"));
+                String qty=checkForNull(rs.getString("Qty"));
+                String returnedQty=checkForNull(rs.getString("ReturnedQty"));
+                String unitPrice=checkForNull(rs.getString("UnitPrice"));
 
                 ItemDetails itemDetails = new ItemDetails (itemCode,qty,returnedQty,unitPrice);
                 
@@ -302,5 +302,17 @@ public class salesOrderUtility {
         
         return itemDetailsMap;
     }
+    private static String catalogueCheckForNull(String string){
+       if(string == null || string.equals("null")){
+           return "-";
+       }
+       return string;
+   }
+    private static String checkForNull(String string){
+       if(string == null || string.equals("null")){
+           return "";
+       }
+       return string;
+   }
 
 }

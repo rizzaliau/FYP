@@ -24,9 +24,9 @@ public class changePasswordUtility {
         
         HttpSession session = request.getSession();
         String userNameRetrieved = (String)session.getAttribute("username");
-
+        String passwordRetrieved = (String)session.getAttribute("password");
         //out.println("User retrieved is :"+userNameRetrieved);
-        
+        String currentPasswordEntered = request.getParameter("currentPass");
         String newPassword1 = request.getParameter("newPass1");
         out.println("Password is is :"+newPassword1);
         //out.println("User retrieved is :"+newUserName);
@@ -35,16 +35,15 @@ public class changePasswordUtility {
         out.println("Password is is :"+newPassword2);
         
   
-        if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){
-            
-            request.setAttribute("status", "Change password failed, Please enter new password and/or re-enter new password 请输入新密码");
+        if(currentPasswordEntered.equals("") || newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
+            request.setAttribute("status", "Blank fields detected.Please enter all fields");
+            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);   
+        }else if(!loginUtility.getSha256(currentPasswordEntered).equals(passwordRetrieved)){
+            request.setAttribute("status", "Current password entered is invalid.Please re-enter.");
+            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);          
+        } else if (!(newPassword1.equals(newPassword2))){           
+            request.setAttribute("status", "Passwords do not match. Please re-enter passwords.");
             request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
-        
-        }else if (!(newPassword1.equals(newPassword2))){
-            
-            request.setAttribute("status", "Passwords do not match! Please re-enter password. 密码确认不符, 请重新输入密码");
-            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
-
         }else{
             String newPasswordHash = loginUtility.getSha256(newPassword2);
 
@@ -52,7 +51,7 @@ public class changePasswordUtility {
 
             UserDAO.update(userNameRetrieved,newPasswordHash);
 
-            request.setAttribute("status", "Passwords updated successfully!  密码已更改");
+            request.setAttribute("status", "Password updated successfully!");
 
             request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
         }

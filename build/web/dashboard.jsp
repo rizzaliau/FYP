@@ -154,6 +154,7 @@
                     </div>
                 </nav>
                 <!-- End Navbar -->
+            <!--
             <div class="content">
                 <div class="container-fluid">
 
@@ -182,9 +183,11 @@
                     </div>
                 </div>
             </div>
+            -->
             <footer class="footer">
                 <div class="container">
                     <nav>
+                        <!--
                         <ul class="footer-menu">
                             <li>
                                 <a href="#">
@@ -207,6 +210,7 @@
                                 </a>
                             </li>
                         </ul>
+                        
                         <p class="copyright text-center">
                             This website's content is Copyright 
                             <script>
@@ -219,7 +223,7 @@
             </footer>
         </div>
     </div>
-    <!--   -->
+  -->
     <!-- <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">

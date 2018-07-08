@@ -106,6 +106,7 @@
                                     <span class="d-lg-none">Dashboard</span>
                                 </a>
                             </li>
+                            
                             <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <i class="nc-icon nc-planet"></i>
@@ -122,7 +123,7 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-
+                            <!--
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
@@ -136,6 +137,7 @@
                                     <a class="dropdown-item" href="#">Separated link</a>
                                 </div>
                             </li>
+                            -->
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.jsp">
                                     <span class="no-icon">Log out</span>
@@ -184,27 +186,28 @@
                                 <br>
 
                                 <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
+                                <table class="order-table table table-hover table-striped">
                                         <thead>
-                                            <th> </th>
+                                            <!--<th>S/N</th>-->
                                             <th>Item Code</th>
-                                            <th>Picture</th>
-                                            <th>Description</th>
-                                            <th>Description Chinese</th>
+                                            <th>Image</th>
+                                            <th>Description (ENG)</th>
+                                            <th>Description (中)</th>
                                             <th>Unit Price</th>
                                             <th>Default Quantity</th>
                                             <th>Quantity Multiples</th>
                                         </thead>
                                         <tbody>
-                                            
+                                        <!--    
                                         <form action="deleteMultipleCatalogueConfirmation.jsp" method="post">
-
+                                        -->
                                             <%  
-                                                
+                                            int count=0;  
                                             for (Integer number : catalogueMap.keySet()) {
                                                 out.print("<tr>");
                                                 OrderItem orderItem = catalogueMap.get(number);
-                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ orderItem.getItemCode() +"'></td>");
+                                                //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ orderItem.getItemCode() +"'></td>");
+                                                //out.println("<td>"+count+"</td>");
                                                 out.print("<td>" + orderItem.getItemCode() + "</td>");
                                                 out.print("<td><img src='" + orderItem.getImageURL() + "' style='width:50px;height:50px;' ></td>");
                                                 out.print("<td>" + orderItem.getDescription() + "</td>");
@@ -212,20 +215,34 @@
                                                 out.print("<td>" + orderItem.getUnitPrice() + "</td>");
                                                 out.print("<td>" + orderItem.getDefaultQuantity() + "</td>");
                                                 out.print("<td>" + orderItem.getQuantityMultiples() + "</td>");
-                                                out.print("<td><a href='catalogueEdit.jsp?serial="+number+"'>Edit</a></td>");
-                                                out.print("<td><a href='deleteCatalogueConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Delete</a></td>");
+                                                out.print("<td><a href='catalogueEdit.jsp?serial="+number+"'>Edit/View</a></td>");
+                                                //out.print("<td><a href='deleteCatalogueConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Delete</a></td>");
                                                 out.print("</tr>");  
+                                                count++;
                                             }
                                             
                                             %>
-                                            <a href="searchCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
+                                            <div class="row">
+                                            <div class="col-md-2">
+                                            <input type="search" class="form-control" data-table="order-table" placeholder="Search" style="margin-left:20px;">
+                                            </div>
+                                            <div class="col-md-8">
+                                            <!--<a href="searchCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
+                                            -->
+                                            <!--
                                             <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Sales Order" style="margin:1px;" /></a>
-                                            <a href="newCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New Catalogue Item"  value="New Catalogue Item" style="margin:1px;" /></a>
+                                            -->
+                                            </div>
+                                            <div class="col-md-2">
+                                            <a href="newCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New Item"  value="Add New Item" style="margin-right:20px;" /></a>
+                                            </div>
+                                            </div>
                                             </tbody>
-                                    </table>
+                                            </table>
                                             <br>
+                                            <!--
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
-                                        
+                                            -->
                                         </form>   
 
                                  </div>
@@ -296,6 +313,47 @@
         demo.initDashboardPageCharts();
 
     });
+</script>
+<script>
+(function(document) {
+	'use strict';
+
+	var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		function _onInputEvent(e) {
+			_input = e.target;
+			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+			Arr.forEach.call(tables, function(table) {
+				Arr.forEach.call(table.tBodies, function(tbody) {
+					Arr.forEach.call(tbody.rows, _filter);
+				});
+			});
+		}
+
+		function _filter(row) {
+			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		}
+
+		return {
+			init: function() {
+				var inputs = document.getElementsByClassName('form-control');
+				Arr.forEach.call(inputs, function(input) {
+					input.oninput = _onInputEvent;
+				});
+			}
+		};
+	})(Array.prototype);
+
+	document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+			LightTableFilter.init();
+		}
+	});
+
+})(document);
 </script>
 
 </html>

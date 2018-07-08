@@ -160,7 +160,7 @@
                                 <div class="card-header ">
 
                                     <h4 class="card-title">Sales Order Management</h4>
-                                    <p class="card-category">Past sales orders list </p>
+                                    <p class="card-category">Pass Orders</p>
                                 </div>
                                 
                                 <div class="col-md-8"><font color="red">
@@ -206,21 +206,24 @@
                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status=Delivered'>Edit/View</a></td>");
-                                                out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=Delivered&deliveryDate="+salesOrderdetails.getDeliveryDate()+"'>Delete</a></td>");
+                                                //out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=Delivered&deliveryDate="+salesOrderdetails.getDeliveryDate()+"'>Delete</a></td>");
                                                 out.print("</tr>");  
                                             }
                                             
                                             %>
                                             <a href="searchSalesOrder.jsp?status=Delivered&deliveryDate=none"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
+                                            <!--
                                             <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Catalogue" style="margin:1px;" /></a>
+                                            -->
                                             <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="SubsequentDaysOrder"  value="Subsequent Days Order" style="margin:1px;" /></a>
                                             <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="salesOrderHistory"  value="Sales Order History" style="margin:1px;" /></a>
                                             <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin:1px;" /></a>
                                             </tbody>
                                     </table>
                                             <br>
+                                            <!--
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
-                                        
+                                            -->
                                         </form>   
 
                                 </div>

@@ -135,7 +135,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="logout.jsp">
+                                    <a class="nav-link" href="#pablo">
                                         <span class="no-icon">Log out</span>
                                     </a>
                                 </li>
@@ -154,11 +154,11 @@
                             <div class="col-md-10">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Customer Management (用户管理)</h4>
+                                        <h4 class="card-title">Customer Management</h4>
                                         <p>
-                                         <h5 class="card-title"><font color = "red">Please fill-in the form below to create a new customer (请填写以下表格以创建新用户)</font></h5>
+                                         <h5 class="card-title"><font color = "red">Please fill in details below to add new customer</font></h5>
                                          <p>
-                                         <p class="card-category"><font color = "red">*Indicates required fields (必填)</font></p>
+                                         <p class="card-category"><font color = "red">* denotes required fields</font></p>
                                     </div>
                                     <div class="card-body">
 
@@ -167,14 +167,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Customer Code* (用户代码)</label>
-                                                        <input type="text" class="form-control" placeholder="Customer Code" required placeholder="" value="" size="10" name="debtorCode">
+                                                        <label>Username*</label>
+                                                        <input type="text" class="form-control" placeholder="Username" required value="" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Contact Person* (名字)</label>
-                                                        <input type="text" class="form-control" placeholder="Customer Name" required placeholder="" value="" size="10" name="debtorName">
+                                                        <label>Company Name*</label>
+                                                        <input type="text" class="form-control" placeholder="Company Name" required placeholder="" value="" size="10" name="companyName">                                            
                                                     </div>
                                                 </div>
 
@@ -182,7 +182,7 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Billing Address* (付款地址)</label>
+                                                        <label>Billing Address*</label>
                                                         <input type="text" class="form-control" placeholder="Billing Address" value="" size="10" name="inAddr1" required placeholder="">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr2" required placeholder="">
@@ -194,7 +194,7 @@
                                                 </div>
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Delivery Address* (送货地址)</label>
+                                                        <label>Delivery Address*</label>
                                                         <input type="text" class="form-control" placeholder="Delivery Address" value="" size="10" name="deliverAddr1" required placeholder="">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr2" required placeholder="">
@@ -209,23 +209,23 @@
                                             <div class="row">
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Name* (公司名字)</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" required placeholder="" value="" size="10" name="companyName">
+                                                        <label>Contact Person*</label>
+                                                        <input type="text" class="form-control" placeholder="Contact Person" required placeholder="" value="" size="10" name="debtorName">                                               
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Code* (公司代码)</label>
+                                                        <label>Company Code*</label>
                                                         <input type="text" class="form-control" placeholder="Company Code" required placeholder="" value="" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
-                                                        <label for = "password">Password* (密码)</label>
-                                                        <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control" value="" size="10" name="hashPassword">
+                                                        <label for = "password">Password*</label>
+                                                        <input type="password" minLength="8" required placeholder="min 8 characters" class="form-control" value="" size="10" name="hashPassword">
 
                                                     </div>
                                                 </div>
@@ -234,14 +234,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Contact Number* (联络号码)</label>
+                                                        <label>Contact Number</label>
                                                         <input type="text" class="form-control" placeholder="Contact Number" required placeholder="" value="" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
-                                                        <label>Fax Number (传真号码)</label>
-                                                        <input type="text" class="form-control" placeholder="Fax Number" value="" size="10" name="deliverFax1">
+                                                        <label>Contact Number 2</label>
+                                                        <input type="text" class="form-control" placeholder="Contact Number 2" value="" size="10" name="deliverContact2">
                                                     </div>
                                                 </div>
 
@@ -251,8 +251,8 @@
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Status* (状态)</label>
-                                                        <select name="status" class="form-control" placeholder="Status" value="">
+                                                        <label>Status*</label>
+                                                        <select name="status" class="form-control" required>
                                                             <option value="active">Active</option>
                                                             <option value="inactive">Inactive</option>
                                                             <option value="blacklisted">Blacklisted</option>
@@ -261,8 +261,8 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Display Term* (还钱期限)</label>
-                                                        <select name="displayTerm" class="form-control" placeholder="Display Term" value="" >
+                                                        <label>Payment Term*</label>
+                                                        <select name="displayTerm" class="form-control" required >
                                                             <option value="cod">C.O.D</option>
                                                             <option value="one">1 day</option>
                                                             <option value="fifteen">15 days</option>
@@ -272,29 +272,13 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Area* (路线号)</label>
-                                                        <select name="routeNumber" class="form-control" placeholder="Route Number" value="">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-
-                                                            <option value="4">5</option>
-                                                            <option value="5">6</option>
-                                                            <option value="6">7</option>
-                                                            <option value="7">8</option>
-                                                            <option value="8">9</option>
-
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                            <option value="11">11</option>
-                                                            <option value="12">12</option>
-                                                            <option value="13">13</option>
-
-                                                            <option value="14">14</option>
-                                                            <option value="15">15</option>
-                                                            <option value="16">16</option>
-                                                            <option value="17">17</option>
-                                                            <option value="18">18</option>
+                                                        <label>Area*</label>
+                                                        <select name="routeNumber" class="form-control" required>
+                                                            <%
+                                                               for (int i=1;i<=18;i++){
+                                                                   out.print("<option value='"+i+"'>"+i+"</option>");
+                                                                 }
+                                                            %>
                                                         </select>
 
                                                     </div>
@@ -374,11 +358,11 @@
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
     <script type="text/javascript">
-                                        $(document).ready(function () {
-                                            // Javascript method's body can be found in assets/js/demos.js
-                                            demo.initDashboardPageCharts();
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
 
-                                        });
+    });
     </script>
 
 </html>

@@ -101,6 +101,7 @@
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="dropdown">
+                                    <i class="nc-icon nc-palette"></i>
                                     <span class="d-lg-none">Dashboard</span>
                                 </a>
                             </li>
@@ -118,9 +119,19 @@
                                     <a class="dropdown-item" href="#">New Order 5</a>
                                 </ul>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nc-icon nc-zoom-split"></i>
+                                    <span class="d-lg-block">&nbsp;Search</span>
+                                </a>
+                            </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <span class="no-icon">Account</span>
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
@@ -135,7 +146,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.jsp">
+                                <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
@@ -154,9 +165,9 @@
                         <div class="col-md-11">
                             <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Customer Management (用户管理)</h4>
+                                        <h4 class="card-title">Customer Management</h4>
                                         
-                                       <p class="card-category">Customer List (用户名单)</p>
+                                       <p class="card-category">Customer Details</p>
                                     </div>
                                     <div class="card-body">
                                             
@@ -177,6 +188,8 @@
                                         }
                                         
                                         Debtor debtor = mapUsed.get(numInt);
+                                        
+                                        
                                         %>
                                         
 
@@ -185,14 +198,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Customer Code (用户代码)</label>
-                                                        <input type="text" class="form-control" placeholder="Customer Code" value="<%= debtor.getDebtorCode()%>" size="10" name="debtorCode">
+                                                        <label>Username*</label>
+                                                        <input type="text" class="form-control" value="<%= debtor.getDebtorCode()%>" size="10" name="debtorCode" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Contact Person (名字)</label>
-                                                        <input type="text" class="form-control" placeholder="Customer Name" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
+                                                        <label>Company Name*</label>
+                                                        <input type="text" class="form-control" placeholder="Company Name" required ="" value="<%= debtor.getCompanyCode()%>" size="10" name="companyName">                                                           
                                                     </div>
                                                 </div>
 
@@ -200,8 +213,8 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Billing Address (付款地址)</label>
-                                                        <input type="text" class="form-control" placeholder="Billing Address" value="<%= debtor.getInvAddr1()%>" size="10" name="inAddr1">
+                                                        <label>Billing Address*</label>
+                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="<%= debtor.getInvAddr1()%>" size="10" name="inAddr1">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr2()%>" size="10" name="invAddr2">
                                                         <br>
@@ -212,8 +225,8 @@
                                                 </div>
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Delivery Address (送货地址)</label>
-                                                        <input type="text" class="form-control" placeholder="Delivery Address" value="<%= debtor.getDeliverAddr1()%>" size="10" name="deliverAddr1">
+                                                        <label>Delivery Address*</label>
+                                                        <input type="text" class="form-control" required placeholder="Delivery Address" value="<%= debtor.getDeliverAddr1()%>" size="10" name="deliverAddr1">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr2()%>" size="10" name="deliverAddr2">
                                                         <br>
@@ -227,23 +240,24 @@
                                             <div class="row">
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Name (公司名字)</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">
+                                                        <label>Contact Person*</label>
+                                                        <input type="text" class="form-control" required placeholder="Customer Name" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
+                               
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Code (公司代码)</label>
-                                                        <input type="text" class="form-control" placeholder="Company Code" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
+                                                        <label>Company Code*</label>
+                                                        <input type="text" class="form-control" required placeholder="Company Code" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
-                                                        <label for = "password">New Password (密码)</label>
-                                                        <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control"  size="10" name="hashPassword">
+                                                        <label for = "password">Password*</label>
+                                                        <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control" value="<%= debtor.getPassword()%>" size="10" name="hashPassword">
 
                                                     </div>
                                                 </div>
@@ -252,14 +266,15 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Contact Number (联络号码)</label>
-                                                        <input type="text" class="form-control" placeholder="Contact Number" value="<%= debtor.getDeliverContact()%>" size="10" name="deliverContact">
+                                                        <label>Contact Number 1</label>
+                                                        <input type="text" class="form-control" placeholder="Contact Number 1" value="<%= debtor.getDeliverContact()%>" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
-                                                        <label>Fax Number (传真号码)</label>
-                                                        <input type="text" class="form-control" placeholder="Fax Number" value="<%= debtor.getDeliverFax1()%>" size="10" name="deliverFax1">
+                                                        <!-- need to change the value of this field-->
+                                                        <label>Contact Number 2</label>
+                                                        <input type="text" class="form-control" placeholder="Contact Number 2" value="Fax<%= debtor.getDeliverFax1()%>" size="10" name="deliverFax1">
                                                     </div>
                                                 </div>
                                             </div>
@@ -267,52 +282,78 @@
                                              <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Status (状态)</label>
-                                                        <select name="status" class="form-control" placeholder="Status" value="">
+                                                        <label>Status*</label>                                                       
+                                                        <!--
+                                                        <input type="text" name="status" list="statusNames">
+                                                            <datalist id="statusNames">
                                                             <option value="active">Active</option>
                                                             <option value="inactive">Inactive</option>
                                                             <option value="blacklisted">Blacklisted</option>
-                                                        </select>    
+                                                            </datalist>
+                                                        -->
+                                                        <select name="statusDropdown" class="form-control" required>
+                                                            <option value="active">Active</option>
+                                                            <option value="inactive">Inactive</option>
+                                                            <option value="blacklisted">Blacklisted</option>
+                                                        </select>
+                                                        <script>
+                                                            document.write('<input type="hidden" name="status" value="' + document.getElementByName('displayTermDropdown').value + ">");
+                                                        </script>
+                                                        <!--
+                                                        <input type="hidden" name="status" value="<script>
+                                                            document.getElementByName('statusDropdown').value 
+                                                               </script>">
+                                                        -->
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Display Term (还钱期限)</label>
-                                                        <select name="displayTerm" class="form-control" placeholder="Display Term" value="" >
+                                                        <label>Payment Term</label>
+                                                         <!--
+                                                        <input type="text" name="displayTerm" list="termNames">
+                                                        <datalist id="termNames">
+                                                            <option value="cod">C.O.D</option>
+                                                            <option value="one">1 day</option>
+                                                            <option value="fifteen">15 days</option>
+                                                            <option value="thirty">30 days</option>                                                            
+                                                        </datalist>
+                                                        -->
+                                                        <select name="displayTermDropdown" class="form-control" required>
                                                             <option value="cod">C.O.D</option>
                                                             <option value="one">1 day</option>
                                                             <option value="fifteen">15 days</option>
                                                             <option value="thirty">30 days</option>
                                                         </select>
+                                                        <!--
+                                                        <input type="hidden" name="displayTerm" value="
+                                                            <script>
+                                                            document.getElementByName('displayTermDropdown').value 
+                                                            </script>
+                                                        -->
+                                                        <script>
+                                                            //document.write(document.getElementByName('displayTermDropdown').value);
+                                                            document.write('<input type="hidden" name="displayTerm" value="' + document.getElementByName('displayTermDropdown').value + ">");
+                                                        </script>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Area (路线号)</label>
-                                                        <select name="routeNumber" class="form-control" placeholder="Route Number" value="">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-
-                                                            <option value="4">5</option>
-                                                            <option value="5">6</option>
-                                                            <option value="6">7</option>
-                                                            <option value="7">8</option>
-                                                            <option value="8">9</option>
-
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                            <option value="11">11</option>
-                                                            <option value="12">12</option>
-                                                            <option value="13">13</option>
-
-                                                            <option value="14">14</option>
-                                                            <option value="15">15</option>
-                                                            <option value="16">16</option>
-                                                            <option value="17">17</option>
-                                                            <option value="18">18</option>
+                                                    <div class="form-group">                                                                                                         <label>Area*</label>
+                                                        <select name="routeNumberDropdown" id="routeNumberDropdown" class="form-control" required>
+                                                            <%
+                                                               for (int i=1;i<=18;i++){
+                                                                   out.print("<option value='"+i+"'>"+i+"</option>");
+                                                                 }
+                                                            %>
                                                         </select>
-
+                                                        <script>
+                                                            //sdocument.write(document.getElementByName('routeNumberDropdown').value);
+                                                            document.write('<input type="hidden" name="displayTerm" value="' + document.getElementByName('routeNumberDropdown').value + ">");
+                                                        </script>
+                                                        <!--
+                                                        <input type="hidden" name="routeNumber" id="routeNumber" value="<script>
+                                                               document.getElementByName('routeNumberDropdown').value 
+                                                               </script>">
+                                                        -->
                                                     </div>
                                                 </div>
 
@@ -388,6 +429,20 @@
         demo.initDashboardPageCharts();
 
     });
+</script>
+<script>
+    function getSelectedStatus() {
+        document.getElementByName("status").value = (Number)document.getElementByName("statusDropdown").value;
+        return (Number)document.getElementByName("statusDropdown").value;
+    }
+    function getSelectedRouteNumber(){
+        document.getElementByName("routeNumber").value = (Number)document.getElementByName("routeNumberDropdown").value;
+        return (Number)document.getElementByName("routeNumberDropdown").value;
+    }
+    function getSelectedDisplayTerm(){
+        document.getElementByName("displayTerm").value = (Number)document.getElementByName("displayTermDropdown").value;
+        return (Number)document.getElementByName("displayTermDropdown").value;
+    }
 </script>
 
 </html>

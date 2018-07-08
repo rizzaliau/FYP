@@ -158,7 +158,7 @@
                                 <div class="card-header ">
 
                                     <h4 class="card-title">Sales Order Management</h4>
-                                    <p class="card-category">Catalogue Edit</p>
+                                    <p class="card-category">Edit Item</p>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
@@ -189,25 +189,25 @@
                                         <form method="post" action="editCatalogueController">
 
                                             <tr><thead><th>Item Code</th></thead>
-                                            <td><input type="text" size="10" name="itemCode" value="<%= orderItem.getItemCode()%>"></td>
+                                            <td><input type="text" size="5" name="itemCode" value="<%= orderItem.getItemCode()%>"></td>
                                             </tr>
                                             <tr><thead><th>English Description</th></thead>
-                                            <td><input type="text" size="10" name="description" value="<%= orderItem.getDescription()%>"></td>
+                                            <td><input type="text" size="20" name="description" value="<%= orderItem.getDescription()%>"></td>
                                             </tr>
                                             <tr><thead><th>Chinese Description</th></thead>
-                                            <td><input type="text" size="10" name="descriptionChinese" value="<%= orderItem.getDescriptionChinese()%>"></td>
+                                            <td><input type="text" size="20" name="descriptionChinese" value="<%= orderItem.getDescriptionChinese()%>"></td>
                                             </tr>
                                             <tr><thead><th>Unit Price</th></thead>
-                                            <td><input type="text" size="10" name="unitPrice" value="<%= orderItem.getUnitPrice()%>"></td>
+                                            <td><input type="text" size="5" name="unitPrice" value="<%= orderItem.getUnitPrice()%>"></td>
                                             </tr>
                                             <tr><thead><th>Image URL</th></thead>
-                                            <td><input type="text" size="10" name="imageURL" value="<%= orderItem.getImageURL()%>"></td>
+                                            <td><input type="text" size="50" name="imageURL" value="<%= orderItem.getImageURL()%>"></td>
                                             </tr>
                                             <tr><thead><th>Default Quantity</th></thead>
-                                            <td><input type="text" size="10" name="defaultQuantity" value="<%= orderItem.getDefaultQuantity()%>"></td>
+                                            <td><input type="text" size="5" name="defaultQuantity" value="<%= orderItem.getDefaultQuantity()%>"></td>
                                             </tr>
                                             <tr><thead><th>Quantity Multiples</th></thead>
-                                            <td><input type="text" size="10" name="quantityMultiples" value="<%= orderItem.getQuantityMultiples()%>"></td>
+                                            <td><input type="text" size="5" name="quantityMultiples" value="<%= orderItem.getQuantityMultiples()%>"></td>
                                             </tr>
        
 
@@ -217,14 +217,7 @@
                                     <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
 
                                     </form>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
- 
-                                        </tbody>
+                                    </tbody>
                                     </table>
                                 </div>
                             </div>

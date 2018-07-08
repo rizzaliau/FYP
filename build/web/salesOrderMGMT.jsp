@@ -121,8 +121,8 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-
                             <li class="nav-item dropdown">
+                                <!--
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
                                 </a>
@@ -135,6 +135,7 @@
                                     <a class="dropdown-item" href="#">Separated link</a>
                                 </div>
                             </li>
+                            -->
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.jsp">
                                     <span class="no-icon">Log out</span>
@@ -160,7 +161,24 @@
                                 <div class="card-header ">
 
                                     <h4 class="card-title">Sales Order Management</h4>
-                                    <p class="card-category">Current Sales Order list (Today) </p>
+                                    <p class="card-category">Orders to be delivered today: (<script>
+                                        var today = new Date();
+                                        var dd = today.getDate();
+                                        var mm = today.getMonth()+1; //January is 0!
+                                        var yyyy = today.getFullYear();
+
+                                        if(dd<10) {
+                                            dd = '0'+dd
+                                        } 
+
+                                        if(mm<10) {
+                                            mm = '0'+mm
+                                        } 
+
+                                        today = mm + '/' + dd + '/' + yyyy;
+                                        document.write(today);
+                                    </script>)
+                                    </p>
                                 </div>
                                 
                                 <div class="col-md-8"><font color="red">
@@ -184,12 +202,13 @@
                                 <br>
 
                                 <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <th> </th>
+                                    <table class="order-table table table-hover table-striped">
+                                        <thead>   
+                                            <th>S/N</th>
                                             <th>Order ID</th>
-                                            <th>Debtor Name</th>
+                                            <th>Customer Name</th>
                                             <th>Route Number</th>
+                                            
                                         </thead>
                                         <tbody>
                                             
@@ -199,29 +218,42 @@
                                             for (Integer number : salesOrderMap.keySet()) {
                                                 out.print("<tr>");
                                                 SalesOrder salesOrder = salesOrderMap.get(number);
-                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
-                                                //out.print("<td>" + number + "</td>");
+                                                //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
+                                                out.print("<td>" + number + "</td>");
                                                 out.print("<td>" + salesOrder.getOrderID() + "</td>");
                                                 //out.print("<td>" + salesOrder.getDebtorCode() + "</td>");
                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery'>Edit/View</a></td>");
-                                                out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Delete</a></td>");
+                                                //out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Delete</a></td>");
                                                 out.print("</tr>");  
                                             }
                                             
                                             %>
-                                            
-                                            <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
-                                            <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="SubsequentDaysOrder"  value="Subsequent Days Order" style="margin:1px;" /></a>
-                                            <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="salesOrderHistory"  value="Sales Order History" style="margin:1px;" /></a>
-                                            <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin:1px;" /></a>
+                                             <div class="row">
+                                                <div class="col-md-2">
+                                                <input type="search" class="form-control" data-table="order-table" placeholder="Search" style="margin-left:20px;">
+                                                </div>
+                                            <!-- 
+                                            <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
+                                            --> <div class="col-md-4">
+                                                </div>
+                                                <div class="col-md-2">
+                                                <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
+                                                </div>
+                                                <div class="col-md-2">
+                                                <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  margin-right:10px name="salesOrderHistory"  value="Sales Order History" /></a>
+                                                </div>
+                                                <div class="col-md-2">
+                                                <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  margin-right:10px name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
+                                                </div>
+                                             </div>
                                             </tbody>
                                     </table>
                                             <br>
-                                            
+                                            <!--
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
-                                        
+                                            -->
                                         </form>   
 
                                 </div>
@@ -293,5 +325,45 @@
 
     });
 </script>
+<script>
+    (function(document) {
+            'use strict';
 
+            var LightTableFilter = (function(Arr) {
+
+                    var _input;
+
+                    function _onInputEvent(e) {
+                            _input = e.target;
+                            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                            Arr.forEach.call(tables, function(table) {
+                                    Arr.forEach.call(table.tBodies, function(tbody) {
+                                            Arr.forEach.call(tbody.rows, _filter);
+                                    });
+                            });
+                    }
+
+                    function _filter(row) {
+                            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+                    }
+
+                    return {
+                            init: function() {
+                                    var inputs = document.getElementsByClassName('form-control');
+                                    Arr.forEach.call(inputs, function(input) {
+                                            input.oninput = _onInputEvent;
+                                    });
+                            }
+                    };
+            })(Array.prototype);
+
+            document.addEventListener('readystatechange', function() {
+                    if (document.readyState === 'complete') {
+                            LightTableFilter.init();
+                    }
+            });
+
+    })(document);
+    </script>
 </html>

@@ -180,25 +180,25 @@
                                         <form method="post" action="newCatalogueItemController">
 
                                             <tr><thead><th>Item Code</th></thead>
-                                            <td><input type="text" size="10" name="itemCode" ></td>
+                                            <td><input type="text" size="5" name="itemCode" ></td>
                                             </tr>
                                             <tr><thead><th>English Description</th></thead>
-                                            <td><input type="text" size="10" name="description" ></td>
+                                            <td><input type="text" size="20" name="description" ></td>
                                             </tr>
                                             <tr><thead><th>Chinese Description</th></thead>
-                                            <td><input type="text" size="10" name="descriptionChinese"></td>
+                                            <td><input type="text" size="20" name="descriptionChinese"></td>
                                             </tr>
                                             <tr><thead><th>Unit Price</th></thead>
-                                            <td><input type="text" size="10" name="unitPrice" ></td>
+                                            <td><input type="text" size="5" name="unitPrice" ></td>
                                             </tr>
                                             <tr><thead><th>Image URL</th></thead>
-                                            <td><input type="text" size="10" name="imageURL" ></td>
+                                            <td><input type="text" size="50" name="imageURL" ></td>
                                             </tr>
                                             <tr><thead><th>Default Quantity</th></thead>
-                                            <td><input type="text" size="10" name="defaultQuantity" ></td>
+                                            <td><input type="text" size="5" name="defaultQuantity" ></td>
                                             </tr>
                                             <tr><thead><th>Quantity Multiples</th></thead>
-                                            <td><input type="text" size="10" name="quantityMultiples"></td>
+                                            <td><input type="text" size="5" name="quantityMultiples"></td>
                                             </tr>
        
 
@@ -208,13 +208,6 @@
                                     <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
 
                                     </form>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
- 
                                         </tbody>
                                     </table>
                                 </div>

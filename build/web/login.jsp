@@ -48,8 +48,7 @@
 
                     %> 
                     </font>
-                    <span class="logmod__heading-subtitle">Enter your user and password <strong>to sign in</strong> 
-                        <br>请填写用户名和/或密码</span>
+                    <span class="logmod__heading-subtitle">Enter your <strong>username</strong> and <strong>password </strong>to sign in </span>
                 </div> 
                 
                 
@@ -58,21 +57,22 @@
                         <div class="sminputs">
                             <div class="input full">
                                 <label class="string optional" for="user-name">Username</label>
-                                <input class="string optional" maxlength="255" id="user" placeholder="Username" type="user" size="50" name="user"/>
+                                <input class="string optional" maxlength="255" id="user" placeholder="Username" type="user" size="50" name="user" value="admin"/>
                             </div>
                         </div>
                         <div class="sminputs">
                             <div class="input full">
                                 <label class="string optional" for="user-pw">Password *</label>
-                                <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" name="password"/>
-                                <span class="hide-password">Show</span>
+                                <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" name="password"value="admin123"/>
+                                <span class="hide-password" id="pwOption" onclick="showPassword()">Show</span>
                             </div>
                         </div>
                         <div class="simform__actions">
                             <input class="sumbit" name="commit" type="submit" value="Log In" /> 
-
+                            <!--    
                             <span class="simform__actions-sidetext"><a class="special" role="link" href="adminHome.jsp">Forgot your password?<br>Click here</a></span>
-                        </div> 
+                            -->
+                            </div> 
                     </form>
                 </div> 
                 <div class="logmod__alter">
@@ -85,24 +85,17 @@
                     
         
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-
-
         <script  src="js/index.js"></script>
-
-
-
-
-
+        <script>
+        function showPassword() {
+            var x = document.getElementById("pwOption");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        </script>
     </body>
-
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-
-
-    <script  src="js/index.js"></script>
-
-
-
 </html>
 

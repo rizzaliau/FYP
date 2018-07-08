@@ -136,6 +136,7 @@ public class debtorUtility {
         try {
             conn = ConnectionManager.getConnection();
             String populateMap = "SELECT * FROM `debtor` WHERE status = 'INACTIVE' OR status = 'BLACKLISTED'";
+            //String populateMap = "SELECT IFNULL(\"\",DebtorCode),IFNULL(\"\",DebtorCode),IFNULL(\"\",companyCode),IFNULL(\"\",HashPassword),IFNULL(\"\",CompanyName),IFNULL(\"\",DebtorName),IFNULL(\"\",DeliverContact),IFNULL(\"\",DeliverFax1),IFNULL(\"\",InvAddr1),IFNULL(\"\",InvAddr2),IFNULL(\"\",InvAddr3),IFNULL(\"\",InvAddr4),IFNULL(\"\",DeliverAddr1),IFNULL(\"\",DeliverAddr2),IFNULL(\"\",DeliverAddr3),IFNULL(\"\",DeliverAddr4), IFNULL(\"\",DisplayTerm),IFNULL(\"\",Status),IFNULL(\"\",RouteNumber)from debtor WHERE status = 'INACTIVE' OR status = 'BLACKLISTED';";
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
             
@@ -143,25 +144,25 @@ public class debtorUtility {
 
             while (rs.next()) {
                 
-                String debtorCode = rs.getString("DebtorCode");
-                String companyCode = rs.getString("companyCode");
-                String hashPassword = rs.getString("HashPassword");
-                String companyName = rs.getString("CompanyName");
-                String debtorName = rs.getString("DebtorName");
-                String deliverContact = rs.getString("DeliverContact");
-                String deliverFax1 = rs.getString("DeliverFax1");
-                String invAddr1 = rs.getString("InvAddr1");
-                String invAddr2 = rs.getString("InvAddr2");        
-                String invAddr3 = rs.getString("InvAddr3");
-                String invAddr4 = rs.getString("InvAddr4");
-                String deliverAddr1 = rs.getString("DeliverAddr1");
-                String deliverAddr2 = rs.getString("DeliverAddr2");
-                String deliverAddr3 = rs.getString("DeliverAddr3");
-                String deliverAddr4 = rs.getString("DeliverAddr4");
-                String displayTerm = rs.getString("DisplayTerm");
-                String status = rs.getString("Status");
-                String routeNumber = rs.getString("RouteNumber");
-                
+                String debtorCode = checkForNull(rs.getString("DebtorCode"));
+                String companyCode = checkForNull(rs.getString("companyCode"));
+                String hashPassword = checkForNull(rs.getString("HashPassword"));
+                String companyName = checkForNull(rs.getString("CompanyName"));
+                String debtorName = checkForNull(rs.getString("DebtorName"));
+                String deliverContact = checkForNull(rs.getString("DeliverContact"));
+                String deliverFax1 = checkForNull(rs.getString("DeliverFax1"));
+                String invAddr1 = checkForNull(rs.getString("InvAddr1"));
+                String invAddr2 = checkForNull(rs.getString("InvAddr2"));        
+                String invAddr3 = checkForNull(rs.getString("InvAddr3"));
+                String invAddr4 = checkForNull(rs.getString("InvAddr4"));
+                String deliverAddr1 = checkForNull(rs.getString("DeliverAddr1"));
+                String deliverAddr2 = checkForNull(rs.getString("DeliverAddr2"));
+                String deliverAddr3 = checkForNull(rs.getString("DeliverAddr3"));
+                String deliverAddr4 = checkForNull(rs.getString("DeliverAddr4"));
+                String displayTerm = checkForNull(rs.getString("DisplayTerm"));
+                String status = checkForNull(rs.getString("Status"));
+                String routeNumber = checkForNull(rs.getString("RouteNumber"));
+                /*
                 if(invAddr1==null){
                     invAddr1 = "";
                 }
@@ -190,7 +191,7 @@ public class debtorUtility {
                 
                 if(deliverFax1==null){
                     deliverFax1 = "";
-                }
+                }*/
                 
                 Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverFax1,
                     invAddr1,invAddr2,invAddr3,invAddr4,deliverAddr1,deliverAddr2,
@@ -211,6 +212,12 @@ public class debtorUtility {
         
         return debtorMap;
     }
-
     
+    private static String checkForNull(String string){
+       if(string == null || string.equals("null")){
+           return "";
+       }
+       return string;
+   }
 }
+

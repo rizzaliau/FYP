@@ -186,10 +186,11 @@
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
                                         <thead>
-                                            <th> </th>
+                                            <th>S/N</th>
                                             <th>Order ID</th>
-                                            <th>Debtor Name</th>
+                                            <th>Customer Name</th>
                                             <th>Route Number</th>
+                                            
                                         </thead>
                                         <tbody>
                                             
@@ -203,28 +204,31 @@
                                                 SalesOrder salesOrder = salesOrderMap.get(number);
                                                 SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(salesOrder.getOrderID(),"Cancelled");    
                                                 
-                                                out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
-                                                //out.print("<td>" + number + "</td>");
+                                                //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
+                                                out.print("<td>" + number + "</td>");
                                                 out.print("<td>" + salesOrder.getOrderID() + "</td>");
                                                 //out.print("<td>" + salesOrder.getDebtorCode() + "</td>");
                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status=Cancelled'>Edit/View</a></td>");
-                                                out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=Cancelled&deliveryDate="+salesOrderdetails.getDeliveryDate()+"'>Delete</a></td>");
+                                                //out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=Cancelled&deliveryDate="+salesOrderdetails.getDeliveryDate()+"'>Delete</a></td>");
                                                 out.print("</tr>");  
                                             }
                                             
                                             %>
                                             <a href="searchSalesOrder.jsp?status=Cancelled&deliveryDate=none"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin:1px;"/></a>
+                                            <!--
                                             <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Catalogue" style="margin:1px;" /></a>
+                                            -->
                                             <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="SubsequentDaysOrder"  value="Subsequent Days Order" style="margin:1px;" /></a>
                                             <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="salesOrderHistory"  value="Sales Order History" style="margin:1px;" /></a>
                                             <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin:1px;" /></a>
                                             </tbody>
                                     </table>
                                             <br>
+                                            <!--
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
-                                        
+                                            -->
                                         </form>   
 
                                  </div>
