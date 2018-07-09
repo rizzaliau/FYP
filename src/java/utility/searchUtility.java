@@ -238,16 +238,18 @@ public class searchUtility {
 
             while (rs.next()) {
                 
-                String itemCodeRetrieved = rs.getString("itemCode");
-                String descriptionRetrieved = rs.getString("description");
-                String descriptionChineseRetrieved = rs.getString("description2");
-                String unitPriceRetrieved = rs.getString("unitPrice");
-                String imageURLRetrieved = rs.getString("imageURL");
-                String defaultQuantityRetrieved = rs.getString("defaultQty");
-                String quantityMultiplesRetrieved = rs.getString("qtyMultiples");
+                String itemCode = catalogueCheckForNull(rs.getString("ItemCode"));
+                String description = catalogueCheckForNull(rs.getString("Description"));
+                String descriptionChinese = catalogueCheckForNull(rs.getString("Description2"));
+                String unitPrice = catalogueCheckForNull(rs.getString("UnitPrice"));
+                String retailPrice = catalogueCheckForNull(rs.getString("retailPrice"));
+                String unitOfMetric = catalogueCheckForNull(rs.getString("UnitOfMetric"));
+                String imageURL = catalogueCheckForNull(rs.getString("imageURL"));
+                String defaultQty = catalogueCheckForNull(rs.getString("defaultQty"));
+                String qtyMultiples = catalogueCheckForNull(rs.getString("qtyMultiples"));
 
-                OrderItem orderItem = new OrderItem (itemCodeRetrieved,descriptionRetrieved,descriptionChineseRetrieved,
-                    unitPriceRetrieved,imageURLRetrieved,defaultQuantityRetrieved,quantityMultiplesRetrieved);
+                OrderItem orderItem = new OrderItem (itemCode,description,descriptionChinese,unitPrice,retailPrice,
+                        unitOfMetric,imageURL,defaultQty,qtyMultiples);
                 
                 searchMap.put(count, orderItem);
                 count++;
@@ -271,6 +273,13 @@ public class searchUtility {
         view.forward(request,response);
         
     }
+    
+    private static String catalogueCheckForNull(String string){
+       if(string == null || string.equals("null")){
+           return "-";
+       }
+       return string;
+   }
     
     
 }

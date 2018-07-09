@@ -62,7 +62,7 @@ public class debtorUtility {
                 String companyName = rs.getString("CompanyName");
                 String debtorName = rs.getString("DebtorName");
                 String deliverContact = rs.getString("DeliverContact");
-                String deliverFax1 = rs.getString("DeliverFax1");
+                String deliverContact2 = rs.getString("DeliverContact2");
                 String invAddr1 = rs.getString("InvAddr1");
                 String invAddr2 = rs.getString("InvAddr2");        
                 String invAddr3 = rs.getString("InvAddr3");
@@ -100,11 +100,11 @@ public class debtorUtility {
                 if(deliverAddr4==null){
                     deliverAddr4 = "";
                 }
-                if(deliverFax1==null){
-                    deliverFax1 = "";
+                if(deliverContact2==null){
+                    deliverContact2 = "";
                 }
                 
-                Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverFax1,
+                Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverContact2,
                     invAddr1,invAddr2,invAddr3,invAddr4,deliverAddr1,deliverAddr2,
                     deliverAddr3,deliverAddr4,displayTerm,status,routeNumber);
                 

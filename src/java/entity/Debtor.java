@@ -17,7 +17,7 @@ public class Debtor {
     private String companyName;
     private String debtorName;
     private String deliverContact;
-    private String deliverFax1;
+    private String deliverContact2;
     private String invAddr1;
     private String invAddr2;        
     private String invAddr3;
@@ -30,7 +30,7 @@ public class Debtor {
     private String status;
     private String routeNumber;
     
-    public Debtor (String debtorCode, String companyCode, String hashPassword,String companyName,String debtorName, String deliverContact, String deliverFax1,
+    public Debtor (String debtorCode, String companyCode, String hashPassword,String companyName,String debtorName, String deliverContact, String deliverContact2,
         String invAddr1,String invAddr2, String invAddr3, String invAddr4, String deliverAddr1, String deliverAddr2,
         String deliverAddr3, String deliverAddr4, String displayTerm, String status, String routeNumber){
         
@@ -40,7 +40,7 @@ public class Debtor {
         this.companyName = companyName;
         this.debtorName = debtorName;
         this.deliverContact = deliverContact;
-        this.deliverFax1 = deliverFax1;
+        this.deliverContact2 = deliverContact2;
         this.invAddr1 = invAddr1;
         this.invAddr2 = invAddr2;        
         this.invAddr3 = invAddr3;
@@ -78,8 +78,8 @@ public class Debtor {
         return deliverContact;
     }
 
-    public String getDeliverFax1() {
-        return deliverFax1;
+    public String getDeliverContact2() {
+        return deliverContact2;
 
     }
 

@@ -14,17 +14,21 @@ public class OrderItem {
     private String description;
     private String descriptionChinese;
     private String unitPrice;
+    private String retailPrice;
+    private String unitOfMetric;
     private String imageURL;
     private String defaultQuantity;
     private String quantityMultiples;
     
-    public OrderItem(String itemCode, String description, String descriptionChinese, String unitPrice, String imageURL, 
-            String defaultQuantity, String quantityMultiples){
+    public OrderItem(String itemCode, String description, String descriptionChinese, String unitPrice,String retailPrice,
+            String unitOfMetric, String imageURL, String defaultQuantity, String quantityMultiples){
         
         this.itemCode=itemCode;
         this.description=description;
         this.descriptionChinese=descriptionChinese;
         this.unitPrice=unitPrice;
+        this.retailPrice=retailPrice;
+        this.unitOfMetric=unitOfMetric;
         this.imageURL=imageURL;
         this.defaultQuantity=defaultQuantity;
         this.quantityMultiples=quantityMultiples;
@@ -42,6 +46,12 @@ public class OrderItem {
     }
     
     public String getUnitPrice(){
+        return unitPrice;
+    }
+    public String getRetailPrice(){
+        return unitPrice;
+    }
+    public String getUnitOfMetric(){
         return unitPrice;
     }
     public String getImageURL(){

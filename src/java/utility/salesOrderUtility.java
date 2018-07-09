@@ -165,12 +165,14 @@ public class salesOrderUtility {
                 String description = catalogueCheckForNull(rs.getString("Description"));
                 String descriptionChinese = catalogueCheckForNull(rs.getString("Description2"));
                 String unitPrice = catalogueCheckForNull(rs.getString("UnitPrice"));
+                String retailPrice = catalogueCheckForNull(rs.getString("retailPrice"));
+                String unitOfMetric = catalogueCheckForNull(rs.getString("UnitOfMetric"));
                 String imageURL = catalogueCheckForNull(rs.getString("imageURL"));
                 String defaultQty = catalogueCheckForNull(rs.getString("defaultQty"));
                 String qtyMultiples = catalogueCheckForNull(rs.getString("qtyMultiples"));
 
-                OrderItem orderItem = new OrderItem (itemCode,description,descriptionChinese,unitPrice,imageURL
-                        ,defaultQty,qtyMultiples);
+                OrderItem orderItem = new OrderItem (itemCode,description,descriptionChinese,unitPrice,retailPrice,
+                        unitOfMetric,imageURL,defaultQty,qtyMultiples);
                 
                 catalogueMap.put(count, orderItem);
                 count++;
