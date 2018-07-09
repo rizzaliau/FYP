@@ -190,6 +190,7 @@
                                             <th>Company Name</th>
                                             <th>Company Code</th>
                                             <th>Contact Person</th>
+                                            <th>Status</th>
                                             <th></th>
                                             </thead>
                                             <tbody>
@@ -205,6 +206,7 @@
                                                         out.print("<td>" + debtor.getCompanyName() + "</td>");
                                                         out.print("<td>" + debtor.getCompanyCode() + "</td>");
                                                         out.print("<td>" + debtor.getDebtorName() + "</td>");
+                                                        out.print("<td>" + debtor.getStatus() + "</td>");
                                                         out.print("<td><a href='edit.jsp?serial=" + number + "&status=active'>Edit/View</a></td>");
                                                         //out.print("<td><a href='deleteConfirmation.jsp?debtorCode=" + debtor.getDebtorCode() + "'>Delete</a></td>");
                                                         out.print("</tr>");

@@ -4,6 +4,7 @@
     Author     : Rizza
 --%>
 
+<%@page import="entity.SalesOrderDetails"%>
 <%@page import="utility.salesOrderUtility"%>
 <%@page import="entity.SalesOrder"%>
 <%@include file="protect.jsp" %>
@@ -150,7 +151,8 @@
                 //Map currently hardcode for the date "2018-06-25", need to change to current date/required date
                 String status = "Pending Delivery";
                 String deliveryDate = "2018-06-25";
-                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getSalesOrderMap(status,deliveryDate);
+                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getAllSalesOrderMap();
+
             %>
             
             <div class="content">
@@ -208,6 +210,9 @@
                                             <th>Order ID</th>
                                             <th>Customer Name</th>
                                             <th>Route Number</th>
+                                            <th>Order Date/Time</th>
+                                            <th>Delivery Date</th>
+                                            <th>Status</th>
                                             
                                         </thead>
                                         <tbody>
@@ -218,12 +223,25 @@
                                             for (Integer number : salesOrderMap.keySet()) {
                                                 out.print("<tr>");
                                                 SalesOrder salesOrder = salesOrderMap.get(number);
+                                                SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
                                                 //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
                                                 out.print("<td>" + number + "</td>");
                                                 out.print("<td>" + salesOrder.getOrderID() + "</td>");
-                                                //out.print("<td>" + salesOrder.getDebtorCode() + "</td>");
                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
+                                                
+                                                if(salesOrderdetails==null){
+                                                    out.print("<td></td>");
+                                                    out.print("<td></td>");
+                                                    out.print("<td></td>");
+                                                }else{
+                                                    out.print("<td>" + salesOrderdetails.getCreateTimeStamp() + "</td>");
+                                                    out.print("<td>" + salesOrderdetails.getDeliveryDate() + "</td>");
+                                                    out.print("<td>" + salesOrderdetails.getStatus() + "</td>");
+                                                }
+                                                
+                                                
+                                                
                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery'>Edit/View</a></td>");
                                                 //out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Delete</a></td>");
                                                 out.print("</tr>");  

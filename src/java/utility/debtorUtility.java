@@ -48,7 +48,12 @@ public class debtorUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "SELECT * FROM `debtor` WHERE status = 'ACTIVE'";
+            
+            //Old code to retrieve all active users
+            //String populateMap = "SELECT * FROM `debtor` WHERE status = 'ACTIVE'";
+            
+            String populateMap = "SELECT * FROM `debtor` ";
+            
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
             
