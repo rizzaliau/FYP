@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="simform__actions">
-                            <input class="sumbit" name="commit" type="submit" value="Log In" /> 
+                            <input class="sumbit" name="commit" type="submit" value="Log In" style="background-color: #e88347; border-radius: 20px; "/>
                             <!--    
                             <span class="simform__actions-sidetext"><a class="special" role="link" href="adminHome.jsp">Forgot your password?<br>Click here</a></span>
                             -->

@@ -232,6 +232,8 @@
                                             <!--
                                             <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Sales Order" style="margin:1px;" /></a>
                                             -->
+                                            <!--search icon -->
+                                            <img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">
                                             </div>
                                             <div class="col-md-2">
                                             <a href="newCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New Item"  value="Add New Item" style="margin-right:20px;" /></a>

@@ -221,6 +221,7 @@
                                                 <input type="search" class="form-control" data-table="order-table" placeholder="Search" style="margin-left:20px;">
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">
                                                 </div>
                                                 <div class="col-md-2">
                                                 <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer"/></a>

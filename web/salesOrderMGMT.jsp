@@ -255,6 +255,7 @@
                                             <!-- 
                                             <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
                                             --> <div class="col-md-4">
+                                                <img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">
                                                 </div>
                                                 <div class="col-md-2">
                                                 <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
