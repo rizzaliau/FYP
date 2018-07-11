@@ -230,20 +230,23 @@
                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
                                                 
-                                                if(salesOrderdetails==null){
-                                                    out.print("<td></td>");
-                                                    out.print("<td></td>");
-                                                    out.print("<td></td>");
-                                                }else{
+                                                //if(salesOrderdetails==null){
+                                                    //out.print("<td></td>");
+                                                    //out.print("<td></td>");
+                                                    //out.print("<td></td>");
+                                               // }else{
                                                     out.print("<td>" + salesOrderdetails.getCreateTimeStamp() + "</td>");
                                                     out.print("<td>" + salesOrderdetails.getDeliveryDate() + "</td>");
                                                     out.print("<td>" + salesOrderdetails.getStatus() + "</td>");
-                                                }
+                                               // }
                                                 
                                                 
-                                                
-                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery'>Edit/View</a></td>");
+                                                if(salesOrderdetails.getStatus().equals("Pending Delivery")){
+                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>Edit</a></td>");
                                                 //out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Delete</a></td>");
+                                                }else{
+                                                out.print("<td><a href='salesOrderView.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>View</a></td>");    
+                                                }
                                                 out.print("</tr>");  
                                             }
                                             

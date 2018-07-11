@@ -153,7 +153,7 @@ public class editUtility {
             stmt2.executeUpdate();
             out.println("passes rs");
 
-            for(int i=0; i<qtyItemCodeRetrieved.length-1; i++){
+            for(int i=0; i<qtyItemCodeRetrieved.length; i++){
 
                 try {
                     

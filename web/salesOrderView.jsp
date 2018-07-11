@@ -1,13 +1,14 @@
 <%-- 
-    Document   : userMGMT
+    Document   : salesOrderView
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
 --%>
 
-<%@page import="entity.SalesOrderDetails"%>
+
+<%@page import="entity.ItemDetails"%>
 <%@page import="utility.salesOrderUtility"%>
-<%@page import="entity.SalesOrder"%>
-<%@include file="protect.jsp" %>
+<%@page import="entity.SalesOrderDetails"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="entity.Debtor"%>
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
@@ -48,7 +49,7 @@
                     </a>
      
                 </div>
-                   <ul class="nav">
+                <ul class="nav">
                         <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
@@ -103,7 +104,7 @@
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <span class="d-lg-none">Dashboard</span>
+
                                 </a>
                             </li>
                             <li class="dropdown nav-item">
@@ -120,10 +121,11 @@
                                     <a class="dropdown-item" href="#">New Order 5</a>
                                 </ul>
                             </li>
+
                         </ul>
                         <ul class="navbar-nav ml-auto">
+
                             <li class="nav-item dropdown">
-                                <!--
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
                                 </a>
@@ -136,9 +138,8 @@
                                     <a class="dropdown-item" href="#">Separated link</a>
                                 </div>
                             </li>
-                            -->
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.jsp">
+                                <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
@@ -146,15 +147,7 @@
                     </div>
                 </div>
             </nav>
-            
-            <%
-                //Map currently hardcode for the date "2018-06-25", need to change to current date/required date
-                String status = "Pending Delivery";
-                String deliveryDate = "2018-06-25";
-                Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getAllSalesOrderMap();
 
-            %>
-            
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -163,127 +156,161 @@
                                 <div class="card-header ">
 
                                     <h4 class="card-title">Sales Order Management</h4>
-                                    <p class="card-category">Orders to be delivered today: (<script>
-                                        var today = new Date();
-                                        var dd = today.getDate();
-                                        var mm = today.getMonth()+1; //January is 0!
-                                        var yyyy = today.getFullYear();
-
-                                        if(dd<10) {
-                                            dd = '0'+dd
-                                        } 
-
-                                        if(mm<10) {
-                                            mm = '0'+mm
-                                        } 
-
-                                        today = mm + '/' + dd + '/' + yyyy;
-                                        document.write(today);
-                                    </script>)
-                                    </p>
+                                    <p class="card-category">Sales Order View</p>
                                 </div>
-                                
-                                <div class="col-md-8"><font color="red">
-                                    <%                                
-                                        String msgStatus = (String) request.getAttribute("updateSuccess");
-                                        String msgStatus2 = (String) request.getAttribute("status");
-
-                                        if (msgStatus != null) {
-                                            out.print("</br>");
-                                            out.print(msgStatus);
-                                            out.print("</br>");
-                                        }
-                                        
-                                        if (msgStatus2 != null) {
-                                            out.print("</br>");
-                                            out.print(msgStatus2);
-                                            out.print("</br>");
-                                        }
-                                    %> 
-                                </div></font>
-                                <br>
-
                                 <div class="card-body table-full-width table-responsive">
-                                    <table class="order-table table table-hover table-striped">
-                                        <thead>   
-                                            <th>S/N</th>
-                                            <th>Order ID</th>
-                                            <th>Customer Name</th>
-                                            <th>Route Number</th>
-                                            <th>Order Date/Time</th>
-                                            <th>Delivery Date</th>
-                                            <th>Status</th>
-                                            
-                                        </thead>
+                                    <table class="table table-hover table-striped">
                                         <tbody>
                                             
-                                        <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
+                                        <%  
+                                        String orderID = request.getParameter("orderID");   
+                                        String status = request.getParameter("status");  
+                                        
+                                        if(status.equals("pendingDelivery")){
+                                            status = "Pending Delivery";
+                                        }
+                                        
+                                        
+                                        SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderID,status);
+                                        
+                                        Map<Integer,ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(orderID,status);
+                                        
+                                        Map<Integer,ItemDetails> refundedItemDetailsMap = salesOrderUtility.getItemDetailsMap(orderID,"Refunded");
 
-                                            <%  
-                                            for (Integer number : salesOrderMap.keySet()) {
-                                                out.print("<tr>");
-                                                SalesOrder salesOrder = salesOrderMap.get(number);
-                                                SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
-                                                //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
-                                                out.print("<td>" + number + "</td>");
-                                                out.print("<td>" + salesOrder.getOrderID() + "</td>");
-                                                out.print("<td>" + salesOrder.getDebtorName() + "</td>");
-                                                out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
+                                        %>
+                                        
+
+
+
+                                            <tr><thead><th>Debtor Name</th></thead>
+                                            <td><%= salesOrderdetails.getDebtorName()%></td>
+                                            </tr>
+                                            <tr><thead><th>Company Name</th></thead>
+                                            <td><%= salesOrderdetails.getCompanyName()%></td>
+                                            </tr>
+                                            <tr><thead><th>Contact Number</th></thead>
+                                            <td><%= salesOrderdetails.getDeliverContact()%></td>
+                                            </tr>
+                                            <tr><thead><th>Display Term</th></thead>
+                                            <td><%= salesOrderdetails.getDisplayTerm()%></td>
+                                            </tr>
+                                            <tr>
+                                            <td><br></td> 
+                                            </tr>
+                                            <tr><thead><th>Order ID</th></thead>
+                                            <td><%= salesOrderdetails.getOrderID()%></td>
+                                            </tr>
+                                            <tr><thead><th>Order Date</th></thead>
+                                            <td><%= salesOrderdetails.getCreateTimeStamp()%></td>
+                                            </tr>
+                                            <tr><thead><th>Status</th></thead>
+                                            <td><%= salesOrderdetails.getStatus()%></td>
+                                            </tr>
+                                            <tr>
+                                            <td><br></td> 
+                                            </tr>
+                                            <tr><thead><th>Delivery Address 1</th></thead>
+                                            <td><%= salesOrderdetails.getDeliverAddr1()%></td>
+                                            </tr>
+                                            <tr><thead><th>Delivery Address 2</th></thead>
+                                            <td><%= salesOrderdetails.getDeliverAddr2()%></td>
+                                            </tr>
+                                            <tr><thead><th>Delivery Address 3</th></thead>
+                                            <td><%= salesOrderdetails.getDeliverAddr3()%></td>
+                                            </tr>
+                                            <tr><thead><th>Delivery Address 4</th></thead>
+                                            <td><%= salesOrderdetails.getDeliverAddr4()%></td>
+                                            </tr>
+                                            <tr><thead><th>Delivery Route</th></thead>
+                                            <td><%= salesOrderdetails.getRouteNumber()%></td>
+                                            </tr>
+                                            <tr><thead><th>Delivery Date</th></thead>
+                                            <td><%= salesOrderdetails.getDeliveryDate()%></td>
+                                            </tr>
+                                            <tr>
+                                            <td><br></td> 
+                                            </tr>
+                                            
+                                            
+                                            <% 
                                                 
-                                                //if(salesOrderdetails==null){
-                                                    //out.print("<td></td>");
-                                                    //out.print("<td></td>");
-                                                    //out.print("<td></td>");
-                                               // }else{
-                                                    out.print("<td>" + salesOrderdetails.getCreateTimeStamp() + "</td>");
-                                                    out.print("<td>" + salesOrderdetails.getDeliveryDate() + "</td>");
-                                                    out.print("<td>" + salesOrderdetails.getStatus() + "</td>");
-                                               // }
+                                            double total = 0;
+                                            
+                                            for (Integer number : itemDetailsMap.keySet()) {
+                                                double subtotal = 0;
                                                 
+                                                ItemDetails itemDetail = itemDetailsMap.get(number);
                                                 
-                                                if(salesOrderdetails.getStatus().equals("Pending Delivery")){
-                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>Edit</a></td>");
-                                                //out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Delete</a></td>");
-                                                }else{
-                                                out.print("<td><a href='salesOrderView.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>View</a></td>");    
-                                                }
-                                                out.print("</tr>");  
+                                                double qtyDouble = Double.parseDouble(itemDetail.getQty());
+                                                double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
+                                                subtotal = qtyDouble * unitPriceDouble;
+                                                
+                                                out.print("<tr><thead><th>Item Code</th></thead>");
+                                                out.print("<td>"+itemDetail.getItemCode()+"</td>");
+                                                out.print("<input type='hidden' size='10' name='itemCode' value='"+itemDetail.getItemCode()+"'>");
+                                                out.print("<tr><thead><th>Quantity</th></thead>");
+                                                out.print("<td>"+itemDetail.getQty()+"</td>");
+                                                out.print("<tr><thead><th>Returned Quantity</th></thead>");
+                                                out.print("<td>"+itemDetail.getReturnedQty()+"</td>");
+                                                out.print("<tr><thead><th>Unit Price</th></thead>");
+                                                out.print("<td>"+itemDetail.getUnitPrice()+"</td>");
+                                                out.print("<tr><thead><th>Subtotal</th></thead>");
+                                                out.print("<td>"+subtotal+"</td>");
+                                                out.print("</tr>");
+                                                out.print("<tr><td><br></td></tr>");
+                                                
+                                                total+=subtotal;
                                             }
                                             
                                             %>
-                                             <div class="row">
-                                                <div class="col-md-2">
-                                                <input type="search" class="form-control" data-table="order-table" placeholder="Search" style="margin-left:20px;">
-                                                </div>
-                                            <!-- 
-                                            <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
-                                            --> <div class="col-md-4">
-                                                <img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">
-                                                </div>
-                                                <div class="col-md-2">
-                                                <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
-                                                </div>
-                                                <div class="col-md-2">
-                                                <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  margin-right:10px name="salesOrderHistory"  value="Sales Order History" /></a>
-                                                </div>
-                                                <div class="col-md-2">
-                                                <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  margin-right:10px name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
-                                                </div>
-                                             </div>
+                                            <tr><thead><th>Total Amount</th></thead>
+                                                <td><%= total %></td>
+                                            </tr>
+                                            <tr>
+                                            <td><br></td> 
+                                            </tr>
+                                            
+                                            <% 
+                                                
+                                            double refundedTotal = 0;
+                                            
+                                            for (Integer number : refundedItemDetailsMap.keySet()) {
+                                                double refundedSubtotal = 0;
+                                                
+                                                ItemDetails refundedItemDetail = refundedItemDetailsMap.get(number);
+                                                
+                                                double qtyDouble = Double.parseDouble(refundedItemDetail.getQty());
+                                                double unitPriceDouble = Double.parseDouble(refundedItemDetail.getUnitPrice());
+                                                refundedSubtotal = qtyDouble * unitPriceDouble;
+                                                
+                                                out.print("<tr><thead><th>Item Code</th></thead>");
+                                                out.print("<td>"+refundedItemDetail.getItemCode()+"</td>");
+                                                out.print("<tr><thead><th>Quantity</th></thead>");
+                                                out.print("<td>"+refundedItemDetail.getQty()+"</td>");
+                                                out.print("<tr><thead><th>Returned Quantity</th></thead>");
+                                                out.print("<td>"+refundedItemDetail.getReturnedQty()+"</td>");
+                                                out.print("<tr><thead><th>Unit Price</th></thead>");
+                                                out.print("<td>"+refundedItemDetail.getUnitPrice()+"</td>");
+                                                out.print("<tr><thead><th>Subtotal</th></thead>");
+                                                out.print("<td>"+refundedSubtotal+"</td>");
+                                                out.print("</tr>");
+                                                out.print("<tr><td><br></td></tr>");
+                                                
+                                                refundedTotal+=refundedSubtotal;
+                                            }
+                                            
+                                            %>
+                                            
                                             </tbody>
                                     </table>
-                                            <br>
-                                            <!--
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
-                                            -->
-                                        </form>   
 
-                                </div>
+                                        
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                       
 
             <footer class="footer">
                 <div class="container">
@@ -347,45 +374,5 @@
 
     });
 </script>
-<script>
-    (function(document) {
-            'use strict';
 
-            var LightTableFilter = (function(Arr) {
-
-                    var _input;
-
-                    function _onInputEvent(e) {
-                            _input = e.target;
-                            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-                            Arr.forEach.call(tables, function(table) {
-                                    Arr.forEach.call(table.tBodies, function(tbody) {
-                                            Arr.forEach.call(tbody.rows, _filter);
-                                    });
-                            });
-                    }
-
-                    function _filter(row) {
-                            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-                            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-                    }
-
-                    return {
-                            init: function() {
-                                    var inputs = document.getElementsByClassName('form-control');
-                                    Arr.forEach.call(inputs, function(input) {
-                                            input.oninput = _onInputEvent;
-                                    });
-                            }
-                    };
-            })(Array.prototype);
-
-            document.addEventListener('readystatechange', function() {
-                    if (document.readyState === 'complete') {
-                            LightTableFilter.init();
-                    }
-            });
-
-    })(document);
-    </script>
 </html>
