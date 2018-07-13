@@ -218,21 +218,21 @@ public class salesOrderUtility {
 
             while (rs.next()) {
                 
-                String orderIDRetrieved = rs.getString("OrderID");
-                String createTimeStamp= rs.getString("CreatedTimeStamp");
-                String status= rs.getString("Status");
-                String lastModified= rs.getString("LastModified");
-                String deliveryDate= rs.getString("DeliveryDate");
-                String subTotal= rs.getString("SubTotal");
-                String companyName= rs.getString("CompanyName");
-                String debtorName= rs.getString("DebtorName");
-                String deliverContact= rs.getString("DeliverContact");
-                String displayTerm= rs.getString("DisplayTerm");
-                String routeNumber= rs.getString("RouteNumber");
-                String deliverAddr1= rs.getString("DeliverAddr1");
-                String deliverAddr2= rs.getString("DeliverAddr2");
-                String deliverAddr3= rs.getString("DeliverAddr3");
-                String deliverAddr4= rs.getString("DeliverAddr4");   
+                String orderIDRetrieved = checkForNull(rs.getString("OrderID"));
+                String createTimeStamp= checkForNull(rs.getString("CreatedTimeStamp"));
+                String status= checkForNull(rs.getString("Status"));
+                String lastModified= checkForNull(rs.getString("LastModified"));
+                String deliveryDate= checkForNull(rs.getString("DeliveryDate"));
+                String subTotal= checkForNull(rs.getString("SubTotal"));
+                String companyName= checkForNull(rs.getString("CompanyName"));
+                String debtorName= checkForNull(rs.getString("DebtorName"));
+                String deliverContact= checkForNull(rs.getString("DeliverContact"));
+                String displayTerm= checkForNull(rs.getString("DisplayTerm"));
+                String routeNumber= checkForNull(rs.getString("RouteNumber"));
+                String deliverAddr1= checkForNull(rs.getString("DeliverAddr1"));
+                String deliverAddr2= checkForNull(rs.getString("DeliverAddr2"));
+                String deliverAddr3= checkForNull(rs.getString("DeliverAddr3"));
+                String deliverAddr4= checkForNull(rs.getString("DeliverAddr4"));   
                 
                 SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,status,
                         lastModified,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
