@@ -51,7 +51,7 @@ public class ConnectionManager {
              System.out.println("enters local environment ");
         }
             
-      dbURL = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
+      dbURL = "jdbc:mysql://" + host + ":" + port + "/" + dbName +"?characterEncoding=utf8";
     } catch (Exception ex) {
       // unable to load properties file
       String message = "Unable to load '" + PROPS_FILENAME + "'.";

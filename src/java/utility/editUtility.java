@@ -9,6 +9,10 @@ import dao.ConnectionManager;
 import dao.UserDAO;
 import java.io.IOException;
 import static java.lang.System.out;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,7 +21,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 /**
  *
@@ -192,17 +196,17 @@ public class editUtility {
     
     public static void updateCatalogue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        request.setCharacterEncoding("UTF-8");
-        
         String itemCodeRetrieved = request.getParameter("itemCode");
         String descriptionRetrieved = request.getParameter("description");
-        //String chineseDescriptionRetrieved = request.getParameter("descriptionChinese");
+
+        String chineseDescriptionRetrieved = new String (request.getParameter("descriptionChinese").getBytes ("iso-8859-1"), "UTF-8");
+
         String unitPriceRetrieved = request.getParameter("unitPrice");
         String imageURLRetrieved = request.getParameter("imageURL");
         String defaultQuantityRetrieved = request.getParameter("defaultQuantity");
         String quantityMultiplesRetrieved = request.getParameter("quantityMultiples");
         
-        //System.out.println("Debugging line: "+chineseDescriptionRetrieved);
+        //System.out.println("Debugging line: "+chineseDescriptionRetrieved+str+test);
         
         try {
 
@@ -210,20 +214,10 @@ public class editUtility {
             out.println("passes conn");
             
             
-            // Cannot edit chinese characters for now as the input becomes invalid when the data is parsed from one place
-            //to the other
-            
-            
-//            String sql = "UPDATE `order_item` SET ItemCode='" + itemCodeRetrieved + "',"
-//                    + " Description = '" + descriptionRetrieved + "', Description2 = '" +chineseDescriptionRetrieved + "', "
-//                    + " UnitPrice = '" + unitPriceRetrieved + "', ImageURL = '" +imageURLRetrieved + "', "
-//                    + " DefaultQty = '" + defaultQuantityRetrieved + "', QtyMultiples = '" +quantityMultiplesRetrieved + "' "
-//                    + "WHERE ItemCode = '" + itemCodeRetrieved + "'";
-            
             String sql = "UPDATE `order_item` SET ItemCode='" + itemCodeRetrieved + "',"
-                    + " Description = '" + descriptionRetrieved + "', "
-                    + " UnitPrice = '" + unitPriceRetrieved + "', ImageURL = '" + imageURLRetrieved + "', "
-                    + " DefaultQty = '" + defaultQuantityRetrieved + "', QtyMultiples = '" + quantityMultiplesRetrieved + "' "
+                    + " Description = '" + descriptionRetrieved + "', Description2 = '" +chineseDescriptionRetrieved + "', "
+                    + " UnitPrice = '" + unitPriceRetrieved + "', ImageURL = '" +imageURLRetrieved + "', "
+                    + " DefaultQty = '" + defaultQuantityRetrieved + "', QtyMultiples = '" +quantityMultiplesRetrieved + "' "
                     + "WHERE ItemCode = '" + itemCodeRetrieved + "'";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
