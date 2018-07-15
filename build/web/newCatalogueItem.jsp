@@ -158,7 +158,8 @@
                                     <h4 class="card-title">Sales Order Management</h4>
                                     <p class="card-category">New Catalogue Item</p>
                                 </div>
-                            <font color="red"><center>    
+                                <center><b><font color="red">
+                                
                             <%                                
                                 String msgStatus = (String) request.getAttribute("status");
 
@@ -169,50 +170,83 @@
                                 }
 
                             %> 
-                            </font></center>    
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <tbody>
+                            
+                            </font></b></center>
+                            <!--start of form UI-->
+                                <div class="card-body">
+                                        
                                         
                                         <center>Please fill-in the form below.</center>
                                         <br>
 
                                         <form method="post" action="newCatalogueItemController">
+                                            
+                                              <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Item Code</label>
+                                                        <input type="text" class="form-control" placeholder="Item Code" required value="" size="5" name="itemCode">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 px-1">
+                                                    <div class="form-group">
+                                                        <label>English Description</label>
+                                                        <input type="text" class="form-control" placeholder="English description" required="" value="" size="20" name="description">                                            
+                                                    </div>
+                                                </div>
 
-                                            <tr><thead><th>Item Code</th></thead>
-                                            <td><input type="text" size="5" name="itemCode" ></td>
-                                            </tr>
-                                            <tr><thead><th>English Description</th></thead>
-                                            <td><input type="text" size="20" name="description" ></td>
-                                            </tr>
-                                            <tr><thead><th>Chinese Description</th></thead>
-                                            <td><input type="text" size="20" name="descriptionChinese"></td>
-                                            </tr>
-                                            <tr><thead><th>Unit Price</th></thead>
-                                            <td><input type="text" size="5" name="unitPrice" ></td>
-                                            </tr>
-                                            <tr><thead><th>Image URL</th></thead>
-                                            <td><input type="text" size="50" name="imageURL" ></td>
-                                            </tr>
-                                            <tr><thead><th>Default Quantity</th></thead>
-                                            <td><input type="text" size="5" name="defaultQuantity" ></td>
-                                            </tr>
-                                            <tr><thead><th>Quantity Multiples</th></thead>
-                                            <td><input type="text" size="5" name="quantityMultiples"></td>
-                                            </tr>
-       
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Chinese Description</label>
+                                                        <input type="text" class="form-control" placeholder="Chinese Description" required value="" size="20" name="descriptionChinese">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 px-1">
+                                                    <div class="form-group">
+                                                        <label>Unit Price</label>
+                                                        <input type="text" class="form-control" placeholder="Unit Price" required="" value="" size="5" name="unitPrice">                                            
+                                                    </div>
+                                                </div>
 
-                                            </tbody>
-                                    </table>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Image URL</label>
+                                                        <input type="text" class="form-control" placeholder="Image URL" required value="" size="50" name="imageURL">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 px-1">
+                                                    <div class="form-group">
+                                                        <label>Default Quantity</label>
+                                                        <input type="text" class="form-control" placeholder="Default Quantity" required="" value="" size="5" name="defaultQuantity">                                            
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 px-1">
+                                                    <div class="form-group">
+                                                        <label>Quantity Multiples</label>
+                                                        <input type="text" class="form-control" placeholder="Quantity Multiples" required="" value="" size="5" name="quantityMultiples">                                            
+                                                    </div>
+                                                </div>
 
+                                            </div>
+
+                                     
                                     <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
 
                                     </form>
-                                        </tbody>
-                                    </table>
+                                       
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        
                        
 
             <footer class="footer">
