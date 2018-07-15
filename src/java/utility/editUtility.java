@@ -37,36 +37,35 @@ public class editUtility {
         //out.println("User retrieved is :"+userNameRetrieved);
         //String IDRetrieved = request.getParameter("ID");
         
-        String debtorCodeRetrived = request.getParameter("debtorCode");
-        String companyCodeRetrieved = request.getParameter("companyCode");
-        String newPasswordRetrieved = request.getParameter("hashPassword");
-        String companyNameRetrieved = request.getParameter("companyName");
-        String debtorNameRetrieved = request.getParameter("debtorName");
-        String deliverContactRetrieved = request.getParameter("deliverContact");
-        String deliverFax1Retrieved = request.getParameter("deliverFax1");
-        String invAddr1Retrieved = request.getParameter("invAddr1");
-        String invAddr2Retrieved = request.getParameter("invAddr2");
-        String invAddr3Retrieved = request.getParameter("invAddr3");
-        String invAddr4Retrieved = request.getParameter("invAddr4");
-        String deliverAddr1Retrieved = request.getParameter("deliverAddr1");
-        String deliverAddr2Retrieved = request.getParameter("deliverAddr2");
-        String deliverAddr3Retrieved = request.getParameter("deliverAddr3");
-        String deliverAddr4Retrieved = request.getParameter("deliverAddr4");
-        String displayTermRetrieved = request.getParameter("displayTerm");
-        String statusRetrieved = request.getParameter("status");
-        String routeNumberRetrieved = request.getParameter("routeNumber");
+        String debtorCodeRetrived = checkForNull(request.getParameter("debtorCode"));
+        String companyCodeRetrieved = checkForNull(request.getParameter("companyCode"));
+        //String newPasswordRetrieved = request.getParameter("hashPassword");
+        String companyNameRetrieved = checkForNull(request.getParameter("companyName"));
+        String debtorNameRetrieved = checkForNull(request.getParameter("debtorName"));
+        String deliverContactRetrieved = checkForNull(request.getParameter("deliverContact"));
+        String deliverContact2Retrieved = checkForNull(request.getParameter("deliverContact2"));
+        String invAddr1Retrieved = checkForNull(request.getParameter("invAddr1"));
+        String invAddr2Retrieved = checkForNull(request.getParameter("invAddr2"));
+        String invAddr3Retrieved = checkForNull(request.getParameter("invAddr3"));
+        String invAddr4Retrieved = checkForNull(request.getParameter("invAddr4"));
+        String deliverAddr1Retrieved = checkForNull(request.getParameter("deliverAddr1"));
+        String deliverAddr2Retrieved = checkForNull(request.getParameter("deliverAddr2"));
+        String deliverAddr3Retrieved = checkForNull(request.getParameter("deliverAddr3"));
+        String deliverAddr4Retrieved = checkForNull(request.getParameter("deliverAddr4"));
+        String displayTermRetrieved = checkForNull(request.getParameter("displayTerm"));
+        String statusRetrieved = checkForNull(request.getParameter("status"));
+        String routeNumberRetrieved = checkForNull(request.getParameter("routeNumber"));
         int routeNumber = Integer.parseInt(routeNumberRetrieved);
         
         //Converts normal password to hashpassword
-        String newPasswordHash = loginUtility.getSha256(newPasswordRetrieved);
+        //String newPasswordHash = loginUtility.getSha256(newPasswordRetrieved);
         
 //        out.println(debtorCodeRetrived);
 //        out.println(companyCodeRetrieved);
-//        out.println(hashPasswordRetrieved);
 //        out.println(companyNameRetrieved);
 //        out.println(debtorNameRetrieved);
 //        out.println(deliverContactRetrieved);
-//        out.println(deliverFax1Retrieved);
+//        out.println(deliverContact2Retrieved);
 //        out.println(invAddr1Retrieved);
 //        out.println(invAddr2Retrieved);
 //        out.println(invAddr2Retrieved);
@@ -86,10 +85,10 @@ public class editUtility {
             Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
 
-            String sql = "UPDATE `debtor` SET CompanyCode='" + companyCodeRetrieved + "',"
-                    + " HashPassword = '" + newPasswordHash + "', DebtorName = '" +debtorNameRetrieved + "', "
+            String sql = "UPDATE `debtor` SET CompanyCode='" + companyCodeRetrieved 
+                    + "', DebtorName = '" +debtorNameRetrieved + "', "
                     + " CompanyName = '" + companyNameRetrieved + "', DeliverContact = '" +deliverContactRetrieved + "', "
-                    + " DeliverFax1 = '" + deliverFax1Retrieved + "', invAddr1 = '" +invAddr1Retrieved + "', "
+                    + " DeliverContact2 = '" + deliverContact2Retrieved + "', invAddr1 = '" +invAddr1Retrieved + "', "
                     + " invAddr2 = '" + invAddr2Retrieved + "', invAddr3 = '" +invAddr3Retrieved + "', "
                     + " invAddr4 = '" + invAddr4Retrieved + "', deliverAddr1 = '" +deliverAddr1Retrieved + "', "
                     + " deliverAddr2 = '" + deliverAddr2Retrieved + "', deliverAddr3 = '" +deliverAddr3Retrieved + "', "
@@ -236,5 +235,13 @@ public class editUtility {
         request.getRequestDispatcher("catalogue.jsp").forward(request, response);
         
     }
+    
+    private static String checkForNull(String string){
+       if(string == null || string.equals("null")){
+           return "";
+       }
+       return string;
+   }
+    
     
 }

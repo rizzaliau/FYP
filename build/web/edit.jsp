@@ -191,13 +191,14 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Username*</label>
-                                                        <input type="text" class="form-control" value="<%= debtor.getDebtorCode()%>" size="10" name="debtorCode" disabled>
+                                                        <input type="text" class="form-control" value="<%= debtor.getDebtorCode()%>" size="10" disabled>
+                                                        <input type="hidden" value="<%= debtor.getDebtorCode()%>" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" required ="" value="<%= debtor.getCompanyCode()%>" size="10" name="companyName">                                                           
+                                                        <input type="text" class="form-control" placeholder="Company Name" required ="" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
                                                     </div>
                                                 </div>
 
@@ -206,7 +207,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Billing Address*</label>
-                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="<%= debtor.getInvAddr1()%>" size="10" name="inAddr1">
+                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="<%= debtor.getInvAddr1()%>" size="10" name="invAddr1">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr2()%>" size="10" name="invAddr2">
                                                         <br>
