@@ -198,10 +198,10 @@ public class editUtility {
         
         String itemCodeRetrieved = request.getParameter("itemCode");
         String descriptionRetrieved = request.getParameter("description");
-
         String chineseDescriptionRetrieved = new String (request.getParameter("descriptionChinese").getBytes ("iso-8859-1"), "UTF-8");
-
+        String unitOfMetricRetrieved = new String (request.getParameter("unitOfMetric").getBytes ("iso-8859-1"), "UTF-8");
         String unitPriceRetrieved = request.getParameter("unitPrice");
+        String retailPriceRetrieved = request.getParameter("retailPrice");
         String imageURLRetrieved = request.getParameter("imageURL");
         String defaultQuantityRetrieved = request.getParameter("defaultQuantity");
         String quantityMultiplesRetrieved = request.getParameter("quantityMultiples");
@@ -216,7 +216,8 @@ public class editUtility {
             
             String sql = "UPDATE `order_item` SET ItemCode='" + itemCodeRetrieved + "',"
                     + " Description = '" + descriptionRetrieved + "', Description2 = '" +chineseDescriptionRetrieved + "', "
-                    + " UnitPrice = '" + unitPriceRetrieved + "', ImageURL = '" +imageURLRetrieved + "', "
+                    + " UnitPrice = '" + unitPriceRetrieved + "', RetailPrice = '" +retailPriceRetrieved 
+                    + "' , UnitOfMetric = '" +unitOfMetricRetrieved + "', ImageURL = '" +imageURLRetrieved + "', "
                     + " DefaultQty = '" + defaultQuantityRetrieved + "', QtyMultiples = '" +quantityMultiplesRetrieved + "' "
                     + "WHERE ItemCode = '" + itemCodeRetrieved + "'";
 

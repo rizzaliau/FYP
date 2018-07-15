@@ -59,8 +59,6 @@ public class insertUtility {
                     + "'"+inAddr2+"','"+inAddr3+"','"+inAddr4+"','"+deliverAddr1+"','"+deliverAddr2+"',"
                     + "'"+deliverAddr3+"','"+deliverAddr4+"','"+displayTerm+"','"+status+"','"+routeNumber+"')";
                     
-            //String sql2 ="INSERT INTO Customers " + "VALUES (1002, 'McBeal', 'Ms.', 'Boston', 2004)";
-
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
 
@@ -80,30 +78,33 @@ public class insertUtility {
     
         public static void newCatalogueItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String itemCodeRetrieved = request.getParameter("itemCode");
-        String descriptionRetrieved = request.getParameter("description");
-        String descriptionChineseRetrieved = request.getParameter("descriptionChinese");
-        String unitPriceRetrieved = request.getParameter("unitPrice");
-        String imageURLRetrieved = request.getParameter("imageURL");
-        String defaultQuantityRetrieved = request.getParameter("defaultQuantity");
-        String quantityMultiplesRetrieved = request.getParameter("quantityMultiples");  
+        String itemCodeRetrieved = catalogueCheckForNull(request.getParameter("itemCode"));
+        String descriptionRetrieved = catalogueCheckForNull(request.getParameter("description"));
+        String chineseDescriptionRetrieved = catalogueCheckForNull(new String (request.getParameter("descriptionChinese").getBytes ("iso-8859-1"), "UTF-8"));
+        String unitPriceRetrieved = catalogueCheckForNull(request.getParameter("unitPrice"));
+        String imageURLRetrieved = catalogueCheckForNull(request.getParameter("imageURL"));
+        String defaultQuantityRetrieved = catalogueCheckForNull(request.getParameter("defaultQuantity"));
+        String quantityMultiplesRetrieved = catalogueCheckForNull(request.getParameter("quantityMultiples"));  
+        String unitofMetricRetrieved = catalogueCheckForNull(new String (request.getParameter("unitOfMetric").getBytes ("iso-8859-1"), "UTF-8"));
+        String retailPriceRetrieved = catalogueCheckForNull(request.getParameter("retailPrice"));  
         
-        
-        if(itemCodeRetrieved.equals("")||descriptionRetrieved.equals("")||descriptionChineseRetrieved.equals("")
-            ||unitPriceRetrieved.equals("")||imageURLRetrieved.equals("")||defaultQuantityRetrieved.equals("")
-            ||quantityMultiplesRetrieved.equals("")){
-            
-            request.setAttribute("status", "Fields cannot be left blank!");
-            request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
-        }
+//        if(itemCodeRetrieved.equals("")||descriptionRetrieved.equals("")||descriptionChineseRetrieved.equals("")
+//            ||unitPriceRetrieved.equals("")||imageURLRetrieved.equals("")||defaultQuantityRetrieved.equals("")
+//            ||quantityMultiplesRetrieved.equals("")){
+//            
+//            request.setAttribute("status", "Fields cannot be left blank!");
+//            request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
+//        }
 
         try {
 
             Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
 
-            String sql = "INSERT INTO order_item " + "VALUES('"+ itemCodeRetrieved+"','"+descriptionRetrieved+"','"+descriptionChineseRetrieved+"',"
-                    + "'"+unitPriceRetrieved+"','"+imageURLRetrieved+"','"+defaultQuantityRetrieved+"','"+quantityMultiplesRetrieved+"')";
+            String sql = "INSERT INTO order_item " + "VALUES('"+ itemCodeRetrieved+"','"+descriptionRetrieved+"','"+chineseDescriptionRetrieved+"',"
+                    + "'"+unitPriceRetrieved+"','"+retailPriceRetrieved+"','"+unitofMetricRetrieved+"','"
+                    +imageURLRetrieved+"','"+defaultQuantityRetrieved
+                    +"','"+quantityMultiplesRetrieved+"')";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
@@ -122,4 +123,12 @@ public class insertUtility {
         
     }
     
+    private static String catalogueCheckForNull(String string){
+       if(string == null || string.equals("null")){
+           return "-";
+       }
+       return string;
+   }    
+        
+        
 }

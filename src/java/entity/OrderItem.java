@@ -49,10 +49,10 @@ public class OrderItem {
         return unitPrice;
     }
     public String getRetailPrice(){
-        return unitPrice;
+        return retailPrice;
     }
     public String getUnitOfMetric(){
-        return unitPrice;
+        return unitOfMetric;
     }
     public String getImageURL(){
         return imageURL;

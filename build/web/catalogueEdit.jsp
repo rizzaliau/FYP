@@ -158,7 +158,7 @@
                                 <div class="card-header ">
 
                                     <h4 class="card-title">Sales Order Management</h4>
-                                    <p class="card-category">Edit Item</p>
+                                    <p class="card-category">Edit Catalogue Item</p>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
@@ -196,6 +196,12 @@
                                             </tr>
                                             <tr><thead><th>Chinese Description</th></thead>
                                             <td><input type="text" size="20" name="descriptionChinese" value="<%= orderItem.getDescriptionChinese()%>"></td>
+                                            </tr>
+                                            <tr><thead><th>Retail Price</th></thead>
+                                            <td><input type="text" size="5" name="retailPrice" value="<%= orderItem.getRetailPrice()%>"></td>
+                                            </tr>
+                                            <tr><thead><th>Unit of Metric</th></thead>
+                                            <td><input type="text" size="5" name="unitOfMetric" value="<%= orderItem.getUnitOfMetric()%>"></td>
                                             </tr>
                                             <tr><thead><th>Unit Price</th></thead>
                                             <td><input type="text" size="5" name="unitPrice" value="<%= orderItem.getUnitPrice()%>"></td>

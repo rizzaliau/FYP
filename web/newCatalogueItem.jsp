@@ -49,7 +49,7 @@
      
                 </div>
                <ul class="nav">
-                        <li class="nav-item active">
+                        <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
@@ -67,7 +67,7 @@
                                 <p>Sales Order Mgmt</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
                                 <p>Catalogue Mgmt</p>
@@ -174,23 +174,24 @@
                             </font></b></center>
                             <!--start of form UI-->
                                 <div class="card-body">
-                                        
-                                        
-                                        <center>Please fill-in the form below.</center>
+                                        <h5 class="card-title"><font color = "red">Please fill in details below to add new catalogue item</font></h5>
+                                         <p>
+                                         <p class="card-category"><font color = "red">* denotes required fields</font></p>
                                         <br>
-
+                                        <br>
+                                        
                                         <form method="post" action="newCatalogueItemController">
                                             
                                               <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Item Code</label>
+                                                        <label>Item Code*</label>
                                                         <input type="text" class="form-control" placeholder="Item Code" required value="" size="5" name="itemCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>English Description</label>
+                                                        <label>English Description*</label>
                                                         <input type="text" class="form-control" placeholder="English description" required="" value="" size="20" name="description">                                            
                                                     </div>
                                                 </div>
@@ -200,13 +201,13 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Chinese Description</label>
+                                                        <label>Chinese Description*</label>
                                                         <input type="text" class="form-control" placeholder="Chinese Description" required value="" size="20" name="descriptionChinese">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Unit Price</label>
+                                                        <label>Unit Price*</label>
                                                         <input type="text" class="form-control" placeholder="Unit Price" required="" value="" size="5" name="unitPrice">                                            
                                                     </div>
                                                 </div>
@@ -216,20 +217,36 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Image URL</label>
+                                                        <label>Image URL*</label>
                                                         <input type="text" class="form-control" placeholder="Image URL" required value="" size="50" name="imageURL">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Default Quantity</label>
+                                                        <label>Default Quantity*</label>
                                                         <input type="text" class="form-control" placeholder="Default Quantity" required="" value="" size="5" name="defaultQuantity">                                            
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
-                                                        <label>Quantity Multiples</label>
+                                                        <label>Quantity Multiples*</label>
                                                         <input type="text" class="form-control" placeholder="Quantity Multiples" required="" value="" size="5" name="quantityMultiples">                                            
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Retail price*</label>
+                                                        <input type="text" class="form-control" placeholder="Retail price" required value="" size="5" name="retailPrice">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 px-1">
+                                                    <div class="form-group">
+                                                        <label>Unit of Metric*</label>
+                                                        <input type="text" class="form-control" placeholder="Unit of Metric" required="" value="" size="5" name="unitOfMetric">                                            
                                                     </div>
                                                 </div>
 
