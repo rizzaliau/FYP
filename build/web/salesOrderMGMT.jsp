@@ -242,7 +242,7 @@
                                                 
                                                 
                                                 if(salesOrderdetails.getStatus().equals("Pending Delivery")){
-                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>Edit</a></td>");
+                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>Edit/View</a></td>");
                                                 //out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Delete</a></td>");
                                                 }else{
                                                 out.print("<td><a href='salesOrderView.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>View</a></td>");    
@@ -258,7 +258,7 @@
                                             <!-- 
                                             <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
                                             --> <div class="col-md-4">
-                                                <img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">
+                                                <!--<img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">-->
                                                 </div>
                                                 <div class="col-md-2">
                                                 <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>

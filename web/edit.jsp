@@ -245,15 +245,14 @@
                                                         <input type="text" class="form-control" required placeholder="Company Code" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
                                                     </div>
                                                 </div>
-                                                <!--
+                                                
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
-                                                        <label for = "password">Password*</label>
-                                                        <input type="password" minLength="8" required placeholder="8 characters minimum" class="form-control" value="<%= debtor.getPassword()%>" size="10" name="hashPassword">
-
+                                                        <label for = "password">      </label>
+                                                        <input type="hidden" value="<%= debtor.getPassword()%>" name="hashPassword">
                                                     </div>
                                                 </div>
-                                                -->        
+                                                        
                                             </div>
 
                                             <div class="row">
@@ -276,67 +275,58 @@
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Status*</label>                                                       
-                                                        <!--
-                                                        <input type="text" name="status" list="statusNames">
-                                                            <datalist id="statusNames">
-                                                            <option value="active">Active</option>
-                                                            <option value="inactive">Inactive</option>
-                                                            <option value="blacklisted">Blacklisted</option>
-                                                            </datalist>
-                                                        -->
-                                                        <select name="statusDropdown" class="form-control" required>
-                                                            <option value="active">Active</option>
-                                                            <option value="inactive">Inactive</option>
-                                                            <option value="blacklisted">Blacklisted</option>
+                                                        <select name="status" class="form-control" required>
+                                                        <% 
+                                                            String sts=debtor.getStatus();
+                                                            out.println(sts);
+                                                            if(sts.equals("blacklisted")||sts.equals("Blacklisted")){
+                                                                //out.println("equals blacklist");
+                                                                out.println("<option value='blacklisted'>Blacklisted</option>");
+                                                            }else if(sts.equals("inactive")||sts.equals("Inactive")){
+                                                                out.println("equals inactive");
+                                                                out.println("<option value='inactive'>Inactive</option>");
+                                                            }else{
+                                                                out.println("equals active");
+                                                                out.println("<option value='active'>Active</option>");
+                                                            }
+                                                            
+                                                        %>
                                                         </select>
-                                                        <script>
-                                                            document.write('<input type="hidden" name="status" value="' + document.getElementByName('displayTermDropdown').value + ">");
-                                                        </script>
-                                                        <!--
-                                                        <input type="hidden" name="status" value="<script>
-                                                            document.getElementByName('statusDropdown').value 
-                                                               </script>">
-                                                        -->
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Payment Term</label>
-                                                         <!--
-                                                        <input type="text" name="displayTerm" list="termNames">
-                                                        <datalist id="termNames">
-                                                            <option value="cod">C.O.D</option>
-                                                            <option value="one">1 day</option>
-                                                            <option value="fifteen">15 days</option>
-                                                            <option value="thirty">30 days</option>                                                            
-                                                        </datalist>
-                                                        -->
-                                                        <select name="displayTermDropdown" class="form-control" required>
-                                                            <option value="cod">C.O.D</option>
-                                                            <option value="one">1 day</option>
-                                                            <option value="fifteen">15 days</option>
-                                                            <option value="thirty">30 days</option>
-                                                        </select>
-                                                        <!--
-                                                        <input type="hidden" name="displayTerm" value="
-                                                            <script>
-                                                            document.getElementByName('displayTermDropdown').value 
-                                                            </script>
-                                                        -->
-                                                        <script>
-                                                            //document.write(document.getElementByName('displayTermDropdown').value);
-                                                            document.write('<input type="hidden" name="displayTerm" value="' + document.getElementByName('displayTermDropdown').value + ">");
-                                                        </script>
+                                                        <select name="displayTerm" class="form-control" required >
+                                                        <% 
+                                                                String displayTerm = debtor.getDisplayTerm();
+                                                                if(displayTerm.equals("cod")){
+                                                                    out.println("<option value='cod'>C.O.D</option>");
+                                                                }else if(displayTerm.equals("one")){
+                                                                    out.println("<option value='one'>1 day</option>");
+                                                                }else if(displayTerm.equals("fifteen")){
+                                                                    out.println("<option value='fifteen'>15 days</option>");
+                                                                }else{
+                                                                    out.println("<option value='thirty'>30 days</option>");
+                                                                }
+                                                                
+                                                         %>
+                                                        </select>                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">                                                                                                         <label>Area*</label>
-                                                        <select name="routeNumberDropdown" id="routeNumberDropdown" class="form-control" required>
+                                                         <select name ="routeNumber" class="form-control" required>
                                                             <%
-                                                               for (int i=1;i<=18;i++){
-                                                                   out.print("<option value='"+i+"'>"+i+"</option>");
+                                                               String routeNum = debtor.getRouteNumber();
+                                                               for (int i=1;i<=18;i++){                                                                   
+                                                                   if((Integer.parseInt(routeNum)==i)){
+                                                                        out.print("<option value='"+i+"' selected>"+i+"</option>");
+                                                                   }else{
+                                                                        out.print("<option value='"+i+"'>"+i+"</option>");
+                                                                   }
                                                                  }
-                                                            %>
+                                                            %>  
                                                         </select>
                                                         <script>
                                                             //sdocument.write(document.getElementByName('routeNumberDropdown').value);

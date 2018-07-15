@@ -10,6 +10,7 @@
 <%@page import="entity.SalesOrderDetails"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="entity.Debtor"%>
+<a href="../../../../../../../../fyp/fixing_this/LimKeeAdmin/web/edit.jsp"></a>
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
