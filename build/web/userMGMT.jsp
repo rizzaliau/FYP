@@ -224,7 +224,7 @@
                                                 
                                                 </div>
                                                 <div class="col-md-2">
-                                                <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer"/></a>
+                                                <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer" style="margin-right:20px;"></a>
                                                 </div>
                                                 <div class="col-md-2">    
                                                 <a href="inactiveUsersDisplay.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Inactive Users"  value="Inactive Customers" style="margin-right:20px;"/></a>

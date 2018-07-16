@@ -286,7 +286,7 @@
 
                                             </div>
 
-                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Add New User" />
                                             <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="reset"  value="Reset" /></a>
                                             
                                             

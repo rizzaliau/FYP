@@ -282,13 +282,19 @@
                                                             out.println(sts);
                                                             if(sts.equals("blacklisted")||sts.equals("Blacklisted")){
                                                                 //out.println("equals blacklist");
-                                                                out.println("<option value='blacklisted'>Blacklisted</option>");
+                                                                out.println("<option value='Blacklisted'>Blacklisted</option>");
+                                                                out.println("<option value='Inactive'>Inactive</option>");
+                                                                out.println("<option value='Active'>Active</option>");
                                                             }else if(sts.equals("inactive")||sts.equals("Inactive")){
-                                                                out.println("equals inactive");
-                                                                out.println("<option value='inactive'>Inactive</option>");
+                                                                //out.println("equals inactive");
+                                                                out.println("<option value='Inactive'>Inactive</option>");
+                                                                out.println("<option value='Active'>Active</option>");
+                                                                out.println("<option value='Blacklisted'>Blacklisted</option>");
                                                             }else{
-                                                                out.println("equals active");
-                                                                out.println("<option value='active'>Active</option>");
+                                                                //out.println("equals active");
+                                                                out.println("<option value='Active'>Active</option>");
+                                                                out.println("<option value='Blacklisted'>Blacklisted</option>");
+                                                                out.println("<option value='Inactive'>Inactive</option>");
                                                             }
                                                             
                                                         %>
@@ -301,14 +307,27 @@
                                                         <select name="displayTerm" class="form-control" required >
                                                         <% 
                                                                 String displayTerm = debtor.getDisplayTerm();
-                                                                if(displayTerm.equals("cod")){
-                                                                    out.println("<option value='cod'>C.O.D</option>");
-                                                                }else if(displayTerm.equals("one")){
-                                                                    out.println("<option value='one'>1 day</option>");
-                                                                }else if(displayTerm.equals("fifteen")){
-                                                                    out.println("<option value='fifteen'>15 days</option>");
+                                                                if(displayTerm.equals("C.O.D")){
+                                                                    out.println("<option value='C.O.D'>C.O.D</option>");
+                                                                    out.println("<option value='1 day'>1 day</option>");
+                                                                    out.println("<option value='15 days'>15 days</option>");
+                                                                    out.println("<option value='30 days'>30 days</option>");
+                                                                }else if(displayTerm.equals("1 day")){
+                                                                    out.println("<option value='1 day'>1 day</option>");
+                                                                    out.println("<option value='15 days'>15 days</option>");
+                                                                    out.println("<option value='30 days'>30 days</option>");
+                                                                    out.println("<option value='C.O.D'>C.O.D</option>");
+                                                                    
+                                                                }else if(displayTerm.equals("15 days")){
+                                                                    out.println("<option value='15 days'>15 days</option>");
+                                                                    out.println("<option value='30 days'>30 days</option>");
+                                                                    out.println("<option value='C.O.D'>C.O.D</option>");
+                                                                    out.println("<option value='1 day'>1 day</option>");
                                                                 }else{
-                                                                    out.println("<option value='thirty'>30 days</option>");
+                                                                    out.println("<option value='30 days'>30 days</option>");
+                                                                    out.println("<option value='C.O.D'>C.O.D</option>");
+                                                                    out.println("<option value='1 day'>1 day</option>");
+                                                                    out.println("<option value='15 days'>15 days</option>");
                                                                 }
                                                                 
                                                          %>
@@ -343,9 +362,9 @@
 
                                             </div>
                                                         
-                                             <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" style="margin:1px;" /></a>
+                                             <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
                                              
-                                                <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+                                                <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" style="margin-right:15px;" />
                                             <div class="clearfix"></div>
                                         </form>
 
