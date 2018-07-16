@@ -215,13 +215,13 @@
                                             </div>
                                             
                                             <div class="row">
-                                                <div class="col-md-3 pr-1">
+                                                <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Image URL*</label>
                                                         <input type="text" class="form-control" placeholder="Image URL" required value="" size="50" name="imageURL">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5 px-1">
+                                                <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Default Quantity*</label>
                                                         <input type="text" class="form-control" placeholder="Default Quantity" required="" value="" size="5" name="defaultQuantity">                                            
@@ -243,7 +243,7 @@
                                                         <input type="text" class="form-control" placeholder="Retail price" required value="" size="5" name="retailPrice">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5 px-1">
+                                                <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Unit of Metric*</label>
                                                         <input type="text" class="form-control" placeholder="Unit of Metric" required="" value="" size="5" name="unitOfMetric">                                            
@@ -253,7 +253,7 @@
                                             </div>
 
                                      
-                                    <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Submit" />
+                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Add New Items" style="margin-left:20px;"/>
 
                                     </form>
                                        

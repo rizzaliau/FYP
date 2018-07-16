@@ -146,9 +146,7 @@
                 </div>
             </nav>
             
-            <%
-                //Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
-            %>
+            
             
             <div class="content">
                 <div class="container-fluid">
@@ -301,7 +299,8 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4 pr-1">
+                                             
+                                             <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Payment Term</label>
                                                         <select name="displayTerm" class="form-control" required >
@@ -407,7 +406,7 @@
                                 </script>
                                 © Lim Kee Food Manufacturing Pte Ltd
                             </p>
-                        </nav>
+                       </nav>
                     </div>
                 </footer>
             </div>
