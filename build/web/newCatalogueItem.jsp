@@ -218,7 +218,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Image URL*</label>
-                                                        <input type="text" class="form-control" placeholder="Image URL" required value="" size="50" name="imageURL">
+                                                        <input type="url" class="form-control" pattern="https?://.+" title="Include http://" placeholder="Image URL" required value="" size="50" name="imageURL">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
