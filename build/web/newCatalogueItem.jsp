@@ -186,18 +186,18 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Item Code*</label>
-                                                        <input type="text" class="form-control" placeholder="Item Code" required value="" size="5" name="itemCode">
+                                                        <input type="text" pattern="[0-9]{1,3}" title="Please enter numeric numbers" class="form-control" placeholder="Item Code" required value="" size="5" name="itemCode" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>English Description*</label>
-                                                        <input type="text" class="form-control" placeholder="English description" required="" value="" size="20" name="description">                                            
+                                                        <input type="text" class="form-control" placeholder="English description" pattern="[A-Za-z]{1,30}" title="Please enter alphabets" value="" size="20" name="description">                                            
                                                     </div>
                                                 </div>
 
                                             </div>
-                                            
+                                            <!-- chinese description validation --> 
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
