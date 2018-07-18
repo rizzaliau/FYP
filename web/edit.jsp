@@ -196,7 +196,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" pattern="[A-Za-z]{1,30}" title="Please enter alphabets" required ="" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
+                                                        <input type="text" class="form-control" placeholder="Company Name" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" required ="" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
                                                     </div>
                                                 </div>
 
@@ -232,7 +232,7 @@
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Person*</label>
-                                                        <input type="text" class="form-control" required placeholder="Customer Name" pattern="[A-Za-z]{1,30}" title="Please enter alphabets" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
+                                                        <input type="text" class="form-control" required placeholder="Customer Name" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
                                
                                                     </div>
                                                 </div>
@@ -362,7 +362,7 @@
                                             </div>
                                                         
                                              <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
-                                             
+                                                <a href="userMGMT.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" /></a>
                                                 <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" style="margin-right:15px;" />
                                             <div class="clearfix"></div>
                                         </form>

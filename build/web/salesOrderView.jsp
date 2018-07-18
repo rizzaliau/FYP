@@ -279,8 +279,8 @@
                                                                 + "<th><b>Picture</b></th>"
                                                                 + "<th><b>Quantity</b></th>"
                                                                 + "<th><b>Returned Quantity</b></th>"
-                                                                + "<th><b>Unit Price</b></th>"
-                                                                + "<th><b>Subtotal</b></th></thead>");
+                                                                + "<th><b>Unit Price($)</b></th>"
+                                                                + "<th><b>Subtotal($)</b></th></thead>");
 
                                                         for (Integer number : itemDetailsMap.keySet()) {
                                                             double subtotal = 0;
@@ -309,7 +309,7 @@
 
                                                     %>
 
-                                                    <tr><thead><th><b><font color="red">Total Amount</font></b></th></thead>
+                                                    <tr><thead><th><b><font color="red">Total Amount($)</font></b></th></thead>
                                                 <td><%= total%></td>
                                                 </tr>
                                                 <tr>
