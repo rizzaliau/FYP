@@ -235,13 +235,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Number</label>
-                                                        <input type="text" class="form-control"  pattern="[0-9]{8}" title="Please enter numeric numbers" placeholder="Contact Number" required placeholder="" value="" size="10" name="deliverContact">
+                                                        <input type="text" class="form-control"  pattern="[0-9]{8}" title="Please enter numerics" placeholder="Contact Number" required placeholder="" value="" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Contact Number 2</label>
-                                                        <input type="text" class="form-control"  pattern="[0-9]{8}" title="Please enter numeric numbers" placeholder="Contact Number 2" value="" size="10" name="deliverContact2">
+                                                        <input type="text" class="form-control"  pattern="[0-9]{8}" title="Please enter numerics" placeholder="Contact Number 2" value="" size="10" name="deliverContact2">
                                                     </div>
                                                 </div>
 
