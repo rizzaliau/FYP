@@ -196,7 +196,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" pattern="[A-Za-z]{1,30}" title="Please enter numeric number" required ="" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
+                                                        <input type="text" class="form-control" placeholder="Company Name" pattern="[A-Za-z]{1,30}" title="Please enter alphabets" required ="" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
                                                     </div>
                                                 </div>
 

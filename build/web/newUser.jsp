@@ -168,13 +168,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Username*</label>
-                                                        <input type="text" class="form-control" placeholder="Username" required value="" size="10" name="debtorCode" pattern="[0-9]{1,30}" title="Please enter numeric number">
+                                                        <input type="text" class="form-control" placeholder="Username" required value="" size="10" name="debtorCode" pattern="[0-9-]{1,30}" title="Please enter numeric number">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" required placeholder="" value="" size="10" name="companyName" pattern="[A-Za-z]{1,30}" title="Please enter numeric number">                                            
+                                                        <input type="text" class="form-control" placeholder="Company Name" required placeholder="" value="" size="10" name="companyName" pattern="[A-Za-z]{1,30}" title="Please enter alphabets">                                            
                                                     </div>
                                                 </div>
 
