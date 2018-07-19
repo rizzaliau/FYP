@@ -254,9 +254,9 @@
                                                     <div class="form-group">
                                                         <label>Status*</label>
                                                         <select name="status" class="form-control" required>
-                                                            <option value="active">Active</option>
-                                                            <option value="inactive">Inactive</option>
-                                                            <option value="blacklisted">Blacklisted</option>
+                                                            <option value="Active">Active</option>
+                                                            <option value="Inactive">Inactive</option>
+                                                            <option value="Blacklisted">Blacklisted</option>
                                                         </select>    
                                                     </div>
                                                 </div>
@@ -264,10 +264,10 @@
                                                     <div class="form-group">
                                                         <label>Payment Term*</label>
                                                         <select name="displayTerm" class="form-control" required >
-                                                            <option value="cod">C.O.D</option>
-                                                            <option value="one">1 day</option>
-                                                            <option value="fifteen">15 days</option>
-                                                            <option value="thirty">30 days</option>
+                                                            <option value="C.O.D">C.O.D</option>
+                                                            <option value="1 day">1 day</option>
+                                                            <option value="15 days">15 days</option>
+                                                            <option value="30 days">30 days</option>
                                                         </select>
                                                     </div>
                                                 </div>
