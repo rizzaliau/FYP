@@ -241,8 +241,9 @@
                                                 <!-- not required placeholder-->
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
+                                                        <!-- Not Compulsory -->
                                                         <label>Contact Number 2</label>
-                                                        <input type="text" class="form-control"  pattern="[0-9]{8}" title="Please enter numerics" placeholder="Contact Number 2" value="" size="10" name="deliverContact2">
+                                                        <input type="text" class="form-control" placeholder="Contact Number 2" value="" size="10" name="deliverContact2">
                                                     </div>
                                                 </div>
 
