@@ -167,14 +167,14 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Username*</label>
-                                                        <input type="text" class="form-control" placeholder="Username" required value="" size="10" name="debtorCode">
+                                                        <label>Customer Code*</label>
+                                                        <input type="text" class="form-control" required placeholder="Customer Code" required value="" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" required placeholder="" value="" size="10" name="companyName" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets">                                            
+                                                        <input type="text" class="form-control" required placeholder="Company Name" value="" size="10" name="companyName" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets">                                            
                                                     </div>
                                                 </div>
 
@@ -183,9 +183,9 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Billing Address*</label>
-                                                        <input type="text" class="form-control" placeholder="Billing Address" value="" size="10" name="inAddr1" required placeholder="">
+                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="" size="10" name="inAddr1">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr2" required placeholder="">
+                                                        <input type="text" class="form-control" required placeholder="" value="" size="10" name="invAddr2">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr3" >
                                                         <br>
@@ -195,9 +195,9 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Delivery Address*</label>
-                                                        <input type="text" class="form-control" placeholder="Delivery Address" value="" size="10" name="deliverAddr1" required placeholder="">
+                                                        <input type="text" class="form-control" required placeholder="Delivery Address" value="" size="10" name="deliverAddr1">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr2" required placeholder="">
+                                                        <input type="text" class="form-control" required placeholder="" value="" size="10" name="deliverAddr2">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr3">
                                                         <br>
@@ -210,15 +210,15 @@
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Person*</label>
-                                                        <input type="text" class="form-control" placeholder="Contact Person" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" required placeholder="" value="" size="10" name="debtorName">                                               
+                                                        <input type="text" class="form-control" required placeholder="Contact Person" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" value="" size="10" name="debtorName">                                               
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Code*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Code" required placeholder="" value="" size="10" name="companyCode">
+                                                        <label>Username*</label>
+                                                        <input type="text" class="form-control" required placeholder="Username" value="" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
@@ -235,9 +235,10 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Number</label>
-                                                        <input type="text" class="form-control"  pattern="[0-9]{8}" title="Please enter numerics" placeholder="Contact Number" required placeholder="" value="" size="10" name="deliverContact">
+                                                        <input type="text" class="form-control"  pattern="[0-9]{8}" title="Please enter numerics" required placeholder="Contact Number" value="" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
+                                                <!-- not required placeholder-->
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Contact Number 2</label>

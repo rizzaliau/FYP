@@ -188,7 +188,7 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Username*</label>
+                                                        <label>Customer Code*</label>
                                                         <input type="text" class="form-control" value="<%= debtor.getDebtorCode()%>" size="10" disabled>
                                                         <input type="hidden" value="<%= debtor.getDebtorCode()%>" name="debtorCode">
                                                     </div>
@@ -196,7 +196,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" placeholder="Company Name" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" required ="" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
+                                                        <input type="text" class="form-control" required placeholder="Company Name" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
                                                     </div>
                                                 </div>
 
@@ -240,8 +240,8 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Company Code*</label>
-                                                        <input type="text" class="form-control" required placeholder="Company Code" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
+                                                        <label>Username*</label>
+                                                        <input type="text" class="form-control" required placeholder="Username" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
                                                     </div>
                                                 </div>
                                                 
