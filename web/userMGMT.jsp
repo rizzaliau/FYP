@@ -183,7 +183,7 @@
                                     </div>
                                     <br>
 
-                                    <div class="card-body table-full-width table-responsive">
+                                    <div class="card-body table-full-width table-responsive" id='users'>
                                         <table class="order-table table table-hover table-striped">
                                             <thead>
                                             
@@ -194,7 +194,7 @@
                                             <th>Status</th>
                                             <th></th>
                                             </thead>
-                                            <tbody>
+                                             <tbody class="list">
                                             <!--
                                             <form action="deleteMultipleController" method="post">
                                             -->
@@ -204,7 +204,7 @@
                                                         Debtor debtor = debtorMap.get(number);
                                                         //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='" + debtor.getDebtorCode() + "'></td>");
                                                         out.print("<td>" + number + "</td>");
-                                                        out.print("<td>" + debtor.getCompanyName() + "</td>");
+                                                        out.print("<td class='name'>" + debtor.getCompanyName() + "</td>");
                                                         out.print("<td>" + debtor.getCompanyCode() + "</td>");
                                                         out.print("<td>" + debtor.getDebtorName() + "</td>");
                                                         out.print("<td>" + debtor.getStatus() + "</td>");
@@ -214,23 +214,27 @@
                                                     }
                                                    
                                                 %>
-                                                <!--
-                                                <a href="search.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search"  value="Search" style="margin-left:20px;"/></a>
-                                                -->
-                                                <div class="row">
+                                                
+                                               <div class="row">
+                                                                                            
                                                 <div class="col-md-2">
-                                                <input type="search" class="form-control" data-table="order-table" placeholder="Search" style="margin-left:20px;">
+                                                <input type="text" class="search form-control" style="margin-left:20px;" size="13" placeholder="Search Company Name" />
                                                 </div>
                                                 <div class="col-md-6">
-                                                
                                                 </div>
                                                 <div class="col-md-2">
+                                                
                                                 <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer" style="margin-right:20px;"></a>
+
                                                 </div>
-                                                <div class="col-md-2">    
+                                                <div class="col-md-2">   
+                                                
                                                 <a href="inactiveUsersDisplay.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Inactive Users"  value="Inactive Customers" style="margin-right:20px;"/></a>
+                                                
                                                 </div>
+                                                
                                                 </div>
+                                         
                                                 </tbody>
                                         </table>
                                         <br>
@@ -383,45 +387,12 @@
 
                         });
                     </script>
-                    <script>
-                        (function(document) {
-                                'use strict';
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+                    <script>    
+                    var options = {
+                    valueNames: [ 'name']
+                    };
 
-                                var LightTableFilter = (function(Arr) {
-
-                                        var _input;
-
-                                        function _onInputEvent(e) {
-                                                _input = e.target;
-                                                var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-                                                Arr.forEach.call(tables, function(table) {
-                                                        Arr.forEach.call(table.tBodies, function(tbody) {
-                                                                Arr.forEach.call(tbody.rows, _filter);
-                                                        });
-                                                });
-                                        }
-
-                                        function _filter(row) {
-                                                var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-                                                row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-                                        }
-
-                                        return {
-                                                init: function() {
-                                                        var inputs = document.getElementsByClassName('form-control');
-                                                        Arr.forEach.call(inputs, function(input) {
-                                                                input.oninput = _onInputEvent;
-                                                        });
-                                                }
-                                        };
-                                })(Array.prototype);
-
-                                document.addEventListener('readystatechange', function() {
-                                        if (document.readyState === 'complete') {
-                                                LightTableFilter.init();
-                                        }
-                                });
-
-                        })(document);
-                        </script>
+                    var userList = new List('users', options);
+                    </script>
                     </html>

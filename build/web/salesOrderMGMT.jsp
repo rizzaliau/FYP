@@ -203,7 +203,7 @@
                                 </div></font>
                                 <br>
 
-                                <div class="card-body table-full-width table-responsive">
+                                <div class="card-body table-full-width table-responsive" id='salesOrder'>
                                     <table class="order-table table table-hover table-striped">
                                         <thead>   
                                             <th>S/N</th>
@@ -215,7 +215,7 @@
                                             <th>Status</th>
                                             
                                         </thead>
-                                        <tbody>
+                                        <tbody class="list">
                                             
                                         <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
 
@@ -226,8 +226,8 @@
                                                 SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
                                                 //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
                                                 out.print("<td>" + number + "</td>");
-                                                out.print("<td>" + salesOrder.getOrderID() + "</td>");
-                                                out.print("<td>" + salesOrder.getDebtorName() + "</td>");
+                                                out.print("<td>" + salesOrder.getOrderID().toString() + "</td>");
+                                                out.print("<td class='customer'>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
                                                 
                                                 //if(salesOrderdetails==null){
@@ -253,7 +253,7 @@
                                             %>
                                              <div class="row">
                                                 <div class="col-md-2">
-                                                <input type="search" class="form-control" data-table="order-table" placeholder="Search" style="margin-left:20px;">
+                                                <input type="text" class="search form-control" style="margin-left:20px;" size="13" placeholder="Search Customer Name" />
                                                 </div>
                                             <!-- 
                                             <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
@@ -347,45 +347,12 @@
 
     });
 </script>
-<script>
-    (function(document) {
-            'use strict';
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script>    
+    var options = {
+    valueId: [ 'customer']
+    };
 
-            var LightTableFilter = (function(Arr) {
-
-                    var _input;
-
-                    function _onInputEvent(e) {
-                            _input = e.target;
-                            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-                            Arr.forEach.call(tables, function(table) {
-                                    Arr.forEach.call(table.tBodies, function(tbody) {
-                                            Arr.forEach.call(tbody.rows, _filter);
-                                    });
-                            });
-                    }
-
-                    function _filter(row) {
-                            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-                            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-                    }
-
-                    return {
-                            init: function() {
-                                    var inputs = document.getElementsByClassName('form-control');
-                                    Arr.forEach.call(inputs, function(input) {
-                                            input.oninput = _onInputEvent;
-                                    });
-                            }
-                    };
-            })(Array.prototype);
-
-            document.addEventListener('readystatechange', function() {
-                    if (document.readyState === 'complete') {
-                            LightTableFilter.init();
-                    }
-            });
-
-    })(document);
-    </script>
+    var orderList = new List('salesOrder', options);
+</script>
 </html>

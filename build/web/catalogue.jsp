@@ -156,7 +156,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card strpied-tabled-with-hover">
+                            <div class="card striped-tabled-with-hover" id="productList">
                                 <div class="card-header ">
 
                                     <h4 class="card-title">Catalogue Management</h4>
@@ -197,7 +197,7 @@
                                             <th>Default Quantity</th>
                                             <th>Quantity Multiples</th>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="list">
                                         <!--    
                                         <form action="deleteMultipleCatalogueConfirmation.jsp" method="post">
                                         -->
@@ -210,7 +210,7 @@
                                                 //out.println("<td>"+count+"</td>");
                                                 out.print("<td>" + orderItem.getItemCode() + "</td>");
                                                 out.print("<td><img src='" + orderItem.getImageURL() + "' style='width:50px;height:50px;' ></td>");
-                                                out.print("<td>" + orderItem.getDescription() + "</td>");
+                                                out.print("<td class='name'>" + orderItem.getDescription() + "</td>");
                                                 out.print("<td>" + orderItem.getDescriptionChinese() + "</td>");
                                                 out.print("<td>" + orderItem.getUnitPrice() + "</td>");
                                                 out.print("<td>" + orderItem.getDefaultQuantity() + "</td>");
@@ -224,7 +224,7 @@
                                             %>
                                             <div class="row">
                                             <div class="col-md-2">
-                                            <input type="search" class="form-control" data-table="order-table" placeholder="Search" style="margin-left:20px;">
+                                            <input type="text" class="search form-control" style="margin-left:20px;" size="13" placeholder="Search Product Name" />
                                             </div>
                                             <div class="col-md-8">
                                             <!--<a href="searchCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
@@ -232,8 +232,9 @@
                                             <!--
                                             <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Catalogue"  value="Sales Order" style="margin:1px;" /></a>
                                             -->
-                                            <!--search icon -->
+                                            <!--
                                             <img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">
+                                            -->
                                             </div>
                                             <div class="col-md-2">
                                             <a href="newCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New Item"  value="Add New Item" style="margin-right:20px;" /></a>
@@ -316,46 +317,12 @@
 
     });
 </script>
-<script>
-(function(document) {
-	'use strict';
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script>    
+var options = {
+valueNames: [ 'name']
+};
 
-	var LightTableFilter = (function(Arr) {
-
-		var _input;
-
-		function _onInputEvent(e) {
-			_input = e.target;
-			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-			Arr.forEach.call(tables, function(table) {
-				Arr.forEach.call(table.tBodies, function(tbody) {
-					Arr.forEach.call(tbody.rows, _filter);
-				});
-			});
-		}
-
-		function _filter(row) {
-			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-		}
-
-		return {
-			init: function() {
-				var inputs = document.getElementsByClassName('form-control');
-				Arr.forEach.call(inputs, function(input) {
-					input.oninput = _onInputEvent;
-				});
-			}
-		};
-	})(Array.prototype);
-
-	document.addEventListener('readystatechange', function() {
-		if (document.readyState === 'complete') {
-			LightTableFilter.init();
-		}
-	});
-
-})(document);
+var userList = new List('productList', options);
 </script>
-
 </html>
