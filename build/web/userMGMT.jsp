@@ -160,7 +160,7 @@
                                         <p class="card-category">Active Customers</p>
                                     </div>
 
-                                    <div class="col-md-8"><font color="red"></font>
+                                    <div class="col-md-8"><font color="red">
                                         <%
                                             String msgStatus = (String) request.getAttribute("updateSuccess");
                                             String msgStatus2 = (String) request.getAttribute("status");
@@ -179,6 +179,7 @@
 
 
                                         %> 
+                                        </font>
                                     </div>
                                     <br>
 
