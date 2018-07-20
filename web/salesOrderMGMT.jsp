@@ -4,6 +4,7 @@
     Author     : Rizza
 --%>
 
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="entity.SalesOrderDetails"%>
 <%@page import="utility.salesOrderUtility"%>
 <%@page import="entity.SalesOrder"%>
@@ -210,15 +211,15 @@
                                             <th>Order ID</th>
                                             <th>Customer Name</th>
                                             <th>Route Number</th>
-                                            <th>Order Date/Time</th>
+                                            <th>Order Date</th>
                                             <th>Delivery Date</th>
                                             <th>Status</th>
                                             
                                         </thead>
                                         <tbody class="list">
-                                            
+                                        <!--   
                                         <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
-
+                                        -->
                                             <%  
                                             for (Integer number : salesOrderMap.keySet()) {
                                                 out.print("<tr>");
@@ -226,8 +227,8 @@
                                                 SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
                                                 //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
                                                 out.print("<td>" + number + "</td>");
-                                                out.print("<td>" + salesOrder.getOrderID().toString() + "</td>");
-                                                out.print("<td class='customer'>" + salesOrder.getDebtorName() + "</td>");
+                                                out.print("<td class='orderId'>" + salesOrder.getOrderID().toString() + "</td>");
+                                                out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
                                                 
                                                 //if(salesOrderdetails==null){
@@ -235,7 +236,11 @@
                                                     //out.print("<td></td>");
                                                     //out.print("<td></td>");
                                                // }else{
-                                                    out.print("<td>" + salesOrderdetails.getCreateTimeStamp() + "</td>");
+                                                    String timestamp = salesOrderdetails.getCreateTimeStamp();
+                                                    String orderDate = timestamp.substring(0,timestamp.indexOf(" "));
+                                                   
+                                                    out.print("<td>" + orderDate + "</td>");
+                                                    //out.print("<td>" + salesOrderdetails.getCreateTimeStamp() + "</td>");
                                                     out.print("<td>" + salesOrderdetails.getDeliveryDate() + "</td>");
                                                     out.print("<td>" + salesOrderdetails.getStatus() + "</td>");
                                                // }
@@ -251,9 +256,10 @@
                                             }
                                             
                                             %>
+                                             </tbody>                                           
                                              <div class="row">
                                                 <div class="col-md-2">
-                                                <input type="text" class="search form-control" style="margin-left:20px;" size="13" placeholder="Search Customer Name" />
+                                                <input type="text" class="search form-control" style="margin-left:20px;" size="13" placeholder="Search Order" />
                                                 </div>
                                             <!-- 
                                             <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
@@ -261,7 +267,15 @@
                                                 <!--<img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">-->
                                                 </div>
                                                 <div class="col-md-2">
+                                                 <!--
+                                                <select name="material" id="filter-material">
+                                                    <option selected="selected" value="">Select a Material</option>
+                                                    <option value="plastic">Plastic</option>
+                                                    <option value="glass">Glass</option>
+                                                </select> 
+                                               
                                                 <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
+                                                -->
                                                 </div>
                                                 <div class="col-md-2">
                                                 <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  margin-right:10px name="salesOrderHistory"  value="Sales Order History" /></a>
@@ -270,8 +284,7 @@
                                                 <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  margin-right:10px name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
                                                 </div>
                                              </div>
-                                            </tbody>
-                                    </table>
+                                            </table>
                                             <br>
                                             <!--
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
@@ -350,7 +363,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 <script>    
     var options = {
-    valueId: [ 'customer']
+    valueNames: ['orderId']
     };
 
     var orderList = new List('salesOrder', options);
