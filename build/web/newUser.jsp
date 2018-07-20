@@ -160,6 +160,21 @@
                                          <p>
                                          <p class="card-category"><font color = "red">* denotes required fields</font></p>
                                     </div>
+                                    <center>
+                                    <font color="red">
+                                        <%
+                                            String msgStatus = (String) request.getAttribute("status");
+
+                                            if (msgStatus != null) {
+                                                out.print("</br>");
+                                                out.print(msgStatus);
+                                                out.print("</br>");
+                                            }
+
+
+                                        %> 
+                                        </font></center>
+
                                     <div class="card-body">
 
                                         <br>

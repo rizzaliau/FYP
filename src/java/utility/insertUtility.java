@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package utility;
-
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+//import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import dao.ConnectionManager;
 import dao.UserDAO;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -33,7 +35,7 @@ public class insertUtility {
         String companyName = request.getParameter("companyName");
         String debtorName = request.getParameter("debtorName");
         String deliverContact = request.getParameter("deliverContact");
-        String deliverFax1 = request.getParameter("deliverFax1");
+        String deliverContact2 = request.getParameter("deliverContact2");
         String inAddr1 = request.getParameter("inAddr1");
         String inAddr2 = request.getParameter("invAddr2");
         String inAddr3 = request.getParameter("invAddr3");
@@ -55,7 +57,7 @@ public class insertUtility {
             out.println("passes conn");
 
             String sql = "INSERT INTO debtor " + "VALUES('"+ debtorCode+"','"+companyCode+"','"+newPasswordHash+"',"
-                    + "'"+companyName+"','"+debtorName+"','"+deliverContact+"','"+deliverFax1+"','"+inAddr1+"',"
+                    + "'"+companyName+"','"+debtorName+"','"+deliverContact+"','"+deliverContact2+"','"+inAddr1+"',"
                     + "'"+inAddr2+"','"+inAddr3+"','"+inAddr4+"','"+deliverAddr1+"','"+deliverAddr2+"',"
                     + "'"+deliverAddr3+"','"+deliverAddr4+"','"+displayTerm+"','"+status+"','"+routeNumber+"')";
                     
@@ -65,12 +67,23 @@ public class insertUtility {
             stmt.executeUpdate();
             out.println("passes rs");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error updating!");
+//        }catch (final ConstraintViolationException e) {
+//            
+//            request.setAttribute("status", "Please enter a unique customer code!");
+//            request.getRequestDispatcher("newUser.jsp").forward(request, response);
+//            
+        }catch (SQLException ex) {
+            
+            if(ex instanceof MySQLIntegrityConstraintViolationException){
+                request.setAttribute("status", "Please enter a unique customer code!");
+                request.getRequestDispatcher("newUser.jsp").forward(request, response);
+            }else{
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("status", "Error updating!");
+            }
         }
-        
-        request.setAttribute("status", "Record inserted successfully!");
+
+        request.setAttribute("status", "Record inserted successfully! test");
 
         request.getRequestDispatcher("userMGMT.jsp").forward(request, response);
         
@@ -117,7 +130,7 @@ public class insertUtility {
             request.setAttribute("status", "Error updating!");
         }
         
-        request.setAttribute("status", "Record inserted successfully!");
+        request.setAttribute("status", "Record inserted successfully! ");
 
         request.getRequestDispatcher("catalogue.jsp").forward(request, response);
         
