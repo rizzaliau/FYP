@@ -188,7 +188,8 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Item Code*</label>
-                                                        <input type="text" class="form-control" placeholder="Item Code" required="" value="<%= orderItem.getItemCode()%>" size="5" name="itemCode" disabled="">
+                                                        <input type="text" class="form-control" placeholder="Item Code" required="" value="<%= orderItem.getItemCode()%>" size="5" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= orderItem.getItemCode()%>" name="itemCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">

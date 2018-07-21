@@ -205,7 +205,15 @@ public class editUtility {
         String defaultQuantityRetrieved = request.getParameter("defaultQuantity");
         String quantityMultiplesRetrieved = request.getParameter("quantityMultiples");
         
-        //System.out.println("Debugging line: "+chineseDescriptionRetrieved+str+test);
+//        System.out.println("Debugging line: "+itemCodeRetrieved);
+//        System.out.println("Debugging line: "+descriptionRetrieved);
+//        System.out.println("Debugging line: "+chineseDescriptionRetrieved);
+//        System.out.println("Debugging line: "+unitOfMetricRetrieved);
+//        System.out.println("Debugging line: "+unitPriceRetrieved);
+//        System.out.println("Debugging line: "+retailPriceRetrieved);
+//        System.out.println("Debugging line: "+imageURLRetrieved);
+//        System.out.println("Debugging line: "+defaultQuantityRetrieved);
+//        System.out.println("Debugging line: "+quantityMultiplesRetrieved);
         
         try {
 
