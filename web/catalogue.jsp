@@ -193,7 +193,7 @@
                                             <th>Image</th>
                                             <th>Description (ENG)</th>
                                             <th>Description (中)</th>
-                                            <th>Unit Price</th>
+                                            <th>Unit Price($)</th>
                                             <th>Default Quantity</th>
                                             <th>Quantity Multiples</th>
                                         </thead>

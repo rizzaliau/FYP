@@ -276,7 +276,7 @@
                                                         double total = 0;
                                                         out.print("<tr>");
                                                         out.print("<thead><th><b>Item Code</b></th>"
-                                                                + "<th><b>Picture</b></th>"
+                                                                + "<th><b></b></th>"
                                                                 + "<th><b>Quantity</b></th>"
                                                                 + "<th><b>Returned Quantity</b></th>"
                                                                 + "<th><b>Unit Price($)</b></th>"

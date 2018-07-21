@@ -826,3 +826,25 @@
 .documentation .dropdown .dropdown-menu.show {
     transform: translate3d(0, 39px, 0) !important;
 }
+
+
+.activeUser {background-color: #4CAF50;
+             color: white;
+             padding: 8px;
+             padding-left: 25px;
+             padding-right: 25px;
+             border-radius: 10px;
+} /* Green */
+.inactiveUser {background-color: grey;
+               color: white;
+               padding: 8px;
+               padding-left: 19px;
+               padding-right: 19px;
+               border-radius: 10px;
+} /* Grey */
+.blacklistUser {background-color: black;
+                color: white;
+                padding: 8px;
+                border-radius: 10px;
+} /* Black */
+

@@ -316,7 +316,7 @@
                                                             double total = 0;
                                                             out.print("<tr>");
                                                             out.print("<thead><th><b>Item Code</b></th>"
-                                                                    + "<th><b>Picture</b></th>"
+                                                                    + "<th><b></b></th>"
                                                                     + "<th><b>Quantity</b></th>"
                                                                     + "<th><b>Returned Quantity</b></th>"
                                                                     + "<th><b>Unit Price($)</b></th>"
@@ -343,7 +343,7 @@
                                                                 out.print("<td>" + itemDetail.getUnitPrice() + "</td>");
                                                                 //out.print("<tr><thead><th>Subtotal</th></thead>");
                                                                 DecimalFormat df = new DecimalFormat("0.00"); 
-                                                                out.print("<td>" + Double.valueOf(df.format(subtotal)) + "</td>");
+                                                                out.print("<td>" + df.format(subtotal) + "</td>");
                                                                 out.print("</tr>");
 
                                                                 total += subtotal;
