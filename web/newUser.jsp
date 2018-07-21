@@ -189,7 +189,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" required placeholder="Company Name" value="" size="10" name="companyName" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets">                                            
+                                                        <input type="text" class="form-control" required placeholder="Company Name" value="" size="10" name="companyName" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets">                                            
                                                     </div>
                                                 </div>
 
@@ -225,7 +225,7 @@
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Person*</label>
-                                                        <input type="text" class="form-control" required placeholder="Contact Person" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" value="" size="10" name="debtorName">                                               
+                                                        <input type="text" class="form-control" required placeholder="Contact Person" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="" size="10" name="debtorName">                                               
                                                     </div>
                                                 </div>
                                             </div>
@@ -250,7 +250,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Number</label>
-                                                        <input type="text" class="form-control"  pattern="[0-9]{8}" title="Please enter numerics" required placeholder="Contact Number" value="" size="10" name="deliverContact">
+                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter 8 digit numbers" required placeholder="Contact Number" value="" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <!-- not required placeholder-->

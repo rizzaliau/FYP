@@ -196,7 +196,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" required placeholder="Company Name" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
+                                                        <input type="text" class="form-control" required placeholder="Company Name" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
                                                     </div>
                                                 </div>
 
@@ -232,7 +232,7 @@
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Person*</label>
-                                                        <input type="text" class="form-control" required placeholder="Customer Name" pattern="[A-Za-z ]{1,30}" title="Please enter alphabets" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
+                                                        <input type="text" class="form-control" required placeholder="Customer Name" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
                                
                                                     </div>
                                                 </div>
@@ -258,7 +258,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Number 1</label>
-                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter numerics" placeholder="Contact Number 1" value="<%= debtor.getDeliverContact()%>" size="10" name="deliverContact">
+                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter 8 digit numbers" placeholder="Contact Number 1" value="<%= debtor.getDeliverContact()%>" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
