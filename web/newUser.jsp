@@ -258,7 +258,7 @@
                                                     <div class="form-group">
                                                         <!-- Not Compulsory -->
                                                         <label>Contact Number 2</label>
-                                                        <input type="text" class="form-control" placeholder="Contact Number 2" value="" size="10" name="deliverContact2">
+                                                        <input type="text" class="form-control" pattern="(^$)|(^\d{8}$)" placeholder="Contact Number 2" value="" size="10" name="deliverContact2">
                                                     </div>
                                                 </div>
 
