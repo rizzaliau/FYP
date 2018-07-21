@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.ItemDetails"%>
 <%@page import="utility.salesOrderUtility"%>
 <%@page import="entity.SalesOrderDetails"%>
@@ -233,9 +234,24 @@
                                                         <label>Status</label>
                                                         <!--this should be a dropdown --> 
                                                         
-                                                        <select name="status" class="form-control" placeholder="Status" required placeholder="" value="<%= salesOrderdetails.getStatus()%>"  size="10" name="Status">
-                                                        
+                                                        <select name="status" class="form-control">
+                                                        <% 
+                                                            String sts = salesOrderdetails.getStatus();
+                                                            if(sts.equals("Pending Delivery") || sts.equals("pendingDelivery")){
+                                                                out.println("<option value='Pending Delivery'>Pending Delivery</option>");
+                                                                out.println("<option value='Delivered'>Delivered</option>");
+                                                                out.println("<option value='Cancelled'>Cancelled</option>");
+                                                            }else if(sts.equals("Cancelled") || sts.equals("cancelled")){
+                                                                out.println("<option value='Cancelled'>Cancelled</option>");
+                                                                out.println("<option value='Pending Delivery'>Pending Delivery</option>");
+                                                                out.println("<option value='Delivered'>Delivered</option>");
+                                                            }else{
+                                                                out.println("<option value='Delivered'>Delivered</option>");
+                                                                out.println("<option value='Cancelled'>Cancelled</option>");
+                                                                out.println("<option value='Pending Delivery'>Pending Delivery</option>");
+                                                            }
 
+                                                        %> 
                                                         </select>
                                                     </div>
                                                 </div>
@@ -326,7 +342,8 @@
                                                                 //out.print("<tr><thead><th>Unit Price</th></thead>");
                                                                 out.print("<td>" + itemDetail.getUnitPrice() + "</td>");
                                                                 //out.print("<tr><thead><th>Subtotal</th></thead>");
-                                                                out.print("<td>" + subtotal + "</td>");
+                                                                DecimalFormat df = new DecimalFormat("0.00"); 
+                                                                out.print("<td>" + Double.valueOf(df.format(subtotal)) + "</td>");
                                                                 out.print("</tr>");
 
                                                                 total += subtotal;
