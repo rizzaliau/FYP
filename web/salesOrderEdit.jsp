@@ -233,9 +233,24 @@
                                                         <label>Status</label>
                                                         <!--this should be a dropdown --> 
                                                         
-                                                        <select name="status" class="form-control" placeholder="Status" required placeholder="" value="<%= salesOrderdetails.getStatus()%>"  size="10" name="Status">
-                                                        
+                                                        <select name="status" class="form-control" placeholder="Status" required placeholder="" size="10" name="Status">
+                                                        <% 
+                                                            String sts = salesOrderdetails.getStatus();
+                                                            if(sts.equals("Pending Delivery") || sts.equals("pendingDelivery")){
+                                                                out.println("<option value='Pending Delivery'>Pending Delivery</option>");
+                                                                out.println("<option value='Delivered'>Delivered</option>");
+                                                                out.println("<option value='Cancelled'>Cancelled</option>");
+                                                            }else if(sts.equals("Cancelled") || sts.equals("cancelled")){
+                                                                out.println("<option value='Cancelled'>Cancelled</option>");
+                                                                out.println("<option value='Pending Delivery'>Pending Delivery</option>");
+                                                                out.println("<option value='Delivered'>Delivered</option>");
+                                                            }else{
+                                                                out.println("<option value='Delivered'>Delivered</option>");
+                                                                out.println("<option value='Cancelled'>Cancelled</option>");
+                                                                out.println("<option value='Pending Delivery'>Pending Delivery</option>");
+                                                            }
 
+                                                        %> 
                                                         </select>
                                                     </div>
                                                 </div>
