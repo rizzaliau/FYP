@@ -259,7 +259,7 @@
                                              </tbody>                                           
                                              <div class="row">
                                                 <div class="col-md-2">
-                                                <input type="text" class="search form-control" style="margin-left:20px;" size="13" placeholder="Search Order" />
+                                                <input type="text" class="search form-control" style="margin-left:20px; width: 250px;" size="13" placeholder="Search Order" />
                                                 </div>
                                             <!-- 
                                             <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>

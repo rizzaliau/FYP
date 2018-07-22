@@ -155,7 +155,7 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">Sales Order Management</h4>
+                                    <h4 class="card-title">Catalogue Management</h4>
                                     <p class="card-category">New Catalogue Item</p>
                                 </div>
                                 <center><b><font color="red">
@@ -192,7 +192,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>English Description*</label>
-                                                        <input type="text" class="form-control" placeholder="English description" pattern="[A-Za-z]{1,30}" title="Please enter alphabets" value="" size="20" name="description">                                            
+                                                        <input type="text" class="form-control" required placeholder="English description" pattern="[A-Za-z]{1,30}" title="Please enter alphabets" value="" size="20" name="description">                                            
                                                     </div>
                                                 </div>
 
@@ -202,13 +202,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Chinese Description*</label>
-                                                        <input type="text" class="form-control" placeholder="Chinese Description" required value="" size="20" name="descriptionChinese">
+                                                        <input type="text" class="form-control" required placeholder="Chinese Description" required value="" size="20" name="descriptionChinese">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Unit Price*</label>
-                                                        <input type="text" class="form-control" placeholder="Unit Price" required="" value="" size="5" name="unitPrice">                                            
+                                                        <label>Unit Price($)*</label>
+                                                        <input type="text" class="form-control" pattern="/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/" title="Please enter decimal price" required placeholder="Unit Price" required value="" size="5" name="unitPrice">                                            
                                                     </div>
                                                 </div>
 
@@ -218,19 +218,19 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Image URL*</label>
-                                                        <input type="url" class="form-control" pattern="https?://.+" title="Include http://" placeholder="Image URL" required value="" size="50" name="imageURL">
+                                                        <input type="url" class="form-control" pattern="https?://.+" title="Include http://" required placeholder="Image URL" required value="" size="50" name="imageURL">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Default Quantity*</label>
-                                                        <input type="text" class="form-control" placeholder="Default Quantity" required="" value="" size="5" name="defaultQuantity">                                            
+                                                        <input type="text" class="form-control" pattern="[0-9]{1,4}" title="Please enter numeric numbers" required placeholder="Default Quantity" value="" size="5" name="defaultQuantity">                                            
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Quantity Multiples*</label>
-                                                        <input type="text" class="form-control" placeholder="Quantity Multiples" required="" value="" size="5" name="quantityMultiples">                                            
+                                                        <input type="text" class="form-control" pattern="[0-9]{1,4}" title="Please enter numeric numbers" required placeholder="Quantity Multiples" value="" size="5" name="quantityMultiples">                                            
                                                     </div>
                                                 </div>
 
@@ -239,8 +239,8 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Retail price*</label>
-                                                        <input type="text" class="form-control" placeholder="Retail price" required value="" size="5" name="retailPrice">
+                                                        <label>Retail price($)*</label>
+                                                        <input type="text" class="form-control" pattern="/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/" title="Please enter decimal price"  placeholder="Retail price" required value="" size="5" name="retailPrice">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
@@ -253,7 +253,7 @@
                                             </div>
 
                                      
-                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Add New Items" style="margin-left:20px;"/>
+                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit" value="Add New Item" style="margin-left:20px;"/>
 
                                     </form>
                                        

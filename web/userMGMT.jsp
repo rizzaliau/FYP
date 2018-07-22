@@ -231,7 +231,7 @@
                                             <div class="row">
 
                                                 <div class="col-md-2">
-                                                    <input type="text" class="search form-control" style="margin-left:20px;" size="13" placeholder="Search Company Name" />
+                                                    <input type="text" class="search form-control" style="margin-left:20px; width: 200px;" size="13" placeholder="Search Company Name" />
                                                 </div>
                                                 <div class="col-md-6">
                                                 </div>

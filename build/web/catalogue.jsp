@@ -193,7 +193,7 @@
                                             <th>Image</th>
                                             <th>Description (ENG)</th>
                                             <th>Description (中)</th>
-                                            <th>Unit Price</th>
+                                            <th>Unit Price($)</th>
                                             <th>Default Quantity</th>
                                             <th>Quantity Multiples</th>
                                         </thead>
@@ -224,7 +224,7 @@
                                             %>
                                             <div class="row">
                                             <div class="col-md-2">
-                                            <input type="text" class="search form-control" style="margin-left:20px;" size="13" placeholder="Search Product Name" />
+                                            <input type="text" class="search form-control" style="margin-left:20px; width: 250px;" size="13" placeholder="Search Product Name" />
                                             </div>
                                             <div class="col-md-8">
                                             <!--<a href="searchCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>

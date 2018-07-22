@@ -157,7 +157,7 @@
                                 <div class="card strpied-tabled-with-hover">
                                     <div class="card-header ">
 
-                                        <h4 class="card-title">Sales Order Management</h4>
+                                        <h4 class="card-title">Catalogue Management</h4>
                                         <p class="card-category">Edit Catalogue Item</p>
                                     </div>
                                     <div class="card-body">
@@ -210,7 +210,7 @@
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Retail Price</label>
+                                                        <label>Retail Price($)</label>
                                                         <input type="text" class="form-control" placeholder="Retail Price" required="" value="<%= orderItem.getRetailPrice()%>" size="5" name="retailPrice">                                            
                                                     </div>
                                                 </div>
@@ -250,7 +250,7 @@
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
-                                                        <label>Unit Price*</label>
+                                                        <label>Unit Price($)*</label>
                                                         <input type="text" class="form-control" placeholder="Unit Price" required="" value="<%= orderItem.getUnitPrice()%>" size="5" name="unitPrice">                                            
                                                     </div>
                                                 </div>
