@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.ItemDetails"%>
 <%@page import="utility.salesOrderUtility"%>
 <%@page import="entity.SalesOrderDetails"%>
@@ -289,7 +290,8 @@
 
                                                             double qtyDouble = Double.parseDouble(itemDetail.getQty());
                                                             double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
-                                                            subtotal = qtyDouble * unitPriceDouble;
+                                                            double returnedQty = Double.parseDouble(itemDetail.getReturnedQty());
+                                                            subtotal = (qtyDouble - returnedQty) *  unitPriceDouble;
 
                                                             out.print("<td>" + itemDetail.getItemCode() + "</td>");
                                                             out.print("<td>" + "" + "</td>");
@@ -300,18 +302,24 @@
                                                             out.print("<td>" + itemDetail.getReturnedQty() + "</td>");
 
                                                             out.print("<td>" + itemDetail.getUnitPrice() + "</td>");
-
-                                                            out.print("<td>" + subtotal + "</td>");
+                                                            
+                                                            DecimalFormat df = new DecimalFormat("0.00"); 
+                                                            out.print("<td>" + df.format(subtotal) + "</td>");
+                                                            
                                                             out.print("</tr>");
 
                                                             total += subtotal;
                                                         }
-
+                                                        DecimalFormat df = new DecimalFormat("0.00");     
                                                     %>
 
-                                                    <tr><thead><th><b><font color="red">Total Amount($)</font></b></th></thead>
-                                                <td><%= total%></td>
-                                                </tr>
+                                                    <tr><thead><th><b><font color="red">GST (7%)</font></b></th></thead>
+                                                        <td><%= df.format(total*0.07) %></td>
+                                                    </tr>    
+                                                    <tr><thead><th><b><font color="red">Total Amount ($)</font></b></th></thead>
+                                                        <td><%= df.format(total*1.07) %></td>
+                                                    </tr>
+                                                
                                                 <tr>
                                                     <td><br></td> 
                                                 </tr>

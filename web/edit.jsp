@@ -361,7 +361,7 @@
 
                                             </div>
                                                         
-                                             <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
+                                             <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>&companyName=<%= debtor.getCompanyName()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
                                                 <a href="userMGMT.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" /></a>
                                                 <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" style="margin-right:15px;" />
                                             <div class="clearfix"></div>

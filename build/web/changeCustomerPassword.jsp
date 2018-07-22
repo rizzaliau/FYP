@@ -50,7 +50,7 @@
                             String passWord = request.getParameter("password");
                             String debtorCodeRetrieved = request.getParameter("debtorCode");
                             String hashPasswordRetrieved = request.getParameter("hashPassword");
-
+                            String companyNameRetrieved = request.getParameter("companyName");
 
                             String usernameSession = (String) session.getAttribute("username");
 
@@ -163,25 +163,15 @@
                             <div class="col-md-8">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Change Password</h4>
+                                        <h4 class="card-title">Change Password for Company </h4>
+                                        <p>
+                                        <h4 class="card-title"> "<%= companyNameRetrieved %>" </h4>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
-                                        <%                                     //String passwordErrorMsg = (String) request.getAttribute("diffPassword");
-                                            //String passwordUpdate = (String)request.getAttribute("updateSuccess");
+                                        <%                                     
                                             String status = (String) request.getAttribute("status");
 
-       //                                    if (passwordErrorMsg != null) {
-       //                                        out.print("</br>");
-       //                                        out.print(passwordErrorMsg);
-       //                                        out.print("</br>");
-       //                                    }
-       //                                    
-       //                                    if (passwordUpdate!=null){
-       //                                        out.print("</br>");
-       //                                        out.print(passwordUpdate);
-       //                                        out.print("</br>");
-       //                                    }
                                             if (status != null) {
                                                 out.print("</br>");
                                                 out.print(status);
@@ -227,41 +217,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="card card-user">
-                                    <div class="card-image">
-                                        <img src="assets/limkee/jquerypic5.jpg" alt="...">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="author">
-                                            <a href="#">
-                                                <img class="avatar border-gray" src="../assets/limkee/jquerypic5.jpg" alt="...">
-                                            </a>
-                                            <p>
-                                            </p>
-                                            <p class="description">
-                                                <b>Lim Kee Food Manufacturing Pte Ltd</b>
-                                            </p>
-                                        </div>
-                                        <p class="description text-center">
-                                            Lim Kee aims to bring New Traditions to every home, everywhere.
-                                            <br><br>We aim to enliven the culture of pau, bringing great tasting quality pau for everyone to enjoy. Anytime, anywhere.
-                                        </p>
-                                    </div>
-                                    <hr>
-                                    <div class="button-container mr-auto ml-auto">
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-facebook-square"></i>
-                                        </button>
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-twitter"></i>
-                                        </button>
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-google-plus-square"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

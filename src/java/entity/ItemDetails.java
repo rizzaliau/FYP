@@ -32,7 +32,7 @@ public class ItemDetails {
     
     public String getReturnedQty(){
         
-        if(returnedQty == null){
+        if(returnedQty == null || returnedQty == ""){
             return "0";
         } 
         
