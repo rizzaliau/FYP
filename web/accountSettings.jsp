@@ -1,3 +1,7 @@
+<%@page import="utility.notificationUtility"%>
+<%@page import="entity.Notification"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Map"%>
 <!DOCTYPE html>
 
 <%@include file="protect.jsp" %>
@@ -113,15 +117,34 @@
                                 <li class="dropdown nav-item">
                                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                         <i class="nc-icon nc-planet"></i>
-                                        <span class="notification">5</span>
+                                        <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
+                                        <span class="notification"> <%= notificationMap.size()  %> </span>
                                         <span class="d-lg-none">Notification</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">New Order 1</a>
-                                        <a class="dropdown-item" href="#">New Order 2</a>
-                                        <a class="dropdown-item" href="#">New Order 3</a>
-                                        <a class="dropdown-item" href="#">New Order 4</a>
-                                        <a class="dropdown-item" href="#">New Order 5</a>
+                                        
+                                       <%
+                                            
+                                           //Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap();
+                                           
+                                           for (Integer number : notificationMap.keySet()) {
+                                                    Notification notification = notificationMap.get(number);
+                                                    out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                            "  placed a new order on  "+notification.getCreatedTimeStamp()+"</a>");
+                                                    //out.print("<input type='submit' name='submit'  value='';/>");
+                                                    
+                                                    //out.print("<a href='javascript:{}' onclick='document.getElementById('my_form').submit(); return false;'>submit</a>" );
+
+                                                    //out.print(number);
+                                                    //out.print(notification.getCompanyName());
+                                                    //out.print(notification.getDebtorName());
+                                                    //out.print("<td><a href='edit.jsp?serial=" + number + "&status=active'>Edit/View</a></td>");
+                                                    
+
+                                            }
+
+                                        %>  
+                                        
                                     </ul>
                                 </li>
                             </ul>
