@@ -192,7 +192,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>English Description*</label>
-                                                        <input type="text" class="form-control" required placeholder="English description" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places." value="" size="20" name="description">                                            
+                                                        <input type="text" class="form-control" required placeholder="English description" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="" size="30" name="description">                                            
                                                     </div>
                                                 </div>
 

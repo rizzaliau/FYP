@@ -132,6 +132,7 @@ public class deleteUtility {
             request.setAttribute("msgStatus", "Please enter a cancelled reason!");
             request.getRequestDispatcher("cancelSalesOrderConfirmation.jsp").forward(request, response);
         }else{
+            
         
         //System.out.println("inputs are  : "+orderIDRetrieved+statusRetrieved);
         

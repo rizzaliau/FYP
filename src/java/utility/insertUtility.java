@@ -100,6 +100,18 @@ public class insertUtility {
         String quantityMultiplesRetrieved = catalogueCheckForNull(request.getParameter("quantityMultiples"));  
         String unitofMetricRetrieved = catalogueCheckForNull(new String (request.getParameter("unitOfMetric").getBytes ("iso-8859-1"), "UTF-8"));
         String retailPriceRetrieved = catalogueCheckForNull(request.getParameter("retailPrice"));  
+        String status = "Active";
+        
+        out.println(itemCodeRetrieved);
+        out.println(descriptionRetrieved);
+        out.println(chineseDescriptionRetrieved);
+        out.println(unitPriceRetrieved);
+        out.println(imageURLRetrieved);
+        out.println(defaultQuantityRetrieved);
+        out.println(quantityMultiplesRetrieved);
+        out.println(unitofMetricRetrieved);
+        out.println(retailPriceRetrieved);
+        
         
 //        if(itemCodeRetrieved.equals("")||descriptionRetrieved.equals("")||descriptionChineseRetrieved.equals("")
 //            ||unitPriceRetrieved.equals("")||imageURLRetrieved.equals("")||defaultQuantityRetrieved.equals("")
@@ -117,7 +129,7 @@ public class insertUtility {
             String sql = "INSERT INTO order_item " + "VALUES('"+ itemCodeRetrieved+"','"+descriptionRetrieved+"','"+chineseDescriptionRetrieved+"',"
                     + "'"+unitPriceRetrieved+"','"+retailPriceRetrieved+"','"+unitofMetricRetrieved+"','"
                     +imageURLRetrieved+"','"+defaultQuantityRetrieved
-                    +"','"+quantityMultiplesRetrieved+"')";
+                    +"','"+quantityMultiplesRetrieved+"','"+status+"')";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
