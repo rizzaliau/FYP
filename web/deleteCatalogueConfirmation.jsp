@@ -46,7 +46,7 @@
      
                 </div>
                 <ul class="nav">
-                        <li class="nav-item active">
+                        <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
@@ -64,7 +64,7 @@
                                 <p>Sales Order Mgmt</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
                                 <p>Catalogue Mgmt</p>
@@ -144,10 +144,6 @@
                 </div>
             </nav>
             
-            <%
-                Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
-            %>
-            
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -155,12 +151,12 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">Sales Order Management</h4>
-                                    <p class="card-category">Delete Order Item</p>
+                                    <h4 class="card-title">Catalogue Management</h4>
+                                    <p class="card-category">Deactivate Order Item</p>
                                 </div>
                                 </br>
                                 
-                                <center>Are you sure you want to delete this item?</center>
+                                <center>Are you sure you want to deactivate this catalogue item?</center>
 
                                         <%  
                                             String itemCode = request.getParameter("itemCode");   
@@ -169,7 +165,7 @@
 
                                         <form action="deleteCatalogueController" method="post">
                                             <input type= "hidden" name="recordToBeDeleted" value='<%= itemCode %>'/>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete record"> 
+                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Deactivate"> 
                                         
                                         </form>   
 

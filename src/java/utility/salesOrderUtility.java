@@ -153,7 +153,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "SELECT * from order_item order by cast(`ItemCode` AS UNSIGNED)asc";
+            String populateMap = "SELECT * from order_item WHERE Status='Active' order by cast(`ItemCode` AS UNSIGNED)asc ";
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
             

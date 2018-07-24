@@ -102,15 +102,15 @@ public class insertUtility {
         String retailPriceRetrieved = catalogueCheckForNull(request.getParameter("retailPrice"));  
         String status = "Active";
         
-        out.println(itemCodeRetrieved);
-        out.println(descriptionRetrieved);
-        out.println(chineseDescriptionRetrieved);
-        out.println(unitPriceRetrieved);
-        out.println(imageURLRetrieved);
-        out.println(defaultQuantityRetrieved);
-        out.println(quantityMultiplesRetrieved);
-        out.println(unitofMetricRetrieved);
-        out.println(retailPriceRetrieved);
+//        out.println(itemCodeRetrieved);
+//        out.println(descriptionRetrieved);
+//        out.println(chineseDescriptionRetrieved);
+//        out.println(unitPriceRetrieved);
+//        out.println(imageURLRetrieved);
+//        out.println(defaultQuantityRetrieved);
+//        out.println(quantityMultiplesRetrieved);
+//        out.println(unitofMetricRetrieved);
+//        out.println(retailPriceRetrieved);
         
         
 //        if(itemCodeRetrieved.equals("")||descriptionRetrieved.equals("")||descriptionChineseRetrieved.equals("")

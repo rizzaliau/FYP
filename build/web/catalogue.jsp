@@ -216,7 +216,7 @@
                                                 out.print("<td>" + orderItem.getDefaultQuantity() + "</td>");
                                                 out.print("<td>" + orderItem.getQuantityMultiples() + "</td>");
                                                 out.print("<td><a href='catalogueEdit.jsp?serial="+number+"'>Edit/View</a></td>");
-                                                //out.print("<td><a href='deleteCatalogueConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Delete</a></td>");
+                                                out.print("<td><a href='deleteCatalogueConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Deactivate</a></td>");
                                                 out.print("</tr>");  
                                                 count++;
                                             }

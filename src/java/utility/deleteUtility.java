@@ -252,8 +252,10 @@ public class deleteUtility {
             Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
 
-            String sql = "DELETE FROM `order_item` WHERE itemCode = '" + itemCodeRetrieved + "'";
-
+            //String sql = "DELETE FROM `order_item` WHERE itemCode = '" + itemCodeRetrieved + "'";
+            String sql = "UPDATE `order_item` SET Status='Inactive'"
+                + "WHERE ItemCode = '" + itemCodeRetrieved + "'";
+            
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
 
