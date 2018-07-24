@@ -279,10 +279,10 @@
                                                 -->
                                                 </div>
                                                 <div class="col-md-2">
-                                                <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  margin-right:10px name="salesOrderHistory"  value="Sales Order History" /></a>
+                                                <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:50px;" name="salesOrderHistory"  value="Sales Order History" /></a>
                                                 </div>
                                                 <div class="col-md-2">
-                                                <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  margin-right:10px name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
+                                                <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:10px;" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
                                                 </div>
                                              </div>
                                             </table>

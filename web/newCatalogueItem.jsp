@@ -192,7 +192,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>English Description*</label>
-                                                        <input type="text" class="form-control" required placeholder="English description" pattern="[A-Za-z]{1,30}" title="Please enter alphabets" value="" size="20" name="description">                                            
+                                                        <input type="text" class="form-control" required placeholder="English description" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places." value="" size="20" name="description">                                            
                                                     </div>
                                                 </div>
 
@@ -208,7 +208,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Unit Price($)*</label>
-                                                        <input type="text" class="form-control" pattern="/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/" title="Please enter decimal price" required placeholder="Unit Price" required value="" size="5" name="unitPrice">                                            
+                                                        <input type="text" class="form-control"  pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places." required placeholder="Unit Price" required value="" size="5" name="unitPrice">                                            
                                                     </div>
                                                 </div>
 
@@ -240,7 +240,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Retail price($)*</label>
-                                                        <input type="text" class="form-control" pattern="/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/" title="Please enter decimal price"  placeholder="Retail price" required value="" size="5" name="retailPrice">
+                                                        <input type="text" class="form-control" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places."   placeholder="Retail price" required value="" size="5" name="retailPrice">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
