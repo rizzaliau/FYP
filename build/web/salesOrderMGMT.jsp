@@ -248,9 +248,10 @@
                                                 
                                                 if(salesOrderdetails.getStatus().equals("Pending Delivery")){
                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>Edit/View</a></td>");
-                                                //out.print("<td><a href='deleteSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Delete</a></td>");
+                                                out.print("<td><a href='cancelSalesOrderConfirmation.jsp?orderID="+salesOrder.getOrderID()+"&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
                                                 }else{
-                                                out.print("<td><a href='salesOrderView.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>View</a></td>");    
+                                                out.print("<td><a href='salesOrderView.jsp?orderID="+salesOrder.getOrderID()+"&status="+salesOrderdetails.getStatus()+"'>View</a></td>");
+                                                out.print("<td></td>");
                                                 }
                                                 out.print("</tr>");  
                                             }

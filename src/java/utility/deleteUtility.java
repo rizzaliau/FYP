@@ -116,16 +116,22 @@ public class deleteUtility {
     }
 
     
-    public static void deleteSalesOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void cancelSalesOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String orderIDRetrieved = request.getParameter("orderIDRecordToBeDeleted");
         String statusRetrieved = request.getParameter("statusRecordToBeDeleted");
-        String deliveryDateRetrieved = request.getParameter("deliveryDateRecordToBeDeleted");
+        String cancelledReasonRetrieved = request.getParameter("cancelledReason");
+        //String deliveryDateRetrieved = request.getParameter("deliveryDateRecordToBeDeleted");
         //String itemCodeRetrieved = "1";
         
         if(statusRetrieved.equals("pendingDelivery")){
             statusRetrieved = "Pending Delivery";
         }
+        
+        if(cancelledReasonRetrieved == null || cancelledReasonRetrieved.equals("")){
+            request.setAttribute("msgStatus", "Please enter a cancelled reason!");
+            request.getRequestDispatcher("cancelSalesOrderConfirmation.jsp").forward(request, response);
+        }else{
         
         //System.out.println("inputs are  : "+orderIDRetrieved+statusRetrieved);
         
@@ -134,33 +140,39 @@ public class deleteUtility {
             Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
             
-            String salesOrderDetailSql = "DELETE FROM `sales_order_detail` WHERE orderID = '" + orderIDRetrieved + "' "
-                    + "AND DeliveryDate='"+deliveryDateRetrieved+"' ";
+            //String salesOrderDetailSql = "DELETE FROM `sales_order_detail` WHERE orderID = '" + orderIDRetrieved + "' "
+                    //+ "AND DeliveryDate='"+deliveryDateRetrieved+"' ";
             
-            String salesOrderQtySql = "DELETE FROM `sales_order_quantity` WHERE orderID = '" + orderIDRetrieved + "' ";
+            //String salesOrderQtySql = "DELETE FROM `sales_order_quantity` WHERE orderID = '" + orderIDRetrieved + "' ";
 
-            String salesOrderSql = "DELETE FROM `sales_order` WHERE orderID = '" + orderIDRetrieved + "' "
-                    + "AND status='"+statusRetrieved+"' ";
+            //String salesOrderSql = "DELETE FROM `sales_order` WHERE orderID = '" + orderIDRetrieved + "' "
+                    //+ "AND status='"+statusRetrieved+"' ";
 
-            PreparedStatement stmt1 = conn.prepareStatement(salesOrderDetailSql);
-            PreparedStatement stmt2 = conn.prepareStatement(salesOrderQtySql);
-            PreparedStatement stmt3 = conn.prepareStatement(salesOrderSql);
+            String cancelSalesOrderSQL = "UPDATE `sales_order` SET Status='Cancelled',"
+                    + " CancelledReason = '" + cancelledReasonRetrieved + "'"
+                    + "WHERE OrderID = '" + orderIDRetrieved + "'";
+            
+            
+            PreparedStatement stmt1 = conn.prepareStatement(cancelSalesOrderSQL);
+            //PreparedStatement stmt2 = conn.prepareStatement(salesOrderQtySql);
+            //PreparedStatement stmt3 = conn.prepareStatement(salesOrderSql);
             out.println("passes stmt");
 
             stmt1.executeUpdate();
-            stmt2.executeUpdate();
-            stmt3.executeUpdate();
+            //stmt2.executeUpdate();
+            //stmt3.executeUpdate();
             out.println("passes rs");
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error updating!");
+            request.setAttribute("status", "Error updating record!");
         }
         
-        request.setAttribute("status", "Record deleted successfully!");
+        request.setAttribute("status", "Record cancelled successfully!");
 
         request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
         
+        }
     }
     
     

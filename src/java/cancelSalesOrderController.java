@@ -17,8 +17,8 @@ import utility.deleteUtility;
  *
  * @author Rizza
  */
-@WebServlet(urlPatterns = {"/deleteSalesOrderController"})
-public class deleteSalesOrderController extends HttpServlet {
+@WebServlet(urlPatterns = {"/cancelSalesOrderController"})
+public class cancelSalesOrderController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,7 +72,7 @@ public class deleteSalesOrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        deleteUtility.deleteSalesOrder(request, response);
+        deleteUtility.cancelSalesOrder(request, response);
     }
 
     /**

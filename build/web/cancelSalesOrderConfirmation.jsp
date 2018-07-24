@@ -46,7 +46,7 @@
      
                 </div>
                 <ul class="nav">
-                        <li class="nav-item active">
+                        <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
@@ -58,7 +58,7 @@
                                 <p>Customer Mgmt</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="./salesOrderMGMT.jsp">
                                 <i class="nc-icon nc-notes"></i>
                                 <p>Sales Order Mgmt</p>
@@ -150,12 +150,26 @@
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
-                                    <h4 class="card-title">User Management</h4>
-                                    <p class="card-category">User list</p>
+                                    <h4 class="card-title">Sales Order Management</h4>
+                                    <p class="card-category">Cancel Confirmation</p>
                                 </div>
                                 </br>
+                                <font color="red"><center>
+                                    <%                                
+                                        String msgStatus = (String) request.getAttribute("msgStatus");
+
+                                        if (msgStatus != null) {
+                                            out.print("</br>");
+                                            out.print(msgStatus);
+                                            out.print("</br>");
+                                        }
+
+                                    %> 
+                                    </font></center>
+                                    <p>
                                 
-                                <center>Are you sure you want to delete this item?</center>
+                                
+                                <font color="red"><center>Are you sure you want to cancel this item?</center></font>
 
                                         <%  
                                             
@@ -166,11 +180,16 @@
                                         %>
                                         
                                         
-                                        <form action="deleteSalesOrderController" method="post">
-                                            <input id="user-pw" type= "hidden" name="orderIDRecordToBeDeleted" value='<%= orderID %>'/>
-                                            <input id="user-pw" type= "hidden" name="statusRecordToBeDeleted" value='<%= status %>'/>
-                                            <input id="user-pw" type= "hidden" name="deliveryDateRecordToBeDeleted" value='<%= deliveryDate %>'/>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete record"> 
+                                        <form action="cancelSalesOrderController" method="post">
+                                            <p>
+                                            <center>
+                                            Please enter cancel sales order reason: 
+                                            <input type= "text" name="cancelledReason" value='Cancelled Reason'/>
+                                            </center>
+                                            <input type= "hidden" name="orderIDRecordToBeDeleted" value='<%= orderID %>'/>
+                                            <input type= "hidden" name="statusRecordToBeDeleted" value='<%= status %>'/>
+                                            <input type= "hidden" name="deliveryDateRecordToBeDeleted" value='<%= deliveryDate %>'/>
+                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Cancel record"> 
                                         
                                         </form>   
                                 
