@@ -240,14 +240,11 @@
                                                             if(sts.equals("Pending Delivery") || sts.equals("pendingDelivery")){
                                                                 out.println("<option value='Pending Delivery'>Pending Delivery</option>");
                                                                 out.println("<option value='Delivered'>Delivered</option>");
-                                                                out.println("<option value='Cancelled'>Cancelled</option>");
-                                                            }else if(sts.equals("Cancelled") || sts.equals("cancelled")){
-                                                                out.println("<option value='Cancelled'>Cancelled</option>");
-                                                                out.println("<option value='Pending Delivery'>Pending Delivery</option>");
-                                                                out.println("<option value='Delivered'>Delivered</option>");
+                                                                
+                                                            
                                                             }else{
                                                                 out.println("<option value='Delivered'>Delivered</option>");
-                                                                out.println("<option value='Cancelled'>Cancelled</option>");
+                                                                
                                                                 out.println("<option value='Pending Delivery'>Pending Delivery</option>");
                                                             }
 

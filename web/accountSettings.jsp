@@ -7,11 +7,13 @@
 <%@include file="protect.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
 <html lang="en">
 
 
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="90">
         <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
         <link rel="icon" type="image/png" href="assets/img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -124,25 +126,15 @@
                                     <ul class="dropdown-menu">
                                         
                                        <%
-                                            
-                                           //Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap();
-                                           
-                                           for (Integer number : notificationMap.keySet()) {
-                                                    Notification notification = notificationMap.get(number);
+                                           for (int i=1 ; i<=notificationMap.size(); i++){
+                                                    if(i<=5){
+                                                    Notification notification = notificationMap.get(i);
                                                     out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
                                                             "  placed a new order on  "+notification.getCreatedTimeStamp()+"</a>");
-                                                    //out.print("<input type='submit' name='submit'  value='';/>");
-                                                    
-                                                    //out.print("<a href='javascript:{}' onclick='document.getElementById('my_form').submit(); return false;'>submit</a>" );
-
-                                                    //out.print(number);
-                                                    //out.print(notification.getCompanyName());
-                                                    //out.print(notification.getDebtorName());
-                                                    //out.print("<td><a href='edit.jsp?serial=" + number + "&status=active'>Edit/View</a></td>");
-                                                    
-
+                                                    }     
                                             }
-
+                                            out.print("<div class='divider'></div>");
+                                            out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
                                         %>  
                                         
                                     </ul>

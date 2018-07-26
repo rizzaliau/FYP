@@ -104,6 +104,35 @@ public class notificationUtility {
 
     }
     
-    
-    
+    public static void updateAllNotifications(){
+        //Map<Integer, Notification> notificationMap = new HashMap<>();
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String updateNotificationSQL = "UPDATE sales_order SET flag = '0'";
+
+            pstmt = conn.prepareStatement(updateNotificationSQL);
+                    //out.println("passes stmt");
+
+            pstmt.executeUpdate();
+            
+            System.out.println("Passed connection");
+
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by updateAllNotifications method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+    }
+
 }

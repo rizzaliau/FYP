@@ -264,10 +264,10 @@ public class deleteUtility {
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error updating!");
+            request.setAttribute("status", "Error deactivating catalogue item!");
         }
         
-        request.setAttribute("status", "Record deleted successfully!");
+        request.setAttribute("status", "Catalogue item deactivated successfully!");
 
         request.getRequestDispatcher("catalogue.jsp").forward(request, response);
         
