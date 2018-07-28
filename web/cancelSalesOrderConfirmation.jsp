@@ -152,8 +152,11 @@
 
                                     <h4 class="card-title">Sales Order Management</h4>
                                     <p class="card-category">Cancel Confirmation</p>
+                                    <br>
+                                    <p class="card-category"><font color ="red"><h5>Are you sure you want to cancel this item ?</h5></font></p>
+                                    <font color ="black">Please enter cancel sales order reason:</font>
                                 </div>
-                                </br>
+                                
                                 <font color="red"><center>
                                     <%                                
                                         String msgStatus = (String) request.getAttribute("msgStatus");
@@ -166,10 +169,10 @@
 
                                     %> 
                                     </font></center>
-                                    <p>
+                                    
                                 
                                 
-                                <font color="red"><center>Are you sure you want to cancel this item?</center></font>
+                                
 
                                         <%  
                                             
@@ -181,22 +184,24 @@
                                         
                                         
                                         <form action="cancelSalesOrderController" method="post">
-                                            <p>
-                                            <center>
-                                            Please enter cancel sales order reason: 
-                                            <input type= "text" name="cancelledReason" value='Cancelled Reason'/>
-                                            </center>
+                   
+                                            &nbsp;&nbsp;&nbsp;<textarea id ="cancelReasons" rows="10" cols="100" style="height:200px;" name="cancelledReason" value='Cancelled Reason'></textarea>
+                                            
                                             <input type= "hidden" name="orderIDRecordToBeDeleted" value='<%= orderID %>'/>
                                             <input type= "hidden" name="statusRecordToBeDeleted" value='<%= status %>'/>
                                             <input type= "hidden" name="deliveryDateRecordToBeDeleted" value='<%= deliveryDate %>'/>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Cancel record"> 
+                                            <p>
+                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Cancel record" style="margin-right: 20px; margin-top: 10px; margin-bottom: 20px; "> 
                                         
                                         </form>   
                                 
                                 
-                                
+                            </div>
                             </div>
                         </div>
+                </div>
+            </div>
+        
                        
 
             <footer class="footer">
