@@ -396,7 +396,7 @@
                                                 </table>
 
                                                 <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Edit Sales Order" />
-                                                <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" /></a>
+                                                <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" onclick="cancelFunction();"  value="Cancel" /></a>
                                         </form>
 
                                         </tbody>
@@ -472,5 +472,10 @@
 
                             });
 </script>
-
+<!-- Cancel alert pop up -->
+<script>
+function cancelFunction() {
+    alert("By clicking on the cancel button, your information will be not save. Click 'OK button' to proceed.");
+}
+</script>
 </html>

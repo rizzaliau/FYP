@@ -362,7 +362,7 @@
                                             </div>
                                                         
                                              <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>&companyName=<%= debtor.getCompanyName()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
-                                                <a href="userMGMT.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" /></a>
+                                             <a href="userMGMT.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" onclick="cancelFunction();"/></a>
                                                 <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" style="margin-right:15px;" />
                                             <div class="clearfix"></div>
                                         </form>
@@ -447,6 +447,12 @@
         document.getElementByName("displayTerm").value = (Number)document.getElementByName("displayTermDropdown").value;
         return (Number)document.getElementByName("displayTermDropdown").value;
     }
+</script>
+<!-- Cancel alert pop up -->
+<script>
+function cancelFunction() {
+    alert("By clicking on the cancel button, your information will be not save. Click 'OK button' to proceed.");
+}
 </script>
 
 </html>

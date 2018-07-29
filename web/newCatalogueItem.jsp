@@ -254,7 +254,7 @@
 
                                      
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit" value="Add New Item" style="margin-left:20px;"/>
-
+                                            <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Cancel" onclick="cancelFunction();"  value="Cancel" style="margin-left:20px;"/></a>
                                     </form>
                                        
                                 </div>
@@ -327,5 +327,11 @@
 
     });
 </script>
+<script>
+function cancelFunction() {
+    alert("By clicking on the cancel button, your information will be not save. Click 'OK button' to proceed.");
+}
+</script>
+
 
 </html>

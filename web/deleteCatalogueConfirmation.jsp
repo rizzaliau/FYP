@@ -165,13 +165,17 @@
 
                                         <form action="deleteCatalogueController" method="post">
                                             <input type= "hidden" name="recordToBeDeleted" value='<%= itemCode %>'/>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Deactivate"> 
-                                        
+                                            <br>
+                                            <br>
+                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Deactivate" style="margin-right:20px; margin-bottom: 30px;"> 
+                                            
                                         </form>   
 
                             </div>
                         </div>
-                       
+                    </div>
+                </div>
+            </div>  
 
             <footer class="footer">
                 <div class="container">
