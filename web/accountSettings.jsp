@@ -130,7 +130,7 @@
                                                     if(i<=5){
                                                     Notification notification = notificationMap.get(i);
                                                     out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                            "  placed a new order on  "+notification.getCreatedTimeStamp()+"</a>");
+                                                            "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
                                                     }     
                                             }
                                             out.print("<div class='divider'></div>");
@@ -178,17 +178,6 @@
                                             //String passwordUpdate = (String)request.getAttribute("updateSuccess");
                                             String status = (String) request.getAttribute("status");
 
-       //                                    if (passwordErrorMsg != null) {
-       //                                        out.print("</br>");
-       //                                        out.print(passwordErrorMsg);
-       //                                        out.print("</br>");
-       //                                    }
-       //                                    
-       //                                    if (passwordUpdate!=null){
-       //                                        out.print("</br>");
-       //                                        out.print(passwordUpdate);
-       //                                        out.print("</br>");
-       //                                    }
                                             if (status != null) {
                                                 out.print("</br>");
                                                 out.print(status);

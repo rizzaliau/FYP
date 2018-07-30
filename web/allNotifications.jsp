@@ -4,6 +4,9 @@
     Author     : Rizza
 --%>
 
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="entity.Notification"%>
@@ -124,7 +127,7 @@
                                                     if(i<=5){
                                                     Notification notification = notificationMap.get(i);
                                                     out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                            "  placed a new order on  "+notification.getCreatedTimeStamp()+"</a>");
+                                                            "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
                                                     }     
                                             }
                                             out.print("<div class='divider'></div>");
@@ -193,6 +196,13 @@
                                             
                                             <a href="readAllNotifications.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="readAllNotifications"  value="Read all notifications" style="margin-right:20px;" /></a>
                                             <%  
+                                                
+//                                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy h.mm aa");
+//                                            SimpleDateFormat expectedPattern = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//                                            Date datetime = expectedPattern.parse(orderDate);
+//                                            String createdTimestamp = sdf.format(datetime);
+//                                            orderDateTxt.setText(createdTimestamp);    
+                                            
                                             for (Integer number : notificationMap.keySet()) {
                                                 out.print("<tr>");
                                                 Notification notification = notificationMap.get(number);
@@ -201,9 +211,11 @@
                                                 //out.print("<td>" +notification.getDebtorName()+
                                                             //"  placed a new order on  "+notification.getCreatedTimeStamp()+"</td>");
                                                 out.print("<td><a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                            "  placed a new order on  "+notification.getCreatedTimeStamp()+"</a></td>");
-
-                                                out.print("</tr>");  
+                                                            "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a></td>");
+                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+notification.getOrderID()+"&status=Pending Delivery'>View</a></td>");
+                                                //out.print("<td>View</td>");                                                
+                                                out.print("</tr>"); 
+  
                                             }
                                             
                                             %>

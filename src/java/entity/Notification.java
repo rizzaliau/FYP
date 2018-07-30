@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.sql.Date;
+
 /**
  *
  * @author Rizza
@@ -42,6 +44,16 @@ public class Notification {
     
     public int getFlag() {
         return flag;
-    } 
+    }
+    
+    public String getFormattedCreatedTimeStamp(){
+        String year = createdTimeStamp.substring(0,4);
+        String month = createdTimeStamp.substring(5,7);
+        String day = createdTimeStamp.substring(8,10);
+        String time = createdTimeStamp.substring(11,19);
+        
+        return day+"-"+month+"-"+year+" "+time;
+    }
+    
     
 }
