@@ -2,9 +2,10 @@
     Document   : userMGMT
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
+<%@include file="protect.jsp" %>
 --%>
 
-<%@include file="protect.jsp" %>
+
 <%@page import="entity.Debtor"%>
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
@@ -24,11 +25,17 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
         <!-- CSS Files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/boot" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" rel="stylesheet"/>
         <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="assets/css/demo.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
-
+        <style>
+        .no-result {
+            display:none;
+        }
+        </style>
     </head>
 
     <body>
@@ -154,11 +161,9 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card strpied-tabled-with-hover">
+                                <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-
                                         <h4 class="card-title">Customer Management</h4>
-                                        <p class="card-category">Active Customers</p>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
@@ -183,8 +188,7 @@
                                         </font>
                                     </div>
                                     <br>
-
-                                    <div class="card-body table-full-width table-responsive" id='users'>
+                                    <div class="card-body table-full-width table-responsive"  id='users'>
                                         <table class="order-table table table-hover table-striped">
                                             <thead>
 
@@ -209,13 +213,16 @@
                                                         out.print("<td>" + debtor.getCompanyCode() + "</td>");
                                                         out.print("<td>" + debtor.getDebtorName() + "</td>");
                                                         if (debtor.getStatus().equals("Active") || debtor.getStatus().equals("active")) {
-                                                            //out.print("active");
+                                                            //out.print("active");<span class='label activeUser'>
                                                             out.print("<td><span class='label activeUser'>Active</span></td>");
+                                                            out.print("<td hidden class='sts'>Active</span></td>");
                                                         } else if (debtor.getStatus().equals("Blacklisted") || debtor.getStatus().equals("blacklisted")) {
-                                                            out.print("<td><span class='label blacklistUser'>" + debtor.getStatus() + "</span></td>");
+                                                            out.print("<td><span class='label blacklistUser'>Blacklisted</span></td>");
+                                                            out.print("<td hidden class='sts'>Blacklisted</span></td>");
                                                         } else {
                                                             //out.print("inactive");
-                                                            out.print("<td><span class='label inactiveUser'>" + debtor.getStatus() + "</span></td>");
+                                                            out.print("<td><span class='label inactiveUser'>Inactive</span></td>");
+                                                            out.print("<td hidden class='sts'>Inactive</span></td>");
                                                         }
                                                         out.print("<td><a href='edit.jsp?serial=" + number + "&status=active'>Edit/View</a></td>");
                                                         //out.print("<td><a href='deleteConfirmation.jsp?debtorCode=" + debtor.getDebtorCode() + "'>Delete</a></td>");
@@ -229,36 +236,36 @@
                                                 %>
 
                                             <div class="row">
-
                                                 <div class="col-md-2">
-                                                    <input type="text" class="search form-control" style="margin-left:20px; width: 200px;" size="13" placeholder="Search Company Name" />
-                                                    
-                                                    
+                                                    <input type="text" class="search form-control" style="margin-left:20px; width: 200px;" size="13" placeholder="Search Company Name" />                                        
                                                 </div>
-                                                <div class="col-md-6">
-                                                 
+                                                <div class="col-md-8">
+                                                  <div class ="row">
+                                                    <div class="col-md-7">
+                                                     <label><input type="radio" value="All" name="status" class="statusFilter-all" style="margin-left:20px; margin-top: 20px;"/> All </label>
+                                                     <label><input type="radio" value="Active" name="status" class="statusFilter" checked style="margin-left:12px;"/>Active</label>
+                                                     <label><input type="radio" value="Inactive" name="status" class="statusFilter" style="margin-left:12px;" />Inactive</label>
+                                                     <label><input type="radio" value="Blacklisted" name="status"class="statusFilter" style="margin-left:12px;"/>Blacklisted</label>                                                    
+                                                    </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-2">
-
-                                                    <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer" style="margin-right:20px;"></a>
-
+                                                 <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer" style="margin-right:20px;"></a>
                                                 </div>
+                                            </tbody>
+                                        </table>
+                                        <div class="no-result">&nbsp;No Results</div>
+                                            <ul class="pagination"></ul>
+                                        </div>
+                                                <!--
                                                 <div class="col-md-2">   
-
+                                                    
                                                     <a href="inactiveUsersDisplay.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Inactive Users"  value="Inactive Customers" style="margin-right:20px;"/></a>
 
                                                 </div>
-
+                                               -->
                                             </div>
-                                            <div class ="row">
-                                                 <div class="col-md-5" style="margin-left:20px;">
-                                                     <label><input type="radio" value="All" name="status" id="status-all" style="margin-left:5px; margin-top: 20px;"/> All </label>
-                                                     <label><input type="radio" value="Pending Delivery" name="status" id="status-pending" checked style="margin-left:25px;"/> Pending</label>
-                                                     <label><input type="radio" value="Delivered" name="status" id="status-delivered" style="margin-left:25px;" /> Delivered</label>
-                                                     <label><input type="radio" value="Cancelled" name="status" id="status-cancelled" style="margin-left:25px;"/> Cancelled</label>
-                                                     <br>
-                                                </div>
-                                            </div>
+                                           
                                             
                                             </tbody>
                                         </table>
@@ -401,23 +408,72 @@
     <script src="assets/js/plugins/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
     <script src="assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
     <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
     <script type="text/javascript">
-                                $(document).ready(function () {
-                                    // Javascript method's body can be found in assets/js/demos.js
-                                    demo.initDashboardPageCharts();
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
 
-                                });
+        });
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.js"></script>
     <script>
-                                var options = {
-                                    valueNames: ['name']
-                                };
+        var options = {
+                valueNames: [
+                        'name',
+                        'sts',
+                        { data: ['status']}
+                ],
+                page: 5,
+                pagination: true
+        };
+        var userList = new List('users', options);
 
-                                var userList = new List('users', options);
+        function resetList(){
+                userList.search();
+                userList.filter();
+                userList.update();
+                $(".statusFilter-all").prop('checked', true);
+                $('.statusFilter').prop('checked', false);
+                $('.search').val('');
+                //console.log('Reset Successfully!');
+        };
+        function updateList(){
+          var values_status = $("input[name=status]:checked").val();
+          
+                userList.filter(function (item) {
+                        var statusFilter = false;
+
+                        if(values_status == "All")
+                        { 
+                                statusFilter = true;
+                        } else {
+                                statusFilter = item.values().sts == values_status;
+                        }
+                        return statusFilter;
+                });
+                userList.update();
+                //console.log('Filtered: ' + values_gender);
+        }
+
+        $(function(){
+          //updateList();
+          $("input[name=status]").change(updateList);
+          updateList();
+
+                userList.on('updated', function (list) {
+                        if (list.matchingItems.length > 0) {
+                                $('.no-result').hide()
+                        } else {
+                                $('.no-result').show()
+                        }
+                });
+        });   
     </script>
 </html>
