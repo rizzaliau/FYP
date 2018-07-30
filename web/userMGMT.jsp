@@ -232,8 +232,11 @@
 
                                                 <div class="col-md-2">
                                                     <input type="text" class="search form-control" style="margin-left:20px; width: 200px;" size="13" placeholder="Search Company Name" />
+                                                    
+                                                    
                                                 </div>
                                                 <div class="col-md-6">
+                                                 
                                                 </div>
                                                 <div class="col-md-2">
 
@@ -247,7 +250,16 @@
                                                 </div>
 
                                             </div>
-
+                                            <div class ="row">
+                                                 <div class="col-md-5" style="margin-left:20px;">
+                                                     <label><input type="radio" value="All" name="status" id="status-all" style="margin-left:5px; margin-top: 20px;"/> All </label>
+                                                     <label><input type="radio" value="Pending Delivery" name="status" id="status-pending" checked style="margin-left:25px;"/> Pending</label>
+                                                     <label><input type="radio" value="Delivered" name="status" id="status-delivered" style="margin-left:25px;" /> Delivered</label>
+                                                     <label><input type="radio" value="Cancelled" name="status" id="status-cancelled" style="margin-left:25px;"/> Cancelled</label>
+                                                     <br>
+                                                </div>
+                                            </div>
+                                            
                                             </tbody>
                                         </table>
                                         <br>
