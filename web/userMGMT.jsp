@@ -191,11 +191,9 @@
                                     <div class="card-body table-full-width table-responsive"  id='users'>
                                         <table class="order-table table table-hover table-striped">
                                             <thead>
-
-                                            <th>S/N</th>
-                                            <th>Company Name</th>
-                                            <th>Company Code</th>
                                             <th>Contact Person</th>
+                                            <th>Company Code</th>
+                                            <th>Company Name</th>
                                             <th>Status</th>
                                             <th></th>
                                             </thead>
@@ -208,10 +206,9 @@
                                                         out.print("<tr>");
                                                         Debtor debtor = debtorMap.get(number);
                                                         //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='" + debtor.getDebtorCode() + "'></td>");
-                                                        out.print("<td>" + number + "</td>");
-                                                        out.print("<td class='name'>" + debtor.getCompanyName() + "</td>");
-                                                        out.print("<td>" + debtor.getCompanyCode() + "</td>");
                                                         out.print("<td>" + debtor.getDebtorName() + "</td>");
+                                                        out.print("<td>" + debtor.getCompanyCode() + "</td>");
+                                                        out.print("<td class='name'>" + debtor.getCompanyName() + "</td>");
                                                         if (debtor.getStatus().equals("Active") || debtor.getStatus().equals("active")) {
                                                             //out.print("active");<span class='label activeUser'>
                                                             out.print("<td><span class='label activeUser'>Active</span></td>");
@@ -430,7 +427,7 @@
                         'sts',
                         { data: ['status']}
                 ],
-                page: 5,
+                page: 10,
                 pagination: true
         };
         var userList = new List('users', options);

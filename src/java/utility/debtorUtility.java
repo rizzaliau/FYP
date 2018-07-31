@@ -52,7 +52,7 @@ public class debtorUtility {
             //Old code to retrieve all active users
             //String populateMap = "SELECT * FROM `debtor` WHERE status = 'ACTIVE'";
             
-            String populateMap = "SELECT * FROM `debtor` ";
+            String populateMap = "SELECT * FROM `debtor` order by status asc, DebtorName asc";
             
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
