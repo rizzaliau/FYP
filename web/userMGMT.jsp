@@ -35,6 +35,16 @@
         .no-result {
             display:none;
         }
+        .sort, button {
+            padding: 8px 30px;
+            border: none;
+            display: inline-block;
+            color: black;
+            background-color: transparent;
+            text-decoration: none;
+            height: 30px;
+            font-size: 0.9em;
+          }
         </style>
     </head>
 
@@ -191,10 +201,10 @@
                                     <div class="card-body table-full-width table-responsive"  id='users'>
                                         <table class="order-table table table-hover table-striped">
                                             <thead>
-                                            <th>Contact Person</th>
-                                            <th>Company Code</th>
-                                            <th>Company Name</th>
-                                            <th>Status</th>
+                                            <th>Contact Person<button class="sort" data-sort="contact"><span class="glyphicon glyphicon-sort"></span></button></th>
+                                            <th>Company Code<button class="sort" data-sort="code"><span class="glyphicon glyphicon-sort"></span></button></th>
+                                            <th>Company Name<button class="sort" data-sort="name"><span class="glyphicon glyphicon-sort"></span></button></th>
+                                            <th>Status<button class="sort" data-sort="sts"><span class="glyphicon glyphicon-sort"></span></button></th>
                                             <th></th>
                                             </thead>
                                             <tbody class="list">
@@ -206,8 +216,8 @@
                                                         out.print("<tr>");
                                                         Debtor debtor = debtorMap.get(number);
                                                         //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='" + debtor.getDebtorCode() + "'></td>");
-                                                        out.print("<td>" + debtor.getDebtorName() + "</td>");
-                                                        out.print("<td>" + debtor.getCompanyCode() + "</td>");
+                                                        out.print("<td class='contact'>" + debtor.getDebtorName() + "</td>");
+                                                        out.print("<td class='code'>" + debtor.getCompanyCode() + "</td>");
                                                         out.print("<td class='name'>" + debtor.getCompanyName() + "</td>");
                                                         if (debtor.getStatus().equals("Active") || debtor.getStatus().equals("active")) {
                                                             //out.print("active");<span class='label activeUser'>
@@ -423,6 +433,8 @@
     <script>
         var options = {
                 valueNames: [
+                        'contact',
+                        'code',
                         'name',
                         'sts',
                         { data: ['status']}
