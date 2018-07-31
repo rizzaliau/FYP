@@ -31,11 +31,14 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="assets/css/demo.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+        
+       
+        
         <style>
         .no-result {
             display:none;
         }
-        .sort, button {
+        .sort.button {
             padding: 8px 30px;
             border: none;
             display: inline-block;
@@ -45,6 +48,7 @@
             height: 30px;
             font-size: 0.9em;
           }
+         
         </style>
     </head>
 
@@ -206,6 +210,10 @@
                                             <th>Company Name<button class="sort" data-sort="name"><span class="glyphicon glyphicon-sort"></span></button></th>
                                             <th>Status<button class="sort" data-sort="sts"><span class="glyphicon glyphicon-sort"></span></button></th>
                                             <th></th>
+                                            <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-asterisk"></span> Asterisk
+        </button>
+                                            
                                             </thead>
                                             <tbody class="list">
                                                 <!--
@@ -248,7 +256,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                   <div class ="row">
-                                                    <div class="col-md-7">
+                                                    <div class="col-md-7" style="margin-left:50px;">
                                                      <label><input type="radio" value="All" name="status" class="statusFilter-all" style="margin-left:20px; margin-top: 20px;"/> All </label>
                                                      <label><input type="radio" value="Active" name="status" class="statusFilter" checked style="margin-left:12px;"/>Active</label>
                                                      <label><input type="radio" value="Inactive" name="status" class="statusFilter" style="margin-left:12px;" />Inactive</label>
@@ -259,32 +267,23 @@
                                                 <div class="col-md-2">
                                                  <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer" style="margin-right:20px;"></a>
                                                 </div>
-                                            </tbody>
-                                        </table>
-                                        <div class="no-result">&nbsp;No Results</div>
-                                            <ul class="pagination"></ul>
-                                        </div>
-                                                <!--
-                                                <div class="col-md-2">   
-                                                    
-                                                    <a href="inactiveUsersDisplay.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Inactive Users"  value="Inactive Customers" style="margin-right:20px;"/></a>
-
-                                                </div>
-                                               -->
+                                               
                                             </div>
-                                           
-                                            
                                             </tbody>
                                         </table>
+                                                <div class="no-result"><center>No Results</center></div>
+                                                
+                                                <div class="pagination" style="display: none;">
+                                                    
+                                                </div>
+                                        </div>
+                                        </div>
                                         <br>
-                                        </form>   
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                 
 
                 <footer class="footer">
                     <div class="container">
