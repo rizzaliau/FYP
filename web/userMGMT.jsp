@@ -38,15 +38,15 @@
         .no-result {
             display:none;
         }
-        .sort.button {
-            padding: 8px 30px;
+        .sort{
+            padding: 8px 10px;
             border: none;
             display: inline-block;
             color: black;
             background-color: transparent;
             text-decoration: none;
             height: 30px;
-            font-size: 0.9em;
+            font-size: 1.5em;
           }
          
         </style>
@@ -205,13 +205,12 @@
                                     <div class="card-body table-full-width table-responsive"  id='users'>
                                         <table class="order-table table table-hover table-striped">
                                             <thead>
-                                            <th>Contact Person<button class="sort" data-sort="contact"><span class="glyphicon glyphicon-sort"></span></button></th>
-                                            <th>Company Code<button class="sort" data-sort="code"><span class="glyphicon glyphicon-sort"></span></button></th>
-                                            <th>Company Name<button class="sort" data-sort="name"><span class="glyphicon glyphicon-sort"></span></button></th>
-                                            <th>Status<button class="sort" data-sort="sts"><span class="glyphicon glyphicon-sort"></span></button></th>
+                                            <th>Contact Person &nbsp;<button class="sort" data-sort="contact"> &#x21F5;</button></span></th>
+                                            <th>Company Code &nbsp;<button class="sort" data-sort="code">&#x21F5;</button></th>
+                                            <th>Company Name&nbsp;<button class="sort" data-sort="name">&#x21F5;</button></th>
+                                            <th>Status&nbsp;</th>
                                             <th></th>
-                                            <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-asterisk"></span> Asterisk
+                                          
         </button>
                                             
                                             </thead>
