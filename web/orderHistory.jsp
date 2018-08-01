@@ -1,8 +1,7 @@
 <%-- 
-    Document   : userMGMT
-    Created on : 12 May, 2018, 1:04:11 AM
-    Author     : Rizza
-<%@include file="protect.jsp" %>
+    Document   : orderHistory
+    Created on : 1 Aug, 2018, 5:00:30 PM
+    Author     : Zx Low
 --%>
 
 <%@page import="java.util.Date"%>
@@ -165,25 +164,8 @@
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
 
-                                        <h4 class="card-title">Current Orders</h4>
-                                        <p class="card-category">Orders to be delivered today: (<script>
-                                            var today = new Date();
-                                            var dd = today.getDate();
-                                            var mm = today.getMonth() + 1; //January is 0!
-                                            var yyyy = today.getFullYear();
-
-                                            if (dd < 10) {
-                                                dd = '0' + dd
-                                            }
-
-                                            if (mm < 10) {
-                                                mm = '0' + mm
-                                            }
-
-                                            today = mm + '/' + dd + '/' + yyyy;
-                                            document.write(today);
-                                            </script>)
-                                        </p>
+                                        <h4 class="card-title">Order History</h4>
+                                        <p class="card-category">Past Orders</p>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
@@ -229,8 +211,8 @@
                                                         SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
                                                         
                                                         
-                                                        if (salesOrderdetails.getStatus().equals("Pending Delivery")) {
-                                                            out.print("<tr>");                                                            
+                                                        if (!salesOrderdetails.getStatus().equals("Pending Delivery")) {
+                                                            out.print("<tr>");
                                                             //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
                                                             out.print("<td>" + pendingCount + "</td>");
                                                             pendingCount++;
@@ -250,11 +232,16 @@
                                                             out.print("<td>" + formatter.format(date) + "</td>");;
                                                             //out.print("<td>" + salesOrderdetails.getCreateTimeStamp() + "</td>");
                                                             out.print("<td>" + salesOrderdetails.getDeliveryDate() + "</td>");
-                                                            out.print("<td><span class='label inactiveUser'>Pending</span></td>");
                                                             // }
-
-                                                            out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Edit/View</a></td>");
-                                                            out.print("<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
+                                                              if (salesOrderdetails.getStatus().equals("Delivered") || salesOrderdetails.getStatus().equals("delivered")) {
+                                                            //out.print("active");<span class='label activeUser'>
+                                                            out.print("<td><span class='label activeUser'>Delivered</span></td>");
+                                                            out.print("<td hidden class='sts'>Delivered</span></td>");
+                                                            } else {
+                                                                out.print("<td><span class='label blacklistUser'>&nbspCancelled&nbsp</span></td>");
+                                                                out.print("<td hidden class='sts'>Cancelled</span></td>");
+                                                            } 
+                                                            out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>View</a></td>");
 
                                                             out.print("</tr>");
                                                         }
@@ -268,23 +255,17 @@
                                                 </div>
                                                 <!-- 
                                                 <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
-                                                --> <div class="col-md-4">
+                                                --> 
+                                                <div class="col-md-8">
+                                                    <div class ="row">
+                                                    <div class="col-md-7">
+                                                     <label><input type="radio" value="All" name="status" class="statusFilter-all" style="margin-left:60px; margin-top: 20px;"/> All </label>
+                                                     <label><input type="radio" value="Delivered" name="status" class="statusFilter" checked style="margin-left:12px;"/>Delivered</label>
+                                                     <label><input type="radio" value="Cancelled" name="status" class="statusFilter" style="margin-left:12px;" />Cancelled</label>
                                                     <!--<img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">-->
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <!--
-                                                   <select name="material" id="filter-material">
-                                                       <option selected="selected" value="">Select a Material</option>
-                                                       <option value="plastic">Plastic</option>
-                                                       <option value="glass">Glass</option>
-                                                   </select> 
-                                                  
+                                                   <!--
                                                    <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
-                                                    -->
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <!--
-                                                    <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:50px;" name="salesOrderHistory"  value="Sales Order History" /></a>
                                                     -->
                                                 </div>
                                                 <div class="col-md-2">
@@ -367,11 +348,55 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.js"></script>
     <script>
         var options = {
-            valueNames: ['orderId'],
+            valueNames: [
+                'orderId',
+                 'sts',
+                 { data: ['status']}
+            ],
             page: 10,
             pagination: true
         };
 
         var orderList = new List('salesOrder', options);
+        function resetList(){
+                orderList.search();
+                orderList.filter();
+                orderList.update();
+                $(".statusFilter-all").prop('checked', true);
+                $('.statusFilter').prop('checked', false);
+                $('.search').val('');
+                //console.log('Reset Successfully!');
+        };
+        function updateList(){
+          var values_status = $("input[name=status]:checked").val();
+          
+                orderList.filter(function (item) {
+                        var statusFilter = false;
+
+                        if(values_status == "All")
+                        { 
+                                statusFilter = true;
+                        } else {
+                                statusFilter = item.values().sts == values_status;
+                        }
+                        return statusFilter;
+                });
+                orderList.update();
+                //console.log('Filtered: ' + values_gender);
+        }
+
+        $(function(){
+          //updateList();
+          $("input[name=status]").change(updateList);
+          updateList();
+
+                orderList.on('updated', function (list) {
+                        if (list.matchingItems.length > 0) {
+                                $('.no-result').hide()
+                        } else {
+                                $('.no-result').show()
+                        }
+                });
+        });   
     </script>
 </html>

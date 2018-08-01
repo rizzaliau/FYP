@@ -366,7 +366,7 @@ public class salesOrderUtility {
        return string;
    }
     
-    public static SalesOrderDetails getAllSalesOrderDetails(String orderID){
+  public static SalesOrderDetails getAllSalesOrderDetails(String orderID){
         //Map<Integer, SalesOrderDetails> salesOrderDetailsMap = new HashMap<>();
         
         SalesOrderDetails salesOrderDetailsReturn = null;
@@ -385,7 +385,72 @@ public class salesOrderUtility {
                 "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
                 "from sales_order so inner join sales_order_detail sod ON so.OrderID = sod.OrderID\n" +
                 "inner join debtor d ON so.DebtorCode = d.DebtorCode \n" +
-                "where so.OrderID = \"" + orderID + "\"";
+                "where so.OrderID = \"" + orderID + "\"" + 
+                 "order by sod.DeliveryDate, d.DebtorName";
+            
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String orderIDRetrieved = rs.getString("OrderID");
+                String createTimeStamp= rs.getString("CreatedTimeStamp");
+                String status= rs.getString("Status");
+                String lastModified= rs.getString("LastModified");
+                String deliveryDate= rs.getString("DeliveryDate");
+                String subTotal= rs.getString("SubTotal");
+                String companyName= rs.getString("CompanyName");
+                String debtorName= rs.getString("DebtorName");
+                String deliverContact= rs.getString("DeliverContact");
+                String displayTerm= rs.getString("DisplayTerm");
+                String routeNumber= rs.getString("RouteNumber");
+                String deliverAddr1= rs.getString("DeliverAddr1");
+                String deliverAddr2= rs.getString("DeliverAddr2");
+                String deliverAddr3= rs.getString("DeliverAddr3");
+                String deliverAddr4= rs.getString("DeliverAddr4");   
+                
+                SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,status,
+                        lastModified,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
+                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4);
+                salesOrderDetailsReturn = salesOrderDetails;
+                //catalogueMap.put(count, orderItem);
+                //count++;
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by getSalesOrderDetails method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        return salesOrderDetailsReturn;
+    } 
+    public static SalesOrderDetails getAllSalesOrderDetailsDesc(String orderID){
+        //Map<Integer, SalesOrderDetails> salesOrderDetailsMap = new HashMap<>();
+        
+        SalesOrderDetails salesOrderDetailsReturn = null;
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        //int count = 1;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModified,\n" +
+                "sod.DeliveryDate, sod.SubTotal,\n" +
+                "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
+                "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
+                "from sales_order so inner join sales_order_detail sod ON so.OrderID = sod.OrderID\n" +
+                "inner join debtor d ON so.DebtorCode = d.DebtorCode \n" +
+                "where so.OrderID = \"" + orderID + "\"\n" + 
+                 "sod.DeliveryDate desc, so.CreatedTimeStamp asc, d.DebtorName";
             
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
