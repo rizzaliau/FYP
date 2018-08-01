@@ -42,13 +42,13 @@ public class changePasswordUtility {
         
   
         if(currentPasswordEntered.equals("") || newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
-            request.setAttribute("status", "Blank fields detected.Please enter all fields");
+            request.setAttribute("status", "Blank fields detected. Please enter all fields");
             request.getRequestDispatcher("accountSettings.jsp").forward(request, response);   
         }else if(!loginUtility.getSha256(currentPasswordEntered).equals(passwordRetrieved)){
-            request.setAttribute("status", "Current password entered is invalid.Please re-enter.");
+            request.setAttribute("status", "Current password entered is invalid. Please re-enter.");
             request.getRequestDispatcher("accountSettings.jsp").forward(request, response);          
         } else if (!(newPassword1.equals(newPassword2))){           
-            request.setAttribute("status", "Passwords do not match. Please re-enter passwords.");
+            request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
             request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
         }else{
             String newPasswordHash = loginUtility.getSha256(newPassword2);

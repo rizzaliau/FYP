@@ -265,7 +265,7 @@
                                                     <div class="form-group">
                                                         <!-- need to change the value of this field-->
                                                         <label>Contact Number 2</label>
-                                                        <input type="text" class="form-control" placeholder="Contact Number 2" pattern="(^$)|(^\d{8}$)" value="<%= debtor.getDeliverContact2()%>" size="10" name="deliverContact2">
+                                                        <input type="text" class="form-control" placeholder="Contact Number 2" pattern="(^$)|(^\d{8}$)" title="Please enter 8 digit numbers" value="<%= debtor.getDeliverContact2()%>" size="10" name="deliverContact2">
                                                     </div>
                                                 </div>
                                             </div>

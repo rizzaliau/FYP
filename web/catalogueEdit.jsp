@@ -210,8 +210,9 @@
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
-                                                        <label>Retail Price($)</label>
-                                                        <input type="text" class="form-control" placeholder="Retail Price" required="" value="<%= orderItem.getRetailPrice()%>" size="5" name="retailPrice">                                            
+                                                        <label>Unit Price($)*</label>
+                                                        <input type="text" class="form-control" placeholder="Unit Price" required="" value="<%= orderItem.getUnitPrice()%>" size="5" name="unitPrice"> 
+                                                                                            
                                                     </div>
                                                 </div>
 
@@ -244,14 +245,15 @@
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Unit of Metric</label>
-                                                        <input type="text" class="form-control" placeholder="Unit of Metric" required ="" value="<%= orderItem.getUnitOfMetric()%>" size="5" name="unitOfMetric">
+                                                        <label>Retail Price($)*</label>
+                                                        <input type="text" class="form-control" placeholder="Retail Price" required="" value="<%= orderItem.getRetailPrice()%>" size="5" name="retailPrice">        
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
-                                                        <label>Unit Price($)*</label>
-                                                        <input type="text" class="form-control" placeholder="Unit Price" required="" value="<%= orderItem.getUnitPrice()%>" size="5" name="unitPrice">                                            
+                                                        <label>Unit of Metric*</label>
+                                                        <input type="text" class="form-control" placeholder="Unit of Metric" required ="" value="<%= orderItem.getUnitOfMetric()%>" size="5" name="unitOfMetric">                                         
                                                     </div>
                                                 </div>
 
@@ -332,7 +334,7 @@
                     <!-- Cancel alert pop up -->
                     <script>
                         function cancelFunction() {
-                        alert("By clicking on the cancel button, your information will be not save. Click 'OK button' to proceed.");
+                        confirm("Your changes will not be saved. Are you sure you want to continue?");
                         }
                     </script>
 

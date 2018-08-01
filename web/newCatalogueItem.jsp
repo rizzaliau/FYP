@@ -364,7 +364,7 @@
 </script>
 <script>
 function cancelFunction() {
-    alert("By clicking on the cancel button, your information will be not save. Click 'OK button' to proceed.");
+     confirm("Your changes will not be saved. Are you sure you want to continue?");
 }
 </script>
 
