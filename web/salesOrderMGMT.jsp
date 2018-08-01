@@ -294,7 +294,7 @@
                                                 </div>
                                             </div>
                                         </table>
-                                        <ul class="pagination"></ul>
+                                            <ul class="pagination" style="display: none;"></ul>
                                         <br>
                                         <!--
                                         <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 

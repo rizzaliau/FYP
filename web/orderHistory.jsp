@@ -238,7 +238,7 @@
                                                             out.print("<td><span class='label activeUser'>Delivered</span></td>");
                                                             out.print("<td hidden class='sts'>Delivered</span></td>");
                                                             } else {
-                                                                out.print("<td><span class='label blacklistUser'>&nbspCancelled&nbsp</span></td>");
+                                                                out.print("<td><span class='label cancelUser'>&nbspCancelled&nbsp</span></td>");
                                                                 out.print("<td hidden class='sts'>Cancelled</span></td>");
                                                             } 
                                                             out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>View</a></td>");
@@ -258,7 +258,7 @@
                                                 --> 
                                                 <div class="col-md-8">
                                                     <div class ="row">
-                                                    <div class="col-md-7">
+                                                    <div class="col-md-7" style="margin-left:50px;">
                                                      <label><input type="radio" value="All" name="status" class="statusFilter-all" style="margin-left:60px; margin-top: 20px;"/> All </label>
                                                      <label><input type="radio" value="Delivered" name="status" class="statusFilter" checked style="margin-left:12px;"/>Delivered</label>
                                                      <label><input type="radio" value="Cancelled" name="status" class="statusFilter" style="margin-left:12px;" />Cancelled</label>
