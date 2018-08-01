@@ -47,6 +47,7 @@
             text-decoration: none;
             height: 30px;
             font-size: 1.5em;
+            outline: none !important;
           }
          
         </style>
