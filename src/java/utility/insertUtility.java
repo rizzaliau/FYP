@@ -101,7 +101,7 @@ public class insertUtility {
         String unitofMetricRetrieved = catalogueCheckForNull(new String (request.getParameter("unitOfMetric").getBytes ("iso-8859-1"), "UTF-8"));
         String retailPriceRetrieved = catalogueCheckForNull(request.getParameter("retailPrice"));  
         String status = "Active";
-        
+
 //        out.println(itemCodeRetrieved);
 //        out.println(descriptionRetrieved);
 //        out.println(chineseDescriptionRetrieved);

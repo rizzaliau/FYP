@@ -31,6 +31,10 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets/css/demo.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/styleUpload.css" rel="stylesheet" media="screen">
+    <link href="./css/mobile-style.css" rel="stylesheet" media="screen">
+    <link rel="shortcut icon" href="./favicon.png">
 </head>
 
 <body>
@@ -174,12 +178,29 @@
                             </font></b></center>
                             <!--start of form UI-->
                                 <div class="card-body">
-                                        <h5 class="card-title"><font color = "red">Please fill in details below to add new catalogue item</font></h5>
+                                    <h5 class="card-title"><font color = "red">Please complete the 2 Step Process to add a new catalogue item</font></h5>
                                          <p>
-                                         <p class="card-category"><font color = "red">* denotes required fields</font></p>
                                         <br>
                                         <br>
-                                        
+                                         <div class="title">
+                                             <p><b>Step 1:</b> Upload Image and obtain URL</p>
+                                         </div>
+                                        <div class="dropzone">
+                                            <div class="info"></div>
+                                        </div>
+                                        <script type="text/javascript" src="./js/imgur.js"></script>
+                                        <script type="text/javascript" src="./js/upload.js"></script>
+<!--                                        <form action="uploadController" method="post" enctype="multipart/form-data">
+                                            <input type="file" name="file" /></br>
+                                            <input type="hidden" value='123456' name="test2" />
+                                            <input type="submit" name="submit"value="Upload" />
+                                        </form> -->
+                                        <br>
+                                        <br> 
+                                        <div class="title">
+                                            <p><b>Step 2:</b> Enter required fields</p>
+                                            <p class="card-category"><font color = "red">* denotes required fields</font></p>
+                                         </div>
                                         <form method="post" action="newCatalogueItemController">
                                             
                                               <div class="row">
@@ -219,6 +240,18 @@
                                                     <div class="form-group">
                                                         <label>Image URL*</label>
                                                         <input type="url" class="form-control" pattern="https?://.+" title="Include http://" required placeholder="Image URL" required value="" size="50" name="imageURL">
+                                                        
+                                                            <%
+                                                                //String imageDirectoryRetrieved =(String) request.getAttribute("imgDirectory");
+                                                                //if(imageDirectoryRetrieved == null || imageDirectoryRetrieved.equals("")){
+                                                                    //out.println("<input type='text' class='form-control' value='Image not uploaded yet' disabled>");
+                                                                //}else{
+                                                                    //out.println("<input type='text' class='form-control' value='Image URL OK' disabled>");
+                                                                    //out.println("<input type='hidden' value='"+imageDirectoryRetrieved+"' name='imageURL'>");
+                                                                //}
+                                                            %>
+                                                             
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
@@ -256,7 +289,9 @@
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit" value="Add New Item" style="margin-left:20px;"/>
                                             <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Cancel" onclick="cancelFunction();"  value="Cancel" style="margin-left:20px;"/></a>
                                     </form>
-                                       
+                                        
+
+                                        
                                 </div>
                             </div>
                         </div>
