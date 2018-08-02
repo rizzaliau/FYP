@@ -196,7 +196,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Enter new password</label>
-                                                        <input type="password" name="newPass1" class="form-control" required>
+                                                        <input type="password" name="newPass1" class="form-control" minLength="8" required placeholder="min 8 characters">
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,7 +204,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Confirm new password</label>
-                                                        <input type="password" name="newPass2" class="form-control" required>
+                                                        <input type="password" name="newPass2" class="form-control" minLength="8" required placeholder="min 8 characters">
                                                     </div>
                                                 </div>
 
