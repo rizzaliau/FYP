@@ -182,8 +182,9 @@
                                          <p>
                                         <br>
                                         <br>
+                                        <form method="post" action="newCatalogueItemController">
                                          <div class="title">
-                                             <p><b>Step 1:</b> Upload Image and obtain URL</p>
+                                             <p><b>Step 1:</b> Upload Image</p>
                                          </div>
                                         <div class="dropzone">
                                             <div class="info"></div>
@@ -201,7 +202,7 @@
                                             <p><b>Step 2:</b> Enter required fields</p>
                                             <p class="card-category"><font color = "red">* denotes required fields</font></p>
                                          </div>
-                                        <form method="post" action="newCatalogueItemController">
+                                        
                                             
                                               <div class="row">
                                                 <div class="col-md-3 pr-1">
@@ -236,25 +237,8 @@
                                             </div>
                                             
                                             <div class="row">
-                                                <div class="col-md-5 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Image URL*</label>
-                                                        <input type="url" class="form-control" pattern="https?://.+" title="Include http://" required placeholder="Image URL" required value="" size="50" name="imageURL">
-<!--                                                    <input type="hidden" id="outputURL" name="imageURL">-->
-                                                        <p id="outputURL"></p>
-                                                            <%
-                                                                //String imageDirectoryRetrieved =(String) request.getAttribute("imgDirectory");
-                                                                //if(imageDirectoryRetrieved == null || imageDirectoryRetrieved.equals("")){
-                                                                    //out.println("<input type='text' class='form-control' value='Image not uploaded yet' disabled>");
-                                                                //}else{
-                                                                    //out.println("<input type='text' class='form-control' value='Image URL OK' disabled>");
-                                                                    //out.println("<input type='hidden' value='"+imageDirectoryRetrieved+"' name='imageURL'>");
-                                                                //}
-                                                            %>
-                                                             
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 px-1">
+
+                                                <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Default Quantity*</label>
                                                         <input type="text" class="form-control" pattern="[0-9]{1,4}" title="Please enter numeric numbers" required placeholder="Default Quantity" value="" size="5" name="defaultQuantity">                                            
