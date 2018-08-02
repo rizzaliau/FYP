@@ -240,7 +240,8 @@
                                                     <div class="form-group">
                                                         <label>Image URL*</label>
                                                         <input type="url" class="form-control" pattern="https?://.+" title="Include http://" required placeholder="Image URL" required value="" size="50" name="imageURL">
-                                                        
+<!--                                                    <input type="hidden" id="outputURL" name="imageURL">-->
+                                                        <p id="outputURL"></p>
                                                             <%
                                                                 //String imageDirectoryRetrieved =(String) request.getAttribute("imgDirectory");
                                                                 //if(imageDirectoryRetrieved == null || imageDirectoryRetrieved.equals("")){
@@ -251,7 +252,6 @@
                                                                 //}
                                                             %>
                                                              
-                                                        
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">

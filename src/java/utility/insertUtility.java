@@ -138,8 +138,14 @@ public class insertUtility {
             out.println("passes rs");
 
         } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error updating!");
+            
+            if(ex instanceof MySQLIntegrityConstraintViolationException){
+                request.setAttribute("status", "Please enter a unique Item code!");
+                request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
+            }else{
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("status", "Error creating new catalogue Item!");
+            }
         }
         
         request.setAttribute("status", "Record inserted successfully! ");

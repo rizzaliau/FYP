@@ -4,6 +4,7 @@ var feedback = function(res) {
         document.querySelector('.status').classList.add('bg-success');
         document.querySelector('.status').innerHTML =
             'Image URL: ' + '<br><input class="image-url" value=\"' + get_link + '\"/>' ;
+        document.getElementById('outputURL').innerHTML = get_link;
     }
 };
 
