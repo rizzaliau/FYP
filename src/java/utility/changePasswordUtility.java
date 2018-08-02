@@ -70,6 +70,7 @@ public class changePasswordUtility {
         //String passwordRetrieved = (String)session.getAttribute("password");
         String hashPasswordRetrieved = request.getParameter("hashPassword");
         String debtorCodeRetrieved = request.getParameter("debtorCode");
+        String companyNameRetrieved = request.getParameter("companyName");
         
         out.println("debtorCodeRetrieved retrieved is :"+debtorCodeRetrieved+hashPasswordRetrieved);
         String currentPasswordEntered = request.getParameter("currentPass");
@@ -105,7 +106,8 @@ public class changePasswordUtility {
             changePasswordUtility.UpdateCustomerPassword(debtorCodeRetrieved,newPasswordHash);
 
             request.setAttribute("status", "Password updated successfully!");
-
+            request.setAttribute("companyName", companyNameRetrieved);
+            
             request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);
         }
     }

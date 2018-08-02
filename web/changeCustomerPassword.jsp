@@ -211,6 +211,7 @@
                                             </div>
                                             <input type= "hidden" name="debtorCode" value='<%= debtorCodeRetrieved %>'/>
                                             <input type= "hidden" name="hashPassword" value='<%= hashPasswordRetrieved %>'/>
+                                            <input type= "hidden" name="companyName" value='<%= companyNameRetrieved %>'/>
                                             <button type="submit" class="btn btn-info btn-fill pull-right">Change Password</button>
                                             <div class="clearfix"></div>
                                         </form>
