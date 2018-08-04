@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="utility.salesOrderUtility"%>
+<%@page import="entity.SalesOrderDetails"%>
 <%@page import="entity.Debtor"%>
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
@@ -142,7 +144,13 @@
                     </div>
                 </div>
             </nav>
-            
+                                        <%  
+                                            
+                                            String orderID = request.getParameter("orderID");   
+                                            String status = request.getParameter("status"); 
+                                            String deliveryDate = request.getParameter("deliveryDate"); 
+                                            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(orderID);
+                                        %>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -153,7 +161,7 @@
                                     <h4 class="card-title">Sales Order Management</h4>
                                     <p class="card-category">Cancel Confirmation</p>
                                     <br>
-                                    <p class="card-category"><font color ="red"><h5>Are you sure you want to cancel this item ?</h5></font></p>
+                                    <p class="card-category"><font color ="red"><h5>Are you sure you want to cancel Order ID <%= orderID %> for <%= salesOrderdetails.getDebtorName()%> ?</h5></font></p>
                                     <font color ="black">Please enter cancel sales order reason:</font>
                                 </div>
                                 
@@ -170,19 +178,7 @@
                                     %> 
                                     </font></center>
                                     
-                                
-                                
-                                
-
-                                        <%  
-                                            
-                                            String orderID = request.getParameter("orderID");   
-                                            String status = request.getParameter("status"); 
-                                            String deliveryDate = request.getParameter("deliveryDate"); 
-
-                                        %>
-                                        
-                                        
+                            
                                         <form action="cancelSalesOrderController" method="post">
                    
                                             &nbsp;&nbsp;&nbsp;<textarea id ="cancelReasons" rows="10" cols="100" style="height:200px;" name="cancelledReason" value='Cancelled Reason'></textarea>
