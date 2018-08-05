@@ -187,8 +187,8 @@
                                             <input type= "hidden" name="statusRecordToBeDeleted" value='<%= status %>'/>
                                             <input type= "hidden" name="deliveryDateRecordToBeDeleted" value='<%= deliveryDate %>'/>
                                             <p>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Cancel record" style="margin-right: 20px; margin-top: 10px; margin-bottom: 20px; "> 
-                                        
+                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Confirm Cancel" style="margin-right: 20px; margin-top: 10px; margin-bottom: 20px; "> 
+                                            <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Cancel"  value="Back" style="margin-right:10px; margin-top: 10px; margin-bottom: 20px;"/></a>
                                         </form>   
                                 
                                 
