@@ -168,7 +168,7 @@
                                             <br>
                                             <br>
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Deactivate" style="margin-right:20px; margin-bottom: 30px;"> 
-                                            
+                                            <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Back" style="margin-left:20px; margin-top: 10px; margin-bottom: 20px;"/></a>
                                         </form>   
 
                             </div>

@@ -37,6 +37,26 @@
     </head>
 
     <body>
+           <!-- Modal pop up alert -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Your changes will not be saved. Are you sure you want to leave this page?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "salesOrderEdit.jsp">Continue</a></button>
+                                                                <button type="button" class="btn btn-danger"><a href = "salesOrderMGMT.jsp">Leave this page</a></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>             
         <div class="wrapper">
             <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
                 <!--
@@ -396,7 +416,7 @@
                                                 </table>
 
                                                 <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Edit Sales Order" />
-                                                <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" onclick="cancelFunction();"  value="Cancel" /></a>
+                                                <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal"  value="Cancel" />
                                         </form>
 
                                         </tbody>
@@ -408,8 +428,7 @@
                     </div>
                 </div>
             </div>
-
-
+                                     
             <footer class="footer">
                 <div class="container">
                     <nav>
@@ -473,9 +492,9 @@
                             });
 </script>
 <!-- Cancel alert pop up -->
-<script>
-function cancelFunction() {
-    alert("By clicking on the cancel button, your information will be not save. Click 'OK button' to proceed.");
-}
+ <script>
+            $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+            })
 </script>
 </html>

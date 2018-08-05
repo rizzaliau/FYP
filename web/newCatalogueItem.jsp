@@ -38,6 +38,26 @@
 </head>
 
 <body>
+     <!-- Modal pop up alert -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Your changes will not be saved. Are you sure you want to leave this page?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "newCatalogueItem.jsp">Continue</a></button>
+                                                                <button type="button" class="btn btn-danger"><a href = "catalogue.jsp">Leave this page</a></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
     <div class="wrapper">
         <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
             <!--
@@ -271,7 +291,7 @@
 
                                      
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit" value="Add New Item" style="margin-left:20px;"/>
-                                            <a href="catalogue.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Cancel" onclick="cancelFunction();"  value="Cancel" style="margin-left:20px;"/></a>
+                                            <input class="btn btn-info btn-fill pull-right" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal" value="Cancel" style="margin-left:20px;"/>
                                     </form>
                                         
 
@@ -347,10 +367,9 @@
     });
 </script>
 <script>
-function cancelFunction() {
-     confirm("Your changes will not be saved. Are you sure you want to continue?");
-}
+            $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+            })
 </script>
-
 
 </html>
