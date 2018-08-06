@@ -199,30 +199,20 @@
 
                                         %> 
                                         </font>
+                                        <div>
+                                        <input hidden id="mytext" type="text" value="Active" />    
+                                        <select class="example-search-input text" id="3">
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                            <option value="Blacklisted">Blacklisted</option>
+                                        </select>  
+                                        <label>Customers</label>
+                                        </div>
                                     </div>
+                                    <div>
 
-                                    <div class="col-md-12">
-                                        <div class="col-md-8">
-                                            <input hidden id="mytext" type="text" value="Active" />                                        
-                                            <!--
-                                              <div class ="row">
-                                                  
-                                                      <select class="example-search-input" id="3">
-                                                          <option value="Active">Active</option>
-                                                          <option value="Inactive">Inactive</option>
-                                                          <option value="Blacklisted">Blacklisted</option>
-                                                      </select>                                                   
-                                            -->
-                                        </div>
-                                        <div class="col-md-4">
-                                            <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer" style="margin-right:20px;"></a>
-                                            <select class="example-search-input text" id="3">
-                                                <option value="Active">Active</option>
-                                                <option value="Inactive">Inactive</option>
-                                                <option value="Blacklisted">Blacklisted</option>
-                                            </select>  
-                                        </div>
                                     </div>
+                                   
                                     <div class="card-body table-full-width table-responsive">
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:98%">
                                             <thead>
@@ -421,6 +411,7 @@
                                                 var i = $(this).attr('id');  // getting column index
                                                 var v = $(this).val();  // getting search input value
                                                 dataTable.columns(i).search(v).draw();
+
                                             });
 
                                             $(".datepicker").datepicker({
