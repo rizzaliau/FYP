@@ -493,7 +493,58 @@ public class salesOrderUtility {
         }
         
         return salesOrderDetailsReturn;
-    } 
+    }
+    
+        public static Map<Integer,ItemDetails> getRefundedItemDetailsMap(String orderID){
+        
+        Map<Integer,ItemDetails> itemDetailsMap = new HashMap<>();
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            String populateMap = "Select soq.ItemCode, soq.Qty, soq.ReturnedQty, oi.UnitPrice from sales_order so \n" +
+                    "inner join sales_order_quantity soq ON so.OrderID = soq.OrderID \n" +
+                    "inner join order_item oi ON soq.ItemCode = oi.ItemCode\n" +
+                    "where soq.ReturnedQty > 0 and so.OrderID = \""+orderID+"\"";
+            
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+            
+            int count = 1;
+            
+            while (rs.next()) {
+                
+                String itemCode=checkForNull(rs.getString("ItemCode"));
+                String qty=checkForNull(rs.getString("Qty"));
+                String returnedQty=checkForNull(rs.getString("ReturnedQty"));
+                String unitPrice=checkForNull(rs.getString("UnitPrice"));
+
+                ItemDetails itemDetails = new ItemDetails (itemCode,qty,returnedQty,unitPrice);
+                
+                //itemDetailsReturn = itemDetails;
+                
+                itemDetailsMap.put(count, itemDetails);
+                count++;
+                
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by getSalesOrderDetails method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        return itemDetailsMap;
+    }
+   
     
 
 }

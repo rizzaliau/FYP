@@ -126,6 +126,7 @@ public class editUtility {
         String deliveryDateRetrieved = request.getParameter("deliveryDate");
         String[] qtyItemCodeRetrieved = request.getParameterValues("qty"); 
         String[] itemCodeRetrieved = request.getParameterValues("itemCode");
+        String[] originalQtyRetrieved = request.getParameterValues("originalQty");
         
         out.println("qtyRetrieved " + qtyItemCodeRetrieved.length);
         out.println("qtyRetrieved " + qtyItemCodeRetrieved[0]);
@@ -139,11 +140,13 @@ public class editUtility {
 
             Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
-
+            
+            //update status
             String salesOrderSql = "UPDATE `sales_order`\n" +
                 "SET Status = '"+statusRetrieved+"'\n" +
                 "WHERE OrderID = \""+orderIDRetrieved+"\"";
             
+            //update delivery date
             String salesOrderDetailSql = "UPDATE `sales_order_detail`\n" +
                 "SET DeliveryDate = '"+deliveryDateRetrieved+"'\n" +
                 "WHERE OrderID = \""+orderIDRetrieved+"\"";
@@ -162,15 +165,32 @@ public class editUtility {
                     
                     String itemCode = itemCodeRetrieved[i];
                     String qty = qtyItemCodeRetrieved[i];
+                    String originalQty = originalQtyRetrieved[i];
+                    int qtyToRefund = Integer.parseInt(originalQty)-Integer.parseInt(qty);
+                    String qtyToRefundString = ""+qtyToRefund;
+                    
+                    //out.println(qty);
+                    //out.println(originalQty);
+                    //out.println(qtyToRefundString);
+                    
+                    String salesOrderQuantitySql = "";
+                    
+                    if(qtyToRefund >= 0){
+                        //update item code qty for each item
+                        salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"', ReturnedQty = ReturnedQty + '"+qtyToRefundString+"' WHERE orderID = '" + orderIDRetrieved + "' "
+                        + "AND itemCode ='"+itemCode+"'";
+                    }else if(qtyToRefund == 0){
+                        salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
+                        + "AND itemCode ='"+itemCode+"'";
+                    }else{
+                        request.setAttribute("status", "Error updating! Please enter a quanty that is higher than the current quantity for item "+itemCode);
 
-                    String salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
-                            + "AND itemCode ='"+itemCode+"'";
+                        request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
+                    }    
 
                     PreparedStatement salesOrderQuantityStmt = conn.prepareStatement(salesOrderQuantitySql);
-                    //out.println("passes stmt");
 
                     salesOrderQuantityStmt.executeUpdate();
-                    //out.println("passes rs");
 
                 } catch (SQLException ex) {
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
