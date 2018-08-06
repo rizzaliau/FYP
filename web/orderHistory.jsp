@@ -33,6 +33,8 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="assets/css/demo.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
     </head>
 
     <body>
@@ -165,117 +167,128 @@
                                     <div class="card-header ">
 
                                         <h4 class="card-title">Order History</h4>
-                                        <p class="card-category">Past Orders</p>
-                                    </div>
 
-                                    <div class="col-md-8"><font color="red">
-                                        <%                                        String msgStatus = (String) request.getAttribute("updateSuccess");
-                                            String msgStatus2 = (String) request.getAttribute("status");
 
-                                            if (msgStatus != null) {
-                                                out.print("</br>");
-                                                out.print(msgStatus);
-                                                out.print("</br>");
-                                            }
+                                        <div class="col-md-8"><font color="red">
+                                            <%                                        String msgStatus = (String) request.getAttribute("updateSuccess");
+                                                String msgStatus2 = (String) request.getAttribute("status");
 
-                                            if (msgStatus2 != null) {
-                                                out.print("</br>");
-                                                out.print(msgStatus2);
-                                                out.print("</br>");
-                                            }
-                                        %> 
-                                    </div></font>
-                                    <br>
+                                                if (msgStatus != null) {
+                                                    out.print("</br>");
+                                                    out.print(msgStatus);
+                                                    out.print("</br>");
+                                                }
 
-                                    <div class="card-body table-full-width table-responsive" id='salesOrder'>
-                                        <table class="order-table table table-hover table-striped">
-                                            <thead>   
-                                            <th>S/N</th>
-                                            <th>Order ID</th>
-                                            <th>Customer Name</th>
-                                            <th>Route Number</th>
-                                            <th>Order Date</th>
-                                            <th>Delivery Date</th>
-                                            <th>Status</th>
+                                                if (msgStatus2 != null) {
+                                                    out.print("</br>");
+                                                    out.print(msgStatus2);
+                                                    out.print("</br>");
+                                                }
+                                            %> 
+                                        </div></font>
+                                        <br>
+                                        <label>
+                                            Order Date
+                                        </label>
+                                        <input  readonly="readonly" type="date" id="5" class="employee-search-input datepicker">
+                                        <div class="card-body table-full-width table-responsive">
+                                            <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
+                                                <thead>   
+                                                    <tr>
+                                                        <th>S/N</th>
+                                                        <th>Order ID</th>
+                                                        <th>Customer Name</th>
+                                                        <th>Route</th>
+                                                        <th>Order Date</th>
+                                                        <th>Delivery Date</th>
+                                                        <th>Status</th>
+                                                        <th>View</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%
+                                                        int pendingCount = 1;
+                                                        for (Integer number : salesOrderMap.keySet()) {
 
-                                            </thead>
-                                            <tbody class="list">
-                                                <!--   
-                                                <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
-                                                -->
-                                                <%
-                                                    int pendingCount = 1;
-                                                    for (Integer number : salesOrderMap.keySet()) {
+                                                            SalesOrder salesOrder = salesOrderMap.get(number);
+                                                            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
 
-                                                        SalesOrder salesOrder = salesOrderMap.get(number);
-                                                        SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
-                                                        
-                                                        
-                                                        if (!salesOrderdetails.getStatus().equals("Pending Delivery")) {
-                                                            out.print("<tr>");
-                                                            //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
-                                                            out.print("<td>" + pendingCount + "</td>");
-                                                            pendingCount++;
-                                                            out.print("<td class='orderId'>" + salesOrder.getOrderID().toString() + "</td>");
-                                                            out.print("<td>" + salesOrder.getDebtorName() + "</td>");
-                                                            out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
+                                                            if (!salesOrderdetails.getStatus().equals("Pending Delivery")) {
+                                                                out.print("<tr>");
+                                                                //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
+                                                                out.print("<td>" + pendingCount + "</td>");
+                                                                pendingCount++;
+                                                                out.print("<td class='orderId'>" + salesOrder.getOrderID().toString() + "</td>");
+                                                                out.print("<td>" + salesOrder.getDebtorName() + "</td>");
+                                                                out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
 
-                                                            //if(salesOrderdetails==null){
-                                                            //out.print("<td></td>");
-                                                            //out.print("<td></td>");
-                                                            //out.print("<td></td>");
-                                                            // }else{
-                                                            String timestamp = salesOrderdetails.getCreateTimeStamp();
-                                                            String orderDate = timestamp.substring(0, timestamp.indexOf(" "));
-                                                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                                                            Date date = formatter.parse(orderDate);
-                                                            out.print("<td>" + formatter.format(date) + "</td>");;
-                                                            //out.print("<td>" + salesOrderdetails.getCreateTimeStamp() + "</td>");
-                                                            out.print("<td>" + salesOrderdetails.getDeliveryDate() + "</td>");
-                                                            // }
-                                                              if (salesOrderdetails.getStatus().equals("Delivered") || salesOrderdetails.getStatus().equals("delivered")) {
-                                                            //out.print("active");<span class='label activeUser'>
-                                                            out.print("<td><span class='label activeUser'>Delivered</span></td>");
-                                                            out.print("<td hidden class='sts'>Delivered</span></td>");
-                                                            } else {
-                                                                out.print("<td><span class='label cancelUser'>&nbspCancelled&nbsp</span></td>");
-                                                                out.print("<td hidden class='sts'>Cancelled</span></td>");
-                                                            } 
-                                                            out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>View</a></td>");
+                                                                String timestamp = salesOrderdetails.getCreateTimeStamp();
+                                                                String orderDate = timestamp.substring(0, timestamp.indexOf(" "));
 
-                                                            out.print("</tr>");
+                                                                String NEW_FORMAT = "dd-MM-yyyy";
+                                                                final String OLD_FORMAT = "yyyy-MM-dd";
+
+                                                                // August 12, 2010
+                                                                String oldDateString = orderDate;
+                                                                String newDateString;
+
+                                                                SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+                                                                Date d = sdf.parse(oldDateString);
+                                                                sdf.applyPattern(NEW_FORMAT);
+                                                                newDateString = sdf.format(d);
+
+                                                                out.print("<td>" + newDateString + "</td>");;
+                                                                
+                                                                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                                                                Date d2 = sdf2.parse(salesOrderdetails.getDeliveryDate());
+                                                                sdf2.applyPattern("dd-MM-yyyy");
+                                                                String deliveryDateFormatted = sdf2.format(d2);
+
+                                                                out.print("<td>" + deliveryDateFormatted + "</td>");
+                                                                // }
+                                                                if (salesOrderdetails.getStatus().equals("Delivered") || salesOrderdetails.getStatus().equals("delivered")) {
+                                                                    //out.print("active");<span class='label activeUser'>
+                                                                    out.print("<td><span class='label activeUser'>Delivered</span></td>");
+                                                                } else {
+                                                                    out.print("<td><span class='label cancelUser'>&nbspCancelled&nbsp</span></td>");
+                                                                }
+                                                                out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>View</a></td>");
+
+                                                                out.print("</tr>");
+                                                            }
                                                         }
-                                                    }
 
-                                                %>
-                                            </tbody>                                           
+                                                    %>
+                                                </tbody> 
+                                            </table>
+                                            <!--
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <input type="text" class="search form-control" style="margin-left:20px; width: 250px;" size="13" placeholder="Search Order" />
                                                 </div>
-                                                <!-- 
-                                                <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
-                                                --> 
-                                                <div class="col-md-8">
-                                                    <div class ="row">
+                                            <!-- 
+                                            <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
+                                            
+                                            <div class="col-md-8">
+                                                <div class ="row">
                                                     <div class="col-md-7" style="margin-left:50px;">
-                                                     <label><input type="radio" value="All" name="status" class="statusFilter-all" style="margin-left:60px; margin-top: 20px;"/> All </label>
-                                                     <label><input type="radio" value="Delivered" name="status" class="statusFilter" checked style="margin-left:12px;"/>Delivered</label>
-                                                     <label><input type="radio" value="Cancelled" name="status" class="statusFilter" style="margin-left:12px;" />Cancelled</label>
-                                                    <!--<img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">-->
-                                                </div>
-                                                   <!--
-                                                   <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
-                                                    -->
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <!--
-                                                    <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:10px;" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
-                                                    -->
-                                                </div>
-                                            </div>
-                                        </table>
-                                        <ul class="pagination"></ul>
+                                                        <label><input type="radio" value="All" name="status" class="statusFilter-all" style="margin-left:60px; margin-top: 20px;"/> All </label>
+                                                        <label><input type="radio" value="Delivered" name="status" class="statusFilter" checked style="margin-left:12px;"/>Delivered</label>
+                                                        <label><input type="radio" value="Cancelled" name="status" class="statusFilter" style="margin-left:12px;" />Cancelled</label>
+                                            <!--<img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">-->
+                                        </div>
+                                        <!--
+                                        <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
+                                        
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!--
+                                        <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:10px;" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
+                                        
+                                    </div>
+                                </div>
+                                </table>
+                                        -->
                                         <br>
                                         <!--
                                         <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
@@ -329,7 +342,7 @@
 
     </body>
     <!--   Core JS Files   -->
-    <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
     <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
     <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
     <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -344,59 +357,36 @@
     <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script>
-        var options = {
-            valueNames: [
-                'orderId',
-                 'sts',
-                 { data: ['status']}
-            ],
-            page: 10,
-            pagination: true
-        };
+        $(document).ready(function () {
+            var dataTable = $('#example').DataTable({
+                // "oSearch": {"sSearch": "Active"}
+            });
 
-        var orderList = new List('salesOrder', options);
-        function resetList(){
-                orderList.search();
-                orderList.filter();
-                orderList.update();
-                $(".statusFilter-all").prop('checked', true);
-                $('.statusFilter').prop('checked', false);
-                $('.search').val('');
-                //console.log('Reset Successfully!');
-        };
-        function updateList(){
-          var values_status = $("input[name=status]:checked").val();
-          
-                orderList.filter(function (item) {
-                        var statusFilter = false;
+            $('.example-search-input').on('keyup click change', function () {
+                var i = $(this).attr('id');  // getting column index
+                var v = $(this).val();  // getting search input value
+                dataTable.columns(i).search(v).draw();
+            });
 
-                        if(values_status == "All")
-                        { 
-                                statusFilter = true;
-                        } else {
-                                statusFilter = item.values().sts == values_status;
-                        }
-                        return statusFilter;
-                });
-                orderList.update();
-                //console.log('Filtered: ' + values_gender);
-        }
-
-        $(function(){
-          //updateList();
-          $("input[name=status]").change(updateList);
-          updateList();
-
-                orderList.on('updated', function (list) {
-                        if (list.matchingItems.length > 0) {
-                                $('.no-result').hide()
-                        } else {
-                                $('.no-result').show()
-                        }
-                });
-        });   
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yyyy",
+                showOn: "button",
+                showAnim: 'slideDown',
+                showButtonPanel: true,
+                autoSize: true,
+                buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonImageOnly: true,
+                buttonText: "Select date",
+                closeText: "Clear"
+            });
+            $(document).on("click", ".ui-datepicker-close", function () {
+                $('.datepicker').val("");
+                dataTable.columns(5).search("").draw();
+            });
+        });
     </script>
+
 </html>
