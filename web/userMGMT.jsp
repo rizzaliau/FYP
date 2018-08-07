@@ -200,22 +200,23 @@
                                         %> 
                                         </font>
                                         <div>
-                                        <input hidden id="mytext" type="text" value="Active" />    
-                                        <select class="example-filter-input" id="3">
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
-                                            <option value="Blacklisted">Blacklisted</option>
-                                        </select>  
-                                        
-                                        <label>Customers</label>
-                                        
+                                            <input hidden id="mytext" type="text" value="Active" />    
+                                            <select class="example-filter-input" id="3">
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                                <option value="Blacklisted">Blacklisted</option>
+                                                <option value="All">All</option>
+                                            </select>  
+
+                                            <label>Customers</label>
+
                                         </div>
                                     </div>
                                     <div>
 
                                     </div>
-                                   
-                                        <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px;">
+
+                                    <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px;">
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
                                                 <tr>
@@ -407,21 +408,27 @@
                                             var dataTable = $('#example').DataTable({
                                                 // "oSearch": {"sSearch": "Active"}
                                             });
-                                            dataTable.columns(3).search("Active",false,false,false).draw();
+                                            dataTable.columns(3).search("Active", false, false, false).draw();
                                             $('.example-filter-input').on('keyup click change', function () {
                                                 var i = $(this).attr('id');  // getting column index
                                                 var v = $(this).val();  // getting search input value
-                                                dataTable.columns(i).search(v,false,false,false).draw();
-                                               
+                                                if (v == 'All') {
+                                                    dataTable.columns(i).search('').draw();
+                                                }else{
+                                                    dataTable.columns(i).search(v, false, false, false).draw();
+                                                }   
+
 
                                             });
                                             $('.example-search-input').on('keyup click change', function () {
                                                 var i = $(this).attr('id');  // getting column index
                                                 var v = $(this).val();  // getting search input value
                                                 dataTable.columns(i).search(v).draw();
-                                               
+                                              
 
                                             });
+
+
                                             $(".datepicker").datepicker({
                                                 dateFormat: "yy-mm-dd",
                                                 showOn: "button",
