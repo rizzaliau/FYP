@@ -201,7 +201,7 @@
                                         </font>
                                         <div>
                                         <input hidden id="mytext" type="text" value="Active" />    
-                                        <select class="example-search-input text" id="3">
+                                        <select class="example-filter-input" id="3">
                                             <option value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
                                             <option value="Blacklisted">Blacklisted</option>
@@ -230,9 +230,9 @@
                                                         out.print("<tr>");
                                                         Debtor debtor = debtorMap.get(number);
                                                         //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='" + debtor.getDebtorCode() + "'></td>");
-                                                        out.print("<td class='contact'>" + debtor.getDebtorName() + "</td>");
-                                                        out.print("<td class='code'>" + debtor.getCompanyCode() + "</td>");
-                                                        out.print("<td class='name'>" + debtor.getCompanyName() + "</td>");
+                                                        out.print("<td>" + debtor.getDebtorName() + "</td>");
+                                                        out.print("<td>" + debtor.getCompanyCode() + "</td>");
+                                                        out.print("<td>" + debtor.getCompanyName() + "</td>");
                                                         if (debtor.getStatus().equals("Active") || debtor.getStatus().equals("active")) {
                                                             //out.print("active");<span class='label activeUser'>
                                                             out.print("<td><span class='label activeUser'>Active</span></td>");
@@ -405,15 +405,21 @@
                                             var dataTable = $('#example').DataTable({
                                                 // "oSearch": {"sSearch": "Active"}
                                             });
-                                            dataTable.columns(3).search("Active").draw();
+                                            dataTable.columns(3).search("Active",false,false,false).draw();
+                                            $('.example-filter-input').on('keyup click change', function () {
+                                                var i = $(this).attr('id');  // getting column index
+                                                var v = $(this).val();  // getting search input value
+                                                dataTable.columns(i).search(v,false,false,false).draw();
+                                               
 
+                                            });
                                             $('.example-search-input').on('keyup click change', function () {
                                                 var i = $(this).attr('id');  // getting column index
                                                 var v = $(this).val();  // getting search input value
                                                 dataTable.columns(i).search(v).draw();
+                                               
 
                                             });
-
                                             $(".datepicker").datepicker({
                                                 dateFormat: "yy-mm-dd",
                                                 showOn: "button",
