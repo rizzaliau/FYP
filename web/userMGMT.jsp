@@ -200,6 +200,7 @@
                                         %> 
                                         </font>
                                         <div>
+                                            <div>
                                             <input hidden id="mytext" type="text" value="Active" />    
                                             <select class="example-filter-input" id="3">
                                                 <option value="Active">Active</option>
@@ -207,15 +208,12 @@
                                                 <option value="Blacklisted">Blacklisted</option>
                                                 <option value="All">All</option>
                                             </select>  
-
                                             <label>Customers</label>
-
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-
-                                    </div>
-
+                                    <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New User"  value="Add New User" style="margin-right:20px;" /></a>
+                                    <br>
                                     <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px;">
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
