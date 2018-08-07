@@ -206,15 +206,17 @@
                                             <option value="Inactive">Inactive</option>
                                             <option value="Blacklisted">Blacklisted</option>
                                         </select>  
+                                        
                                         <label>Customers</label>
+                                        
                                         </div>
                                     </div>
                                     <div>
 
                                     </div>
                                    
-                                    <div class="card-body table-full-width table-responsive">
-                                        <table id="example" class="order-table table table-hover table-striped display" style="width:98%">
+                                        <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px;">
+                                        <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>Contact Person</th>

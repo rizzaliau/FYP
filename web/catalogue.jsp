@@ -183,13 +183,13 @@
                                         %> 
                                         </font>
                                     </div>
-                                    <div class="col-md-2">
+                                    
                                         <a href="newCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New Item"  value="Add New Item" style="margin-right:20px;" /></a>
-                                    </div>
+                                    
                                     <br>
 
-                                    <div class="card-body table-full-width table-responsive">
-                                        <table class="order-table table table-hover table-striped display" id="productList">
+                                    <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px; margin-bottom: 5px;">
+                                        <table class="order-table table table-hover table-striped display" id="productList" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th>Item Code</th>
@@ -200,6 +200,7 @@
                                                     <th>Default Qty</th>
                                                     <th>Qty Multiples</th>
                                                     <th>Action</th>
+                                                    
                                                 </tr>                                           
                                             </thead>
                                             <tbody>
@@ -246,7 +247,7 @@
                                         <!--
                                         <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
                                         -->
-                                        </form>   
+                                           
 
                                     </div>
                                 </div>
