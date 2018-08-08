@@ -225,7 +225,7 @@
                                                     out.print("<td><img src='" + orderItem.getImageURL() + "' style='width:50px;height:50px;' ></td>");
                                                     out.print("<td class='name'>" + orderItem.getDescription() + "</td>");
                                                     out.print("<td>" + orderItem.getDescriptionChinese() + "</td>");
-                                                    out.print("<td>" + orderItem.getUnitPrice() + "</td>");
+                                                    out.print("<td>" + orderItem.getUnitPrice2DP() + "</td>");
                                                     //out.print("<td>" + orderItem.getStatus() + "</td>");
                                                     if (orderItem.getStatus().equals("Active") || orderItem.getStatus().equals("active")) {
                                                             //out.print("active");<span class='label activeUser'>

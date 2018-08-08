@@ -249,7 +249,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Unit Price($)*</label>
-                                                        <input type="text" class="form-control" placeholder="Unit Price" required="" value="<%= orderItem.getUnitPrice()%>" size="5" name="unitPrice"> 
+                                                        <input type="text" class="form-control" placeholder="Unit Price" required="" value="<%= orderItem.getUnitPrice2DP()%>" size="5" name="unitPrice"> 
                                                                                             
                                                     </div>
                                                 </div>
@@ -285,7 +285,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Retail Price($)*</label>
-                                                        <input type="text" class="form-control" placeholder="Retail Price" required="" value="<%= orderItem.getRetailPrice()%>" size="5" name="retailPrice">        
+                                                        <input type="text" class="form-control" placeholder="Retail Price" required="" value="<%= orderItem.getRetailPrice2DP()%>" size="5" name="retailPrice">        
                                                         
                                                     </div>
                                                 </div>

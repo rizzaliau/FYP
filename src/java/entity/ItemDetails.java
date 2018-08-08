@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Rizza
@@ -43,4 +45,10 @@ public class ItemDetails {
         return unitPrice;
     }
     
+    public String getUnitPrice2DP(){
+        DecimalFormat df = new DecimalFormat("0.00");
+        double unitPriceDouble = Double.parseDouble(unitPrice);
+        
+        return df.format(unitPriceDouble);
+    }
 }

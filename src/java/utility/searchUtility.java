@@ -247,9 +247,10 @@ public class searchUtility {
                 String imageURL = catalogueCheckForNull(rs.getString("imageURL"));
                 String defaultQty = catalogueCheckForNull(rs.getString("defaultQty"));
                 String qtyMultiples = catalogueCheckForNull(rs.getString("qtyMultiples"));
-
+                String status = catalogueCheckForNull(rs.getString("Status"));
+                
                 OrderItem orderItem = new OrderItem (itemCode,description,descriptionChinese,unitPrice,retailPrice,
-                        unitOfMetric,imageURL,defaultQty,qtyMultiples);
+                        unitOfMetric,imageURL,defaultQty,qtyMultiples,status);
                 
                 searchMap.put(count, orderItem);
                 count++;

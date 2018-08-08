@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Rizza
@@ -50,9 +52,25 @@ public class OrderItem {
     public String getUnitPrice(){
         return unitPrice;
     }
+    
+    public String getUnitPrice2DP(){
+        DecimalFormat df = new DecimalFormat("0.00");
+        double unitPriceDouble = Double.parseDouble(unitPrice);
+        
+        return df.format(unitPriceDouble);
+    }
+    
     public String getRetailPrice(){
         return retailPrice;
     }
+    
+    public String getRetailPrice2DP(){
+        DecimalFormat df = new DecimalFormat("0.00");
+        double retailPriceDouble = Double.parseDouble(retailPrice);
+        
+        return df.format(retailPriceDouble);
+    }
+    
     public String getUnitOfMetric(){
         return unitOfMetric;
     }
