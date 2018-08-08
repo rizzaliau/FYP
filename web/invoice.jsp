@@ -293,7 +293,9 @@
             var printButton = document.getElementById("printpagebutton");
             //Set the print button visibility to 'hidden' 
             printButton.style.visibility = 'hidden';
-            window.print();
+            window.print();           
+            printButton.style.visibility = 'show';
+            location.reload()
         }
     </script>
 </html>
