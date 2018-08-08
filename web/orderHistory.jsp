@@ -210,7 +210,7 @@
                                                         <th>Route</th>
                                                         <th>Delivery Date</th>
                                                         <th>Status</th>
-                                                        <th>View</th>
+                                                        <th>Edit/View</th>
                                                         <th>Print</th>
                                                     </tr>
                                                 </thead>
@@ -262,7 +262,7 @@
                                                                 } else {
                                                                     out.print("<td><span class='label cancelUser'>&nbspCancelled&nbsp</span></td>");
                                                                 }
-                                                                out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>View</a></td>");
+                                                                out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Edit/View</a></td>");
                                                                 out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Print</a></td>");
                                                                 out.print("</tr>");
                                                             }
