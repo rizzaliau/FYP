@@ -181,7 +181,7 @@
                             
                                         <form action="cancelSalesOrderController" method="post">
                    
-                                            &nbsp;&nbsp;&nbsp;<textarea id ="cancelReasons" rows="10" cols="100" style="height:200px;" name="cancelledReason" value='Cancelled Reason'></textarea>
+                                            &nbsp;&nbsp;&nbsp;<textarea id ="cancelReasons" rows="10" cols="100" required placeholder="Cancelled Reason" style="height:200px;" pattern="[A-Za-z ]{1,80}" title="Please only enter alphabets" name="cancelledReason" value='Cancelled Reason'></textarea>
                                             
                                             <input type= "hidden" name="orderIDRecordToBeDeleted" value='<%= orderID %>'/>
                                             <input type= "hidden" name="statusRecordToBeDeleted" value='<%= status %>'/>

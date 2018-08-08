@@ -119,16 +119,16 @@ public class deleteUtility {
     public static void cancelSalesOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String orderIDRetrieved = request.getParameter("orderIDRecordToBeDeleted");
-        String statusRetrieved = request.getParameter("statusRecordToBeDeleted");
+        //String statusRetrieved = request.getParameter("statusRecordToBeDeleted");
         String cancelledReasonRetrieved = request.getParameter("cancelledReason");
         //String deliveryDateRetrieved = request.getParameter("deliveryDateRecordToBeDeleted");
         //String itemCodeRetrieved = "1";
         
-        if(statusRetrieved.equals("pendingDelivery")){
-            statusRetrieved = "Pending Delivery";
-        }
+        //if(statusRetrieved.equals("pendingDelivery")){
+            //statusRetrieved = "Pending Delivery";
+        //}
         
-        if(cancelledReasonRetrieved == null || cancelledReasonRetrieved.equals("")){
+        if(cancelledReasonRetrieved.equals("")||cancelledReasonRetrieved==null||cancelledReasonRetrieved.equals("null")){
             request.setAttribute("msgStatus", "Please enter a cancelled reason!");
             request.getRequestDispatcher("cancelSalesOrderConfirmation.jsp").forward(request, response);
         }else{
