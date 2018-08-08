@@ -312,6 +312,38 @@ public class deleteUtility {
         }
     }
     
+    public static void activateCatalogue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String itemCodeRetrieved = request.getParameter("recordToBeActivated");
+        
+        //System.out.println("debtorCodeRetrived is : "+debtorCodeRetrived);
+
+        try {
+
+            Connection conn = ConnectionManager.getConnection();
+            out.println("passes conn");
+
+            //String sql = "DELETE FROM `order_item` WHERE itemCode = '" + itemCodeRetrieved + "'";
+            String sql = "UPDATE `order_item` SET Status='Active'"
+                + "WHERE ItemCode = '" + itemCodeRetrieved + "'";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            out.println("passes stmt");
+
+            stmt.executeUpdate();
+            out.println("passes rs");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("status", "Error deactivating catalogue item!");
+        }
+        
+        request.setAttribute("status", "Catalogue item activated successfully!");
+
+        request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+        
+    }
+    
     
     
 }
