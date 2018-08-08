@@ -19,9 +19,10 @@ public class OrderItem {
     private String imageURL;
     private String defaultQuantity;
     private String quantityMultiples;
+    private String status;
     
     public OrderItem(String itemCode, String description, String descriptionChinese, String unitPrice,String retailPrice,
-            String unitOfMetric, String imageURL, String defaultQuantity, String quantityMultiples){
+            String unitOfMetric, String imageURL, String defaultQuantity, String quantityMultiples, String status){
         
         this.itemCode=itemCode;
         this.description=description;
@@ -32,6 +33,7 @@ public class OrderItem {
         this.imageURL=imageURL;
         this.defaultQuantity=defaultQuantity;
         this.quantityMultiples=quantityMultiples;
+        this.status = status;
     }
     
     public String getItemCode(){
@@ -64,6 +66,10 @@ public class OrderItem {
 
     public String getQuantityMultiples(){
         return quantityMultiples;
+    }
+    
+     public String getStatus(){
+        return status;
     }
     
 }
