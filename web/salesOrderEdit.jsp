@@ -360,7 +360,7 @@
                                                                 //out.print("<tr><thead><th>Returned Quantity</th></thead>");
                                                                 out.print("<td>" + itemDetail.getReturnedQty() + "</td>");
                                                                 //out.print("<tr><thead><th>Unit Price</th></thead>");
-                                                                out.print("<td>" + itemDetail.getUnitPrice() + "</td>");
+                                                                out.print("<td>" + itemDetail.getUnitPrice2DP() + "</td>");
                                                                 //out.print("<tr><thead><th>Subtotal</th></thead>");
                                                                 DecimalFormat df = new DecimalFormat("0.00"); 
                                                                 out.print("<td>" + df.format(subtotal) + "</td>");
@@ -408,7 +408,7 @@
                                                             out.print("<td>" + refundedItemDetail.getItemCode() + "</td>");
                                                             out.print("<th><b></b></th>");
                                                             out.print("<td>" + refundedItemDetail.getReturnedQty() + "</td>");
-                                                            out.print("<td>" + refundedItemDetail.getUnitPrice() + "</td>");
+                                                            out.print("<td>" + refundedItemDetail.getUnitPrice2DP() + "</td>");
                                                             out.print("<td>" + df.format(refundedSubtotal) + "</td>");
                                                             out.print("</tr>");
 
