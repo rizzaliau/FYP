@@ -156,7 +156,8 @@
                     //Map currently hardcode for the date "2018-06-25", need to change to current date/required date
                     String status = "Pending Delivery";
                     String deliveryDate = "2018-06-25";
-                    Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getAllSalesOrderMap();
+                    String sourcePage = "History";
+                    Map<Integer, SalesOrder> salesOrderMap = salesOrderUtility.getAllSalesOrderMap(sourcePage);
 
                 %>
 
