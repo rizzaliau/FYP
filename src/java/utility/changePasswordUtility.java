@@ -65,32 +65,24 @@ public class changePasswordUtility {
     
     public static void changeCustomerPassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
-        //HttpSession session = request.getSession();
-        //String userNameRetrieved = (String)session.getAttribute("username");
-        //String passwordRetrieved = (String)session.getAttribute("password");
         String hashPasswordRetrieved = request.getParameter("hashPassword");
         String debtorCodeRetrieved = request.getParameter("debtorCode");
         String companyNameRetrieved = request.getParameter("companyName");
-        
-        out.println("debtorCodeRetrieved retrieved is :"+debtorCodeRetrieved+hashPasswordRetrieved);
-        String currentPasswordEntered = request.getParameter("currentPass");
+
+        //String currentPasswordEntered = request.getParameter("currentPass");
         
         String newPassword1 = request.getParameter("newPass1");
-        //out.println("Password is is :"+newPassword1);
-        //out.println("User retrieved is :"+newUserName);
         String newPassword2 = request.getParameter("newPass2");
-        //out.println("Password retrieved is :"+newPassword);
-        //out.println("Password is is :"+newPassword2);
-        
-        if(currentPasswordEntered.equals("") || newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
+
+        if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
             
             request.setAttribute("status", "Blank fields detected.Please enter all fields");
             request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);
             
-        }else if(!loginUtility.getSha256(currentPasswordEntered).equals(hashPasswordRetrieved)){
+        //}else if(!loginUtility.getSha256(currentPasswordEntered).equals(hashPasswordRetrieved)){
             
-            request.setAttribute("status", "Current password entered is invalid.Please re-enter.");
-            request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);  
+           // request.setAttribute("status", "Current password entered is invalid.Please re-enter.");
+            //request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);  
             
         } else if (!(newPassword1.equals(newPassword2))){           
             

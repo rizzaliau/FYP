@@ -184,14 +184,14 @@
 
                                     <div class="card-body">
                                         <form method="post" accept-charset="utf-8" action="changeCustomerPasswordController" >
-                                            <div class="row">
+<!--                                            <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Enter current password</label>
                                                         <input type="password" name="currentPass" class="form-control" required>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
