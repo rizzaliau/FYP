@@ -170,9 +170,8 @@
 
                                         <h4 class="card-title">Order History</h4>
 
-
                                         <div class="col-md-8"><font color="red">
-                                            <%                                        String msgStatus = (String) request.getAttribute("updateSuccess");
+                                            <%  String msgStatus = (String) request.getAttribute("updateSuccess");
                                                 String msgStatus2 = (String) request.getAttribute("status");
 
                                                 if (msgStatus != null) {
@@ -188,13 +187,19 @@
                                                 }
                                             %> 
                                             </font>
-                                        </div>
+                                        </div>                                               
                                         <a href="./salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Current Orders"  value="Current Orders" style="margin-right:20px;" /></a>
+                                        <br>
+                                        <select class="example3-filter-input" id="5">
+                                            <option value="All">All</option>
+                                            <option value="Cancelled">Cancelled</option>
+                                            <option value="Delivered">Delivered</option>
+                                        </select>
                                         <br>
                                         <label>
                                             Delivery Date
-                                        </label>
-                                        <input  readonly="readonly" type="search" id="4" class="example3-search-input datepicker">                                       
+                                        </label> 
+                                        <input readonly="readonly" type="search" id="4" class="example3-search-input datepicker">                                                                                                
                                         <div class="card-body table-full-width table-responsive">
                                             <table id="example3" class="order-table table table-hover table-striped display" style="width:100%">
                                                 <thead>   
@@ -369,7 +374,17 @@
                                         var dataTable = $('#example3').DataTable({
                                             // "oSearch": {"sSearch": "Active"}
                                         });
+                                        $('.example3-filter-input').on('keyup click change', function () {
+                                            var i = $(this).attr('id');  // getting column index
+                                            var v = $(this).val();  // getting search input value
+                                            if (v == 'All') {
+                                                dataTable.columns(i).search('').draw();
+                                            } else {
+                                                dataTable.columns(i).search(v, false, false, false).draw();
+                                            }
 
+
+                                        });
                                         $('.example3-search-input').on('keyup click change', function () {
                                             var i = $(this).attr('id');  // getting column index
                                             var v = $(this).val();  // getting search input value
