@@ -95,13 +95,19 @@ public class insertUtility {
         String descriptionRetrieved = catalogueCheckForNull(request.getParameter("description"));
         String chineseDescriptionRetrieved = catalogueCheckForNull(new String (request.getParameter("descriptionChinese").getBytes ("iso-8859-1"), "UTF-8"));
         String unitPriceRetrieved = catalogueCheckForNull(request.getParameter("unitPrice"));
-        String imageURLRetrieved = catalogueCheckForNull(request.getParameter("imageURL"));
+        String imageURLRetrieved = request.getParameter("imageURL");
         String defaultQuantityRetrieved = catalogueCheckForNull(request.getParameter("defaultQuantity"));
         String quantityMultiplesRetrieved = catalogueCheckForNull(request.getParameter("quantityMultiples"));  
         String unitofMetricRetrieved = catalogueCheckForNull(new String (request.getParameter("unitOfMetric").getBytes ("iso-8859-1"), "UTF-8"));
         String retailPriceRetrieved = catalogueCheckForNull(request.getParameter("retailPrice"));  
         String status = "Active";
+        
+        if(imageURLRetrieved==null){
+            request.setAttribute("status", "Error: Please upload an image! ");
 
+            request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
+        }else{
+        
 //        out.println(itemCodeRetrieved);
 //        out.println(descriptionRetrieved);
 //        out.println(chineseDescriptionRetrieved);
@@ -151,7 +157,7 @@ public class insertUtility {
         request.setAttribute("status", "Record inserted successfully! ");
 
         request.getRequestDispatcher("catalogue.jsp").forward(request, response);
-        
+        }
     }
     
     private static String catalogueCheckForNull(String string){
