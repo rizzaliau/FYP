@@ -554,6 +554,52 @@ public class salesOrderUtility {
         return itemDetailsMap;
     }
    
-    
+    public static OrderItem getOrderItem(String itemCodeInput){
+        
+        OrderItem orderItemReturned = null;
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int count = 1;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            String populateMap = "SELECT * from order_item WHERE ItemCode='"+itemCodeInput+"' ";
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String itemCode = catalogueCheckForNull(rs.getString("ItemCode"));
+                String description = catalogueCheckForNull(rs.getString("Description"));
+                String descriptionChinese = catalogueCheckForNull(rs.getString("Description2"));
+                String unitPrice = catalogueCheckForNull(rs.getString("UnitPrice"));
+                String retailPrice = catalogueCheckForNull(rs.getString("retailPrice"));
+                String unitOfMetric = catalogueCheckForNull(rs.getString("UnitOfMetric"));
+                String imageURL = catalogueCheckForNull(rs.getString("imageURL"));
+                String defaultQty = catalogueCheckForNull(rs.getString("defaultQty"));
+                String qtyMultiples = catalogueCheckForNull(rs.getString("qtyMultiples"));
+                String status = catalogueCheckForNull(rs.getString("Status"));
+
+                orderItemReturned = new OrderItem (itemCode,description,descriptionChinese,unitPrice,retailPrice,
+                        unitOfMetric,imageURL,defaultQty,qtyMultiples,status);
+                
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by getOrderItem method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        return orderItemReturned;
+    }
 
 }
