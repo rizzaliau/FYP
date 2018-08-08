@@ -204,9 +204,9 @@
                                                         <th>Customer Name</th>
                                                         <th>Route</th>
                                                         <th>Delivery Date</th>
-                                                        <!--<th>Order Date</th>-->
                                                         <th>Status</th>
                                                         <th>Edit/View</th>
+                                                        <th>Print</th>
                                                         <th>Cancel</th>
                                                     </tr>
                                                 </thead>
@@ -251,8 +251,8 @@
                                                                 out.print("<td><span class='label inactiveUser'>Pending</span></td>");
                                                                
                                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Edit/View</a></td>");
+                                                                out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Print</a></td>");
                                                                 out.print("<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
-
                                                                 out.print("</tr>");
                                                             }
                                                         }

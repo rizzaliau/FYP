@@ -170,9 +170,8 @@
 
                                         <h4 class="card-title">Order History</h4>
 
-
                                         <div class="col-md-8"><font color="red">
-                                            <%                                        String msgStatus = (String) request.getAttribute("updateSuccess");
+                                            <%  String msgStatus = (String) request.getAttribute("updateSuccess");
                                                 String msgStatus2 = (String) request.getAttribute("status");
 
                                                 if (msgStatus != null) {
@@ -187,14 +186,20 @@
                                                     out.print("</br>");
                                                 }
                                             %> 
-                                        </font>
-                                        </div>
+                                            </font>
+                                        </div>                                               
                                         <a href="./salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Current Orders"  value="Current Orders" style="margin-right:20px;" /></a>
+                                        <br>
+                                        <select class="example3-filter-input" id="5">
+                                            <option value="All">All</option>
+                                            <option value="Cancelled">Cancelled</option>
+                                            <option value="Delivered">Delivered</option>
+                                        </select>
                                         <br>
                                         <label>
                                             Delivery Date
-                                        </label>
-                                        <input  readonly="readonly" type="search" id="4" class="example3-search-input datepicker">                                       
+                                        </label> 
+                                        <input readonly="readonly" type="search" id="4" class="example3-search-input datepicker">                                                                                                
                                         <div class="card-body table-full-width table-responsive">
                                             <table id="example3" class="order-table table table-hover table-striped display" style="width:100%">
                                                 <thead>   
@@ -206,6 +211,7 @@
                                                         <th>Delivery Date</th>
                                                         <th>Status</th>
                                                         <th>View</th>
+                                                        <th>Print</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -224,7 +230,7 @@
                                                                 out.print("<td class='orderId'>" + salesOrder.getOrderID().toString() + "</td>");
                                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
-                                                                
+
                                                                 /*
                                                                 String timestamp = salesOrderdetails.getCreateTimeStamp();
                                                                 String orderDate = timestamp.substring(0, timestamp.indexOf(" "));
@@ -242,7 +248,7 @@
                                                                 newDateString = sdf.format(d);
 
                                                                 out.print("<td>" + newDateString + "</td>");;
-                                                                */
+                                                                 */
                                                                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                                                                 Date d2 = sdf2.parse(salesOrderdetails.getDeliveryDate());
                                                                 sdf2.applyPattern("dd-MM-yyyy");
@@ -257,7 +263,7 @@
                                                                     out.print("<td><span class='label cancelUser'>&nbspCancelled&nbsp</span></td>");
                                                                 }
                                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>View</a></td>");
-
+                                                                out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Print</a></td>");
                                                                 out.print("</tr>");
                                                             }
                                                         }
@@ -364,33 +370,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script>
-        $(document).ready(function () {
-            var dataTable = $('#example3').DataTable({
-                // "oSearch": {"sSearch": "Active"}
-            });
+                                    $(document).ready(function () {
+                                        var dataTable = $('#example3').DataTable({
+                                            // "oSearch": {"sSearch": "Active"}
+                                        });
+                                        $('.example3-filter-input').on('keyup click change', function () {
+                                            var i = $(this).attr('id');  // getting column index
+                                            var v = $(this).val();  // getting search input value
+                                            if (v == 'All') {
+                                                dataTable.columns(i).search('').draw();
+                                            } else {
+                                                dataTable.columns(i).search(v, false, false, false).draw();
+                                            }
 
-            $('.example3-search-input').on('keyup click change', function () {
-                var i = $(this).attr('id');  // getting column index
-                var v = $(this).val();  // getting search input value
-                dataTable.columns(i).search(v).draw();
-            });
 
-            $(".datepicker").datepicker({
-                dateFormat: "dd-mm-yy",
-                showOn: "button",
-                showAnim: 'slideDown',
-                showButtonPanel: true,
-                autoSize: true,
-                buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-                buttonImageOnly: true,
-                buttonText: "Select date",
-                closeText: "Clear"
-            });
-            $(document).on("click", ".ui-datepicker-close", function () {
-                $('.datepicker').val("");
-                dataTable.columns(4).search("").draw();
-            });
-        });
+                                        });
+                                        $('.example3-search-input').on('keyup click change', function () {
+                                            var i = $(this).attr('id');  // getting column index
+                                            var v = $(this).val();  // getting search input value
+                                            dataTable.columns(i).search(v).draw();
+                                        });
+
+                                        $(".datepicker").datepicker({
+                                            dateFormat: "dd-mm-yy",
+                                            showOn: "button",
+                                            showAnim: 'slideDown',
+                                            showButtonPanel: true,
+                                            autoSize: true,
+                                            buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                                            buttonImageOnly: true,
+                                            buttonText: "Select date",
+                                            closeText: "Clear"
+                                        });
+                                        $(document).on("click", ".ui-datepicker-close", function () {
+                                            $('.datepicker').val("");
+                                            dataTable.columns(4).search("").draw();
+                                        });
+                                    });
     </script>
 
 </html>
