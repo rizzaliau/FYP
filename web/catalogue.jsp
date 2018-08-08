@@ -230,10 +230,12 @@
                                                     if (orderItem.getStatus().equals("Active") || orderItem.getStatus().equals("active")) {
                                                             //out.print("active");<span class='label activeUser'>
                                                             out.print("<td><span class='label activeUser'>Active</span></td>");
+                                                            out.print("<td><a href='catalogueEdit.jsp?serial=" + number + "'>Edit/View</a>&nbsp;&nbsp;&nbsp;<a href='deleteCatalogueConfirmation.jsp?itemCode=" + orderItem.getItemCode() + "'>Deactivate</a></td>");
                                                     }else{
                                                             out.print("<td><span class='label inactiveUser'>Inactive</span></td>");
+                                                            out.print("<td><a href='catalogueEdit.jsp?serial=" + number + "'>Edit/View</a>&nbsp;&nbsp;&nbsp;<a href='activateCatalogueConfirmation.jsp?itemCode=" + orderItem.getItemCode() + "'>Activate</a></td>");
                                                     }
-                                                    out.print("<td><a href='catalogueEdit.jsp?serial=" + number + "'>Edit/View</a>&nbsp;&nbsp;&nbsp;<a href='deleteCatalogueConfirmation.jsp?itemCode=" + orderItem.getItemCode() + "'>Deactivate</a></td>");
+                                                    //out.print("<td><a href='catalogueEdit.jsp?serial=" + number + "'>Edit/View</a>&nbsp;&nbsp;&nbsp;<a href='deleteCatalogueConfirmation.jsp?itemCode=" + orderItem.getItemCode() + "'>Deactivate</a></td>");
                                                     //out.print("<td ><a href='deleteCatalogueConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Deactivate</a></td>");
                                                     out.print("</tr>");
                                                     count++;
