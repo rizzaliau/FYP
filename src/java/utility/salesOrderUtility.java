@@ -321,7 +321,7 @@ public class salesOrderUtility {
             String populateMap = "select so.OrderID, d.DebtorCode, d.DebtorName, d.RouteNumber from sales_order so \n" +
                 "inner join debtor d on so.DebtorCode = d.DebtorCode  \n" +
                 "inner join sales_order_detail sod on so.OrderID = sod.OrderID \n" +
-                "order by d.RouteNumber ASC";
+                "order by sod.DeliveryDate DESC";
 
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
@@ -387,7 +387,7 @@ public class salesOrderUtility {
                 "from sales_order so inner join sales_order_detail sod ON so.OrderID = sod.OrderID\n" +
                 "inner join debtor d ON so.DebtorCode = d.DebtorCode \n" +
                 "where so.OrderID = \"" + orderID + "\"" + 
-                 "order by sod.DeliveryDate, d.DebtorName";
+                 "order by sod.DeliveryDate DESC";
             
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
