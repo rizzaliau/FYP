@@ -323,12 +323,12 @@ public class salesOrderUtility {
                 populateMap = "select so.OrderID, d.DebtorCode, d.DebtorName, d.RouteNumber from sales_order so \n" +
                 "inner join debtor d on so.DebtorCode = d.DebtorCode  \n" +
                 "inner join sales_order_detail sod on so.OrderID = sod.OrderID \n" +
-                "order by sod.DeliveryDate DESC";
+                "order by sod.DeliveryDate DESC, d.RouteNumber ASC";
             }else{
                 populateMap = "select so.OrderID, d.DebtorCode, d.DebtorName, d.RouteNumber from sales_order so \n" +
                 "inner join debtor d on so.DebtorCode = d.DebtorCode  \n" +
                 "inner join sales_order_detail sod on so.OrderID = sod.OrderID \n" +
-                "order by sod.DeliveryDate ASC";
+                "order by sod.DeliveryDate ASC, d.RouteNumber ASC";
             }
 
             pstmt = conn.prepareStatement(populateMap);
