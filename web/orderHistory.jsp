@@ -193,8 +193,7 @@
                                         <label>
                                             Delivery Date
                                         </label>
-                                        <input  readonly="readonly" type="search" id="4" class="example3-search-input datepicker">
-                                        
+                                        <input  readonly="readonly" type="search" id="4" class="example3-search-input datepicker">                                       
                                         <div class="card-body table-full-width table-responsive">
                                             <table id="example3" class="order-table table table-hover table-striped display" style="width:100%">
                                                 <thead>   
@@ -364,33 +363,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script>
-                                    $(document).ready(function () {
-                                        var dataTable = $('#example3').DataTable({
-                                            // "oSearch": {"sSearch": "Active"}
-                                        });
+        $(document).ready(function () {
+            var dataTable = $('#example3').DataTable({
+                // "oSearch": {"sSearch": "Active"}
+            });
 
-                                        $('.example3-search-input').on('keyup click change', function () {
-                                            var i = $(this).attr('id');  // getting column index
-                                            var v = $(this).val();  // getting search input value
-                                            dataTable.columns(i).search(v).draw();
-                                        });
+            $('.example3-search-input').on('keyup click change', function () {
+                var i = $(this).attr('id');  // getting column index
+                var v = $(this).val();  // getting search input value
+                dataTable.columns(i).search(v).draw();
+            });
 
-                                        $(".datepicker").datepicker({
-                                            dateFormat: "dd-mm-yy",
-                                            showOn: "button",
-                                            showAnim: 'slideDown',
-                                            showButtonPanel: true,
-                                            autoSize: true,
-                                            buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-                                            buttonImageOnly: true,
-                                            buttonText: "Select date",
-                                            closeText: "Clear"
-                                        });
-                                        $(document).on("click", ".ui-datepicker-close", function () {
-                                            $('.datepicker').val("");
-                                            dataTable.columns(4).search("").draw();
-                                        });
-                                    });
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy",
+                showOn: "button",
+                showAnim: 'slideDown',
+                showButtonPanel: true,
+                autoSize: true,
+                buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonImageOnly: true,
+                buttonText: "Select date",
+                closeText: "Clear"
+            });
+            $(document).on("click", ".ui-datepicker-close", function () {
+                $('.datepicker').val("");
+                dataTable.columns(4).search("").draw();
+            });
+        });
     </script>
 
 </html>

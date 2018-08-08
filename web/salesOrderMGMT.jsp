@@ -36,6 +36,7 @@
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     </head>
 
     <body>
@@ -187,11 +188,12 @@
                                                 }
                                             %> 
                                         </div></font>
+                                        <a href="orderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Order History"  value="Order History" style="margin-right:20px;" /></a>                                        
                                         <br>
                                         <label>
-                                            Order Date
+                                            Delivery Date
                                         </label>
-                                        <input  readonly="readonly" type="text" id="5" class="example2-search-input datepicker">
+                                        <input readonly="readonly" type="search" id="4" class="example2-search-input datepicker">
                                         <div class="card-body table-full-width table-responsive">
                                             <table id="example2" class="order-table table table-hover table-striped display" style="width:100%">
                                                 <thead>   
@@ -200,8 +202,8 @@
                                                         <th>Order ID</th>
                                                         <th>Customer Name</th>
                                                         <th>Route</th>
-                                                        <th>Order Date</th>
                                                         <th>Delivery Date</th>
+                                                        <!--<th>Order Date</th>-->
                                                         <th>Status</th>
                                                         <th>Edit/View</th>
                                                         <th>Cancel</th>
@@ -226,32 +228,27 @@
                                                                 out.print("<td class='orderId'>" + salesOrder.getOrderID().toString() + "</td>");
                                                                 out.print("<td>" + salesOrder.getDebtorName() + "</td>");
                                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
-
-                                                                //if(salesOrderdetails==null){
-                                                                //out.print("<td></td>");
-                                                                //out.print("<td></td>");
-                                                                //out.print("<td></td>");
-                                                                // }else{
-                                                                String timestamp = salesOrderdetails.getCreateTimeStamp();
-                                                                String orderDate = timestamp.substring(0, timestamp.indexOf(" "));
-
-                                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                                                Date d = sdf.parse(orderDate);
-                                                                sdf.applyPattern("dd-MM-yyyy");
-                                                                String orderDateFormatted = sdf.format(d);
-
-                                                                out.print("<td>" + orderDateFormatted + "</td>");;
-                                                                //out.print("<td>" + salesOrderdetails.getCreateTimeStamp() + "</td>");
-
+                                                                
                                                                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                                                                 Date d2 = sdf2.parse(salesOrderdetails.getDeliveryDate());
                                                                 sdf2.applyPattern("dd-MM-yyyy");
                                                                 String deliveryDateFormatted = sdf2.format(d2);
 
                                                                 out.print("<td>" + deliveryDateFormatted + "</td>");
-                                                                out.print("<td><span class='label inactiveUser'>Pending</span></td>");
-                                                                // }
 
+                                                                String timestamp = salesOrderdetails.getCreateTimeStamp();
+                                                                String orderDate = timestamp.substring(0, timestamp.indexOf(" "));
+                                                                
+                                                                /*
+                                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                                                Date d = sdf.parse(orderDate);
+                                                                sdf.applyPattern("dd-MM-yyyy");
+                                                                String orderDateFormatted = sdf.format(d);
+
+                                                                out.print("<td>" + orderDateFormatted + "</td>");;
+                                                                */
+                                                                out.print("<td><span class='label inactiveUser'>Pending</span></td>");
+                                                               
                                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Edit/View</a></td>");
                                                                 out.print("<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
 
@@ -367,24 +364,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script>
-        $(document).ready(function () {
+                                    $(document).ready(function () {
 
-            var dataTable = $('#example2').DataTable({
-                // "oSearch": {"sSearch": "Active"}
-            });
+                                        var dataTable = $('#example2').DataTable({
+                                            // "oSearch": {"sSearch": "Active"}
+                                        });
 
-            $('.example2-search-input').on('keyup click change', function () {
-                var i = $(this).attr('id');  // getting column index
-                var v = $(this).val();  // getting search input value
-                dataTable.columns(i).search(v).draw();
+                                        $('.example2-search-input').on('keyup click change', function () {
+                                            var i = $(this).attr('id');  // getting column index
+                                            var v = $(this).val();  // getting search input value
+                                            dataTable.columns(i).search(v).draw();
 
-            });
+                                        });
 
-            $(document).on("click", ".ui-datepicker-close", function () {
-                $('.datepicker').val("");
-                dataTable.columns(5).search("").draw();
-            });
-        });
+                                        $(".datepicker").datepicker({
+                                            dateFormat: "dd-mm-yy",
+                                            showOn: "button",
+                                            showAnim: 'slideDown',
+                                            showButtonPanel: true,
+                                            autoSize: true,
+                                            buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                                            buttonImageOnly: true,
+                                            buttonText: "Select date",
+                                            closeText: "Clear"
+                                        });
+
+                                        $(document).on("click", ".ui-datepicker-close", function () {
+                                            $('.datepicker').val("");
+                                            dataTable.columns(4).search("").draw();
+                                        });
+                                    });
     </script>
     <!--
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
