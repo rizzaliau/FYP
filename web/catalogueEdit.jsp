@@ -31,6 +31,9 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="assets/css/demo.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/styleUpload.css" rel="stylesheet" media="screen">
+        <link href="./css/mobile-style.css" rel="stylesheet" media="screen">
     </head>
 
     <body>
@@ -203,7 +206,22 @@
 
 
                                         <form method="post" action="editCatalogueController">
-
+                                        <div class="title">
+                                            <p><b>Current Image</b></p>
+                                        </div>
+                                            <center><img src="<%= orderItem.getImageURL()%>" style='width:100px;height:100px;' ></center>
+                                        <br>
+                                        <br>
+                                        <div class="title">
+                                             <p>Drop image file to replace current image</p>
+                                         </div>
+                                        <div class="dropzone">
+                                            <div class="info"></div>
+                                        </div>
+                                        <script type="text/javascript" src="./js/imgur.js"></script>
+                                        <script type="text/javascript" src="./js/uploadEdit.js"></script>
+                                        <br>
+                                        <br>
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
@@ -241,13 +259,14 @@
 
 
                                             <div class="row">
-                                                <div class="col-md-5 pr-1">
+<!--                                                <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Image URL*</label>
                                                         <input type="text" class="form-control" placeholder="Image URL" required ="" value="<%= orderItem.getImageURL()%>" size="50" name="imageURL">
                                                     </div>
-                                                </div>
-                                                <div class="col-md-3 px-1">
+                                                </div>-->
+                                                <input type="hidden" class="form-control" value="<%= orderItem.getImageURL()%>" name="imageURL">
+                                                <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Default Quantity*</label>
                                                         <input type="text" class="form-control" placeholder="Default Quantity" required="" value="<%= orderItem.getDefaultQuantity()%>" size="5" name="defaultQuantity">                                            

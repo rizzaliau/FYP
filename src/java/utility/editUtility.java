@@ -183,7 +183,7 @@ public class editUtility {
                         salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
                         + "AND itemCode ='"+itemCode+"'";
                     }else{
-                        request.setAttribute("status", "Error updating! Please enter a quanty that is higher than the current quantity for item "+itemCode);
+                        request.setAttribute("status", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode);
 
                         request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
                     }    
@@ -224,7 +224,10 @@ public class editUtility {
         String imageURLRetrieved = request.getParameter("imageURL");
         String defaultQuantityRetrieved = request.getParameter("defaultQuantity");
         String quantityMultiplesRetrieved = request.getParameter("quantityMultiples");
+        String newImageURLRetrieved = request.getParameter("newImageURL");
+        String imageURLToUpdate = "";
         
+// Debugging lines
 //        System.out.println("Debugging line: "+itemCodeRetrieved);
 //        System.out.println("Debugging line: "+descriptionRetrieved);
 //        System.out.println("Debugging line: "+chineseDescriptionRetrieved);
@@ -234,6 +237,13 @@ public class editUtility {
 //        System.out.println("Debugging line: "+imageURLRetrieved);
 //        System.out.println("Debugging line: "+defaultQuantityRetrieved);
 //        System.out.println("Debugging line: "+quantityMultiplesRetrieved);
+
+        //to determine which image URL to use, current URL or New URL
+        if(newImageURLRetrieved==null){
+            imageURLToUpdate=imageURLRetrieved;
+        }else{
+            imageURLToUpdate=newImageURLRetrieved;
+        }
         
         try {
 
@@ -244,7 +254,7 @@ public class editUtility {
             String sql = "UPDATE `order_item` SET ItemCode='" + itemCodeRetrieved + "',"
                     + " Description = '" + descriptionRetrieved + "', Description2 = '" +chineseDescriptionRetrieved + "', "
                     + " UnitPrice = '" + unitPriceRetrieved + "', RetailPrice = '" +retailPriceRetrieved 
-                    + "' , UnitOfMetric = '" +unitOfMetricRetrieved + "', ImageURL = '" +imageURLRetrieved + "', "
+                    + "' , UnitOfMetric = '" +unitOfMetricRetrieved + "', ImageURL = '" +imageURLToUpdate + "', "
                     + " DefaultQty = '" + defaultQuantityRetrieved + "', QtyMultiples = '" +quantityMultiplesRetrieved + "' "
                     + "WHERE ItemCode = '" + itemCodeRetrieved + "'";
 
