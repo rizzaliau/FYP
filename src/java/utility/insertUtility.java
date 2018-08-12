@@ -85,7 +85,7 @@ public class insertUtility {
 
         request.setAttribute("status", "Record inserted successfully!");
 
-        request.getRequestDispatcher("userMGMT.jsp").forward(request, response);
+        request.getRequestDispatcher("customer.jsp").forward(request, response);
         
     }
     

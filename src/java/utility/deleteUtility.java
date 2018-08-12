@@ -52,7 +52,7 @@ public class deleteUtility {
         
         request.setAttribute("status", "Record deleted successfully!");
 
-        request.getRequestDispatcher("userMGMT.jsp").forward(request, response);
+        request.getRequestDispatcher("customer.jsp").forward(request, response);
         
     }
     
@@ -63,7 +63,7 @@ public class deleteUtility {
         //System.out.println("length of string array is : "+debtorCodesRetrived.length);
         
         if(debtorCodesRetrived==null){
-            request.getRequestDispatcher("userMGMT.jsp").forward(request, response);
+            request.getRequestDispatcher("customer.jsp").forward(request, response);
         }else{ 
             
             int stringArrayCount = getActualSize(debtorCodesRetrived);
@@ -97,7 +97,7 @@ public class deleteUtility {
             }
             request.setAttribute("status", "Record deleted successfully!");
 
-            request.getRequestDispatcher("userMGMT.jsp").forward(request, response);
+            request.getRequestDispatcher("customer.jsp").forward(request, response);
         }
     }
     
@@ -171,7 +171,7 @@ public class deleteUtility {
         
         request.setAttribute("status", "Record cancelled successfully!");
 
-        request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
+        request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
         
         }
     }
@@ -189,7 +189,7 @@ public class deleteUtility {
         //String[] orderIDsRetrived = request.getParameterValues("recordsToBeDeleted"); 
 
         if(orderIDsRetrived == null){
-            request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
+            request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
         }else{ 
             
             int stringArrayCount = getActualSize(orderIDsRetrived);
@@ -237,7 +237,7 @@ public class deleteUtility {
             
             request.setAttribute("status", "Records deleted successfully!");
 
-            request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
+            request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
         }
     }
     

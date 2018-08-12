@@ -31,7 +31,7 @@ public class debtorUtility {
         Map<Integer, Debtor> debtorList = debtorUtility.getDebtorMap(); 
         
         request.setAttribute("debtorListPopulated",debtorList);
-        RequestDispatcher view = request.getRequestDispatcher("userMGMT.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("customer.jsp");
         
         view.forward(request,response);
 

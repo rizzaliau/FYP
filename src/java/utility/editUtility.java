@@ -114,7 +114,7 @@ public class editUtility {
         
         request.setAttribute("updateSuccess", "Record updated successfully!");
 
-        request.getRequestDispatcher("userMGMT.jsp").forward(request, response);
+        request.getRequestDispatcher("customer.jsp").forward(request, response);
         
     }
     
@@ -185,7 +185,7 @@ public class editUtility {
                     }else{
                         request.setAttribute("status", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode);
 
-                        request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
+                        request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
                     }    
 
                     PreparedStatement salesOrderQuantityStmt = conn.prepareStatement(salesOrderQuantitySql);
@@ -208,7 +208,7 @@ public class editUtility {
 
         request.setAttribute("status", "Record updated successfully!");
 
-        request.getRequestDispatcher("salesOrderMGMT.jsp").forward(request, response);
+        request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
         
     }
     
