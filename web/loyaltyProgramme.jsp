@@ -119,15 +119,15 @@
                                 <li class="dropdown nav-item">
                                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                         <i class="nc-icon nc-planet"></i>
-                                        <span class="notification">5</span>
+                                        <span class="notification">0</span>
                                         <span class="d-lg-none">Notification</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">New Order 1</a>
+<!--                                        <a class="dropdown-item" href="#">New Order 1</a>
                                         <a class="dropdown-item" href="#">New Order 2</a>
                                         <a class="dropdown-item" href="#">New Order 3</a>
                                         <a class="dropdown-item" href="#">New Order 4</a>
-                                        <a class="dropdown-item" href="#">New Order 5</a>
+                                        <a class="dropdown-item" href="#">New Order 5</a>-->
                                     </ul>
                                 </li>
                                 <li class="nav-item">
