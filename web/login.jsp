@@ -57,13 +57,13 @@
                         <div class="sminputs">
                             <div class="input full">
                                 <label class="string optional" for="user-name">Username</label>
-                                <input class="string optional" maxlength="255" id="user" placeholder="Username" type="user" size="50" name="user" value="admin"/>
+                                <input class="string optional" maxlength="255" id="user" placeholder="Username" type="user" size="50" name="user" value=""/>
                             </div>
                         </div>
                         <div class="sminputs">
                             <div class="input full">
                                 <label class="string optional" for="user-pw">Password *</label>
-                                <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" name="password"value="admin123"/>
+                                <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" name="password"value=""/>
                                 <span class="hide-password" id="pwOption" onclick="showPassword()">Show</span>
                             </div>
                         </div>
