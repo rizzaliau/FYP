@@ -1,3 +1,5 @@
+
+
 <%@page import="entity.OrderItem"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.ItemDetails"%>
@@ -11,7 +13,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@include file="protect.jsp" %>
 <!doctype html>
 <html>
     <head>

@@ -55,7 +55,7 @@
                     </a>
      
                 </div>
-                   <ul class="nav">
+                    <ul class="nav">
                         <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
@@ -63,21 +63,21 @@
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./userMGMT.jsp">
+                            <a class="nav-link" href="customer.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>Customer Mgmt</p>
+                                <p>Customer</p>
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./salesOrderMGMT.jsp">
+                            <a class="nav-link" href="salesOrder.jsp">
                                 <i class="nc-icon nc-notes"></i>
-                                <p>Sales Order Mgmt</p>
+                                <p>Sales Order</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
-                                <p>Catalogue Mgmt</p>
+                                <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
@@ -86,7 +86,7 @@
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="./accountSettings.jsp">
                                 <i class="nc-icon nc-settings-gear-64"></i>
                                 <p>Account Settings</p>
@@ -136,13 +136,14 @@
                                         
                                     </ul>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="logout.jsp">
+                                        <span class="no-icon">Log out</span>
+                                    </a>
+                                 </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="logout.jsp">
-                                    <span class="no-icon">Log out</span>
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -232,30 +233,6 @@
                 </div>
 
             <footer class="footer">
-                <div class="container">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
                         <p class="copyright text-center">
                             This website's content is Copyright 
                             <script>
@@ -263,8 +240,6 @@
                             </script>
                             © Lim Kee Food Manufacturing Pte Ltd
                         </p>
-                    </nav>
-                </div>
             </footer>
         </div>
     </div>

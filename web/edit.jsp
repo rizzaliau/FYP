@@ -1,5 +1,5 @@
 <%-- 
-    Document   : userMGMT
+    Document   : edit
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
 --%>
@@ -47,7 +47,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "edit.jsp">Continue</a></button>
-                                                                <button type="button" class="btn btn-danger"><a href = "userMGMT.jsp">Leave this page</a></button>
+                                                                <button type="button" class="btn btn-danger"><a href = "customer.jsp">Leave this page</a></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -75,21 +75,21 @@
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="./userMGMT.jsp">
+                            <a class="nav-link" href="customer.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>Customer Mgmt</p>
+                                <p>Customer</p>
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./salesOrderMGMT.jsp">
+                            <a class="nav-link" href="salesOrder.jsp">
                                 <i class="nc-icon nc-notes"></i>
-                                <p>Sales Order Mgmt</p>
+                                <p>Sales Order</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
-                                <p>Catalogue Mgmt</p>
+                                <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
@@ -104,7 +104,7 @@
                                 <p>Account Settings</p>
                             </a>
                         </li>
-
+                        
                     </ul>
                 </div>
             </div>
@@ -140,25 +140,8 @@
                                         <a class="dropdown-item" href="#">New Order 5</a>
                                     </ul>
                                 </li>
-
-                            </ul>
-                            <ul class="navbar-nav ml-auto">
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="no-icon">Dropdown</span>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
-                                </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#pablo">
+                                    <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>
                                     </a>
                                 </li>
@@ -395,30 +378,6 @@
                 </div>
                                             
                 <footer class="footer">
-                    <div class="container">
-                        <nav>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
                             <p class="copyright text-center">
                                 This website's content is Copyright 
                                 <script>
@@ -426,8 +385,6 @@
                                 </script>
                                 © Lim Kee Food Manufacturing Pte Ltd
                             </p>
-                        </nav>
-                    </div>
                 </footer>
             </div>
         </div>

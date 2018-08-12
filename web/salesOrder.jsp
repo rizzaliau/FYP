@@ -62,21 +62,21 @@
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./userMGMT.jsp">
+                            <a class="nav-link" href="customer.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>Customer Mgmt</p>
+                                <p>Customer</p>
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="./salesOrderMGMT.jsp">
+                            <a class="nav-link" href="salesOrder.jsp">
                                 <i class="nc-icon nc-notes"></i>
-                                <p>Sales Order Mgmt</p>
+                                <p>Sales Order</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
-                                <p>Catalogue Mgmt</p>
+                                <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
@@ -91,7 +91,7 @@
                                 <p>Account Settings</p>
                             </a>
                         </li>
-
+                        
                     </ul>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
-                        <a class="navbar-brand" href="#pablo"> Dashboard </a>
+                        <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
                         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
                             <span class="navbar-toggler-bar burger-lines"></span>
@@ -115,15 +115,15 @@
                                 <li class="dropdown nav-item">
                                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                         <i class="nc-icon nc-planet"></i>
-                                        <span class="notification">5</span>
+                                        <span class="notification">0</span>
                                         <span class="d-lg-none">Notification</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">New Order 1</a>
+<!--                                        <a class="dropdown-item" href="#">New Order 1</a>
                                         <a class="dropdown-item" href="#">New Order 2</a>
                                         <a class="dropdown-item" href="#">New Order 3</a>
                                         <a class="dropdown-item" href="#">New Order 4</a>
-                                        <a class="dropdown-item" href="#">New Order 5</a>
+                                        <a class="dropdown-item" href="#">New Order 5</a>-->
                                     </ul>
                                 </li>
                             </ul>
@@ -192,7 +192,7 @@
                                         <a href="orderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Order History"  value="Order History" style="margin-right:20px;" /></a>                                        
                                         <br>
                                         <label>
-                                            Delivery Date
+                                            
                                         </label>
                                         <input readonly="readonly" type="search" id="4" class="example2-search-input datepicker">
                                         <div class="card-body table-full-width table-responsive">
@@ -206,8 +206,8 @@
                                                         <th>Delivery Date</th>
                                                         <th>Status</th>
                                                         <th>Edit/View</th>
-                                                        <th>Print</th>
-                                                        <th>Cancel</th>
+                                                        <th>Sales Order</th>
+                                                        <th>Order</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -251,8 +251,8 @@
                                                                 out.print("<td><span class='label inactiveUser'>Pending</span></td>");
                                                                
                                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Edit/View</a></td>");
-                                                                out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Print</a></td>");
-                                                                out.print("<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
+                                                                out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Print</a></td>&nbsp;&nbsp;&nbsp;<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
+                                                                //out.print("<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
                                                                 out.print("</tr>");
                                                             }
                                                         }
@@ -308,30 +308,6 @@
                 </div>
 
                 <footer class="footer">
-                    <div class="container">
-                        <nav>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
                             <p class="copyright text-center">
                                 This website's content is Copyright 
                                 <script>
@@ -339,8 +315,6 @@
                                 </script>
                                 © Lim Kee Food Manufacturing Pte Ltd
                             </p>
-                        </nav>
-                    </div>
                 </footer>
             </div>
         </div>

@@ -2,9 +2,10 @@
     Document   : userMGMT
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
+<%@include file="protect.jsp" %>
 --%>
 
-<%@include file="protect.jsp" %>
+
 <%@page import="entity.Debtor"%>
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
@@ -24,11 +25,31 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
         <!-- CSS Files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/boot" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" rel="stylesheet"/>
         <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="assets/css/demo.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>      
+        <style>
+            .no-result {
+                display:none;
+            }
+            .sort{
+                padding: 8px 10px;
+                border: none;
+                display: inline-block;
+                color: black;
+                background-color: transparent;
+                text-decoration: none;
+                height: 30px;
+                font-size: 1.5em;
+                outline: none !important;
+            }
 
+        </style>
     </head>
 
     <body>
@@ -54,21 +75,21 @@
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="./userMGMT.jsp">
+                            <a class="nav-link" href="customer.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>Customer Mgmt</p>
+                                <p>Customer</p>
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./salesOrderMGMT.jsp">
+                            <a class="nav-link" href="salesOrder.jsp">
                                 <i class="nc-icon nc-notes"></i>
-                                <p>Sales Order Mgmt</p>
+                                <p>Sales Order</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
-                                <p>Catalogue Mgmt</p>
+                                <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
@@ -83,7 +104,7 @@
                                 <p>Account Settings</p>
                             </a>
                         </li>
-
+                        
                     </ul>
                 </div>
             </div>
@@ -91,7 +112,7 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
-                        <a class="navbar-brand" href="#pablo"> Dashboard </a>
+                        <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
                         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
                             <span class="navbar-toggler-bar burger-lines"></span>
@@ -100,22 +121,22 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link" data-toggle="dropdown">
+                                    <a href="dashboard.jsp" class="nav-link" data-toggle="dropdown">
                                         <span class="d-lg-none">Dashboard</span>
                                     </a>
                                 </li>
                                 <li class="dropdown nav-item">
                                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                         <i class="nc-icon nc-planet"></i>
-                                        <span class="notification">5</span>
+                                        <span class="notification">0</span>
                                         <span class="d-lg-none">Notification</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">New Order 1</a>
+<!--                                        <a class="dropdown-item" href="#">New Order 1</a>
                                         <a class="dropdown-item" href="#">New Order 2</a>
                                         <a class="dropdown-item" href="#">New Order 3</a>
                                         <a class="dropdown-item" href="#">New Order 4</a>
-                                        <a class="dropdown-item" href="#">New Order 5</a>
+                                        <a class="dropdown-item" href="#">New Order 5</a>-->
                                     </ul>
                                 </li>
                             </ul>
@@ -154,13 +175,10 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card strpied-tabled-with-hover">
+                                <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-
                                         <h4 class="card-title">Customer Management</h4>
-                                        <p class="card-category">Active Customers</p>
                                     </div>
-
                                     <div class="col-md-8"><font color="red">
                                         <%
                                             String msgStatus = (String) request.getAttribute("updateSuccess");
@@ -181,204 +199,85 @@
 
                                         %> 
                                         </font>
+                                        <div>
+                                            <div>
+                                            <input hidden id="mytext" type="text" value="Active" />    
+                                            <select class="example-filter-input" id="3">
+                                                <option value="Active">Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                                <option value="Blacklisted">Blacklisted</option>
+                                                <option value="All">All</option>
+                                            </select>  
+                                            <label>Customers</label>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New User"  value="Add New User" style="margin-right:20px;" /></a>
                                     <br>
-
-                                    <div class="card-body table-full-width table-responsive" id='users'>
-                                        <table class="order-table table table-hover table-striped">
+                                    <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px;">
+                                        <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
-
-                                            <th>S/N</th>
-                                            <th>Company Name</th>
-                                            <th>Company Code</th>
-                                            <th>Contact Person</th>
-                                            <th>Status</th>
-                                            <th></th>
+                                                <tr>
+                                                    <th>Contact Person</th>
+                                                    <th>Company Code</th>
+                                                    <th>Company Name</th>
+                                                    <th>Status</th>
+                                                    <th>Edit/View</th>
+                                                </tr>
                                             </thead>
-                                            <tbody class="list">
-                                                <!--
-                                                <form action="deleteMultipleController" method="post">
-                                                -->
-                                                <%      
-                                                    for (Integer number : debtorMap.keySet()) {
+                                            <tbody>
+
+                                                <%      for (Integer number : debtorMap.keySet()) {
                                                         out.print("<tr>");
                                                         Debtor debtor = debtorMap.get(number);
                                                         //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='" + debtor.getDebtorCode() + "'></td>");
-                                                        out.print("<td>" + number + "</td>");
-                                                        out.print("<td class='name'>" + debtor.getCompanyName() + "</td>");
-                                                        out.print("<td>" + debtor.getCompanyCode() + "</td>");
                                                         out.print("<td>" + debtor.getDebtorName() + "</td>");
+                                                        out.print("<td>" + debtor.getCompanyCode() + "</td>");
+                                                        out.print("<td>" + debtor.getCompanyName() + "</td>");
                                                         if (debtor.getStatus().equals("Active") || debtor.getStatus().equals("active")) {
-                                                            //out.print("active");
+                                                            //out.print("active");<span class='label activeUser'>
                                                             out.print("<td><span class='label activeUser'>Active</span></td>");
                                                         } else if (debtor.getStatus().equals("Blacklisted") || debtor.getStatus().equals("blacklisted")) {
-                                                            out.print("<td><span class='label blacklistUser'>" + debtor.getStatus() + "</span></td>");
-                                                        } else {
-                                                            //out.print("inactive");
-                                                            out.print("<td><span class='label inactiveUser'>" + debtor.getStatus() + "</span></td>");
+                                                            out.print("<td><span class='label blacklistUser'>Blacklisted</span></td>");
+                                                        } else if (debtor.getStatus().equals("Inactive") || debtor.getStatus().equals("inactive")) {
+                                                            {
+                                                                //out.print("inactive");
+                                                                out.print("<td><span class='label inactiveUser'>Inactive</span></td>");
+                                                            }
+
                                                         }
                                                         out.print("<td><a href='edit.jsp?serial=" + number + "&status=active'>Edit/View</a></td>");
                                                         //out.print("<td><a href='deleteConfirmation.jsp?debtorCode=" + debtor.getDebtorCode() + "'>Delete</a></td>");
                                                         out.print("</tr>");
-                                                        
-                                                        
-                                                    }
-                                                    //out.print("<td><a href='deleteConfirmation.jsp?debtorCode=" + debtor.getDebtorCode() + "'>Delete</a></td>");
 
+                                                        //out.print("<td><a href='deleteConfirmation.jsp?debtorCode=" + debtor.getDebtorCode() + "'>Delete</a></td>");
+                                                    }
 
                                                 %>
-
-                                            <div class="row">
-
-                                                <div class="col-md-2">
-                                                    <input type="text" class="search form-control" style="margin-left:20px; width: 200px;" size="13" placeholder="Search Company Name" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                </div>
-                                                <div class="col-md-2">
-
-                                                    <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="New User"  value="Add New Customer" style="margin-right:20px;"></a>
-
-                                                </div>
-                                                <div class="col-md-2">   
-
-                                                    <a href="inactiveUsersDisplay.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Inactive Users"  value="Inactive Customers" style="margin-right:20px;"/></a>
-
-                                                </div>
-
-                                            </div>
-
                                             </tbody>
                                         </table>
-                                        <br>
-                                        </form>   
-
                                     </div>
+                                    <br>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <footer class="footer">
-                    <div class="container">
-                        <nav>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
-                            <p class="copyright text-center">
-                                This website's content is Copyright 
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>
-                                © Lim Kee Food Manufacturing Pte Ltd
-                            </p>
-                        </nav>
-                    </div>
-                </footer>
+
+                    <footer class="footer">
+                                <p class="copyright text-center">
+                                    This website's content is Copyright 
+                                    <script>
+                                        document.write(new Date().getFullYear())
+                                    </script>
+                                    © Lim Kee Food Manufacturing Pte Ltd
+                                </p>
+                    </footer>
+                </div>
             </div>
-        </div>
-        <!--   -->
-        <!-- <div class="fixed-plugin">
-        <div class="dropdown show-dropdown">
-            <a href="#" data-toggle="dropdown">
-                <i class="fa fa-cog fa-2x"> </i>
-            </a>
-    
-            <ul class="dropdown-menu">
-                            <li class="header-title"> Sidebar Style</li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger">
-                        <p>Background Image</p>
-                        <label class="switch">
-                            <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
-                        </label>
-                        <div class="clearfix"></div>
-                    </a>
-                </li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger background-color">
-                        <p>Filters</p>
-                        <div class="pull-right">
-                            <span class="badge filter badge-black" data-color="black"></span>
-                            <span class="badge filter badge-azure" data-color="azure"></span>
-                            <span class="badge filter badge-green" data-color="green"></span>
-                            <span class="badge filter badge-orange" data-color="orange"></span>
-                            <span class="badge filter badge-red" data-color="red"></span>
-                            <span class="badge filter badge-purple active" data-color="purple"></span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </a>
-                </li>
-                <li class="header-title">Sidebar Images</li>
-    
-                <li class="active">
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="..//assets/img/sidebar-4.jpg" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-5.jpg" alt="" />
-                    </a>
-                </li>
-    
-                <li class="button-container">
-                    <div class="">
-                        <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
-                    </div>
-                </li>
-    
-                <li class="header-title pro-title text-center">Want more components?</li>
-    
-                <li class="button-container">
-                    <div class="">
-                        <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
-                    </div>
-                </li>
-    
-                <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
-    
-                <li class="button-container">
-                                    <button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
-                    <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
-                </li>
-            </ul>
-        </div>
-    </div>
-        -->
     </body>
     <!--   Core JS Files   -->
-    <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
     <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
     <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
     <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -389,23 +288,56 @@
     <script src="assets/js/plugins/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
     <script src="assets/js/plugins/bootstrap-notify.js"></script>
+    <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
     <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
-    <script type="text/javascript">
-                                $(document).ready(function () {
-                                    // Javascript method's body can be found in assets/js/demos.js
-                                    demo.initDashboardPageCharts();
-
-                                });
-    </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script>
-                                var options = {
-                                    valueNames: ['name']
-                                };
+                                        $(document).ready(function () {
 
-                                var userList = new List('users', options);
+                                            var dataTable = $('#example').DataTable({
+                                                // "oSearch": {"sSearch": "Active"}
+                                            });
+                                            dataTable.columns(3).search("Active", false, false, false).draw();
+                                            $('.example-filter-input').on('keyup click change', function () {
+                                                var i = $(this).attr('id');  // getting column index
+                                                var v = $(this).val();  // getting search input value
+                                                if (v == 'All') {
+                                                    dataTable.columns(i).search('').draw();
+                                                }else{
+                                                    dataTable.columns(i).search(v, false, false, false).draw();
+                                                }   
+
+
+                                            });
+                                            $('.example-search-input').on('keyup click change', function () {
+                                                var i = $(this).attr('id');  // getting column index
+                                                var v = $(this).val();  // getting search input value
+                                                dataTable.columns(i).search(v).draw();
+                                              
+
+                                            });
+
+
+                                            $(".datepicker").datepicker({
+                                                dateFormat: "yy-mm-dd",
+                                                showOn: "button",
+                                                showAnim: 'slideDown',
+                                                showButtonPanel: true,
+                                                autoSize: true,
+                                                buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                                                buttonImageOnly: true,
+                                                buttonText: "Select date",
+                                                closeText: "Clear"
+                                            });
+                                            $(document).on("click", ".ui-datepicker-close", function () {
+                                                $('.datepicker').val("");
+                                                dataTable.columns(5).search("").draw();
+                                            });
+                                        });
     </script>
+
 </html>

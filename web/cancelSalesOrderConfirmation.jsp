@@ -1,5 +1,5 @@
 <%-- 
-    Document   : userMGMT
+    Document   : cancelSalesOrderConfirmation
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
 --%>
@@ -48,51 +48,51 @@
      
                 </div>
                 <ul class="nav">
-                        <li>
-                            <a class="nav-link" href="dashboard.jsp">
-                                <i class="nc-icon nc-chart-pie-35"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./userMGMT.jsp">
-                                <i class="nc-icon nc-circle-09"></i>
-                                <p>Customer Mgmt</p>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="./salesOrderMGMT.jsp">
-                                <i class="nc-icon nc-notes"></i>
-                                <p>Sales Order Mgmt</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="catalogue.jsp">
-                                <i class="nc-icon nc-paper-2"></i>
-                                <p>Catalogue Mgmt</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="loyaltyProgramme.jsp">
-                                <i class="nc-icon nc-single-02"></i>
-                                <p>Loyalty Programme</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="./accountSettings.jsp">
-                                <i class="nc-icon nc-settings-gear-64"></i>
-                                <p>Account Settings</p>
-                            </a>
-                        </li>
-                        
-                    </ul>
+                    <li>
+                        <a class="nav-link" href="dashboard.jsp">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="customer.jsp">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Customer</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="salesOrder.jsp">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Sales Order</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="catalogue.jsp">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Catalogue</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="loyaltyProgramme.jsp">
+                            <i class="nc-icon nc-single-02"></i>
+                            <p>Loyalty Programme</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./accountSettings.jsp">
+                            <i class="nc-icon nc-settings-gear-64"></i>
+                            <p>Account Settings</p>
+                        </a>
+                    </li>
+
+                </ul>
             </div>
         </div>
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                 <div class=" container-fluid  ">
-                    <a class="navbar-brand" href="#pablo"> Dashboard </a>
+                    <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
                     <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar burger-lines"></span>
                         <span class="navbar-toggler-bar burger-lines"></span>
@@ -101,45 +101,32 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
+                                <a href="dashboard.jsp" class="nav-link" data-toggle="dropdown">
 
                                 </a>
                             </li>
                             <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">5</span>
+                                    <span class="notification">0</span>
                                     <span class="d-lg-none">Notification</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">New Order 1</a>
+<!--                                    <a class="dropdown-item" href="#">New Order 1</a>
                                     <a class="dropdown-item" href="#">New Order 2</a>
                                     <a class="dropdown-item" href="#">New Order 3</a>
                                     <a class="dropdown-item" href="#">New Order 4</a>
-                                    <a class="dropdown-item" href="#">New Order 5</a>
+                                    <a class="dropdown-item" href="#">New Order 5</a>-->
                                 </ul>
-                            </li>
-
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.jsp">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+
                         </ul>
                     </div>
                 </div>
@@ -188,7 +175,7 @@
                                             <input type= "hidden" name="deliveryDateRecordToBeDeleted" value='<%= deliveryDate %>'/>
                                             <p>
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Confirm Cancel" style="margin-right: 20px; margin-top: 10px; margin-bottom: 20px; "> 
-                                            <a href="salesOrderMGMT.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Cancel"  value="Back" style="margin-right:10px; margin-top: 10px; margin-bottom: 20px;"/></a>
+                                            <a href="salesOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Cancel"  value="Back" style="margin-right:10px; margin-top: 10px; margin-bottom: 20px;"/></a>
                                         </form>   
                                 
                                 
@@ -201,30 +188,6 @@
                        
 
             <footer class="footer">
-                <div class="container">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
                         <p class="copyright text-center">
                             This website's content is Copyright 
                             <script>
@@ -232,8 +195,6 @@
                             </script>
                             © Lim Kee Food Manufacturing Pte Ltd
                         </p>
-                    </nav>
-                </div>
             </footer>
         </div>
     </div>
