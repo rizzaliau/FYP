@@ -206,8 +206,7 @@
                                                         <th>Delivery Date</th>
                                                         <th>Status</th>
                                                         <th>Edit/View</th>
-                                                        <th>Sales Order</th>
-                                                        <th>Order</th>
+                                                        <th>Print | Cancel</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -251,7 +250,7 @@
                                                                 out.print("<td><span class='label inactiveUser'>Pending</span></td>");
                                                                
                                                                 out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Edit/View</a></td>");
-                                                                out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Print</a></td>&nbsp;&nbsp;&nbsp;<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
+                                                                out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Print</a>&nbsp;&nbsp;&nbsp;<a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
                                                                 //out.print("<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
                                                                 out.print("</tr>");
                                                             }
