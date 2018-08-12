@@ -298,7 +298,7 @@
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Delivery Route</label>
+                                                        <label>Route</label>
                                                         <input type="text" class="form-control" placeholder="Delivery Route" size="10" name="Delivery Route" value="<%= salesOrderdetails.getRouteNumber()%>" disabled="">
                                                     </div>
                                                 </div>
