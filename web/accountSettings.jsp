@@ -17,7 +17,9 @@
         <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
         <link rel="icon" type="image/png" href="assets/img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        
         <title>Lim Kee Admin Portal</title>
+        
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
         <!--     Fonts and icons     -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -221,41 +223,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="card card-user">
-                                    <div class="card-image">
-                                        <img src="assets/limkee/jquerypic5.jpg" alt="...">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="author">
-                                            <a href="#">
-                                                <img class="avatar border-gray" src="../assets/limkee/jquerypic5.jpg" alt="...">
-                                            </a>
-                                            <p>
-                                            </p>
-                                            <p class="description">
-                                                <b>Lim Kee Food Manufacturing Pte Ltd</b>
-                                            </p>
-                                        </div>
-                                        <p class="description text-center">
-                                            Lim Kee aims to bring New Traditions to every home, everywhere.
-                                            <br><br>We aim to enliven the culture of pau, bringing great tasting quality pau for everyone to enjoy. Anytime, anywhere.
-                                        </p>
-                                    </div>
-                                    <hr>
-                                    <div class="button-container mr-auto ml-auto">
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-facebook-square"></i>
-                                        </button>
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-twitter"></i>
-                                        </button>
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-google-plus-square"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
