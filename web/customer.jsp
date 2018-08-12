@@ -219,7 +219,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Contact Person</th>
-                                                    <th>Company Code</th>
+                                                    <th>Username</th>
                                                     <th>Company Name</th>
                                                     <th>Status</th>
                                                     <th>Edit/View</th>

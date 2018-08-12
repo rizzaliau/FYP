@@ -217,7 +217,7 @@
                                                 </div>
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Display Term</label>
+                                                        <label>Payment Term</label>
                                                         <input type="text" class="form-control" placeholder="Display Term" required placeholder="" value="<%= salesOrderdetails.getDisplayTerm()%>" size="10" name="DisplayTerm" disabled="">                                            
                                                     </div>
                                                 </div>

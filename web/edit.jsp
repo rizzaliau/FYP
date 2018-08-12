@@ -337,7 +337,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pr-1">
-                                                    <div class="form-group">                                                                                                         <label>Area*</label>
+                                                    <div class="form-group">                                                                                                         <label>Route*</label>
                                                         <select name ="routeNumber" class="form-control" required>
                                                             <%                                                                String routeNum = debtor.getRouteNumber();
                                                                 for (int i = 1; i <= 18; i++) {
