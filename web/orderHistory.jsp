@@ -211,7 +211,7 @@
                                                         <th>Delivery Date</th>
                                                         <th>Status</th>
                                                         <th>Edit/View</th>
-                                                        <th>Print</th>
+                                                        <th>Invoice</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
