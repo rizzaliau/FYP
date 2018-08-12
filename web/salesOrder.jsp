@@ -206,7 +206,7 @@
                                                         <th>Delivery Date</th>
                                                         <th>Status</th>
                                                         <th>Edit/View</th>
-                                                        <th>Print | Cancel</th>
+                                                        <th>Invoice | Cancel</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
