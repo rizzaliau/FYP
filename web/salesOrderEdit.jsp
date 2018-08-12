@@ -196,8 +196,8 @@
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Username</label>
-                                                        <input type="text" class="form-control" placeholder="Username" size="10" name="Username" value="<%= salesOrderdetails.getDebtorName()%>" disabled="">
+                                                        <label>Customer Name</label>
+                                                        <input type="text" class="form-control" placeholder="Customer Name" size="10" name="Username" value="<%= salesOrderdetails.getDebtorName()%>" disabled="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pr-1">
