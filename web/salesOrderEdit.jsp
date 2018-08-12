@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="entity.OrderItem"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.ItemDetails"%>
 <%@page import="utility.salesOrderUtility"%>
@@ -52,7 +53,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "salesOrderEdit.jsp">Continue</a></button>
-                                                                <button type="button" class="btn btn-danger"><a href = "salesOrderMGMT.jsp">Leave this page</a></button>
+                                                                <button type="button" class="btn btn-danger"><a href = "salesOrder.jsp">Leave this page</a></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -321,17 +322,21 @@
                                                             double total = 0;
                                                             out.print("<tr>");
                                                             out.print("<thead><th><b>Item Code</b></th>"
+                                                                    + "<th><b>Item Name</b></th>"
                                                                     + "<th><b></b></th>"
                                                                     + "<th><b>Quantity</b></th>"
                                                                     + "<th><b>Returned Quantity</b></th>"
                                                                     + "<th><b>Unit Price($)</b></th>"
                                                                     + "<th><b>Subtotal($)</b></th></thead>");
-
+                                                            
+                                                            
+                                                            
                                                             for (Integer number : itemDetailsMap.keySet()) {
                                                                 double subtotal = 0;
 
                                                                 ItemDetails itemDetail = itemDetailsMap.get(number);
-
+                                                                OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
+                                                                
                                                                 double qtyDouble = Double.parseDouble(itemDetail.getQty());
                                                                 double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
                                                                 //double returnedQty = itemDetail.getReturnedQty();
@@ -340,7 +345,9 @@
 
                                                                 //out.print("<tr><thead><th>Item Code</th></thead>");
                                                                 out.print("<td>" + itemDetail.getItemCode() + "</td>");
+                                                                out.print("<td>" + item.getDescription() + "</td>");
                                                                 out.print("<td>" + "" + "</td>");
+                                                                
                                                                 out.print("<input type='hidden' size='10' name='itemCode' value='" + itemDetail.getItemCode() + "'>");
                                                                 out.print("<input type='hidden' size='10' name='originalQty' value='" + itemDetail.getQty() + "'>");
                                                                 //out.print("<tr><thead><th>Quantity</th></thead>");
@@ -378,6 +385,7 @@
                                                             out.print("<thead><th><h4 class='card-title'>Returned Items</h4></th>");
                                                             //out.print("<center><thead><th><b>Returned Items</b></th></center>");
                                                             out.print("<thead><th><b>Item Code</b></th>"
+                                                                    + "<th><b>Item Name</b></th>"
                                                                     + "<th><b></b></th>"
                                                                     + "<th><b>Returned Quantity</b></th>"
                                                                     + "<th><b>Unit Price($)</b></th>"
@@ -388,12 +396,14 @@
                                                             double refundedSubtotal = 0;
 
                                                             ItemDetails refundedItemDetail = refundedItemDetailsMap.get(number);
-
+                                                            OrderItem item = salesOrderUtility.getOrderItem(refundedItemDetail.getItemCode());
+                                                            
                                                             double qtyDouble = Double.parseDouble(refundedItemDetail.getReturnedQty());
                                                             double unitPriceDouble = Double.parseDouble(refundedItemDetail.getUnitPrice());
                                                             refundedSubtotal = qtyDouble * unitPriceDouble;
                                                             
                                                             out.print("<td>" + refundedItemDetail.getItemCode() + "</td>");
+                                                            out.print("<td>" + item.getDescription() + "</td>");
                                                             out.print("<th><b></b></th>");
                                                             out.print("<td>" + refundedItemDetail.getReturnedQty() + "</td>");
                                                             out.print("<td>" + refundedItemDetail.getUnitPrice2DP() + "</td>");
