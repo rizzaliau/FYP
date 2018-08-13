@@ -206,7 +206,7 @@
                                                     <tr>
                                                         <th>S/N</th>
                                                         <th>Order ID</th>
-                                                        <th>Customer Name</th>
+                                                        <th>Contact Person</th>
                                                         <th>Route</th>
                                                         <th>Delivery Date</th>
                                                         <th>Status</th>
