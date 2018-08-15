@@ -46,28 +46,28 @@
 
                     </div>
                     <ul class="nav">
-                         <li>
+                        <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="./userMGMT.jsp">
+                            <a class="nav-link" href="customer.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>Customer Mgmt</p>
+                                <p>Customer</p>
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./salesOrderMGMT.jsp">
+                            <a class="nav-link" href="salesOrder.jsp">
                                 <i class="nc-icon nc-notes"></i>
-                                <p>Sales Order Mgmt</p>
+                                <p>Sales Order</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
-                                <p>Catalogue Mgmt</p>
+                                <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
@@ -90,7 +90,7 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
-                        <a class="navbar-brand" href="#pablo"> Dashboard </a>
+                        <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
                         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
                             <span class="navbar-toggler-bar burger-lines"></span>
@@ -106,39 +106,28 @@
                                 <li class="dropdown nav-item">
                                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                         <i class="nc-icon nc-planet"></i>
-                                        <span class="notification">5</span>
+                                        <span class="notification">0</span>
                                         <span class="d-lg-none">Notification</span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">New Order 1</a>
+<!--                                        <a class="dropdown-item" href="#">New Order 1</a>
                                         <a class="dropdown-item" href="#">New Order 2</a>
                                         <a class="dropdown-item" href="#">New Order 3</a>
                                         <a class="dropdown-item" href="#">New Order 4</a>
-                                        <a class="dropdown-item" href="#">New Order 5</a>
+                                        <a class="dropdown-item" href="#">New Order 5</a>-->
                                     </ul>
                                 </li>
-
-                            </ul>
-                            <ul class="navbar-nav ml-auto">
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="no-icon">Dropdown</span>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
-                                </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#pablo">
+                                    <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>
                                     </a>
                                 </li>
+                            </ul>
+
+                            <ul class="navbar-nav ml-auto">
+
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -183,13 +172,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Customer Code*</label>
-                                                        <input type="text" class="form-control" required placeholder="Customer Code" required value="" size="10" name="debtorCode">
+                                                        <input type="text" class="form-control" required placeholder="Customer Code" required value="301-B050" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" required placeholder="Company Name" value="" size="10" name="companyName" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets">                                            
+                                                        <input type="text" class="form-control" required placeholder="Company Name" value="BUGIS VILLAGE HOUSE" size="10" name="companyName" title="Please only enter alphabets">                                            
                                                     </div>
                                                 </div>
 
@@ -198,11 +187,11 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Billing Address*</label>
-                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="" size="10" name="inAddr1">
+                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="110 TUAS SOUTH AVENUE 3" size="10" name="inAddr1">
                                                         <br>
-                                                        <input type="text" class="form-control" required placeholder="" value="" size="10" name="invAddr2">
+                                                        <input type="text" class="form-control" required placeholder="" value="#01-59" size="10" name="invAddr2">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr3" >
+                                                        <input type="text" class="form-control" placeholder="" value="SINGAPORE 637369" size="10" name="invAddr3" >
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr4d">
                                                     </div>
@@ -210,11 +199,11 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Delivery Address*</label>
-                                                        <input type="text" class="form-control" required placeholder="Delivery Address" value="" size="10" name="deliverAddr1">
+                                                        <input type="text" class="form-control" required placeholder="Delivery Address" value="110 TUAS SOUTH AVENUE 3" size="10" name="deliverAddr1">
                                                         <br>
-                                                        <input type="text" class="form-control" required placeholder="" value="" size="10" name="deliverAddr2">
+                                                        <input type="text" class="form-control" required placeholder="" value="#01-59" size="10" name="deliverAddr2">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr3">
+                                                        <input type="text" class="form-control" placeholder="" value="SINGAPORE 637369" size="10" name="deliverAddr3">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr4" >
                                                     </div>
@@ -225,7 +214,7 @@
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Person*</label>
-                                                        <input type="text" class="form-control" required placeholder="Contact Person" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="" size="10" name="debtorName">                                               
+                                                        <input type="text" class="form-control" required placeholder="Contact Person" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="Mary Phua Bee Ling" size="10" name="debtorName">                                               
                                                     </div>
                                                 </div>
                                             </div>
@@ -233,14 +222,14 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Username*</label>
-                                                        <input type="text" class="form-control" required placeholder="Username" value="" size="10" name="companyCode">
+                                                        <input type="text" class="form-control" required placeholder="Username" value="BVEH" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
                                                         <label for = "password">Password*</label>
-                                                        <input type="password" minLength="8" required placeholder="min 8 characters" class="form-control" value="" size="10" name="hashPassword">
+                                                        <input type="password" minLength="8" required placeholder="min 8 characters" class="form-control" value="mary1233!" size="10" name="hashPassword">
 
                                                     </div>
                                                 </div>
@@ -250,7 +239,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Number</label>
-                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter 8 digit numbers" required placeholder="Contact Number" value="" size="10" name="deliverContact">
+                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter 8 digit numbers" required placeholder="Contact Number" value="97214546" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <!-- not required placeholder-->
@@ -258,7 +247,7 @@
                                                     <div class="form-group">
                                                         <!-- Not Compulsory -->
                                                         <label>Contact Number 2</label>
-                                                        <input type="text" class="form-control" pattern="(^$)|(^\d{8}$)" placeholder="Contact Number 2" value="" size="10" name="deliverContact2">
+                                                        <input type="text" class="form-control" pattern="(^$)|(^\d{8}$)" placeholder="Contact Number 2" value="97224546" size="10" name="deliverContact2">
                                                     </div>
                                                 </div>
 
@@ -320,30 +309,6 @@
 
 
                 <footer class="footer">
-                    <div class="container">
-                        <nav>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
                             <p class="copyright text-center">
                                 This website's content is Copyright 
                                 <script>
@@ -351,8 +316,6 @@
                                 </script>
                                 © Lim Kee Food Manufacturing Pte Ltd
                             </p>
-                        </nav>
-                    </div>
                 </footer>
             </div>
         </div>
@@ -381,5 +344,3 @@
 
     });
     </script>
-
-</html>

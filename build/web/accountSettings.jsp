@@ -17,7 +17,9 @@
         <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
         <link rel="icon" type="image/png" href="assets/img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Lim Kee Admin Portal</title>
+        
+        <title>Lim Kee Admin Portal </title>
+        
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
         <!--     Fonts and icons     -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -40,8 +42,9 @@
                 -->
                 <div class="sidebar-wrapper">
                     <div class="logo">
+                             
                         <a href="#" class="simple-text">
-                            LIM KEE Admin Portal
+                           LIM KEE Admin Portal
                         </a>
                         <!--  Welcome-->
                         <%                            
@@ -57,7 +60,20 @@
 
                         %>
                     </div>
-                 <ul class="nav">
+                    <ul class="nav">
+                        <%
+                           boolean isMasterAdmin = false;
+                           
+                            if(isMasterAdmin == true){ 
+                                out.print("<li>");
+                                out.print("<a class='nav-link' href='admin.jsp'>");
+                                out.print("<i class='nc-icon nc-key-25'></i>");
+                                out.print("<p>Admin</p>");
+                                out.print("</a>");
+                                out.print("</li>");
+                            }
+                           
+                        %>
                         <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
@@ -65,21 +81,21 @@
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./userMGMT.jsp">
+                            <a class="nav-link" href="customer.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
-                                <p>Customer Mgmt</p>
+                                <p>Customer</p>
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="./salesOrderMGMT.jsp">
+                            <a class="nav-link" href="salesOrder.jsp">
                                 <i class="nc-icon nc-notes"></i>
-                                <p>Sales Order Mgmt</p>
+                                <p>Sales Order</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
                                 <i class="nc-icon nc-paper-2"></i>
-                                <p>Catalogue Mgmt</p>
+                                <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
@@ -94,7 +110,7 @@
                                 <p>Account Settings</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -102,7 +118,7 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
-                        <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
+                        <a class="navbar-brand" href="dashboard.jsp"><img src="assets/img/limkee_logo.png" style="margin-right: 10px; width:60px; height:42px;"/>LIM KEE ADMIN PORTAL</a>
                         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
                             <span class="navbar-toggler-bar burger-lines"></span>
@@ -110,49 +126,42 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
-                                <li class="nav-item">
+<!--                            <li class="nav-item">
                                     <a href="#" class="nav-link" data-toggle="dropdown">
 
                                         <span class="d-lg-none">Dashboard</span>
                                     </a>
-                                </li>
-                                <li class="dropdown nav-item">
-                                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                        <i class="nc-icon nc-planet"></i>
-                                        <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
-                                        <span class="notification"> <%= notificationMap.size()  %> </span>
-                                        <span class="d-lg-none">Notification</span>
+                                </li>-->
+
+                                <!--<li class="nav-item">
+                                    <a class="nav-link" href="logout.jsp">
+                                        <span class="no-icon">Log out</span>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        
-                                       <%
-                                           for (int i=1 ; i<=notificationMap.size(); i++){
-                                                    if(i<=5){
-                                                    Notification notification = notificationMap.get(i);
-                                                    out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                            "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
-                                                    }     
-                                            }
-                                            out.print("<div class='divider'></div>");
-                                            out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
-                                        %>  
-                                        
-                                    </ul>
-                                </li>
+                                </li> -->
                             </ul>
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="no-icon">Dropdown</span>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
+                                    <li class="dropdown nav-item">
+                                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                            <i class="nc-icon nc-planet"></i>
+                                            <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
+                                            <span class="notification"> <%= notificationMap.size()  %> </span>
+                                            <span class="d-lg-none">Notification</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+
+                                           <%
+                                               for (int i=1 ; i<=notificationMap.size(); i++){
+                                                        if(i<=5){
+                                                        Notification notification = notificationMap.get(i);
+                                                        out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                                "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
+                                                        }     
+                                                }
+                                                out.print("<div class='divider'></div>");
+                                                out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
+                                            %>  
+
+                                        </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
@@ -221,41 +230,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="card card-user">
-                                    <div class="card-image">
-                                        <img src="assets/limkee/jquerypic5.jpg" alt="...">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="author">
-                                            <a href="#">
-                                                <img class="avatar border-gray" src="../assets/limkee/jquerypic5.jpg" alt="...">
-                                            </a>
-                                            <p>
-                                            </p>
-                                            <p class="description">
-                                                <b>Lim Kee Food Manufacturing Pte Ltd</b>
-                                            </p>
-                                        </div>
-                                        <p class="description text-center">
-                                            Lim Kee aims to bring New Traditions to every home, everywhere.
-                                            <br><br>We aim to enliven the culture of pau, bringing great tasting quality pau for everyone to enjoy. Anytime, anywhere.
-                                        </p>
-                                    </div>
-                                    <hr>
-                                    <div class="button-container mr-auto ml-auto">
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-facebook-square"></i>
-                                        </button>
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-twitter"></i>
-                                        </button>
-                                        <button href="#" class="btn btn-simple btn-link btn-icon">
-                                            <i class="fa fa-google-plus-square"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -263,28 +238,6 @@
                 <footer class="footer">
                     <div class="container">
                         <nav>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
                             <p class="copyright text-center">
                                 This website's content is Copyright 
                                 <script>
