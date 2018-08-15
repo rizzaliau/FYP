@@ -60,6 +60,19 @@
                         %>
                     </div>
                     <ul class="nav">
+                        <%
+                           boolean isMasterAdmin = false;
+                           
+                            if(isMasterAdmin == true){ 
+                                out.print("<li>");
+                                out.print("<a class='nav-link' href='admin.jsp'>");
+                                out.print("<i class='nc-icon nc-key-25'></i>");
+                                out.print("<p>Admin</p>");
+                                out.print("</a>");
+                                out.print("</li>");
+                            }
+                           
+                        %>
                         <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
@@ -96,7 +109,7 @@
                                 <p>Account Settings</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -104,7 +117,7 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
-                        <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
+                        <a class="navbar-brand" href="dashboard.jsp">LIM KEE ADMIN PORTAL</a>
                         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
                             <span class="navbar-toggler-bar burger-lines"></span>
@@ -112,34 +125,42 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
-                                <li class="nav-item">
+<!--                            <li class="nav-item">
                                     <a href="#" class="nav-link" data-toggle="dropdown">
 
                                         <span class="d-lg-none">Dashboard</span>
                                     </a>
-                                </li>
-                                <li class="dropdown nav-item">
-                                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                        <i class="nc-icon nc-planet"></i>
-                                        <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
-                                        <span class="notification"> <%= notificationMap.size()  %> </span>
-                                        <span class="d-lg-none">Notification</span>
+                                </li>-->
+
+                                <!--<li class="nav-item">
+                                    <a class="nav-link" href="logout.jsp">
+                                        <span class="no-icon">Log out</span>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        
-                                       <%
-                                           for (int i=1 ; i<=notificationMap.size(); i++){
-                                                    if(i<=5){
-                                                    Notification notification = notificationMap.get(i);
-                                                    out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                            "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
-                                                    }     
-                                            }
-                                            out.print("<div class='divider'></div>");
-                                            out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
-                                        %>  
-                                        
-                                    </ul>
+                                </li> -->
+                            </ul>
+                            <ul class="navbar-nav ml-auto">
+                                    <li class="dropdown nav-item">
+                                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                            <i class="nc-icon nc-planet"></i>
+                                            <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
+                                            <span class="notification"> <%= notificationMap.size()  %> </span>
+                                            <span class="d-lg-none">Notification</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+
+                                           <%
+                                               for (int i=1 ; i<=notificationMap.size(); i++){
+                                                        if(i<=5){
+                                                        Notification notification = notificationMap.get(i);
+                                                        out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                                "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
+                                                        }     
+                                                }
+                                                out.print("<div class='divider'></div>");
+                                                out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
+                                            %>  
+
+                                        </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
@@ -147,13 +168,6 @@
                                     </a>
                                 </li>
                             </ul>
-<!--                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="logout.jsp">
-                                        <span class="no-icon">Log out</span>
-                                    </a>
-                                </li>
-                            </ul>-->
                         </div>
                     </div>
                 </nav>
