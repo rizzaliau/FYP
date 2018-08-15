@@ -18,7 +18,7 @@
         <link rel="icon" type="image/png" href="assets/img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         
-        <title>Lim Kee Admin Portal</title>
+        <title>Lim Kee Admin Portal </title>
         
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
         <!--     Fonts and icons     -->
@@ -42,8 +42,9 @@
                 -->
                 <div class="sidebar-wrapper">
                     <div class="logo">
+                             
                         <a href="#" class="simple-text">
-                            LIM KEE Admin Portal
+                           LIM KEE Admin Portal
                         </a>
                         <!--  Welcome-->
                         <%                            
@@ -117,7 +118,7 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
-                        <a class="navbar-brand" href="dashboard.jsp">LIM KEE ADMIN PORTAL</a>
+                        <a class="navbar-brand" href="dashboard.jsp"><img src="assets/img/limkee_logo.png" style="margin-right: 10px; width:60px; height:42px;"/>LIM KEE ADMIN PORTAL</a>
                         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
                             <span class="navbar-toggler-bar burger-lines"></span>

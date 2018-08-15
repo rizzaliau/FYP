@@ -178,7 +178,7 @@
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" required placeholder="Company Name" value="BUGIS VILLAGE HOUSE" size="10" name="companyName" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets">                                            
+                                                        <input type="text" class="form-control" required placeholder="Company Name" value="BUGIS VILLAGE HOUSE" size="10" name="companyName" title="Please only enter alphabets">                                            
                                                     </div>
                                                 </div>
 
