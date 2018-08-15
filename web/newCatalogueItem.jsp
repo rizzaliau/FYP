@@ -215,13 +215,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Item Code*</label>
-                                                        <input type="text" pattern="[0-9]{1,8}" title="Please enter numeric numbers" class="form-control" placeholder="Item Code" required value="" size="5" name="itemCode">
+                                                        <input type="text" pattern="[0-9]{1,8}" title="Please enter numeric numbers" class="form-control" placeholder="Item Code" required value="16" size="5" name="itemCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>English Description*</label>
-                                                        <input type="text" class="form-control" required placeholder="English description" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="" size="30" name="description">                                            
+                                                        <input type="text" class="form-control" required placeholder="English description" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="Yam Pau" size="30" name="description">                                            
                                                     </div>
                                                 </div>
 
@@ -231,13 +231,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Chinese Description*</label>
-                                                        <input type="text" class="form-control" required placeholder="Chinese Description" required value="" size="20" name="descriptionChinese">
+                                                        <input type="text" class="form-control" required placeholder="Chinese Description" required value="芋泥包" size="20" name="descriptionChinese">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Unit Price($)*</label>
-                                                        <input type="text" class="form-control"  pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places." required placeholder="Unit Price" required value="" size="5" name="unitPrice">                                            
+                                                        <input type="text" class="form-control"  pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places." required placeholder="Unit Price" required value="0.40" size="5" name="unitPrice">                                            
                                                     </div>
                                                 </div>
 
@@ -248,13 +248,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Default Quantity*</label>
-                                                        <input type="text" class="form-control" pattern="[0-9]{1,4}" title="Please enter numeric numbers" required placeholder="Default Quantity" value="" size="5" name="defaultQuantity">                                            
+                                                        <input type="text" class="form-control" pattern="[0-9]{1,4}" title="Please enter numeric numbers" required placeholder="Default Quantity" value="5" size="5" name="defaultQuantity">                                            
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Quantity Multiples*</label>
-                                                        <input type="text" class="form-control" pattern="[0-9]{1,4}" title="Please enter numeric numbers" required placeholder="Quantity Multiples" value="" size="5" name="quantityMultiples">                                            
+                                                        <input type="text" class="form-control" pattern="[0-9]{1,4}" title="Please enter numeric numbers" required placeholder="Quantity Multiples" value="5" size="5" name="quantityMultiples">                                            
                                                     </div>
                                                 </div>
 
@@ -264,13 +264,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Retail price($)*</label>
-                                                        <input type="text" class="form-control" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places."   placeholder="Retail price" required value="" size="5" name="retailPrice">
+                                                        <input type="text" class="form-control" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" title="This should be a number with up to 2 decimal places."   placeholder="Retail price" required value="0.80" size="5" name="retailPrice">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Unit of Metric*</label>
-                                                        <input type="text" class="form-control" placeholder="Unit of Metric" required="" value="" size="5" name="unitOfMetric">                                            
+                                                        <input type="text" class="form-control" placeholder="Unit of Metric" required="" value="粒" size="5" name="unitOfMetric">                                            
                                                     </div>
                                                 </div>
 
