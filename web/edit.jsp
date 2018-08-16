@@ -308,11 +308,12 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-4 pr-1">
+<!--                                                <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Payment Term</label>
-                                                        <select name="displayTerm" class="form-control" required >
-                                                            <%                                                            String displayTerm = debtor.getDisplayTerm();
+                                                        <select name="displayTerm" class="form-control" required > -->
+                                                             <%                                                            
+  /*                                                               String displayTerm = debtor.getDisplayTerm();
                                                                 if (displayTerm.equals("C.O.D")) {
                                                                     out.println("<option value='C.O.D'>C.O.D</option>");
                                                                     out.println("<option value='1 day'>1 day</option>");
@@ -335,11 +336,13 @@
                                                                     out.println("<option value='1 day'>1 day</option>");
                                                                     out.println("<option value='15 days'>15 days</option>");
                                                                 }
-
+*/
                                                             %>
-                                                        </select>                                                        
+<!--                                                        </select>                                                        
                                                     </div>
                                                 </div>
+-->
+                                                <input type="hidden" value='C.O.D' name="displayTerm" />
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">                                                                                                         <label>Route*</label>
                                                         <select name ="routeNumber" class="form-control" required>

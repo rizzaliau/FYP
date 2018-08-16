@@ -264,7 +264,7 @@
                                                         </select>    
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4 pr-1">
+<!--                                                <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Payment Term*</label>
                                                         <select name="displayTerm" class="form-control" required >
@@ -274,7 +274,8 @@
                                                             <option value="30 days">30 days</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div>-->
+                                                <input type="hidden" value='C.O.D' name="displayTerm" />
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Area*</label>
