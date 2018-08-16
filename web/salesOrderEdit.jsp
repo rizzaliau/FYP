@@ -214,13 +214,13 @@
                                                         <input type="text" class="form-control" placeholder="Contact Number" size="10" name="ContactNumber" value="<%= salesOrderdetails.getDeliverContact()%>" disabled="">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 pr-1">
+<!--                                                <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Payment Term</label>
                                                         <input type="text" class="form-control" placeholder="Display Term" required placeholder="" value="<%= salesOrderdetails.getDisplayTerm()%>" size="10" name="DisplayTerm" disabled="">                                            
                                                     </div>
-                                                </div>
-
+                                                </div>-->
+                                            <input type='hidden' name='DisplayTerm' value='C.O.D'>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
