@@ -97,57 +97,56 @@
             </div>
         </div>
         <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class=" container-fluid  ">
-                    <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="dashboard.jsp" class="nav-link" data-toggle="dropdown">
-                                    <span class="d-lg-none">Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="dropdown nav-item">
-                                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                        <i class="nc-icon nc-planet"></i>
-                                        <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
-                                        <span class="notification"> <%= notificationMap.size()  %> </span>
-                                        <span class="d-lg-none">Notification</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        
-                                       <%
-                                           for (int i=1 ; i<=notificationMap.size(); i++){
-                                                    if(i<=5){
-                                                    Notification notification = notificationMap.get(i);
-                                                    out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                            "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
-                                                    }     
-                                            }
-                                            out.print("<div class='divider'></div>");
-                                            out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
-                                        %>  
-                                        
-                                    </ul>
+                <%                            
+                    String usernameSession = (String) session.getAttribute("username");
+                %>
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                    <div class=" container-fluid  ">
+                        <a class="navbar-brand" href="#"><img src="assets/img/limkee_logo.png" style="margin-right: 10px; width:60px; height:42px;"/></a>
+                        <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                            <span class="navbar-toggler-bar burger-lines"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                            <ul class="nav navbar-nav mr-auto">
+                            </ul>
+                            <ul class="navbar-nav ml-auto">
+                                    Welcome, <%= usernameSession %> 
+                                    <li class="dropdown nav-item">
+                                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                            <i class="nc-icon nc-planet"></i>
+                                            <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
+                                            <span class="notification"> <%= notificationMap.size()  %> </span>
+                                            <span class="d-lg-none">Notification</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+
+                                           <%
+                                               for (int i=1 ; i<=notificationMap.size(); i++){
+                                                        if(i<=5){
+                                                        Notification notification = notificationMap.get(i);
+                                                        out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                                "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
+                                                        }     
+                                                }
+                                                out.print("<div class='divider'></div>");
+                                                out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
+                                            %>  
+
+                                        </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>
                                     </a>
-                                 </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+                <!-- End Navbar -->
             
             <div class="content">
                 <div class="container-fluid">

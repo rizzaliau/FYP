@@ -114,9 +114,14 @@
             </div>
             <div class="main-panel">
                 <!-- Navbar -->
+                
+                <%                            
+                            String usernameSession = (String) session.getAttribute("username");
+                %>
+                
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
-                        <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
+                        <a class="navbar-brand" href="#"><img src="assets/img/limkee_logo.png" style="margin-right: 10px; width:60px; height:42px;"/></a>
                         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
                             <span class="navbar-toggler-bar burger-lines"></span>
@@ -124,11 +129,9 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link" data-toggle="dropdown">
-
-                                    </a>
-                                </li>
+                            </ul>
+                            <ul class="navbar-nav ml-auto">
+                                    Welcome, <%= usernameSession %> 
                                 <li class="dropdown nav-item">
                                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                         <i class="nc-icon nc-planet"></i>
@@ -149,13 +152,10 @@
                                     </a>
                                 </li>
                             </ul>
-                            <ul class="navbar-nav ml-auto">
-
-
-                            </ul>
                         </div>
                     </div>
                 </nav>
+                <!-- End Navbar -->
 
                 <%
                     //Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();

@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -70,13 +69,13 @@ public class insertUtility {
 //        }catch (final ConstraintViolationException e) {
 //            
 //            request.setAttribute("status", "Please enter a unique customer code!");
-//            request.getRequestDispatcher("newUser.jsp").forward(request, response);
+//            request.getRequestDispatcher("newCustomer.jsp").forward(request, response);
 //            
         }catch (SQLException ex) {
             
             if(ex instanceof MySQLIntegrityConstraintViolationException){
                 request.setAttribute("status", "Please enter a unique customer code!");
-                request.getRequestDispatcher("newUser.jsp").forward(request, response);
+                request.getRequestDispatcher("newCustomer.jsp").forward(request, response);
             }else{
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
                 request.setAttribute("status", "Error updating!");

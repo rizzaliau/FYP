@@ -126,21 +126,9 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
-<!--                            <li class="nav-item">
-                                    <a href="#" class="nav-link" data-toggle="dropdown">
-
-                                        <span class="d-lg-none">Dashboard</span>
-                                    </a>
-                                </li>-->
-
-                                <!--<li class="nav-item">
-                                    <a class="nav-link" href="logout.jsp">
-                                        <span class="no-icon">Log out</span>
-                                    </a>
-                                </li> -->
                             </ul>
                             <ul class="navbar-nav ml-auto">
-                                    Welcome <%= usernameSession %> 
+                                    Welcome, <%= usernameSession %> 
                                     <li class="dropdown nav-item">
                                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                             <i class="nc-icon nc-planet"></i>

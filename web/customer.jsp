@@ -10,6 +10,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="protect.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +32,7 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="assets/css/demo.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>-->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>      
         <style>
             .no-result {
@@ -110,9 +111,14 @@
             </div>
             <div class="main-panel">
                 <!-- Navbar -->
+                
+                <%                            
+                            String usernameSession = (String) session.getAttribute("username");
+                %>
+                
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
-                        <a class="navbar-brand" href="dashboard.jsp"> Dashboard </a>
+                        <a class="navbar-brand" href="#"><img src="assets/img/limkee_logo.png" style="margin-right: 10px; width:60px; height:42px;"/></a>
                         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar burger-lines"></span>
                             <span class="navbar-toggler-bar burger-lines"></span>
@@ -120,11 +126,9 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a href="dashboard.jsp" class="nav-link" data-toggle="dropdown">
-                                        <span class="d-lg-none">Dashboard</span>
-                                    </a>
-                                </li>
+                            </ul>
+                            <ul class="navbar-nav ml-auto">
+                                    Welcome, <%= usernameSession %> 
                                 <li class="dropdown nav-item">
                                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                         <i class="nc-icon nc-planet"></i>
@@ -139,25 +143,6 @@
                                         <a class="dropdown-item" href="#">New Order 5</a>-->
                                     </ul>
                                 </li>
-                            </ul>
-                            <ul class="navbar-nav ml-auto">
-
-                                <li class="nav-item dropdown">
-                                    <!--
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="no-icon">Dropdown</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-        </div>
-    </li>
-                                    -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>
@@ -167,6 +152,7 @@
                         </div>
                     </div>
                 </nav>
+                <!-- End Navbar -->
 
                 <%                Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
                 %>
@@ -212,7 +198,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="newUser.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New User"  value="Add New Customer" style="margin-right:20px;" /></a>
+                                    <a href="newCustomer.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New User"  value="Add New Customer" style="margin-right:20px;" /></a>
                                     <br>
                                     <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px;">
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
