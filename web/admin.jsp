@@ -57,6 +57,8 @@
 
     <body>
         <div class="wrapper">
+            
+            <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
                 <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
@@ -122,6 +124,8 @@
                     </ul>
                 </div>
             </div>
+            <!--End Sidebar -->            
+                        
             <div class="main-panel">
                 <!-- Navbar -->
                 
@@ -219,7 +223,7 @@
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th>Number</th>
+                                                    <th>Admin ID</th>
                                                     <th>Username</th>
                                                     <th>Is Master Admin</th>
                                                     <th>Status</th>
@@ -233,7 +237,7 @@
                                                             out.print("<tr>");
                                                             User admin = adminMap.get(number);
 
-                                                            out.print("<td>" + number + "</td>");
+                                                            out.print("<td>" + admin.getID() + "</td>");
                                                             out.print("<td>" + admin.getName() + "</td>");
                                                             out.print("<td>" + admin.getIsMasterString() + "</td>");
                                                             //out.print("<td>" + admin.getStatus() + "</td>");

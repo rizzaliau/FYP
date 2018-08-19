@@ -5,8 +5,11 @@
  */
 package utility;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import dao.ConnectionManager;
+import dao.UserDAO;
 import entity.User;
+import java.io.IOException;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +17,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -33,7 +41,7 @@ public class adminUtility {
         try {
             conn = ConnectionManager.getConnection();
             
-            String sql = "SELECT Username, HashPassword, IsMaster,Status From `user`";
+            String sql = "SELECT ID,Username, HashPassword, IsMaster,Status From `user`";
 
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -42,13 +50,15 @@ public class adminUtility {
 
             while (rs.next()) {
                 
+                String id = rs.getString("ID");
+                int idInt = Integer.parseInt(id);
                 String name = rs.getString("Username");
                 String hashPassword = rs.getString("HashPassword");
                 String isMaster = rs.getString("IsMaster");
                 int isMasterInt = Integer.parseInt(isMaster);
                 String status = rs.getString("Status");
 
-                User user = new User(name, hashPassword, isMasterInt, status);
+                User user = new User(idInt,name, hashPassword, isMasterInt, status);
 
                 adminsMap.put(count, user);
                 count++;
@@ -66,6 +76,59 @@ public class adminUtility {
         return adminsMap;
     }
     
+    public static void newAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        //Gets all the parameters from the form
+        String userName = request.getParameter("userName");
+        String isMasterAdmin = request.getParameter("isMasterAdmin");
+        int isMasterAdminInt = Integer.parseInt(isMasterAdmin);
+        String newPassword1 = request.getParameter("newPass1");
+        String newPassword2 = request.getParameter("newPass2");
+        String status = "Active";
+        String adminID = request.getParameter("adminID");
+        int adminIDInt = Integer.parseInt(adminID);
+        
+        if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
+            request.setAttribute("status", "Blank fields detected. Please enter all fields");
+            request.getRequestDispatcher("newAdmin.jsp").forward(request, response);   
+        } else if (!(newPassword1.equals(newPassword2))){           
+            request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
+            request.getRequestDispatcher("newAdmin.jsp").forward(request, response);
+        }else{
+            String newPasswordHash = loginUtility.getSha256(newPassword2);
+        
+        
+            try {
+
+                Connection conn = ConnectionManager.getConnection();
+                out.println("passes conn");
+
+                String sql = "INSERT INTO user " + "VALUES('"+ adminIDInt+"','"+userName+"','"+newPasswordHash+"',"
+                        + "'"+isMasterAdminInt+"','"+status+"')";
+
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                out.println("passes stmt");
+
+                stmt.executeUpdate();
+                out.println("passes rs");
+         
+            }catch (SQLException ex) {
+
+                if(ex instanceof MySQLIntegrityConstraintViolationException){
+                    request.setAttribute("status", "Please enter a unique ID!");
+                    request.getRequestDispatcher("admin.jsp").forward(request, response);
+                }else{
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    request.setAttribute("status", "Error updating!");
+                }
+            }
+
+            request.setAttribute("status", "Record inserted successfully!");
+
+            request.getRequestDispatcher("admin.jsp").forward(request, response);
+        
+        }
+    }
     
     
 }
