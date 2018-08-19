@@ -11,14 +11,16 @@ public class User {
 
   private String name;
   private String password;
+  private int isMaster;
 
   public User() {
   } // default constructor
   // Constructor for easy creation
 
-  public User(String name, String password) {
+  public User(String name, String password, int isMaster) {
     this.name = name;
     this.password = password;
+    this.isMaster = isMaster;
 
   }
 
@@ -38,6 +40,9 @@ public class User {
   public boolean authenticate(String password) {
     return password.equals(this.password);
   } // authenticate
-  
+
+  public int getIsMaster() {
+    return isMaster;
+  } // setName
   
 }

@@ -26,7 +26,7 @@ public class UserDAO {
             out.println("username inputed is :" + username);
             out.println("passes conn");
             
-            String sql = "SELECT Username, HashPassword From `user` WHERE Username = '"+username+"'";
+            String sql = "SELECT Username, HashPassword, IsMaster From `user` WHERE Username = '"+username+"'";
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
             
@@ -41,8 +41,11 @@ public class UserDAO {
                 out.println(name + " is printed out in userDAO ");
                 String password = rs.getString(2);
                 out.println(password + " is printed out in userDAO ");
-
-                user = new User(name, password);
+                String isMaster = rs.getString("IsMaster");
+                int isMasterInt = Integer.parseInt(isMaster);
+                out.println(isMasterInt + " is printed out in userDAO ");
+                
+                user = new User(name, password, isMasterInt);
                 return user;
             }
 

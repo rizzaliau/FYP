@@ -64,6 +64,7 @@ public class loginUtility {
         
         session.setAttribute("username", userName);        
         session.setAttribute("password", loginUtility.getSha256(passWord));
+        session.setAttribute("isMaster", ""+user.getIsMaster());
         out.println("Before redirection");
         request.getRequestDispatcher("customer.jsp").forward(request, response);
         out.println("After redirection");
