@@ -12,7 +12,7 @@
 
     String isMaster = (String) session.getAttribute("isMaster");
 
-    if (isMaster.equals("0") || user == null){
+    if (isMaster == null || isMaster.equals("0") || user == null ){
         response.sendRedirect("login.jsp");
     }
 
