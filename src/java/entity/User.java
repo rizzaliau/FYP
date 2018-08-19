@@ -47,6 +47,13 @@ public class User {
     return isMaster;
   } // setName
   
+  public String getIsMasterString() {
+      if(isMaster == 1){
+          return "Yes";
+      }
+    return "No";
+  }
+  
   public String getStatus(){
     return status;
   }
