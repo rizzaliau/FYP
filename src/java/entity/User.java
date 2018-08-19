@@ -12,15 +12,17 @@ public class User {
   private String name;
   private String password;
   private int isMaster;
+  private String status;
 
   public User() {
   } // default constructor
   // Constructor for easy creation
 
-  public User(String name, String password, int isMaster) {
+  public User(String name, String password, int isMaster, String status) {
     this.name = name;
     this.password = password;
     this.isMaster = isMaster;
+    this.status = status;
 
   }
 
@@ -44,5 +46,9 @@ public class User {
   public int getIsMaster() {
     return isMaster;
   } // setName
+  
+  public String getStatus(){
+    return status;
+  }
   
 }
