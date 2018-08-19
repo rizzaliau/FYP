@@ -61,7 +61,7 @@ public class salesOrderUtility {
                     "inner join debtor d on so.DebtorCode = d.DebtorCode  \n" +
                     "inner join sales_order_detail sod on so.OrderID = sod.OrderID \n" +
                     "where so.Status = \""+status+"\" \n" +
-                    "order by so.LastModified DESC";
+                    "order by so.LastModifiedTimeStamp DESC";
                 
             }
             
@@ -204,7 +204,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModified,\n" +
+            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp,\n" +
                 "sod.DeliveryDate, sod.SubTotal,\n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
                 "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
@@ -222,7 +222,7 @@ public class salesOrderUtility {
                 String orderIDRetrieved = checkForNull(rs.getString("OrderID"));
                 String createTimeStamp= checkForNull(rs.getString("CreatedTimeStamp"));
                 String status= checkForNull(rs.getString("Status"));
-                String lastModified= checkForNull(rs.getString("LastModified"));
+                String lastModified= checkForNull(rs.getString("LastModifiedTimeStamp"));
                 String deliveryDate= checkForNull(rs.getString("DeliveryDate"));
                 String subTotal= checkForNull(rs.getString("SubTotal"));
                 String companyName= checkForNull(rs.getString("CompanyName"));
@@ -388,7 +388,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModified,\n" +
+            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp,\n" +
                 "sod.DeliveryDate, sod.SubTotal,\n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
                 "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
@@ -407,7 +407,7 @@ public class salesOrderUtility {
                 String orderIDRetrieved = rs.getString("OrderID");
                 String createTimeStamp= rs.getString("CreatedTimeStamp");
                 String status= rs.getString("Status");
-                String lastModified= rs.getString("LastModified");
+                String lastModified= rs.getString("LastModifiedTimeStamp");
                 String deliveryDate= rs.getString("DeliveryDate");
                 String subTotal= rs.getString("SubTotal");
                 String companyName= rs.getString("CompanyName");
@@ -452,7 +452,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModified,\n" +
+            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp,\n" +
                 "sod.DeliveryDate, sod.SubTotal,\n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
                 "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
@@ -471,7 +471,7 @@ public class salesOrderUtility {
                 String orderIDRetrieved = rs.getString("OrderID");
                 String createTimeStamp= rs.getString("CreatedTimeStamp");
                 String status= rs.getString("Status");
-                String lastModified= rs.getString("LastModified");
+                String lastModified= rs.getString("LastModifiedTimeStamp");
                 String deliveryDate= rs.getString("DeliveryDate");
                 String subTotal= rs.getString("SubTotal");
                 String companyName= rs.getString("CompanyName");
