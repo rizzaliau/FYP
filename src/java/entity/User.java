@@ -8,17 +8,21 @@ import java.util.logging.Level;
 import static javax.management.Query.value;
 
 public class User {
-
+    
+  private int id;
   private String name;
   private String password;
   private int isMaster;
   private String status;
 
+
   public User() {
   } // default constructor
   // Constructor for easy creation
 
-  public User(String name, String password, int isMaster, String status) {
+  public User(int id, String name, String password, int isMaster, String status) {
+      
+    this.id = id;
     this.name = name;
     this.password = password;
     this.isMaster = isMaster;
@@ -56,6 +60,10 @@ public class User {
   
   public String getStatus(){
     return status;
+  }
+  
+  public String getID(){
+      return ""+id;
   }
   
 }
