@@ -130,5 +130,67 @@ public class adminUtility {
         }
     }
     
-    
+    public static void editAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String usernameRetrived = request.getParameter("userName");
+        String isMasterAdminRetrieved = request.getParameter("isMasterAdmin");
+        String adminIDRetrieved = request.getParameter("adminID");
+        String statusRetrieved = request.getParameter("status");
+        int isMasterAdminInt = Integer.parseInt(isMasterAdminRetrieved);
+        int adminIDInt = Integer.parseInt(adminIDRetrieved);
+        String passwordRetrieved = request.getParameter("hashPassword");
+        
+        out.println(usernameRetrived);
+        out.println(isMasterAdminRetrieved);
+        out.println(adminIDRetrieved);
+        out.println(statusRetrieved);
+        out.println(passwordRetrieved);
+        
+        String newPassword1 = request.getParameter("newPass1");
+        String newPassword2 = request.getParameter("newPass2");
+        
+        if (!(newPassword1.equals(newPassword2))){   
+            
+            request.setAttribute("serial", adminIDRetrieved);
+            request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
+            request.getRequestDispatcher("editAdmin.jsp?serial="+adminIDRetrieved).forward(request, response); 
+            
+        }else{
+            
+            String passwordUsed = "";
+            
+            if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){
+                passwordUsed = passwordRetrieved;
+            }else{
+                passwordUsed = loginUtility.getSha256(newPassword2);
+            }
+            
+            try {
+
+                Connection conn = ConnectionManager.getConnection();
+                out.println("passes conn");
+
+                String sql = "UPDATE `user` SET Username='" + usernameRetrived 
+                        + "', HashPassword = '" +passwordUsed + "', "
+                        + " IsMaster = '" + isMasterAdminInt + "', Status = '" +statusRetrieved + "'"
+                        + "WHERE ID = '" + adminIDInt + "'";
+
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                out.println("passes stmt");
+
+                stmt.executeUpdate();
+                out.println("passes rs");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("updateSuccess", "Record updated unsuccessfully!");
+
+            }
+
+            request.setAttribute("updateSuccess", "Record updated successfully!");
+
+            request.getRequestDispatcher("admin.jsp").forward(request, response);
+
+        }
+    }
 }
