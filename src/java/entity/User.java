@@ -66,4 +66,8 @@ public class User {
       return ""+id;
   }
   
+  public String getHashPassword(){
+      return password;
+  }
+  
 }
