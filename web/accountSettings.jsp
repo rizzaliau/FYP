@@ -36,6 +36,7 @@
 
     <body>
         <div class="wrapper">
+           <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
                 <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
@@ -44,36 +45,23 @@
                 -->
                 <div class="sidebar-wrapper">
                     <div class="logo">
-                             
                         <a href="#" class="simple-text">
-                           LIM KEE Admin Portal
+                            LIM KEE Admin Portal
                         </a>
-                        <!--  Welcome-->
-                        <%                            
-                            String userName = request.getParameter("user");
-                            String passWord = request.getParameter("password");
-                            //String gender = (String)request.getAttribute("gender");
-                            //out.println(userName);
 
-                            String usernameSession = (String) session.getAttribute("username");
-
-                            //out.println(usernameSession);
-                            //out.println("Username retrieved from session is:"+usernameSession);
-
-                        %>
                     </div>
                     <ul class="nav">
                         <%
-                           boolean isMasterAdmin = false;
-                           
-                            if(isMasterAdmin == true){ 
+                           String isMasterAdmin = (String) session.getAttribute("isMaster");
+                                   
+                           if(isMasterAdmin.equals("1")){ 
                                 out.print("<li>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
                                 out.print("<i class='nc-icon nc-key-25'></i>");
                                 out.print("<p>Admin</p>");
                                 out.print("</a>");
                                 out.print("</li>");
-                            }
+                           }
                            
                         %>
                         <li>
@@ -106,7 +94,7 @@
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class='nav-item active'>
                             <a class="nav-link" href="./accountSettings.jsp">
                                 <i class="nc-icon nc-settings-gear-64"></i>
                                 <p>Account Settings</p>
@@ -116,6 +104,7 @@
                     </ul>
                 </div>
             </div>
+            <!--End Sidebar -->   
             <div class="main-panel">
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
@@ -128,10 +117,7 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
-                            </ul>
-                            <ul class="navbar-nav ml-auto">
-                                    Welcome, <%= usernameSession %> 
-                                    <div id="notification">
+                                <div id="notification">
                                         <li class="dropdown nav-item">
                                             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                                 <i class="nc-icon nc-planet"></i>
@@ -158,6 +144,11 @@
                                             </ul>
                                     </li>
                                 </div>
+                            </ul>
+                            <ul class="navbar-nav ml-auto">
+                                <% String usernameSession = (String) session.getAttribute("username"); %>
+                                    Welcome, <%= usernameSession %> 
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>

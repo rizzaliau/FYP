@@ -74,14 +74,16 @@
                     </div>
                     <ul class="nav">
                         <%
-                           //if(){ 
+                           String isMasterAdmin = (String) session.getAttribute("isMaster");
+                                   
+                           if(isMasterAdmin.equals("1")){ 
                                 out.print("<li class='nav-item active'>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
                                 out.print("<i class='nc-icon nc-key-25'></i>");
                                 out.print("<p>Admin</p>");
                                 out.print("</a>");
                                 out.print("</li>");
-                           //}
+                           }
                            
                         %>
                         <li>

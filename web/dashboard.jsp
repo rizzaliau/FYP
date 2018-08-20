@@ -27,32 +27,35 @@
 
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+           <!-- Sidebar -->
+            <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
+                <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+    
+            Tip 2: you can also add an image using data-image tag
+                -->
+                <div class="sidebar-wrapper">
+                    <div class="logo">
+                        <a href="#" class="simple-text">
+                            LIM KEE Admin Portal
+                        </a>
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        LIM KEE Admin Portal
-                    </a>
-                        <%
-                        String userName = request.getParameter("user");
-                        String passWord = request.getParameter("password");
-                        //String gender = (String)request.getAttribute("gender");
-                        //out.println(userName);
-                        
-                        //String passwordSha256 = (String)session.getAttribute("password");
-                        
-                        //out.println(passwordSha256);
-                        
-                        %>
-
-                </div>
+                    </div>
                     <ul class="nav">
-                        <li class="nav-item active">
+                        <%
+                           String isMasterAdmin = (String) session.getAttribute("isMaster");
+                                   
+                           if(isMasterAdmin.equals("1")){ 
+                                out.print("<li>");
+                                out.print("<a class='nav-link' href='admin.jsp'>");
+                                out.print("<i class='nc-icon nc-key-25'></i>");
+                                out.print("<p>Admin</p>");
+                                out.print("</a>");
+                                out.print("</li>");
+                           }
+                           
+                        %>
+                        <li class='nav-item active'>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
@@ -88,10 +91,11 @@
                                 <p>Account Settings</p>
                             </a>
                         </li>
-                        
+
                     </ul>
+                </div>
             </div>
-        </div>
+            <!--End Sidebar -->     
         <div class="main-panel">
                 <!-- Navbar -->
                 
