@@ -4,7 +4,7 @@
 <%@page import="java.util.Map"%>
 <!DOCTYPE html>
 
-<%@include file="protect.jsp" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -13,7 +13,9 @@
 
     <head>
         <meta charset="UTF-8">
+        <!--
         <meta http-equiv="refresh" content="90">
+        -->
         <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
         <link rel="icon" type="image/png" href="assets/img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -129,32 +131,36 @@
                             </ul>
                             <ul class="navbar-nav ml-auto">
                                     Welcome, <%= usernameSession %> 
-                                    <li class="dropdown nav-item">
-                                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                            <i class="nc-icon nc-planet"></i>
-                                            <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
-                                            <span class="notification"> <%= notificationMap.size()  %> </span>
-                                            <span class="d-lg-none">Notification</span>
-                                        </a>
-                                        <ul class="dropdown-menu">
+                                    <div id="notification">
+                                        <li class="dropdown nav-item">
+                                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                                <i class="nc-icon nc-planet"></i>
+                                                <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
+                                                <span class="notification"> <%= notificationMap.size()  %> </span>
+                                                <span class="d-lg-none">Notification</span>
+                                            </a>
+                                            <ul class="dropdown-menu">
 
-                                           <%
-                                               for (int i=1 ; i<=notificationMap.size(); i++){
-                                                        if(i<=5){
-                                                        Notification notification = notificationMap.get(i);
-                                                        out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                                "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
-                                                        }     
-                                                }
-                                                out.print("<div class='divider'></div>");
-                                                out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
-                                            %>  
+                                               <%
+                                                   out.println("<div id='container' class='divider'>");
+                                                   for (int i=1 ; i<=notificationMap.size(); i++){
+                                                            if(i<=5){
+                                                            Notification notification = notificationMap.get(i);
+                                                            out.print("<a id='refresh' class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                                    "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
+                                                            }     
+                                                    }
+                                                    out.print("</div>");
+                                                    out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
+                                                %>  
 
-                                        </ul>
-                                </li>
+                                            </ul>
+                                    </li>
+                                </div>
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>
+                                           <div id="show" align="center"></div>
                                     </a>
                                 </li>
                             </ul>
@@ -255,13 +261,15 @@
             <script src="assets/js/plugins/bootstrap-notify.js"></script>
             <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
             <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
             <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-            <script type="text/javascript">
-                                        $(document).ready(function () {
-                                            // Javascript method's body can be found in assets/js/demos.js
-                                            demo.initDashboardPageCharts();
-
-                                        });
+            <script>
+            $(document).ready(                       
+                    function() {
+                        setInterval(function() {
+                             $('#notification').load('accountSettings.jsp #notification'); 
+                        }, 5000);
+                    });
             </script>
 
 </html>
