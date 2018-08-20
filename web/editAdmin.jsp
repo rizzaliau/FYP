@@ -13,7 +13,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="protectAdmin.jsp" %>
+<%--<%@include file="protectAdmin.jsp" %>--%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -187,8 +187,21 @@
                                         <p class="card-category">Edit Admin</p>
                                     </div>
                                     <div class="card-body">
+                                    <center><font color="red">
 
+                                        <%                                
+                                            String msgStatus = (String) request.getAttribute("status");
 
+                                            if (msgStatus != null) {
+                                                out.print("</br>");
+                                                out.print(msgStatus);
+                                                out.print("</br>");
+                                            }
+
+                                        %> 
+
+                                    </font></center>
+                                        <br>
                                         <%
                                             Map<Integer, User> adminMap = adminUtility.getAllAdmins();
                                             String serial = request.getParameter("serial");
@@ -207,12 +220,13 @@
                                                         <label>Admin ID*</label>
                                                         <input type="text" class="form-control" placeholder="Admin ID" required="" value="<%= admin.getID()%>" size="5" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= admin.getID()%>" name="adminID">
+                                                        <input type="hidden" class="form-control" value="<%= admin.getHashPassword()%>" name="hashPassword">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Username*</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="20" name="userName">                                            
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="10" name="userName">                                            
                                                     </div>
                                                 </div>
 
@@ -263,7 +277,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Enter new password*</label>
-                                                        <input type="password" name="newPass1" class="form-control">
+                                                        <input type="password" name="newPass1" class="form-control" placeholder="Leave blank if unchanged">
                                                     </div>
                                                 </div>
                                             </div>
@@ -271,7 +285,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Confirm new password*</label>
-                                                        <input type="password" name="newPass2" class="form-control">
+                                                        <input type="password" name="newPass2" class="form-control" placeholder="Leave blank if unchanged">
                                                     </div>
                                                 </div>
 
