@@ -26,7 +26,7 @@ public class UserDAO {
             out.println("username inputed is :" + username);
             out.println("passes conn");
             
-            String sql = "SELECT ID,Username, HashPassword, IsMaster,Status From `user` WHERE Username = '"+username+"'";
+            String sql = "SELECT Username, HashPassword, IsMaster,Status From `user` WHERE Username = '"+username+"'";
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
             
@@ -37,8 +37,8 @@ public class UserDAO {
             out.println("enters user retrived method");
 
             while (rs.next()) {
-                String id = rs.getString("ID");
-                int idInt = Integer.parseInt(id);
+                //String id = rs.getString("ID");
+                //int idInt = Integer.parseInt(id);
                 String name = rs.getString("Username");
                 out.println(name + " is printed out in userDAO ");
                 String password = rs.getString("HashPassword");
@@ -48,7 +48,7 @@ public class UserDAO {
                 out.println(isMasterInt + " is printed out in userDAO ");
                 String status = rs.getString("Status");
                 
-                user = new User(idInt,name, password, isMasterInt,status);
+                user = new User(name, password, isMasterInt,status);
                 return user;
             }
 

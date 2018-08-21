@@ -41,7 +41,7 @@ public class adminUtility {
         try {
             conn = ConnectionManager.getConnection();
             
-            String sql = "SELECT ID,Username, HashPassword, IsMaster,Status From `user`";
+            String sql = "SELECT Username, HashPassword, IsMaster,Status From `user`";
 
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -50,15 +50,13 @@ public class adminUtility {
 
             while (rs.next()) {
                 
-                String id = rs.getString("ID");
-                int idInt = Integer.parseInt(id);
                 String name = rs.getString("Username");
                 String hashPassword = rs.getString("HashPassword");
                 String isMaster = rs.getString("IsMaster");
                 int isMasterInt = Integer.parseInt(isMaster);
                 String status = rs.getString("Status");
 
-                User user = new User(idInt,name, hashPassword, isMasterInt, status);
+                User user = new User(name, hashPassword, isMasterInt, status);
 
                 adminsMap.put(count, user);
                 count++;
