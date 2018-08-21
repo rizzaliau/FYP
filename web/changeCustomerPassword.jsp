@@ -153,6 +153,7 @@
                                     <div class="card-header">
                                         <h4 class="card-title">Change Password for Company </h4>
                                         <p>
+                                        <% String companyNameRetrieved = request.getParameter("companyName"); %>
                                         <h4 class="card-title"> "<%= companyNameRetrieved %>" </h4>
                                     </div>
 
@@ -186,7 +187,7 @@
                                         String passWord = request.getParameter("password");
                                         String debtorCodeRetrieved = request.getParameter("debtorCode");
                                         String hashPasswordRetrieved = request.getParameter("hashPassword");
-                                        String companyNameRetrieved = request.getParameter("companyName");
+                                        //String companyNameRetrieved = request.getParameter("companyName");
 
                                         //String usernameSession = (String) session.getAttribute("username");
 
@@ -260,5 +261,14 @@
 
                                         });
             </script>
+            <script>
+            $(document).ready(                       
+                    function() {
+                        setInterval(function() {
+                             $('#notification').load('loyaltyProgramme.jsp #notification'); 
+                        }, 5000);
+                    });
+            </script>
+
 
 </html>

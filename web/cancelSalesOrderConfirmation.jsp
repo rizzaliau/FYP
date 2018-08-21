@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="utility.notificationUtility"%>
+<%@page import="entity.Notification"%>
 <%@page import="utility.salesOrderUtility"%>
 <%@page import="entity.SalesOrderDetails"%>
 <%@page import="entity.Debtor"%>
@@ -104,11 +106,6 @@
             <!--End Sidebar -->    
         <div class="main-panel">
                 <!-- Navbar -->
-                
-                <%                            
-                            String usernameSession = (String) session.getAttribute("username");
-                %>
-                
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
                         <a class="navbar-brand" href="#"><img src="assets/img/limkee_logo.png" style="margin-right: 10px; width:60px; height:42px;"/></a>
@@ -119,26 +116,42 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
+                                <div id="notification">
+                                        <li class="dropdown nav-item">
+                                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                                <i class="nc-icon nc-planet"></i>
+                                                <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
+                                                <span class="notification"> <%= notificationMap.size()  %> </span>
+                                                <span class="d-lg-none">Notification</span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+
+                                               <%
+                                                   //out.println("<div class='notification'>");
+                                                   for (int i=1 ; i<=notificationMap.size(); i++){
+                                                            if(i<=5){
+                                                            Notification notification = notificationMap.get(i);
+                                                            out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                                    "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
+                                                            }     
+                                                    }
+                                                    //out.print("</div>");
+                                                    out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
+                                                    
+                                               %>  
+
+                                            </ul>
+                                    </li>
+                                </div>
                             </ul>
                             <ul class="navbar-nav ml-auto">
+                                <% String usernameSession = (String) session.getAttribute("username"); %>
                                     Welcome, <%= usernameSession %> 
-                                <li class="dropdown nav-item">
-                                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                        <i class="nc-icon nc-planet"></i>
-                                        <span class="notification">0</span>
-                                        <span class="d-lg-none">Notification</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-<!--                                        <a class="dropdown-item" href="#">New Order 1</a>
-                                        <a class="dropdown-item" href="#">New Order 2</a>
-                                        <a class="dropdown-item" href="#">New Order 3</a>
-                                        <a class="dropdown-item" href="#">New Order 4</a>
-                                        <a class="dropdown-item" href="#">New Order 5</a>-->
-                                    </ul>
-                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>
+                                           <div id="show" align="center"></div>
                                     </a>
                                 </li>
                             </ul>
@@ -238,6 +251,14 @@
         demo.initDashboardPageCharts();
 
     });
+</script>
+<script>
+$(document).ready(                       
+        function() {
+            setInterval(function() {
+                 $('#notification').load('loyaltyProgramme.jsp #notification'); 
+            }, 5000);
+        });
 </script>
 
 </html>
