@@ -144,7 +144,7 @@
                         <table>
                             <tr>
                                 <td class="title">
-                                    <img src="assets/img/limkee_logo.png" style="width:100%; max-width:100px;">
+                                    <img src="assets/img/navbar.png" style="width:100%; max-width:100px;">
                                 </td>
 
                                 <td>

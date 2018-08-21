@@ -38,7 +38,7 @@
 
     <body>
             <!-- Sidebar -->
-            <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
+            <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
                 <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
     
