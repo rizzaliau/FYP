@@ -41,21 +41,34 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+           <!-- Sidebar -->
+            <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
+                <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+    
+            Tip 2: you can also add an image using data-image tag
+                -->
+                <div class="sidebar-wrapper">
+                    <div class="logo">
+                        <a href="#" class="simple-text">
+                            LIM KEE Admin Portal
+                        </a>
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        LIM KEE Admin Portal
-                    </a>
-     
-                </div>
+                    </div>
                     <ul class="nav">
+                        <%
+                           String isMasterAdmin = (String) session.getAttribute("isMaster");
+                                   
+                           if(isMasterAdmin.equals("1")){ 
+                                out.print("<li>");
+                                out.print("<a class='nav-link' href='admin.jsp'>");
+                                out.print("<i class='nc-icon nc-key-25'></i>");
+                                out.print("<p>Admin</p>");
+                                out.print("</a>");
+                                out.print("</li>");
+                           }
+                           
+                        %>
                         <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
@@ -86,21 +99,22 @@
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li>
                             <a class="nav-link" href="./accountSettings.jsp">
                                 <i class="nc-icon nc-settings-gear-64"></i>
                                 <p>Account Settings</p>
                             </a>
                         </li>
-                        
+
                     </ul>
+                </div>
             </div>
-        </div>
+            <!--End Sidebar -->   
         <div class="main-panel">
                 <%                            
                     String usernameSession = (String) session.getAttribute("username");
                 %>
-                <!-- Navbar -->
+               <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class=" container-fluid  ">
                         <a class="navbar-brand" href="#"><img src="assets/img/limkee_logo.png" style="margin-right: 10px; width:60px; height:42px;"/></a>
@@ -111,35 +125,41 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
+                                <div id="notification">
+                                        <li class="dropdown nav-item">
+                                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                                <i class="nc-icon nc-planet"></i>
+                                                <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
+                                                <span class="notification"> <%= notificationMap.size()  %> </span>
+                                                <span class="d-lg-none">Notification</span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+
+                                               <%
+                                                   //out.println("<div class='notification'>");
+                                                   for (int i=1 ; i<=notificationMap.size(); i++){
+                                                            if(i<=5){
+                                                            Notification notification = notificationMap.get(i);
+                                                            out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                                    "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
+                                                            }     
+                                                    }
+                                                    //out.print("</div>");
+                                                    out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
+                                                    
+                                               %>  
+
+                                            </ul>
+                                    </li>
+                                </div>
                             </ul>
                             <ul class="navbar-nav ml-auto">
                                     Welcome, <%= usernameSession %> 
-                                    <li class="dropdown nav-item">
-                                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                            <i class="nc-icon nc-planet"></i>
-                                            <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
-                                            <span class="notification"> <%= notificationMap.size()  %> </span>
-                                            <span class="d-lg-none">Notification</span>
-                                        </a>
-                                        <ul class="dropdown-menu">
 
-                                           <%
-                                               for (int i=1 ; i<=notificationMap.size(); i++){
-                                                        if(i<=5){
-                                                        Notification notification = notificationMap.get(i);
-                                                        out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                                "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
-                                                        }     
-                                                }
-                                                out.print("<div class='divider'></div>");
-                                                out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
-                                            %>  
-
-                                        </ul>
-                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>
+                                           <div id="show" align="center"></div>
                                     </a>
                                 </li>
                             </ul>
@@ -275,4 +295,14 @@
 
     var orderList = new List('salesOrder', options);
 </script>
+
+<script>
+$(document).ready(                       
+        function() {
+            setInterval(function() {
+                 $('#notification').load('accountSettings.jsp #notification'); 
+            }, 5000);
+        });
+</script>
+
 </html>

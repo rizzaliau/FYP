@@ -32,6 +32,7 @@
 
     <body>
         <div class="wrapper">
+            <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/sidebar-5.jpg" data-color="orange">
                 <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
@@ -43,30 +44,29 @@
                         <a href="#" class="simple-text">
                             LIM KEE Admin Portal
                         </a>
-                        <!--  Welcome-->
-                        <%                            
 
-                            String userName = request.getParameter("user");
-                            String passWord = request.getParameter("password");
-                            String debtorCodeRetrieved = request.getParameter("debtorCode");
-                            String hashPasswordRetrieved = request.getParameter("hashPassword");
-                            String companyNameRetrieved = request.getParameter("companyName");
-
-                            //String usernameSession = (String) session.getAttribute("username");
-
-                            //out.println(usernameSession);
-                            //out.println("Username retrieved from session is:"+usernameSession);
-
-                        %>
                     </div>
                     <ul class="nav">
+                        <%
+                           String isMasterAdmin = (String) session.getAttribute("isMaster");
+                                   
+                           if(isMasterAdmin.equals("1")){ 
+                                out.print("<li>");
+                                out.print("<a class='nav-link' href='admin.jsp'>");
+                                out.print("<i class='nc-icon nc-key-25'></i>");
+                                out.print("<p>Admin</p>");
+                                out.print("</a>");
+                                out.print("</li>");
+                           }
+                           
+                        %>
                         <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <i class="nc-icon nc-chart-pie-35"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class='nav-item active'>
                             <a class="nav-link" href="customer.jsp">
                                 <i class="nc-icon nc-circle-09"></i>
                                 <p>Customer</p>
@@ -96,10 +96,11 @@
                                 <p>Account Settings</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
+            <!--End Sidebar --> 
             <div class="main-panel">
                 <!-- Navbar -->
                 
@@ -179,6 +180,20 @@
                                                     </div>
                                                 </div>
                                             </div>-->
+                                    <%                            
+
+                                        String userName = request.getParameter("user");
+                                        String passWord = request.getParameter("password");
+                                        String debtorCodeRetrieved = request.getParameter("debtorCode");
+                                        String hashPasswordRetrieved = request.getParameter("hashPassword");
+                                        String companyNameRetrieved = request.getParameter("companyName");
+
+                                        //String usernameSession = (String) session.getAttribute("username");
+
+                                        //out.println(usernameSession);
+                                        //out.println("Username retrieved from session is:"+usernameSession);
+
+                                    %>
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
