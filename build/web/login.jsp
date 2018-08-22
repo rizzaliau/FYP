@@ -24,7 +24,7 @@
 
         <!-- <body style="background-image:url('https://s3-ap-southeast-1.amazonaws.com/media.redmart.com/marketplace/logos/subvendors/unnamed-1497317987343.jpg')"> -->
         
-        <img src="assets/img/limkee_wallpaper.jpg" style="width:100vw;height:98vh">
+        <img src="assets/img/limkee_wallpaper1.png" style="width:100vw;height:98vh">
 
         <div class="logmod">
             <div class="logmod__wrapper">
@@ -57,13 +57,13 @@
                         <div class="sminputs">
                             <div class="input full">
                                 <label class="string optional" for="user-name">Username</label>
-                                <input class="string optional" maxlength="255" id="user" placeholder="Username" type="user" size="50" name="user" value="admin"/>
+                                <input class="string optional" maxlength="255" id="user" placeholder="Username" type="user" size="50" name="user" value=""/>
                             </div>
                         </div>
                         <div class="sminputs">
                             <div class="input full">
                                 <label class="string optional" for="user-pw">Password *</label>
-                                <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" name="password"value="admin123"/>
+                                <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" name="password"value=""/>
                                 <span class="hide-password" id="pwOption" onclick="showPassword()">Show</span>
                             </div>
                         </div>
