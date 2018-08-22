@@ -24,7 +24,7 @@
 
         <!-- <body style="background-image:url('https://s3-ap-southeast-1.amazonaws.com/media.redmart.com/marketplace/logos/subvendors/unnamed-1497317987343.jpg')"> -->
         
-        <img src="assets/img/limkee_wallpaper.jpg" style="width:100vw;height:98vh">
+        <img src="assets/img/limkee_wallpaper1.png" style="width:100vw;height:98vh">
 
         <div class="logmod">
             <div class="logmod__wrapper">
