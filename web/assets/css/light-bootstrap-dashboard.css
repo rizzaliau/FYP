@@ -673,12 +673,12 @@ body>.navbar-collapse[data-color="green"]:after {
 .sidebar[data-color="orange"]:after,
 body>.navbar-collapse[data-color="orange"]:after {
     background: #FFA534;
-    background: -moz-linear-gradient(top, #FFA534 0%, #ff5221 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFA534), color-stop(100%, #ff5221));
-    background: -webkit-linear-gradient(top, #FFA534 0%, #ff5221 100%);
-    background: -o-linear-gradient(top, #FFA534 0%, #ff5221 100%);
-    background: -ms-linear-gradient(top, #FFA534 0%, #ff5221 100%);
-    background: linear-gradient(to bottom, #FFA534 0%, #ff5221 100%);
+    background: -moz-linear-gradient(top, #FFA534 0%, #bd8642 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFA534), color-stop(100%, #bd8642));
+    background: -webkit-linear-gradient(top, #FFA534 0%, #bd8642 100%);
+    background: -o-linear-gradient(top, #FFA534 0%, #bd8642 100%);
+    background: -ms-linear-gradient(top, #FFA534 0%, #bd8642 100%);
+    background: linear-gradient(to bottom, #FFA534 0%, #bd8642 100%);
     background-size: 150% 150%;
 }
 
@@ -1115,7 +1115,7 @@ fieldset[disabled] .btn-success.active {
 }
 
 .btn-info {
-    border-color: #1DC7EA;
+    border-color: #bd8642;
     color: #1DC7EA;
 }
 
@@ -1126,7 +1126,7 @@ fieldset[disabled] .btn-success.active {
 .open>.btn-info.dropdown-toggle {
     background-color: transparent;
     color: #42d0ed;
-    border-color: #42d0ed;
+    border-color: #A0522D;
 }
 
 .btn-info.disabled,
@@ -1159,7 +1159,7 @@ fieldset[disabled] .btn-info.active {
 
 .btn-info.btn-fill {
     color: #FFFFFF;
-    background-color: #1DC7EA;
+    background-color: #bd8642;
     opacity: 1;
     filter: alpha(opacity=100);
 }
@@ -1169,7 +1169,7 @@ fieldset[disabled] .btn-info.active {
 .btn-info.btn-fill:active,
 .btn-info.btn-fill.active,
 .open>.btn-info.btn-fill.dropdown-toggle {
-    background-color: #42d0ed;
+    background-color: #A0522D;
     color: #FFFFFF;
 }
 
