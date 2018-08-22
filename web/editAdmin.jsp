@@ -4,6 +4,8 @@
     Author     : Rizza
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.Date"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="utility.adminUtility"%>
@@ -78,14 +80,16 @@
                     </div>
                     <ul class="nav">
                         <%
-                           //if(){ 
+                           String isMasterAdmin = (String) session.getAttribute("isMaster");
+                                   
+                           if(isMasterAdmin.equals("1")){ 
                                 out.print("<li class='nav-item active'>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
                                 out.print("<i class='nc-icon nc-key-25'></i>");
                                 out.print("<p>Admin</p>");
                                 out.print("</a>");
                                 out.print("</li>");
-                           //}
+                           }
                            
                         %>
                         <li>
@@ -128,7 +132,7 @@
                     </ul>
                 </div>
             </div>
-            <!--End Sidebar -->   
+            <!--End Sidebar -->  
             <div class="main-panel">
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
@@ -221,7 +225,10 @@
                                             int numInt = Integer.parseInt(serial);
 
                                             User admin = adminMap.get(numInt);
-
+                                            
+                                            String currentModifier = usernameSession;
+                                            String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            //out.println(currentTimeStamp);
                                         %>
 
 
@@ -230,23 +237,24 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Username*</label>
+                                                        <label>Username</label>
                                                         <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="10" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= admin.getName()%>" name="userName">
+                                                        <input type="hidden" class="form-control" value="<%= serial %>" name="serial">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Last Modified By*</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="10" disabled="">
-                                                        <input type="hidden" class="form-control" value="<%= admin.getName()%>" name="userName">
+                                                        <label>Last Modified By</label>
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getLastModifiedBy()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= currentModifier %>" name="lastModifiedBy">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Last Modified Time*</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="10" disabled="">
-                                                        <input type="hidden" class="form-control" value="<%= admin.getName()%>" name="userName">
+                                                        <label>Last Modified Time</label>
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getLastModifiedTimestamp()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
                                             </div>
@@ -295,7 +303,7 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Enter new password*</label>
+                                                        <label>Enter new password</label>
                                                         <input type="password" name="newPass1" class="form-control" placeholder="Leave blank if unchanged">
                                                     </div>
                                                 </div>
@@ -303,7 +311,7 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Confirm new password*</label>
+                                                        <label for="exampleInputEmail1">Confirm new password</label>
                                                         <input type="password" name="newPass2" class="form-control" placeholder="Leave blank if unchanged">
                                                     </div>
                                                 </div>

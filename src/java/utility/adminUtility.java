@@ -134,26 +134,28 @@ public class adminUtility {
 
         String usernameRetrived = request.getParameter("userName");
         String isMasterAdminRetrieved = request.getParameter("isMasterAdmin");
-        String adminIDRetrieved = request.getParameter("adminID");
+        String serialRetrieved = request.getParameter("serial");
         String statusRetrieved = request.getParameter("status");
         int isMasterAdminInt = Integer.parseInt(isMasterAdminRetrieved);
-        int adminIDInt = Integer.parseInt(adminIDRetrieved);
+        int serialInt = Integer.parseInt(serialRetrieved);
         String passwordRetrieved = request.getParameter("hashPassword");
         
-        out.println(usernameRetrived);
-        out.println(isMasterAdminRetrieved);
-        out.println(adminIDRetrieved);
-        out.println(statusRetrieved);
-        out.println(passwordRetrieved);
+        String lastTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
+        String lastModifiedBy = request.getParameter("lastModifiedBy");
+        //out.println(usernameRetrived);
+        //out.println(isMasterAdminRetrieved);
+        //out.println(adminIDRetrieved);
+        //out.println(statusRetrieved);
+        //out.println(passwordRetrieved);
         
         String newPassword1 = request.getParameter("newPass1");
         String newPassword2 = request.getParameter("newPass2");
         
         if (!(newPassword1.equals(newPassword2))){   
             
-            request.setAttribute("serial", adminIDRetrieved);
+            request.setAttribute("serial", serialInt);
             request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
-            request.getRequestDispatcher("editAdmin.jsp?serial="+adminIDRetrieved).forward(request, response); 
+            request.getRequestDispatcher("editAdmin.jsp?serial="+serialInt).forward(request, response); 
             
         }else{
             
@@ -170,10 +172,10 @@ public class adminUtility {
                 Connection conn = ConnectionManager.getConnection();
                 out.println("passes conn");
 
-                String sql = "UPDATE `user` SET Username='" + usernameRetrived 
-                        + "', HashPassword = '" +passwordUsed + "', "
-                        + " IsMaster = '" + isMasterAdminInt + "', Status = '" +statusRetrieved + "'"
-                        + "WHERE ID = '" + adminIDInt + "'";
+                String sql = "UPDATE `user` SET HashPassword = '" +passwordUsed + "', "
+                        + " IsMaster = '" + isMasterAdminInt + "', Status = '" +statusRetrieved + "', "
+                        + " LastModifiedTimeStamp = '" + lastTimeStampRetrieved + "', LastModifiedBy = '" +lastModifiedBy + "' "
+                        + "WHERE Username = '" + usernameRetrived + "'";
 
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 out.println("passes stmt");
