@@ -221,7 +221,7 @@
                                         <div>
                                             <div>
                                             <input hidden id="mytext" type="text" value="All" />    
-                                            <select class="example-filter-input" id="3">
+                                            <select class="example-filter-input" id="2">
                                                 <option value="Active">Active</option>
                                                 <option value="Inactive">Inactive</option>
                                                 <option value="All">All</option>
@@ -236,7 +236,6 @@
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th>Admin ID</th>
                                                     <th>Username</th>
                                                     <th>Is Master Admin</th>
                                                     <th>Status</th>
@@ -250,7 +249,7 @@
                                                             out.print("<tr>");
                                                             User admin = adminMap.get(number);
 
-                                                            out.print("<td>" + admin.getID() + "</td>");
+                                                            //out.print("<td>" + admin.getID() + "</td>");
                                                             out.print("<td>" + admin.getName() + "</td>");
                                                             out.print("<td>" + admin.getIsMasterString() + "</td>");
                                                             //out.print("<td>" + admin.getStatus() + "</td>");
@@ -316,7 +315,7 @@
                                             var dataTable = $('#example').DataTable({
                                                 // "oSearch": {"sSearch": "Active"}
                                             });
-                                            dataTable.columns(3).search("Active", false, false, false).draw();
+                                            dataTable.columns(2).search("Active", false, false, false).draw();
                                             $('.example-filter-input').on('keyup click change', function () {
                                                 var i = $(this).attr('id');  // getting column index
                                                 var v = $(this).val();  // getting search input value
