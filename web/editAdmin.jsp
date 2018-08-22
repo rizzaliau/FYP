@@ -189,10 +189,6 @@
                 </nav>
                 <!-- End Navbar -->
 
-                <%
-                    //Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
-                %>
-
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">

@@ -85,8 +85,13 @@ public class adminUtility {
         String newPassword1 = request.getParameter("newPass1");
         String newPassword2 = request.getParameter("newPass2");
         String status = "Active";
-        String adminID = request.getParameter("adminID");
-        int adminIDInt = Integer.parseInt(adminID);
+        String lastTimeStamp = request.getParameter("lastModifiedTimeStamp");
+        String lastModifiedBy = request.getParameter("lastModifiedBy");
+        //String adminID = request.getParameter("adminID");
+        //int adminIDInt = Integer.parseInt(adminID);
+        out.println(userName);
+        out.println(isMasterAdmin);
+        
         
         if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
             request.setAttribute("status", "Blank fields detected. Please enter all fields");
@@ -103,8 +108,8 @@ public class adminUtility {
                 Connection conn = ConnectionManager.getConnection();
                 out.println("passes conn");
 
-                String sql = "INSERT INTO user " + "VALUES('"+ adminIDInt+"','"+userName+"','"+newPasswordHash+"',"
-                        + "'"+isMasterAdminInt+"','"+status+"')";
+                String sql = "INSERT INTO user " + "VALUES('"+userName+"','"+newPasswordHash+"',"
+                        + "'"+isMasterAdminInt+"','"+status+"','"+lastTimeStamp+"','"+lastModifiedBy+"')";
 
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 out.println("passes stmt");
@@ -115,7 +120,7 @@ public class adminUtility {
             }catch (SQLException ex) {
 
                 if(ex instanceof MySQLIntegrityConstraintViolationException){
-                    request.setAttribute("status", "Please enter a unique ID!");
+                    request.setAttribute("status", "Please enter a unique Username!");
                     request.getRequestDispatcher("admin.jsp").forward(request, response);
                 }else{
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

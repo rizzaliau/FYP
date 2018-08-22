@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="utility.salesOrderUtility"%>
@@ -222,21 +223,21 @@
                                         <br>
                                         <br>
                                         <form method="post" action="newAdminController">
+                                            <%
+                                                String currentModifier = usernameSession;
+                                                String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            %>
                                             
-                                              <div class="row">
+                                            <input type="hidden" class="form-control" value="<%= currentModifier %>" name="lastModifiedBy">
+                                            <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
+                                            
+                                            <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Username*</label>
                                                         <input type="text" title="Please enter at least 5 characters" class="form-control" placeholder="Username" required value="" size="5" name="userName">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5 px-1">
-                                                    <div class="form-group">
-                                                        <label>Admin ID*</label>
-                                                        <input type="text" class="form-control" required placeholder="Admin ID" required value="" size="10" name="adminID">
-                                                    </div>
-                                                </div>
-
 
                                             </div>
 
