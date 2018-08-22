@@ -26,7 +26,7 @@ public class UserDAO {
             out.println("username inputed is :" + username);
             out.println("passes conn");
             
-            String sql = "SELECT Username, HashPassword, IsMaster,Status From `user` WHERE Username = '"+username+"'";
+            String sql = "SELECT Username, HashPassword, IsMaster,Status,LastModifiedTimestamp,LastModifiedBy From `user` WHERE Username = '"+username+"'";
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
             
@@ -47,8 +47,10 @@ public class UserDAO {
                 int isMasterInt = Integer.parseInt(isMaster);
                 out.println(isMasterInt + " is printed out in userDAO ");
                 String status = rs.getString("Status");
+                String lastModifiedTimestamp = checkForNull(rs.getString("LastModifiedTimestamp"));
+                String lastModifiedBy = checkForNull(rs.getString("LastModifiedBy"));
                 
-                user = new User(name, password, isMasterInt,status);
+                user = new User(name, password, isMasterInt,status,lastModifiedTimestamp,lastModifiedBy);
                 return user;
             }
 
@@ -77,6 +79,13 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private static String checkForNull(String string){
+       if(string == null || string.equals("null")){
+           return "-";
+       }
+       return string;
     }
     
 }

@@ -41,7 +41,7 @@ public class adminUtility {
         try {
             conn = ConnectionManager.getConnection();
             
-            String sql = "SELECT Username, HashPassword, IsMaster,Status From `user`";
+            String sql = "SELECT Username, HashPassword, IsMaster,Status,LastModifiedTimestamp,LastModifiedBy From `user`";
 
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -55,8 +55,10 @@ public class adminUtility {
                 String isMaster = rs.getString("IsMaster");
                 int isMasterInt = Integer.parseInt(isMaster);
                 String status = rs.getString("Status");
-
-                User user = new User(name, hashPassword, isMasterInt, status);
+                String lastModifiedTimestamp = checkForNull(rs.getString("LastModifiedTimestamp"));
+                String lastModifiedBy = checkForNull(rs.getString("LastModifiedBy"));
+                
+                User user = new User(name, hashPassword, isMasterInt, status,lastModifiedTimestamp,lastModifiedBy);
 
                 adminsMap.put(count, user);
                 count++;
@@ -191,4 +193,12 @@ public class adminUtility {
 
         }
     }
+    
+    private static String checkForNull(String string){
+       if(string == null || string.equals("null")){
+           return "-";
+       }
+       return string;
+    }
+    
 }

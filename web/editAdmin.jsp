@@ -228,21 +228,27 @@
                                         <form method="post" action="editAdminController">
 
                                             <div class="row">
-                                                <div class="col-md-3 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Admin ID*</label>
-                                                        <input type="text" class="form-control" placeholder="Admin ID" required="" value="<%= admin.getID()%>" size="5" disabled="">
-                                                        <input type="hidden" class="form-control" value="<%= admin.getID()%>" name="adminID">
-                                                        <input type="hidden" class="form-control" value="<%= admin.getHashPassword()%>" name="hashPassword">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-5 px-1">
+                                                <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Username*</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="10" name="userName">                                            
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= admin.getName()%>" name="userName">
                                                     </div>
                                                 </div>
-
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Last Modified By*</label>
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= admin.getName()%>" name="userName">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Last Modified Time*</label>
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getName()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= admin.getName()%>" name="userName">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="row">

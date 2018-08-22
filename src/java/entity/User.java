@@ -13,19 +13,21 @@ public class User {
   private String password;
   private int isMaster;
   private String status;
-
+  private String lastModifiedTimestamp;
+  private String lastModifiedBy;
 
   public User() {
   } // default constructor
   // Constructor for easy creation
 
-  public User( String name, String password, int isMaster, String status) {
+  public User( String name, String password, int isMaster, String status, String lastModifiedTimestamp, String lastModifiedBy) {
       
     this.name = name;
     this.password = password;
     this.isMaster = isMaster;
     this.status = status;
-
+    this.lastModifiedTimestamp = lastModifiedTimestamp;
+    this.lastModifiedBy = lastModifiedBy;
   }
 
   public String getName() {
