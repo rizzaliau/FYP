@@ -66,4 +66,12 @@ public class User {
       return password;
   }
   
+  public String getLastModifiedTimestamp(){
+      return lastModifiedTimestamp;
+  }
+  
+  public String getLastModifiedBy(){
+      return lastModifiedBy;
+  }
+  
 }
