@@ -115,11 +115,16 @@ public class SalesOrderDetails {
     }
     
     public String getLastModifiedBy(){
-        return lastModifiedTimeStamp;
+        return lastModifiedBy;
     }
     
     public String getPaperBagRequired(){
-        return paperBagRequired;
+        
+        if(paperBagRequired.equals("0")){
+            return "No";
+        }
+        
+        return "Yes";
     }
     
 }

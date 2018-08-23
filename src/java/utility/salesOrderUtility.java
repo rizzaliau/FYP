@@ -371,7 +371,7 @@ public class salesOrderUtility {
    }
     private static String checkForNull(String string){
        if(string == null || string.equals("null")){
-           return "";
+           return "-";
        }
        return string;
    }

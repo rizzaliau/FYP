@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="entity.OrderItem"%>
@@ -219,7 +220,29 @@
                                         <form method="post" action="editSalesOrderController">
 
                                             <input type="hidden" name="orderID" value="<%= orderID%>">
-
+                                                    
+                                            <%
+                                                String currentModifier = usernameSession;
+                                                String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            %>    
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3 pr-4">
+                                                    <div class="form-group">
+                                                        <label>Last Modified By</label>
+                                                        <input type="text" class="form-control" size="10" value="<%= salesOrderdetails.getLastModifiedBy() %>" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= currentModifier %>" name="lastModifiedBy">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 pr-2">
+                                                    <div class="form-group">
+                                                        <label>Last Modified TIme</label>
+                                                        <input type="text" class="form-control" placeholder="Last Modified TimeStamp" size="10" value="<%= salesOrderdetails.getLastModifiedTimeStamp()%>" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                    
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
@@ -337,22 +360,33 @@
                                                 </div>
 
                                             </div>
-                                                    
+
+                                            
+
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Last Modified By</label>
-                                                        <input type="text" class="form-control" placeholder="Last Modified By" size="10" name="lastModifiedBy Route" value="<%= salesOrderdetails.getLastModifiedBy()%>" disabled="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Last Modified TIme</label>
-                                                        <input type="text" class="form-control" placeholder="Last Modified TimeStamp" size="10" name="lastModifiedTimeStamp" value="<%= salesOrderdetails.getLastModifiedTimeStamp()%>" disabled="">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        <label>Paper Bag Required?</label>
+                                                        <select name="paperBagRequired" class="form-control">
+                                                        <% 
+                                                            String paperBagDropDown = salesOrderdetails.getPaperBagRequired();
+                                                            if(paperBagDropDown.equals("yes") || paperBagDropDown.equals("Yes")){
+                                                                out.println("<option value='1'>Yes</option>");
+                                                                out.println("<option value='0'>No</option>");
+                                                                
+                                                            
+                                                            }else{
+                                                                out.println("<option value='0'>No</option>");
+                                                                
+                                                                out.println("<option value='1'>Yes</option>");
+                                                            }
 
+                                                        %> 
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
 
                                             <hr>
                                             <div class="card-body table-full-width table-responsive">

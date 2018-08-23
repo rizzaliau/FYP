@@ -127,23 +127,26 @@ public class editUtility {
         String[] qtyItemCodeRetrieved = request.getParameterValues("qty"); 
         String[] itemCodeRetrieved = request.getParameterValues("itemCode");
         String[] originalQtyRetrieved = request.getParameterValues("originalQty");
-        
-        out.println("qtyRetrieved " + qtyItemCodeRetrieved.length);
-        out.println("qtyRetrieved " + qtyItemCodeRetrieved[0]);
-        out.println("qtyRetrieved " + qtyItemCodeRetrieved[1]);
-        out.println("ItemCodeRetrieved " + itemCodeRetrieved.length);
-        out.println("ItemCodeRetrieved " + itemCodeRetrieved[0]);
-        out.println("ItemCodeRetrieved " + itemCodeRetrieved[1]);
-//        out.println("itemCodeRetrieved " + itemCodeRetrieved.length);
+        String lastTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
+        String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
+        String paperBagRequiredRetrieved = request.getParameter("paperBagRequired");
+        int paperBagRequiredInt = Integer.parseInt(paperBagRequiredRetrieved);
+        //out.println("qtyRetrieved " + qtyItemCodeRetrieved.length);
+        //out.println("qtyRetrieved " + qtyItemCodeRetrieved[0]);
+        //out.println("qtyRetrieved " + qtyItemCodeRetrieved[1]);
+        //out.println("ItemCodeRetrieved " + itemCodeRetrieved.length);
+        //out.println("ItemCodeRetrieved " + itemCodeRetrieved[0]);
+        //out.println("ItemCodeRetrieved " + itemCodeRetrieved[1]);
+        //out.println("itemCodeRetrieved " + itemCodeRetrieved.length);
 
         try {
 
             Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
             
-            //update status
+            //update status,last modified timestamp, last modified by and paper bag required
             String salesOrderSql = "UPDATE `sales_order`\n" +
-                "SET Status = '"+statusRetrieved+"'\n" +
+                "SET Status = '"+statusRetrieved+"', LastModifiedTimestamp ='"+lastTimeStampRetrieved+"' , LastModifiedBy ='"+lastModifiedByRetrieved+"' , PaperBagRequired ='"+paperBagRequiredInt+"'  \n" +
                 "WHERE OrderID = \""+orderIDRetrieved+"\"";
             
             //update delivery date
@@ -175,6 +178,7 @@ public class editUtility {
                     
                     String salesOrderQuantitySql = "";
                     
+                    //Update Quantity
                     if(qtyToRefund >= 0){
                         //update item code qty for each item
                         salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"', ReturnedQty = ReturnedQty + '"+qtyToRefundString+"' WHERE orderID = '" + orderIDRetrieved + "' "
