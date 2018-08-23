@@ -13,8 +13,8 @@ public class SalesOrderDetails {
     
     private String orderID;
     private String createTimeStamp;
+    private String lastModifiedTimeStamp;
     private String status;
-    private String lastModified;
     private String deliveryDate;
     private String subTotal;
     private String companyName;
@@ -26,15 +26,17 @@ public class SalesOrderDetails {
     private String deliverAddr2;
     private String deliverAddr3;
     private String deliverAddr4;
-    
-    public SalesOrderDetails(String orderID, String createTimeStamp, String status, String lastModified, String deliveryDate,
+    private String lastModifiedBy;
+    private String paperBagRequired;
+        
+    public SalesOrderDetails(String orderID, String createTimeStamp, String lastModifiedTimeStamp, String status, String deliveryDate,
             String subTotal, String companyName, String debtorName, String deliverContact ,String displayTerm, 
-            String routeNumber, String deliverAddr1, String deliverAddr2, String deliverAddr3, String deliverAddr4){
+            String routeNumber, String deliverAddr1, String deliverAddr2, String deliverAddr3, String deliverAddr4, String lastModifiedBy, String paperBagRequired){
         
         this.orderID = orderID;
         this.createTimeStamp = createTimeStamp;
+        this.lastModifiedTimeStamp = lastModifiedTimeStamp;
         this.status = status;
-        this.lastModified = lastModified;
         this.deliveryDate = deliveryDate;
         this.subTotal = subTotal;
         this.companyName = companyName;
@@ -46,6 +48,8 @@ public class SalesOrderDetails {
         this.deliverAddr2 = deliverAddr2;
         this.deliverAddr3 = deliverAddr3;
         this.deliverAddr4 = deliverAddr4;
+        this.lastModifiedBy = lastModifiedBy;
+        this.paperBagRequired = paperBagRequired;
     }
     
     
@@ -63,8 +67,8 @@ public class SalesOrderDetails {
     }
     
     
-    public String getLastModified(){
-        return lastModified;
+    public String getLastModifiedTimeStamp(){
+        return lastModifiedTimeStamp;
     }
     
     public String getDeliveryDate(){
@@ -110,6 +114,12 @@ public class SalesOrderDetails {
         return deliverAddr4;
     }
     
+    public String getLastModifiedBy(){
+        return lastModifiedTimeStamp;
+    }
     
+    public String getPaperBagRequired(){
+        return paperBagRequired;
+    }
     
 }

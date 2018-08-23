@@ -337,6 +337,21 @@
                                                 </div>
 
                                             </div>
+                                                    
+                                            <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Last Modified By</label>
+                                                        <input type="text" class="form-control" placeholder="Last Modified By" size="10" name="lastModifiedBy Route" value="<%= salesOrderdetails.getLastModifiedBy()%>" disabled="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Last Modified TIme</label>
+                                                        <input type="text" class="form-control" placeholder="Last Modified TimeStamp" size="10" name="lastModifiedTimeStamp" value="<%= salesOrderdetails.getLastModifiedTimeStamp()%>" disabled="">
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
                                             <hr>

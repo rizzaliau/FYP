@@ -204,8 +204,8 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp,\n" +
-                "sod.DeliveryDate, sod.SubTotal,\n" +
+            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp, so.LastModifiedBy, so.PaperBagRequired, \n" +
+                "sod.DeliveryDate, sod.SubTotal, \n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
                 "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
                 "from sales_order so inner join sales_order_detail sod ON so.OrderID = sod.OrderID\n" +
@@ -222,7 +222,7 @@ public class salesOrderUtility {
                 String orderIDRetrieved = checkForNull(rs.getString("OrderID"));
                 String createTimeStamp= checkForNull(rs.getString("CreatedTimeStamp"));
                 String status= checkForNull(rs.getString("Status"));
-                String lastModified= checkForNull(rs.getString("LastModifiedTimeStamp"));
+                String lastModifiedTimeStamp= checkForNull(rs.getString("LastModifiedTimeStamp"));
                 String deliveryDate= checkForNull(rs.getString("DeliveryDate"));
                 String subTotal= checkForNull(rs.getString("SubTotal"));
                 String companyName= checkForNull(rs.getString("CompanyName"));
@@ -233,14 +233,15 @@ public class salesOrderUtility {
                 String deliverAddr1= checkForNull(rs.getString("DeliverAddr1"));
                 String deliverAddr2= checkForNull(rs.getString("DeliverAddr2"));
                 String deliverAddr3= checkForNull(rs.getString("DeliverAddr3"));
-                String deliverAddr4= checkForNull(rs.getString("DeliverAddr4"));   
+                String deliverAddr4= checkForNull(rs.getString("DeliverAddr4"));
+                String lastModifiedBy= checkForNull(rs.getString("LastModifiedBy"));  
+                String paperBagRequired= checkForNull(rs.getString("PaperBagRequired"));  
                 
-                SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,status,
-                        lastModified,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
-                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4);
+                SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,
+                        lastModifiedTimeStamp,status,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
+                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired);
                 salesOrderDetailsReturn = salesOrderDetails;
-                //catalogueMap.put(count, orderItem);
-                //count++;
+
             }
             
         }catch(SQLException e){
@@ -388,7 +389,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp,\n" +
+            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp, so.LastModifiedBy, so.PaperBagRequired, \n" +
                 "sod.DeliveryDate, sod.SubTotal,\n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
                 "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
@@ -404,28 +405,28 @@ public class salesOrderUtility {
 
             while (rs.next()) {
                 
-                String orderIDRetrieved = rs.getString("OrderID");
-                String createTimeStamp= rs.getString("CreatedTimeStamp");
-                String status= rs.getString("Status");
-                String lastModified= rs.getString("LastModifiedTimeStamp");
-                String deliveryDate= rs.getString("DeliveryDate");
-                String subTotal= rs.getString("SubTotal");
-                String companyName= rs.getString("CompanyName");
-                String debtorName= rs.getString("DebtorName");
-                String deliverContact= rs.getString("DeliverContact");
-                String displayTerm= rs.getString("DisplayTerm");
-                String routeNumber= rs.getString("RouteNumber");
-                String deliverAddr1= rs.getString("DeliverAddr1");
-                String deliverAddr2= rs.getString("DeliverAddr2");
-                String deliverAddr3= rs.getString("DeliverAddr3");
-                String deliverAddr4= rs.getString("DeliverAddr4");   
+                String orderIDRetrieved = checkForNull(rs.getString("OrderID"));
+                String createTimeStamp= checkForNull(rs.getString("CreatedTimeStamp"));
+                String status= checkForNull(rs.getString("Status"));
+                String lastModifiedTimeStamp= checkForNull(rs.getString("LastModifiedTimeStamp"));
+                String deliveryDate= checkForNull(rs.getString("DeliveryDate"));
+                String subTotal= checkForNull(rs.getString("SubTotal"));
+                String companyName= checkForNull(rs.getString("CompanyName"));
+                String debtorName= checkForNull(rs.getString("DebtorName"));
+                String deliverContact= checkForNull(rs.getString("DeliverContact"));
+                String displayTerm= checkForNull(rs.getString("DisplayTerm"));
+                String routeNumber= checkForNull(rs.getString("RouteNumber"));
+                String deliverAddr1= checkForNull(rs.getString("DeliverAddr1"));
+                String deliverAddr2= checkForNull(rs.getString("DeliverAddr2"));
+                String deliverAddr3= checkForNull(rs.getString("DeliverAddr3"));
+                String deliverAddr4= checkForNull(rs.getString("DeliverAddr4"));
+                String lastModifiedBy= checkForNull(rs.getString("LastModifiedBy"));  
+                String paperBagRequired= checkForNull(rs.getString("PaperBagRequired"));  
                 
-                SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,status,
-                        lastModified,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
-                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4);
+                SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,
+                        lastModifiedTimeStamp,status,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
+                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired);
                 salesOrderDetailsReturn = salesOrderDetails;
-                //catalogueMap.put(count, orderItem);
-                //count++;
             }
             
         }catch(SQLException e){
@@ -452,7 +453,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp,\n" +
+            String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp, so.LastModifiedBy, so.PaperBagRequired \n" +
                 "sod.DeliveryDate, sod.SubTotal,\n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
                 "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
@@ -468,28 +469,28 @@ public class salesOrderUtility {
 
             while (rs.next()) {
                 
-                String orderIDRetrieved = rs.getString("OrderID");
-                String createTimeStamp= rs.getString("CreatedTimeStamp");
-                String status= rs.getString("Status");
-                String lastModified= rs.getString("LastModifiedTimeStamp");
-                String deliveryDate= rs.getString("DeliveryDate");
-                String subTotal= rs.getString("SubTotal");
-                String companyName= rs.getString("CompanyName");
-                String debtorName= rs.getString("DebtorName");
-                String deliverContact= rs.getString("DeliverContact");
-                String displayTerm= rs.getString("DisplayTerm");
-                String routeNumber= rs.getString("RouteNumber");
-                String deliverAddr1= rs.getString("DeliverAddr1");
-                String deliverAddr2= rs.getString("DeliverAddr2");
-                String deliverAddr3= rs.getString("DeliverAddr3");
-                String deliverAddr4= rs.getString("DeliverAddr4");   
+                String orderIDRetrieved = checkForNull(rs.getString("OrderID"));
+                String createTimeStamp= checkForNull(rs.getString("CreatedTimeStamp"));
+                String status= checkForNull(rs.getString("Status"));
+                String lastModifiedTimeStamp= checkForNull(rs.getString("LastModifiedTimeStamp"));
+                String deliveryDate= checkForNull(rs.getString("DeliveryDate"));
+                String subTotal= checkForNull(rs.getString("SubTotal"));
+                String companyName= checkForNull(rs.getString("CompanyName"));
+                String debtorName= checkForNull(rs.getString("DebtorName"));
+                String deliverContact= checkForNull(rs.getString("DeliverContact"));
+                String displayTerm= checkForNull(rs.getString("DisplayTerm"));
+                String routeNumber= checkForNull(rs.getString("RouteNumber"));
+                String deliverAddr1= checkForNull(rs.getString("DeliverAddr1"));
+                String deliverAddr2= checkForNull(rs.getString("DeliverAddr2"));
+                String deliverAddr3= checkForNull(rs.getString("DeliverAddr3"));
+                String deliverAddr4= checkForNull(rs.getString("DeliverAddr4"));
+                String lastModifiedBy= checkForNull(rs.getString("LastModifiedBy"));  
+                String paperBagRequired= checkForNull(rs.getString("PaperBagRequired"));  
                 
-                SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,status,
-                        lastModified,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
-                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4);
+                SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,
+                        lastModifiedTimeStamp,status,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
+                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired);
                 salesOrderDetailsReturn = salesOrderDetails;
-                //catalogueMap.put(count, orderItem);
-                //count++;
             }
             
         }catch(SQLException e){
