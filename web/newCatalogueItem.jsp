@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="utility.salesOrderUtility"%>
@@ -236,7 +237,13 @@
                                             <p><b>Step 2:</b> Enter required fields</p>
                                             <p class="card-category"><font color = "red">* denotes required fields</font></p>
                                          </div>
-                                        
+                                            <%
+                                                String currentModifier = usernameSession;
+                                                String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            %>
+                                            
+                                            <input type="hidden" class="form-control" value="<%= currentModifier %>" name="lastModifiedBy">
+                                            <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
                                             
                                               <div class="row">
                                                 <div class="col-md-3 pr-1">

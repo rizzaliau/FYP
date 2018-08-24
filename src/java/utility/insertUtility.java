@@ -104,6 +104,8 @@ public class insertUtility {
         String unitofMetricRetrieved = catalogueCheckForNull(new String (request.getParameter("unitOfMetric").getBytes ("iso-8859-1"), "UTF-8"));
         String retailPriceRetrieved = catalogueCheckForNull(request.getParameter("retailPrice"));  
         String status = "Active";
+        String lastModifiedTimeStamp = catalogueCheckForNull(request.getParameter("lastModifiedTimeStamp"));
+        String lastModifiedBy = catalogueCheckForNull(request.getParameter("lastModifiedBy"));
         
         if(imageURLRetrieved==null){
             request.setAttribute("status", "Error: Please upload an image! ");
@@ -138,7 +140,7 @@ public class insertUtility {
             String sql = "INSERT INTO order_item " + "VALUES('"+ itemCodeRetrieved+"','"+descriptionRetrieved+"','"+chineseDescriptionRetrieved+"',"
                     + "'"+unitPriceRetrieved+"','"+retailPriceRetrieved+"','"+unitofMetricRetrieved+"','"
                     +imageURLRetrieved+"','"+defaultQuantityRetrieved
-                    +"','"+quantityMultiplesRetrieved+"','"+status+"')";
+                    +"','"+quantityMultiplesRetrieved+"','"+status+"','"+lastModifiedTimeStamp+"','"+lastModifiedBy+"')";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
