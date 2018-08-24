@@ -49,9 +49,6 @@ public class debtorUtility {
         try {
             conn = ConnectionManager.getConnection();
             
-            //Old code to retrieve all active users
-            //String populateMap = "SELECT * FROM `debtor` WHERE status = 'ACTIVE'";
-            
             String populateMap = "SELECT * FROM `debtor` order by status asc, DebtorName asc";
             
             pstmt = conn.prepareStatement(populateMap);
@@ -61,57 +58,31 @@ public class debtorUtility {
 
             while (rs.next()) {
                 
-                String debtorCode = rs.getString("DebtorCode");
-                String companyCode = rs.getString("companyCode");
-                String hashPassword = rs.getString("HashPassword");
-                String companyName = rs.getString("CompanyName");
-                String debtorName = rs.getString("DebtorName");
-                String deliverContact = rs.getString("DeliverContact");
-                String deliverContact2 = rs.getString("DeliverContact2");
-                String invAddr1 = rs.getString("InvAddr1");
-                String invAddr2 = rs.getString("InvAddr2");        
-                String invAddr3 = rs.getString("InvAddr3");
-                String invAddr4 = rs.getString("InvAddr4");
-                String deliverAddr1 = rs.getString("DeliverAddr1");
-                String deliverAddr2 = rs.getString("DeliverAddr2");
-                String deliverAddr3 = rs.getString("DeliverAddr3");
-                String deliverAddr4 = rs.getString("DeliverAddr4");
-                String displayTerm = rs.getString("DisplayTerm");
-                String status = rs.getString("Status");
-                String routeNumber = rs.getString("RouteNumber");
-                
-                if(invAddr1==null){
-                    invAddr1 = "";
-                }
-                if(invAddr2==null){
-                    invAddr2 = "";
-                }
-                if(invAddr3==null){
-                    invAddr3 = "";
-                }
-                if(invAddr4==null){
-                    invAddr4 = "";
-                }
-                
-                if(deliverAddr1==null){
-                    deliverAddr1 = "";
-                }
-                if(deliverAddr2==null){
-                    deliverAddr2 = "";
-                }
-                if(deliverAddr3==null){
-                    deliverAddr3 = "";
-                }
-                if(deliverAddr4==null){
-                    deliverAddr4 = "";
-                }
-                if(deliverContact2==null){
-                    deliverContact2 = "";
-                }
+                String debtorCode = checkForNull(rs.getString("DebtorCode"));
+                String companyCode = checkForNull(rs.getString("companyCode"));
+                String hashPassword = checkForNull(rs.getString("HashPassword"));
+                String companyName = checkForNull(rs.getString("CompanyName"));
+                String debtorName = checkForNull(rs.getString("DebtorName"));
+                String deliverContact = checkForNull(rs.getString("DeliverContact"));
+                String deliverContact2 = checkForNull(rs.getString("DeliverContact2"));
+                String invAddr1 = checkForNull(rs.getString("InvAddr1"));
+                String invAddr2 = checkForNull(rs.getString("InvAddr2"));        
+                String invAddr3 = checkForNull(rs.getString("InvAddr3"));
+                String invAddr4 = checkForNull(rs.getString("InvAddr4"));
+                String deliverAddr1 = checkForNull(rs.getString("DeliverAddr1"));
+                String deliverAddr2 = checkForNull(rs.getString("DeliverAddr2"));
+                String deliverAddr3 = checkForNull(rs.getString("DeliverAddr3"));
+                String deliverAddr4 = checkForNull(rs.getString("DeliverAddr4"));
+                String displayTerm = checkForNull(rs.getString("DisplayTerm"));
+                String status = checkForNull(rs.getString("Status"));
+                String routeNumber = checkForNull(rs.getString("RouteNumber"));
+                String lastModifiedTimeStamp = checkForNull(rs.getString("LastModifiedTimeStamp"));
+                String lastModifiedBy = checkForNull(rs.getString("LastModifiedBy"));
+                String preferredLanguage = checkForNull(rs.getString("PreferredLanguage"));
                 
                 Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverContact2,
                     invAddr1,invAddr2,invAddr3,invAddr4,deliverAddr1,deliverAddr2,
-                    deliverAddr3,deliverAddr4,displayTerm,status,routeNumber);
+                    deliverAddr3,deliverAddr4,displayTerm,status,routeNumber,lastModifiedTimeStamp,lastModifiedBy,preferredLanguage);
                 
                 debtorMap.put(count, debtor);
                 count++;
@@ -155,7 +126,7 @@ public class debtorUtility {
                 String companyName = checkForNull(rs.getString("CompanyName"));
                 String debtorName = checkForNull(rs.getString("DebtorName"));
                 String deliverContact = checkForNull(rs.getString("DeliverContact"));
-                String deliverFax1 = checkForNull(rs.getString("DeliverFax1"));
+                String deliverContact2 = checkForNull(rs.getString("DeliverContact2"));
                 String invAddr1 = checkForNull(rs.getString("InvAddr1"));
                 String invAddr2 = checkForNull(rs.getString("InvAddr2"));        
                 String invAddr3 = checkForNull(rs.getString("InvAddr3"));
@@ -167,40 +138,13 @@ public class debtorUtility {
                 String displayTerm = checkForNull(rs.getString("DisplayTerm"));
                 String status = checkForNull(rs.getString("Status"));
                 String routeNumber = checkForNull(rs.getString("RouteNumber"));
-                /*
-                if(invAddr1==null){
-                    invAddr1 = "";
-                }
-                if(invAddr2==null){
-                    invAddr2 = "";
-                }
-                if(invAddr3==null){
-                    invAddr3 = "";
-                }
-                if(invAddr4==null){
-                    invAddr4 = "";
-                }
+                String lastModifiedTimeStamp = checkForNull(rs.getString("LastModifiedTimeStamp"));
+                String lastModifiedBy = checkForNull(rs.getString("LastModifiedBy"));
+                String preferredLanguage = checkForNull(rs.getString("PreferredLanguage"));
                 
-                if(deliverAddr1==null){
-                    deliverAddr1 = "";
-                }
-                if(deliverAddr2==null){
-                    deliverAddr2 = "";
-                }
-                if(deliverAddr3==null){
-                    deliverAddr3 = "";
-                }
-                if(deliverAddr4==null){
-                    deliverAddr4 = "";
-                }
-                
-                if(deliverFax1==null){
-                    deliverFax1 = "";
-                }*/
-                
-                Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverFax1,
+                Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverContact2,
                     invAddr1,invAddr2,invAddr3,invAddr4,deliverAddr1,deliverAddr2,
-                    deliverAddr3,deliverAddr4,displayTerm,status,routeNumber);
+                    deliverAddr3,deliverAddr4,displayTerm,status,routeNumber,lastModifiedTimeStamp,lastModifiedBy,preferredLanguage);
                 
                 debtorMap.put(count, debtor);
                 count++;
