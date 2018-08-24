@@ -30,16 +30,9 @@ import javax.servlet.http.HttpServletResponse;
 public class editUtility {
     
     public static void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        //HttpSession session = request.getSession();
-        //String userNameRetrieved = (String) session.getAttribute("username");
-
-        //out.println("User retrieved is :"+userNameRetrieved);
-        //String IDRetrieved = request.getParameter("ID");
         
         String debtorCodeRetrived = checkForNull(request.getParameter("debtorCode"));
         String companyCodeRetrieved = checkForNull(request.getParameter("companyCode"));
-        //String newPasswordRetrieved = request.getParameter("hashPassword");
         String companyNameRetrieved = checkForNull(request.getParameter("companyName"));
         String debtorNameRetrieved = checkForNull(request.getParameter("debtorName"));
         String deliverContactRetrieved = checkForNull(request.getParameter("deliverContact"));
@@ -56,30 +49,10 @@ public class editUtility {
         String statusRetrieved = checkForNull(request.getParameter("status"));
         String routeNumberRetrieved = checkForNull(request.getParameter("routeNumber"));
         int routeNumber = Integer.parseInt(routeNumberRetrieved);
+        String lastModifiedTimeStampRetrieved = checkForNull(request.getParameter("lastModifiedTimeStamp"));
+        String lastModifiedByRetrieved = checkForNull(request.getParameter("lastModifiedBy"));
+        String preferredLanguageRetrieved = checkForNull(request.getParameter("preferredLanguage"));
         
-        //Converts normal password to hashpassword
-        //String newPasswordHash = loginUtility.getSha256(newPasswordRetrieved);
-        
-//        out.println(debtorCodeRetrived);
-//        out.println(companyCodeRetrieved);
-//        out.println(companyNameRetrieved);
-//        out.println(debtorNameRetrieved);
-//        out.println(deliverContactRetrieved);
-//        out.println(deliverContact2Retrieved);
-//        out.println(invAddr1Retrieved);
-//        out.println(invAddr2Retrieved);
-//        out.println(invAddr2Retrieved);
-//        out.println(invAddr3Retrieved);
-//        out.println(invAddr4Retrieved);
-//        out.println(deliverAddr1Retrieved);
-//        out.println(deliverAddr2Retrieved);
-//        out.println(deliverAddr3Retrieved);
-//        out.println(deliverAddr4Retrieved);
-//        out.println(displayTermRetrieved);
-//        out.println(statusRetrieved);
-//        out.println(routeNumberRetrieved);
-        
-
         try {
 
             Connection conn = ConnectionManager.getConnection();
@@ -93,12 +66,10 @@ public class editUtility {
                     + " invAddr4 = '" + invAddr4Retrieved + "', deliverAddr1 = '" +deliverAddr1Retrieved + "', "
                     + " deliverAddr2 = '" + deliverAddr2Retrieved + "', deliverAddr3 = '" +deliverAddr3Retrieved + "', "
                     + " deliverAddr4 = '" + deliverAddr4Retrieved + "', DisplayTerm = '" +displayTermRetrieved + "', "
-                    + " Status = '" + statusRetrieved + "', RouteNumber = '" +routeNumber + "' "
+                    + " Status = '" + statusRetrieved + "', RouteNumber = '" +routeNumber + "', "
+                    + " LastModifiedTimestamp = '" + lastModifiedTimeStampRetrieved + "', LastModifiedBy = '" +lastModifiedByRetrieved + "', "
+                    + " PreferredLanguage = '" + preferredLanguageRetrieved + "' "
                     + "WHERE DebtorCode = '" + debtorCodeRetrived + "'";
-
-
-//            String sql = "UPDATE `debtor` SET CompanyCode='" + companyCodeRetrieved + "'"
-//                    + "WHERE DebtorCode = '" + debtorCodeRetrived + "';";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");

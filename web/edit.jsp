@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.HashMap"%>
@@ -220,6 +221,11 @@
                                         <form method="post" action="editController">
 
                                             <div class="row">
+                                                <%
+                                                    String currentModifier = usernameSession;
+                                                    String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());  
+                                                %>    
+                                                
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Customer Code*</label>
@@ -227,13 +233,36 @@
                                                         <input type="hidden" value="<%= debtor.getDebtorCode()%>" name="debtorCode">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5 px-1">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Last Modified By</label>
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= debtor.getLastModifiedBy()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= currentModifier %>" name="lastModifiedBy">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Last Modified Time</label>
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= debtor.getLastModifiedTimeStamp()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">    
+                                                <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                        
                                                         <label>Company Name*</label>
                                                         <input type="text" class="form-control" required placeholder="Company Name" title="Please only enter alphabets" value="<%= debtor.getCompanyName()%>" size="10" name="companyName">                                                           
                                                     </div>
                                                 </div>
+                                                    
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Preferred Language*</label>
+                                                        <input type="text" class="form-control" required placeholder="" title="Please only enter alphabets" value="<%= debtor.getPreferredLanguage()%>" size="10" name="preferredLanguage">                                                           
+                                                </div>
+                                            </div>
 
                                             </div>
                                             <div class="row">
@@ -370,6 +399,7 @@
                                                 </div>
 -->
                                                 <input type="hidden" value='C.O.D' name="displayTerm" />
+                                                
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">                                                                                                         <label>Route*</label>
                                                         <select name ="routeNumber" class="form-control" required>

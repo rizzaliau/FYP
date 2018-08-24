@@ -78,11 +78,11 @@ public class searchUtility {
                 String status = rs.getString("Status");
                 String routeNumber = rs.getString("RouteNumber");
                 
-                Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverFax1,
-                    invAddr1,invAddr2,invAddr3,invAddr4,deliverAddr1,deliverAddr2,
-                    deliverAddr3,deliverAddr4,displayTerm,status,routeNumber);
+//                Debtor debtor = new Debtor (debtorCode,companyCode,hashPassword,companyName,debtorName,deliverContact,deliverFax1,
+//                    invAddr1,invAddr2,invAddr3,invAddr4,deliverAddr1,deliverAddr2,
+//                    deliverAddr3,deliverAddr4,displayTerm,status,routeNumber);
                 
-                searchMap.put(count, debtor);
+                //searchMap.put(count, debtor);
                 count++;
             }
             

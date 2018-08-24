@@ -87,12 +87,8 @@ public class adminUtility {
         String status = "Active";
         String lastTimeStamp = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedBy = request.getParameter("lastModifiedBy");
-        //String adminID = request.getParameter("adminID");
-        //int adminIDInt = Integer.parseInt(adminID);
-        out.println(userName);
-        out.println(isMasterAdmin);
         
-        
+        //Validation for password
         if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
             request.setAttribute("status", "Blank fields detected. Please enter all fields");
             request.getRequestDispatcher("newAdmin.jsp").forward(request, response);   
@@ -136,7 +132,8 @@ public class adminUtility {
     }
     
     public static void editAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
+        //Get all Parameters
         String usernameRetrived = request.getParameter("userName");
         String isMasterAdminRetrieved = request.getParameter("isMasterAdmin");
         String serialRetrieved = request.getParameter("serial");
@@ -147,15 +144,11 @@ public class adminUtility {
         
         String lastTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedBy = request.getParameter("lastModifiedBy");
-        //out.println(usernameRetrived);
-        //out.println(isMasterAdminRetrieved);
-        //out.println(adminIDRetrieved);
-        //out.println(statusRetrieved);
-        //out.println(passwordRetrieved);
         
         String newPassword1 = request.getParameter("newPass1");
         String newPassword2 = request.getParameter("newPass2");
         
+        //Validation for Password
         if (!(newPassword1.equals(newPassword2))){   
             
             request.setAttribute("serial", serialInt);
