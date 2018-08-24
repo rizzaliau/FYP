@@ -7,11 +7,18 @@ package utility;
 
 import dao.ConnectionManager;
 import dao.UserDAO;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import static java.lang.System.out;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -119,59 +126,54 @@ public class deleteUtility {
     public static void cancelSalesOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String orderIDRetrieved = request.getParameter("orderIDRecordToBeDeleted");
-        //String statusRetrieved = request.getParameter("statusRecordToBeDeleted");
         String cancelledReasonRetrieved = request.getParameter("cancelledReason");
-        //String deliveryDateRetrieved = request.getParameter("deliveryDateRecordToBeDeleted");
-        //String itemCodeRetrieved = "1";
-        
-        //if(statusRetrieved.equals("pendingDelivery")){
-            //statusRetrieved = "Pending Delivery";
-        //}
+        String preferredLanguageRetrieved = request.getParameter("preferredLanguage");
         
         if(cancelledReasonRetrieved.equals("")||cancelledReasonRetrieved==null||cancelledReasonRetrieved.equals("null")){
             request.setAttribute("msgStatus", "Please enter a cancelled reason!");
             request.getRequestDispatcher("cancelSalesOrderConfirmation.jsp").forward(request, response);
         }else{
-            
-        
-        //System.out.println("inputs are  : "+orderIDRetrieved+statusRetrieved);
-        
-        try {
-            
-            Connection conn = ConnectionManager.getConnection();
-            out.println("passes conn");
-            
-            //String salesOrderDetailSql = "DELETE FROM `sales_order_detail` WHERE orderID = '" + orderIDRetrieved + "' "
-                    //+ "AND DeliveryDate='"+deliveryDateRetrieved+"' ";
-            
-            //String salesOrderQtySql = "DELETE FROM `sales_order_quantity` WHERE orderID = '" + orderIDRetrieved + "' ";
 
-            //String salesOrderSql = "DELETE FROM `sales_order` WHERE orderID = '" + orderIDRetrieved + "' "
-                    //+ "AND status='"+statusRetrieved+"' ";
+            try {
 
-            String cancelSalesOrderSQL = "UPDATE `sales_order` SET Status='Cancelled',"
-                    + " CancelledReason = '" + cancelledReasonRetrieved + "'"
-                    + "WHERE OrderID = '" + orderIDRetrieved + "'";
-            
-            
-            PreparedStatement stmt1 = conn.prepareStatement(cancelSalesOrderSQL);
-            //PreparedStatement stmt2 = conn.prepareStatement(salesOrderQtySql);
-            //PreparedStatement stmt3 = conn.prepareStatement(salesOrderSql);
-            out.println("passes stmt");
+                Connection conn = ConnectionManager.getConnection();
+                out.println("passes conn");
 
-            stmt1.executeUpdate();
-            //stmt2.executeUpdate();
-            //stmt3.executeUpdate();
-            out.println("passes rs");
+                //String salesOrderDetailSql = "DELETE FROM `sales_order_detail` WHERE orderID = '" + orderIDRetrieved + "' "
+                        //+ "AND DeliveryDate='"+deliveryDateRetrieved+"' ";
 
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error updating record!");
-        }
-        
-        request.setAttribute("status", "Record cancelled successfully!");
+                //String salesOrderQtySql = "DELETE FROM `sales_order_quantity` WHERE orderID = '" + orderIDRetrieved + "' ";
 
-        request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
+                //String salesOrderSql = "DELETE FROM `sales_order` WHERE orderID = '" + orderIDRetrieved + "' "
+                        //+ "AND status='"+statusRetrieved+"' ";
+
+                String cancelSalesOrderSQL = "UPDATE `sales_order` SET Status='Cancelled',"
+                        + " CancelledReason = '" + cancelledReasonRetrieved + "'"
+                        + "WHERE OrderID = '" + orderIDRetrieved + "'";
+
+
+                PreparedStatement stmt1 = conn.prepareStatement(cancelSalesOrderSQL);
+                //PreparedStatement stmt2 = conn.prepareStatement(salesOrderQtySql);
+                //PreparedStatement stmt3 = conn.prepareStatement(salesOrderSql);
+                out.println("passes stmt");
+
+                stmt1.executeUpdate();
+                //stmt2.executeUpdate();
+                //stmt3.executeUpdate();
+                out.println("passes rs");
+                
+                boolean smsSentForCancelOrder = sendSmsForCancelOrder(preferredLanguageRetrieved, "97597790", orderIDRetrieved);    
+                System.out.println("Cancel Order SMS Sent is " + smsSentForCancelOrder);
+
+
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("status", "Error updating record!");
+            }
+
+            request.setAttribute("status", "Record cancelled successfully!");
+
+            request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
         
         }
     }
@@ -344,6 +346,76 @@ public class deleteUtility {
         
     }
     
-    
+    public static boolean sendSmsForCancelOrder(String language, String contactNumber, String orderID){
+        boolean result = false;
+        String myData = "";
+
+          //check if parameters is valid (not null and length not = 0)
+        if (language != null && contactNumber != null && orderID != null & language.length() > 0 && contactNumber.length() >0 && orderID.length() > 0){
+
+            try{
+            // This URL is used for sending messages
+            String myURI = "https://api.bulksms.com/v1/messages";
+
+            String myUsername = "F89898B66F9C4AA2A051176711AE05AE-02-C";
+            String myPassword = "aeaIP2IprPZa89K!!PWo!UQQlemgd";
+
+             String toNumber = "+65" + contactNumber;
+
+             if (language.equals("English")){
+                myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[Lim Kee] Order #" + orderID 
+                + "\n" + "Your order has been modified. If you did not authorize this change, please call +65 758 5858." + "\"}";
+            } else {
+                myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[林记] 订単 #"  + orderID + "\n" + "您的订单已经被取消。若非您授权的，请拨打+65 6758 5858。" + "\"}";
+            }
+            // build the request based on the supplied settings
+            URL url = new URL(myURI);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.setDoOutput(true);
+
+            // supply the credentials
+            String authStr = myUsername + ":" + myPassword;
+            String authEncoded = Base64.getEncoder().encodeToString(authStr.getBytes()); 
+            request.setRequestProperty("Authorization", "Basic " + authEncoded);
+
+            request.setRequestMethod("POST");
+            request.setRequestProperty( "Content-Type", "application/json");
+
+            // write the data to the request
+            OutputStreamWriter out = new OutputStreamWriter(request.getOutputStream());
+            out.write(myData);
+            out.close();
+
+            try {
+              // make the call to the API
+              InputStream response = request.getInputStream();
+              BufferedReader in = new BufferedReader(new InputStreamReader(response));
+              String replyText;
+              while ((replyText = in.readLine()) != null) {
+                System.out.println(replyText);
+              }
+              in.close();
+
+              result = true;
+            } catch (IOException ex) {
+              System.out.println("An error occurred:" + ex.getMessage());
+              BufferedReader in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
+              // print the detail that comes with the error
+              String replyText;
+              while ((replyText = in.readLine()) != null) {
+                System.out.println(replyText);
+              }
+              in.close();
+            }
+            request.disconnect();
+            } catch (Exception e){
+                System.out.println(e);
+            }
+        } else {
+            System.out.println("Parameters is null/blank");
+        }
+        return result;
+
+    }
     
 }

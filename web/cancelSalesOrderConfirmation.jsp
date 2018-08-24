@@ -202,6 +202,7 @@
                                             <input type= "hidden" name="orderIDRecordToBeDeleted" value='<%= orderID %>'/>
                                             <input type= "hidden" name="statusRecordToBeDeleted" value='<%= status %>'/>
                                             <input type= "hidden" name="deliveryDateRecordToBeDeleted" value='<%= deliveryDate %>'/>
+                                            <input type= "hidden" name="preferredLanguage" value='<%= salesOrderdetails.getPreferredLanguage() %>'/>
                                             <p>
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Confirm Cancel" style="margin-right: 20px; margin-top: 10px; margin-bottom: 20px; "> 
                                             <a href="salesOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Cancel"  value="Back" style="margin-right:10px; margin-top: 10px; margin-bottom: 20px;"/></a>
