@@ -201,6 +201,8 @@ public class editUtility {
         String quantityMultiplesRetrieved = request.getParameter("quantityMultiples");
         String newImageURLRetrieved = request.getParameter("newImageURL");
         String imageURLToUpdate = "";
+        String lastTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
+        String lastModifiedBy = request.getParameter("lastModifiedBy");
         
 // Debugging lines
 //        System.out.println("Debugging line: "+itemCodeRetrieved);
@@ -230,7 +232,8 @@ public class editUtility {
                     + " Description = '" + descriptionRetrieved + "', Description2 = '" +chineseDescriptionRetrieved + "', "
                     + " UnitPrice = '" + unitPriceRetrieved + "', RetailPrice = '" +retailPriceRetrieved 
                     + "' , UnitOfMetric = '" +unitOfMetricRetrieved + "', ImageURL = '" +imageURLToUpdate + "', "
-                    + " DefaultQty = '" + defaultQuantityRetrieved + "', QtyMultiples = '" +quantityMultiplesRetrieved + "' "
+                    + " DefaultQty = '" + defaultQuantityRetrieved + "', QtyMultiples = '" +quantityMultiplesRetrieved + "', "
+                    + " LastModifiedTimestamp = '" + lastTimeStampRetrieved + "', LastModifiedBy = '" +lastModifiedBy + "' "
                     + "WHERE ItemCode = '" + itemCodeRetrieved + "'";
 
             PreparedStatement stmt = conn.prepareStatement(sql);

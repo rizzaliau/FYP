@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="utility.salesOrderUtility"%>
@@ -40,25 +41,25 @@
 
     <body>
          <!-- Modal pop up alert -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Your changes will not be saved. Are you sure you want to leave this page?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "catalogueEdit.jsp">Continue</a></button>
-                                                                <button type="button" class="btn btn-danger"><a href = "catalogue.jsp">Leave this page</a></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Your changes will not be saved. Are you sure you want to leave this page?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "catalogueEdit.jsp">Continue</a></button>
+                        <button type="button" class="btn btn-danger"><a href = "catalogue.jsp">Leave this page</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="wrapper">
            <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
@@ -184,11 +185,7 @@
                     </div>
                 </nav>
                 <!-- End Navbar -->
-
-                <%
-                    //Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
-                %>
-
+                
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
@@ -203,19 +200,11 @@
 
 
                                         <%
-                                            //Map<Integer, Debtor> mapUsed = new HashMap<>();
+
                                             Map<Integer, OrderItem> catalogueMap = salesOrderUtility.getCatalogueMap();
                                             String serial = request.getParameter("serial");
                                             int numInt = Integer.parseInt(serial);
 
-                                            //String status = request.getParameter("status");
-//                                        if(status.equals("active")){
-//                                            mapUsed = debtorUtility.getDebtorMap();
-//                                        }else if(status.equals("inactive")){
-//                                            mapUsed = debtorUtility.getInactiveDebtorMap();
-//                                        }else if (status.equals("search")){
-//                                            mapUsed = (Map<Integer, Debtor>)session.getAttribute("searchMapResults");
-//                                        }
                                             OrderItem orderItem = catalogueMap.get(numInt);
 
                                         %>
@@ -239,6 +228,13 @@
                                         <br>
                                         <br>
                                             <div class="row">
+                                                
+                                            <%                                                
+                                                String currentModifier = usernameSession;
+                                                String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            %>
+                                            
+                                               
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Item Code*</label>
@@ -246,6 +242,21 @@
                                                         <input type="hidden" class="form-control" value="<%= orderItem.getItemCode()%>" name="itemCode">
                                                     </div>
                                                 </div>
+                                                 <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Last Modified By</label>
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= orderItem.getLastModifiedBy()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= currentModifier %>" name="lastModifiedBy">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Last Modified Time</label>
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= orderItem.getLastModifiedTimeStamp()%>" size="10" disabled="">
+                                                        <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>English Description*</label>
@@ -275,12 +286,7 @@
 
 
                                             <div class="row">
-<!--                                                <div class="col-md-5 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Image URL*</label>
-                                                        <input type="text" class="form-control" placeholder="Image URL" required ="" value="<%= orderItem.getImageURL()%>" size="50" name="imageURL">
-                                                    </div>
-                                                </div>-->
+
                                                 <input type="hidden" class="form-control" value="<%= orderItem.getImageURL()%>" name="imageURL">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
@@ -354,11 +360,11 @@
                     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
                     <script src="assets/js/demo.js"></script>
                     <script type="text/javascript">
-                                                    $(document).ready(function () {
-                                                        // Javascript method's body can be found in assets/js/demos.js
-                                                        demo.initDashboardPageCharts();
+                        $(document).ready(function () {
+                            // Javascript method's body can be found in assets/js/demos.js
+                            demo.initDashboardPageCharts();
 
-                                                    });
+                        });
                     </script>
                     <!-- Cancel alert pop up -->
                     <script>
