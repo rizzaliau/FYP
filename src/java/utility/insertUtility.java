@@ -46,6 +46,9 @@ public class insertUtility {
         String displayTerm = request.getParameter("displayTerm");
         String status = request.getParameter("status");
         String routeNumber = request.getParameter("routeNumber");
+        String preferredLanguage = request.getParameter("preferredLanguage");
+        String lastModifiedTimeStamp = request.getParameter("lastModifiedTimeStamp");
+        String lastModifiedBy = request.getParameter("lastModifiedBy");
         
         //Converts normal password to hashpassword
         String newPasswordHash = loginUtility.getSha256(hashPassword);
@@ -58,7 +61,8 @@ public class insertUtility {
             String sql = "INSERT INTO debtor " + "VALUES('"+ debtorCode+"','"+companyCode+"','"+newPasswordHash+"',"
                     + "'"+companyName+"','"+debtorName+"','"+deliverContact+"','"+deliverContact2+"','"+inAddr1+"',"
                     + "'"+inAddr2+"','"+inAddr3+"','"+inAddr4+"','"+deliverAddr1+"','"+deliverAddr2+"',"
-                    + "'"+deliverAddr3+"','"+deliverAddr4+"','"+displayTerm+"','"+status+"','"+routeNumber+"')";
+                    + "'"+deliverAddr3+"','"+deliverAddr4+"','"+displayTerm+"','"+status+"','"+routeNumber+"',"
+                    + "'"+lastModifiedTimeStamp+"','"+lastModifiedBy+"','"+preferredLanguage+"')";
                     
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");

@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="entity.Debtor"%>
@@ -195,6 +196,16 @@
 
                                         <br>
                                         <form method="post" action="newUserController">
+                                            
+                                            <%
+                                                String currentModifier = usernameSession;
+                                                String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            %>
+                                            
+                                            <input type="hidden" class="form-control" value="<%= currentModifier %>" name="lastModifiedBy">
+                                            <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
+                                            
+                                            
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
@@ -292,6 +303,7 @@
                                                         </select>    
                                                     </div>
                                                 </div>
+                                                
 <!--                                                <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Payment Term*</label>
@@ -304,6 +316,7 @@
                                                     </div>
                                                 </div>-->
                                                 <input type="hidden" value='C.O.D' name="displayTerm" />
+                                                
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Area*</label>
@@ -317,9 +330,15 @@
 
                                                     </div>
                                                 </div>
+                                                        
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Preferred Language*</label>
+                                                        <input type="text" class="form-control" required placeholder="" title="Please only enter alphabets" value="English" size="10" name="preferredLanguage">                                                           
+                                                    </div>
 
-                                            </div>
-
+                                                </div>
+                                            
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Add New Customer" />
                                             <a href="newCustomer.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="reset"  value="Reset" /></a>
                                             
