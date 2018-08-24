@@ -8,11 +8,18 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 //import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import dao.ConnectionManager;
 import dao.UserDAO;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import static java.lang.System.out;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -69,6 +76,9 @@ public class insertUtility {
 
             stmt.executeUpdate();
             out.println("passes rs");
+            
+            boolean smsSentToCustomer = sendSmsToNewCustomer(preferredLanguage, "97597790", companyCode);
+            System.out.println("New account SMS Sent is " + smsSentToCustomer);
 
 //        }catch (final ConstraintViolationException e) {
 //            
@@ -172,5 +182,78 @@ public class insertUtility {
        return string;
    }    
         
+public static boolean sendSmsToNewCustomer(String language, String contactNumber, String username){
+    boolean result = false;
+    String myData = "";
+    
+    //check if parameters is valid (not null and length not = 0)
+    if (language != null && contactNumber != null && username != null & language.length() > 0 && contactNumber.length() >0 && username.length() > 0){
+    
+        try {
+        // This URL is used for sending messages
+        String myURI = "https://api.bulksms.com/v1/messages";
+
+        String myUsername = "F89898B66F9C4AA2A051176711AE05AE-02-C";
+        String myPassword = "aeaIP2IprPZa89K!!PWo!UQQlemgd";
         
+        String toNumber = "+65" + contactNumber;
+         
+        if (language.equals("English")){
+            myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"Dear " + username 
+           +  ", your account is now active! Download Lim Kee's app from https://play.google.com/store/apps/details?id=com.limkee to start ordering! Thank you!"  +  "\"}";              
+        } else {
+            myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"您好 " + username 
+           +  ", 您的帐号已激活！请在此下载林记的APP https://play.google.com/store/apps/details?id=com.limkee 后开始下单。谢谢!"  +  "\"}";              
+        }
+
+        //build the request based on the supplied settings
+        URL url = new URL(myURI);
+        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.setDoOutput(true);
+
+        // supply the credentials
+        String authStr = myUsername + ":" + myPassword;
+        String authEncoded = Base64.getEncoder().encodeToString(authStr.getBytes()); 
+        request.setRequestProperty("Authorization", "Basic " + authEncoded);
+
+        request.setRequestMethod("POST");
+        request.setRequestProperty( "Content-Type", "application/json");
+
+        // write the data to the request
+        OutputStreamWriter out = new OutputStreamWriter(request.getOutputStream());
+        out.write(myData);
+        out.close();
+
+        try {
+            // make the call to the API
+            InputStream response = request.getInputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(response));
+            String replyText;
+            while ((replyText = in.readLine()) != null) {
+                System.out.println(replyText);
+            }
+            in.close();
+            result = true; 
+        } catch (IOException ex) {
+            System.out.println("An error occurred:" + ex.getMessage());
+            BufferedReader in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
+            // print the detail that comes with the error
+            String replyText;
+            while ((replyText = in.readLine()) != null) {
+                System.out.println(replyText);
+            }
+            in.close();
+        }
+        request.disconnect();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    } else {
+        System.out.println("Parameters is null/blank");
+    }
+    
+     return result;
+ 
+    }
+
 }
