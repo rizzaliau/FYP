@@ -29,10 +29,14 @@ public class Debtor {
     private String displayTerm;
     private String status;
     private String routeNumber;
+    private String lastModifiedTimeStamp;
+    private String lastModifiedBy;
+    private String preferredLanguage;
     
     public Debtor (String debtorCode, String companyCode, String hashPassword,String companyName,String debtorName, String deliverContact, String deliverContact2,
         String invAddr1,String invAddr2, String invAddr3, String invAddr4, String deliverAddr1, String deliverAddr2,
-        String deliverAddr3, String deliverAddr4, String displayTerm, String status, String routeNumber){
+        String deliverAddr3, String deliverAddr4, String displayTerm, String status, String routeNumber,String lastModifiedTimeStamp,
+        String lastModifiedBy, String preferredLanguage){
         
         this.debtorCode = debtorCode;
         this.companyCode = companyCode;
@@ -52,6 +56,9 @@ public class Debtor {
         this.displayTerm = displayTerm;
         this.status = status;
         this.routeNumber = routeNumber;
+        this.lastModifiedTimeStamp = lastModifiedTimeStamp;
+        this.lastModifiedBy = lastModifiedBy;
+        this.preferredLanguage = preferredLanguage;
     }
     
     public String getDebtorCode() {
@@ -144,6 +151,18 @@ public class Debtor {
         return routeNumber;
     }
 
+    public String getLastModifiedTimeStamp(){
+        return lastModifiedTimeStamp;
+    }
+    
+    public String getLastModifiedBy(){
+        return lastModifiedBy;
+    }
+    
+    public String getPreferredLanguage(){
+        return preferredLanguage;
+    
+    }
 }
 
 
