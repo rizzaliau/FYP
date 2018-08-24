@@ -209,7 +209,7 @@ public class salesOrderUtility {
             String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp, so.LastModifiedBy, so.PaperBagRequired, \n" +
                 "sod.DeliveryDate, sod.SubTotal, \n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
-                "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
+                "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4, d.PreferredLanguage \n" +
                 "from sales_order so inner join sales_order_detail sod ON so.OrderID = sod.OrderID\n" +
                 "inner join debtor d ON so.DebtorCode = d.DebtorCode \n" +
                 "where so.Status = \""+statusInput+"\" and so.OrderID = \"" + orderID + "\"";
@@ -237,11 +237,12 @@ public class salesOrderUtility {
                 String deliverAddr3= checkForNull(rs.getString("DeliverAddr3"));
                 String deliverAddr4= checkForNull(rs.getString("DeliverAddr4"));
                 String lastModifiedBy= checkForNull(rs.getString("LastModifiedBy"));  
-                String paperBagRequired= checkForNull(rs.getString("PaperBagRequired"));  
+                String paperBagRequired= checkForNull(rs.getString("PaperBagRequired")); 
+                String preferredLanguage= checkForNull(rs.getString("PreferredLanguage")); 
                 
                 SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,
                         lastModifiedTimeStamp,status,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
-                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired);
+                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired,preferredLanguage);
                 salesOrderDetailsReturn = salesOrderDetails;
 
             }
@@ -394,7 +395,7 @@ public class salesOrderUtility {
             String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp, so.LastModifiedBy, so.PaperBagRequired, \n" +
                 "sod.DeliveryDate, sod.SubTotal,\n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
-                "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
+                "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4, d.PreferredLanguage \n" +
                 "from sales_order so inner join sales_order_detail sod ON so.OrderID = sod.OrderID\n" +
                 "inner join debtor d ON so.DebtorCode = d.DebtorCode \n" +
                 "where so.OrderID = \"" + orderID + "\"" + 
@@ -424,10 +425,11 @@ public class salesOrderUtility {
                 String deliverAddr4= checkForNull(rs.getString("DeliverAddr4"));
                 String lastModifiedBy= checkForNull(rs.getString("LastModifiedBy"));  
                 String paperBagRequired= checkForNull(rs.getString("PaperBagRequired"));  
+                String preferredLanguage= checkForNull(rs.getString("PreferredLanguage")); 
                 
                 SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,
                         lastModifiedTimeStamp,status,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
-                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired);
+                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired,preferredLanguage);
                 salesOrderDetailsReturn = salesOrderDetails;
             }
             
@@ -458,7 +460,7 @@ public class salesOrderUtility {
             String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp, so.LastModifiedBy, so.PaperBagRequired \n" +
                 "sod.DeliveryDate, sod.SubTotal,\n" +
                 "d.CompanyName, d.DebtorName, d.DeliverContact, d.DisplayTerm, d.RouteNumber,\n" +
-                "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4\n" +
+                "d.DeliverAddr1, d.DeliverAddr2, d.DeliverAddr3, d.DeliverAddr4, d.PreferredLanguage \n" +
                 "from sales_order so inner join sales_order_detail sod ON so.OrderID = sod.OrderID\n" +
                 "inner join debtor d ON so.DebtorCode = d.DebtorCode \n" +
                 "where so.OrderID = \"" + orderID + "\"\n" + 
@@ -488,10 +490,11 @@ public class salesOrderUtility {
                 String deliverAddr4= checkForNull(rs.getString("DeliverAddr4"));
                 String lastModifiedBy= checkForNull(rs.getString("LastModifiedBy"));  
                 String paperBagRequired= checkForNull(rs.getString("PaperBagRequired"));  
+                String preferredLanguage= checkForNull(rs.getString("PreferredLanguage")); 
                 
                 SalesOrderDetails salesOrderDetails = new SalesOrderDetails (orderIDRetrieved,createTimeStamp,
                         lastModifiedTimeStamp,status,deliveryDate,subTotal,companyName, debtorName,deliverContact, displayTerm,
-                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired);
+                        routeNumber,deliverAddr1, deliverAddr2, deliverAddr3,deliverAddr4,lastModifiedBy,paperBagRequired,preferredLanguage);
                 salesOrderDetailsReturn = salesOrderDetails;
             }
             

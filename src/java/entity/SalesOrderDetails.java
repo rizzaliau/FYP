@@ -28,10 +28,12 @@ public class SalesOrderDetails {
     private String deliverAddr4;
     private String lastModifiedBy;
     private String paperBagRequired;
+    private String preferredLanguage;
         
     public SalesOrderDetails(String orderID, String createTimeStamp, String lastModifiedTimeStamp, String status, String deliveryDate,
             String subTotal, String companyName, String debtorName, String deliverContact ,String displayTerm, 
-            String routeNumber, String deliverAddr1, String deliverAddr2, String deliverAddr3, String deliverAddr4, String lastModifiedBy, String paperBagRequired){
+            String routeNumber, String deliverAddr1, String deliverAddr2, String deliverAddr3, String deliverAddr4,
+            String lastModifiedBy, String paperBagRequired, String preferredLanguage){
         
         this.orderID = orderID;
         this.createTimeStamp = createTimeStamp;
@@ -50,6 +52,7 @@ public class SalesOrderDetails {
         this.deliverAddr4 = deliverAddr4;
         this.lastModifiedBy = lastModifiedBy;
         this.paperBagRequired = paperBagRequired;
+        this.preferredLanguage = preferredLanguage;
     }
     
     
@@ -125,6 +128,10 @@ public class SalesOrderDetails {
         }
         
         return "Yes";
+    }
+    
+    public String getPreferredLanguage(){
+        return preferredLanguage;
     }
     
 }

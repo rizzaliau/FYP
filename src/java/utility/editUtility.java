@@ -7,8 +7,13 @@ package utility;
 
 import dao.ConnectionManager;
 import dao.UserDAO;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import static java.lang.System.out;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
@@ -16,6 +21,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -102,6 +108,7 @@ public class editUtility {
         String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
         String paperBagRequiredRetrieved = request.getParameter("paperBagRequired");
         int paperBagRequiredInt = Integer.parseInt(paperBagRequiredRetrieved);
+        String preferredLanguageRetrieved = request.getParameter("preferredLanguage");
         //out.println("qtyRetrieved " + qtyItemCodeRetrieved.length);
         //out.println("qtyRetrieved " + qtyItemCodeRetrieved[0]);
         //out.println("qtyRetrieved " + qtyItemCodeRetrieved[1]);
@@ -166,6 +173,10 @@ public class editUtility {
                     PreparedStatement salesOrderQuantityStmt = conn.prepareStatement(salesOrderQuantitySql);
 
                     salesOrderQuantityStmt.executeUpdate();
+                    
+                    out.println("The Preferred language retrieved is"+preferredLanguageRetrieved);
+                    boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, "97597790", orderIDRetrieved);
+                    System.out.println("Edit Order SMS Sent is " + smsSentForEditOrder);
 
                 } catch (SQLException ex) {
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -258,6 +269,79 @@ public class editUtility {
        }
        return string;
    }
+    
+    public static boolean sendSmsForEditOrder(String language, String contactNumber, String orderID){
+        boolean result = false;
+        String myData = "";
+
+        //check if parameters is valid (not null and length not = 0)
+        if (language != null && contactNumber != null && orderID != null & language.length() > 0 && contactNumber.length() >0 && orderID.length() > 0){
+
+            try {
+            // This URL is used for sending messages
+            String myURI = "https://api.bulksms.com/v1/messages";
+
+            // change these values to match your own account
+            String myUsername = "F89898B66F9C4AA2A051176711AE05AE-02-C";
+            String myPassword = "aeaIP2IprPZa89K!!PWo!UQQlemgd";
+
+            String toNumber = "+65" + contactNumber;
+           if (language.equals("English")){
+                myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[Lim Kee] Order #" + orderID 
+                + "\n" + "Your order has been modified. If you did not authorize this change, please call +65 758 5858." + "\"}";
+            } else {
+                myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[林记] 订単 #"  + orderID + "\n" + "您的订单已修改完毕。若非您授权的，请拨打+65 6758 5858。" + "\"}";
+            }
+
+            // build the request based on the supplied settings
+            URL url = new URL(myURI);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.setDoOutput(true);
+
+            // supply the credentials
+            String authStr = myUsername + ":" + myPassword;
+            String authEncoded = Base64.getEncoder().encodeToString(authStr.getBytes()); 
+            request.setRequestProperty("Authorization", "Basic " + authEncoded);
+
+            request.setRequestMethod("POST");
+            request.setRequestProperty( "Content-Type", "application/json");
+
+            // write the data to the request
+            OutputStreamWriter out = new OutputStreamWriter(request.getOutputStream());
+            out.write(myData);
+            out.close();
+
+            try {
+              // make the call to the API
+              InputStream response = request.getInputStream();
+              BufferedReader in = new BufferedReader(new InputStreamReader(response));
+              String replyText;
+              while ((replyText = in.readLine()) != null) {
+                System.out.println(replyText);
+              }
+              in.close();
+
+              result = true;
+            } catch (IOException ex) {
+              System.out.println("An error occurred:" + ex.getMessage());
+              BufferedReader in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
+              // print the detail that comes with the error
+              String replyText;
+              while ((replyText = in.readLine()) != null) {
+                System.out.println(replyText);
+              }
+              in.close();
+            }
+            request.disconnect();
+            } catch (Exception e){
+                System.out.println(e);
+            }
+        }else{
+            System.out.println("Parameters is null/blank");
+        }
+        return result;
+
+    }
     
     
 }
