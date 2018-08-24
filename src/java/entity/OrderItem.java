@@ -22,9 +22,12 @@ public class OrderItem {
     private String defaultQuantity;
     private String quantityMultiples;
     private String status;
+    private String lastModifiedTimeStamp;
+    private String lastModifiedBy;
     
     public OrderItem(String itemCode, String description, String descriptionChinese, String unitPrice,String retailPrice,
-            String unitOfMetric, String imageURL, String defaultQuantity, String quantityMultiples, String status){
+            String unitOfMetric, String imageURL, String defaultQuantity, String quantityMultiples, 
+            String status, String lastModifiedTimeStamp, String lastModifiedBy){
         
         this.itemCode=itemCode;
         this.description=description;
@@ -36,6 +39,8 @@ public class OrderItem {
         this.defaultQuantity=defaultQuantity;
         this.quantityMultiples=quantityMultiples;
         this.status = status;
+        this.lastModifiedTimeStamp = lastModifiedTimeStamp;
+        this.lastModifiedBy = lastModifiedBy;
     }
     
     public String getItemCode(){
@@ -89,5 +94,12 @@ public class OrderItem {
      public String getStatus(){
         return status;
     }
-    
+     
+    public String getLastModifiedTimeStamp(){
+        return lastModifiedTimeStamp;
+    }
+     
+    public String getLastModifiedBy(){
+        return lastModifiedBy;
+    }
 }

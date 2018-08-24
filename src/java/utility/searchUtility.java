@@ -249,10 +249,10 @@ public class searchUtility {
                 String qtyMultiples = catalogueCheckForNull(rs.getString("qtyMultiples"));
                 String status = catalogueCheckForNull(rs.getString("Status"));
                 
-                OrderItem orderItem = new OrderItem (itemCode,description,descriptionChinese,unitPrice,retailPrice,
-                        unitOfMetric,imageURL,defaultQty,qtyMultiples,status);
+                //OrderItem orderItem = new OrderItem (itemCode,description,descriptionChinese,unitPrice,retailPrice,
+                        //unitOfMetric,imageURL,defaultQty,qtyMultiples,status);
                 
-                searchMap.put(count, orderItem);
+                //searchMap.put(count, orderItem);
                 count++;
             }
             

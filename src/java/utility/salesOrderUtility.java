@@ -171,9 +171,11 @@ public class salesOrderUtility {
                 String defaultQty = catalogueCheckForNull(rs.getString("defaultQty"));
                 String qtyMultiples = catalogueCheckForNull(rs.getString("qtyMultiples"));
                 String status = catalogueCheckForNull(rs.getString("Status"));
-
+                String lastModifiedTimeStamp= checkForNull(rs.getString("LastModifiedTimeStamp"));
+                String lastModifiedBy= checkForNull(rs.getString("LastModifiedBy"));  
+                
                 OrderItem orderItem = new OrderItem (itemCode,description,descriptionChinese,unitPrice,retailPrice,
-                        unitOfMetric,imageURL,defaultQty,qtyMultiples,status);
+                        unitOfMetric,imageURL,defaultQty,qtyMultiples,status,lastModifiedTimeStamp,lastModifiedBy);
                 
                 catalogueMap.put(count, orderItem);
                 count++;
@@ -585,9 +587,11 @@ public class salesOrderUtility {
                 String defaultQty = catalogueCheckForNull(rs.getString("defaultQty"));
                 String qtyMultiples = catalogueCheckForNull(rs.getString("qtyMultiples"));
                 String status = catalogueCheckForNull(rs.getString("Status"));
-
+                String lastModifiedTimeStamp= checkForNull(rs.getString("LastModifiedTimeStamp"));
+                String lastModifiedBy= checkForNull(rs.getString("LastModifiedBy"));  
+                
                 orderItemReturned = new OrderItem (itemCode,description,descriptionChinese,unitPrice,retailPrice,
-                        unitOfMetric,imageURL,defaultQty,qtyMultiples,status);
+                        unitOfMetric,imageURL,defaultQty,qtyMultiples,status,lastModifiedTimeStamp,lastModifiedBy);
                 
             }
             
