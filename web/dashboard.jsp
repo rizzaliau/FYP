@@ -1,4 +1,5 @@
 
+<%@page import="utility.dashboardUtility"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="java.util.Map"%>
@@ -25,6 +26,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets/css/demo.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     
 </head>
 
@@ -155,13 +157,129 @@
                 </nav>
                 <!-- End Navbar -->
 
-            <div class="content">
-                <div class="container-fluid">
-                    Note: To be completed in future iterations
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card striped-tabled-with-hover">
+                                    <div class="card-header ">
+                                        <h4 class="card-title">Dashboard Management</h4>
+                                    </div>   
+                                    <br>
+                                    <center>    
+                                        <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
+                                        <a href="productDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="productDashboard"  value="Product"  /></a>
+                                        <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
+                                    </center>
+                                    <br>    
 
+                                    <div class="container">
+                                      <canvas id="myChart"></canvas>
+                                    </div>    
+                                    
+                                    <%
+                                        //map parameters month, revenue
+                                        Map<Integer, Double> salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth();
+
+                                    %>    
+
+                                    <script>
+                                      let myChart = document.getElementById('myChart').getContext('2d');
+
+                                      // Global Options
+                                      Chart.defaults.global.defaultFontFamily = 'Lato';
+                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontColor = '#777';
+
+                                      let massPopChart = new Chart(myChart, {
+                                        type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                        data:{
+                                          labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                          datasets:[{
+                                            label:'Total Revenue Sales',
+                                            data:[
+                                              <%= salesRevenueByMonthMap.get(1) %>,
+                                              <%= salesRevenueByMonthMap.get(2) %>,
+                                              <%= salesRevenueByMonthMap.get(3) %>,
+                                              <%= salesRevenueByMonthMap.get(4) %>,
+                                              <%= salesRevenueByMonthMap.get(5) %>,
+                                              <%= salesRevenueByMonthMap.get(6) %>,
+                                              <%= salesRevenueByMonthMap.get(7) %>,
+                                              <%= salesRevenueByMonthMap.get(8) %>,
+                                              <%= salesRevenueByMonthMap.get(9) %>,
+                                              <%= salesRevenueByMonthMap.get(10) %>,
+                                              <%= salesRevenueByMonthMap.get(11) %>,
+                                              <%= salesRevenueByMonthMap.get(12) %>
+                                            ],
+                                            //backgroundColor:'green',
+                                            backgroundColor:[
+                                              'rgba(255, 99, 132, 0.6)',
+                                              'rgba(54, 162, 235, 0.6)',
+                                              'rgba(255, 206, 86, 0.6)',
+                                              'rgba(75, 192, 192, 0.6)',
+                                              'rgba(153, 102, 255, 0.6)',
+                                              'rgba(255, 159, 64, 0.6)',
+                                              'rgba(255, 99, 132, 0.6)'
+                                            ],
+                                            borderWidth:1,
+                                            borderColor:'#777',
+                                            hoverBorderWidth:3,
+                                            hoverBorderColor:'#000'
+                                          }]
+                                        },
+                                        options:{
+                                          title:{
+                                            display:true,
+                                            text:'Lim Kee Revenue By Month',
+                                            fontSize:25
+                                          },
+                                          legend:{
+                                            display:true,
+                                            position:'right',
+                                            labels:{
+                                              fontColor:'#000'
+                                            }
+                                          },
+                                          layout:{
+                                            padding:{
+                                              left:50,
+                                              right:0,
+                                              bottom:0,
+                                              top:0
+                                            }
+                                          },
+                                          tooltips:{
+                                            enabled:true
+                                          },
+                                          scales: {
+                                            yAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Revenue'
+                                              }
+                                            }],
+
+                                            xAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Month'
+                                              }
+                                            }]
+
+                                          } 
+                                        }
+                                      });
+                                      
+                                    </script>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-
+        </div>
+                
+                            
             <footer class="footer">
                 <div class="container">
                     <nav>
