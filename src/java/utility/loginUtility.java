@@ -34,16 +34,6 @@ public class loginUtility {
 
         User user = UserDAO.retrieve(userName);
         
-        /*if (user == null) {
-            // TODO: include error messages before redirecting
-            
-            //out.println("User is null (loginUility.java)");
-            
-            request.setAttribute("errorMsg", "Invalid Username/password");
-
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-            return;
-        }*/
         if("".equals(userName)||"".equals(passWord)){
             request.setAttribute("errorMsg", "Please enter username and/or password");
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -56,9 +46,13 @@ public class loginUtility {
             return;
         }
         
-        out.println("The result of authentication is :"+user.authenticate(passWordHash));
+        if (user.getStatus().equals("Inactive") ) {
+            request.setAttribute("errorMsg", "Error: Inactive user");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
         
-        //String passwordSha256 = loginUtility.getSha256(passWord);
+        out.println("The result of authentication is :"+user.authenticate(passWordHash));
         
         HttpSession session = request.getSession();
         
