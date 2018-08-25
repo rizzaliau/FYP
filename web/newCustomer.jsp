@@ -2,6 +2,7 @@
     Document   : userMGMT
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
+<%@include file="protect.jsp" %>
 --%>
 
 
@@ -12,7 +13,6 @@
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="protect.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,17 +52,17 @@
                     </div>
                     <ul class="nav">
                         <%
-                           String isMasterAdmin = (String) session.getAttribute("isMaster");
-                                   
-                           if(isMasterAdmin.equals("1")){ 
+                            String isMasterAdmin = (String) session.getAttribute("isMaster");
+
+                            if (isMasterAdmin.equals("1")) {
                                 out.print("<li>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
                                 out.print("<i class='nc-icon nc-key-25'></i>");
                                 out.print("<p>Admin</p>");
                                 out.print("</a>");
                                 out.print("</li>");
-                           }
-                           
+                            }
+
                         %>
                         <li>
                             <a class="nav-link" href="dashboard.jsp">
@@ -118,41 +118,41 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navigation">
                             <ul class="nav navbar-nav mr-auto">
                                 <div id="notification">
-                                        <li class="dropdown nav-item">
-                                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                                <i class="nc-icon nc-planet"></i>
-                                                <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap(); %>
-                                                <span class="notification"> <%= notificationMap.size()  %> </span>
-                                                <span class="d-lg-none">Notification</span>
-                                            </a>
-                                            <ul class="dropdown-menu">
+                                    <li class="dropdown nav-item">
+                                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                            <i class="nc-icon nc-planet"></i>
+                                            <% Map<Integer, Notification> notificationMap = notificationUtility.getNotificationsMap();%>
+                                            <span class="notification"> <%= notificationMap.size()%> </span>
+                                            <span class="d-lg-none">Notification</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
 
-                                               <%
-                                                   //out.println("<div class='notification'>");
-                                                   for (int i=1 ; i<=notificationMap.size(); i++){
-                                                            if(i<=5){
-                                                            Notification notification = notificationMap.get(i);
-                                                            out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                                    "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
-                                                            }     
+                                            <%
+                                                //out.println("<div class='notification'>");
+                                                for (int i = 1; i <= notificationMap.size(); i++) {
+                                                    if (i <= 5) {
+                                                        Notification notification = notificationMap.get(i);
+                                                        out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID=" + notification.getOrderID() + "'>" + notification.getDebtorName()
+                                                                + "  placed a new order #" + notification.getOrderID() + " on " + notification.getFormattedCreatedTimeStamp() + "</a>");
                                                     }
-                                                    //out.print("</div>");
-                                                    out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
-                                                    
-                                               %>  
+                                                }
+                                                //out.print("</div>");
+                                                out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
 
-                                            </ul>
+                                            %>  
+
+                                        </ul>
                                     </li>
                                 </div>
                             </ul>
                             <ul class="navbar-nav ml-auto">
-                                <% String usernameSession = (String) session.getAttribute("username"); %>
-                                    Welcome, <%= usernameSession %> 
+                                <% String usernameSession = (String) session.getAttribute("username");%>
+                                Welcome, <%= usernameSession%> 
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="logout.jsp">
                                         <span class="no-icon">Log out</span>
-                                           <div id="show" align="center"></div>
+                                        <div id="show" align="center"></div>
                                     </a>
                                 </li>
                             </ul>
@@ -173,12 +173,12 @@
                                     <div class="card-header">
                                         <h4 class="card-title">Customer Management</h4>
                                         <p>
-                                         <h5 class="card-title"><font color = "red">Please fill in details below to add new customer</font></h5>
-                                         <p>
-                                         <p class="card-category"><font color = "red">* denotes required fields</font></p>
+                                        <h5 class="card-title"><font color = "red">Please fill in details below to add new customer</font></h5>
+                                        <p>
+                                        <p class="card-category"><font color = "red">* denotes required fields</font></p>
                                     </div>
                                     <center>
-                                    <font color="red">
+                                        <font color="red">
                                         <%
                                             String msgStatus = (String) request.getAttribute("status");
 
@@ -196,16 +196,15 @@
 
                                         <br>
                                         <form method="post" action="newUserController">
-                                            
-                                            <%
-                                                String currentModifier = usernameSession;
+
+                                            <%                                                String currentModifier = usernameSession;
                                                 String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
                                             %>
-                                            
-                                            <input type="hidden" class="form-control" value="<%= currentModifier %>" name="lastModifiedBy">
-                                            <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
-                                            
-                                            
+
+                                            <input type="hidden" class="form-control" value="<%= currentModifier%>" name="lastModifiedBy">
+                                            <input type="hidden" class="form-control" value="<%= currentTimeStamp%>" name="lastModifiedTimeStamp">
+
+
                                             <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
@@ -236,14 +235,15 @@
                                                 </div>
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Delivery Address*</label>
-                                                        <input type="text" class="form-control" required placeholder="Delivery Address" value="110 TUAS SOUTH AVENUE 3" size="10" name="deliverAddr1">
+                                                        <label>Delivery Address* <input type="checkbox" name="billingtoo" onclick="fillDelivery(this.form)"><em>Same as Billing Address</em></input></label>
+                                                        
+                                                        <input type="text" class="form-control" required placeholder="Delivery Address" name="deliverAddr1">
                                                         <br>
-                                                        <input type="text" class="form-control" required placeholder="" value="#01-59" size="10" name="deliverAddr2">
+                                                        <input type="text" class="form-control" required placeholder="" size="10" name="deliverAddr2">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="SINGAPORE 637369" size="10" name="deliverAddr3">
+                                                        <input type="text" class="form-control" placeholder="" size="10" name="deliverAddr3">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="deliverAddr4" >
+                                                        <input type="text" class="form-control" placeholder="" size="10" name="deliverAddr4" >
                                                     </div>
                                                 </div>
 
@@ -303,34 +303,34 @@
                                                         </select>    
                                                     </div>
                                                 </div>
-                                                
-<!--                                                <div class="col-md-4 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Payment Term*</label>
-                                                        <select name="displayTerm" class="form-control" required >
-                                                            <option value="C.O.D">C.O.D</option>
-                                                            <option value="1 day">1 day</option>
-                                                            <option value="15 days">15 days</option>
-                                                            <option value="30 days">30 days</option>
-                                                        </select>
-                                                    </div>
-                                                </div>-->
+
+                                                <!--                                                <div class="col-md-4 pr-1">
+                                                                                                    <div class="form-group">
+                                                                                                        <label>Payment Term*</label>
+                                                                                                        <select name="displayTerm" class="form-control" required >
+                                                                                                            <option value="C.O.D">C.O.D</option>
+                                                                                                            <option value="1 day">1 day</option>
+                                                                                                            <option value="15 days">15 days</option>
+                                                                                                            <option value="30 days">30 days</option>
+                                                                                                        </select>
+                                                                                                    </div>
+                                                                                                </div>-->
                                                 <input type="hidden" value='C.O.D' name="displayTerm" />
-                                                
+
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Area*</label>
                                                         <select name="routeNumber" class="form-control" required>
                                                             <%
-                                                               for (int i=1;i<=18;i++){
-                                                                   out.print("<option value='"+i+"'>"+i+"</option>");
-                                                                 }
+                                                                for (int i = 1; i <= 18; i++) {
+                                                                    out.print("<option value='" + i + "'>" + i + "</option>");
+                                                                }
                                                             %>
                                                         </select>
 
                                                     </div>
                                                 </div>
-                                                        
+
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Preferred Language*</label>
@@ -341,32 +341,32 @@
                                             </div>
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Add New Customer" />
                                             <a href="newCustomer.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="reset"  value="Reset" /></a>
-                                            
-                                          
+
+
                                             <div class="clearfix"></div>
                                         </form>
 
-                                    
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
+                    <footer class="footer">
+                        <p class="copyright text-center">
+                            This website's content is Copyright 
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            © Lim Kee Food Manufacturing Pte Ltd
+                        </p>
+                    </footer>
                 </div>
-
-
-
-                <footer class="footer">
-                            <p class="copyright text-center">
-                                This website's content is Copyright 
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>
-                                © Lim Kee Food Manufacturing Pte Ltd
-                            </p>
-                </footer>
             </div>
-        </div>
-    
+
     </body>
     <!--   Core JS Files   -->
     <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
@@ -385,18 +385,33 @@
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
 
-    });
+        });
     </script>
-
     <script>
-        $(document).ready(                       
-                function() {
-                    setInterval(function() {
-                         $('#notification').load('loyaltyProgramme.jsp #notification'); 
+        function fillDelivery(f) {
+            if (f.billingtoo.checked == true) {
+                f.deliverAddr1.value =f.inAddr1.value;
+                f.deliverAddr2.value = f.invAddr2.value;
+                f.deliverAddr3.value = f.invAddr3.value;
+                f.deliverAddr4.value = f.invAddr4.value;
+            }else {
+                f.deliverAddr1.value="";
+                f.deliverAddr1.placeholder ="Delivery Address";
+                f.deliverAddr2.value ="";
+                f.deliverAddr3.value ="";
+                f.deliverAddr4.value ="";
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(
+                function () {
+                    setInterval(function () {
+                        $('#notification').load('loyaltyProgramme.jsp #notification');
                     }, 5000);
                 });
     </script>
