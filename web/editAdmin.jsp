@@ -192,7 +192,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-11">
                                 <div class="card strpied-tabled-with-hover">
                                     <div class="card-header ">
 
@@ -315,7 +315,7 @@
                                             </div>
 
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update Admin Details" style="margin-right:20px;"/>
-                                            <input class="btn btn-info btn-fill pull-right" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal"  value="Cancel" style = "margin-right: 10px;"/>
+                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal"  value="Cancel" style = "margin-right: 10px;"/>
                                         </form>
 
                                     </div>
