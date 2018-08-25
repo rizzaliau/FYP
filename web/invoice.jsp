@@ -19,7 +19,8 @@
     <head>
         <meta charset="utf-8">
         <title>Lim Kee Food Manufacturing Pte Ltd</title>
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+       <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+       <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
         <style>
             @page {
                 margin: 0;
@@ -287,7 +288,7 @@
                 </tr>
             </table>
             <br>
-            <input id="printpagebutton" class="btn btn-info btn-fill pull-right" type="button" value="Print" onclick="printFunction()"/>                    
+            <input id="printpagebutton" class="btn btn-info btn-fill pull-right" type="button" value="Print" onclick="printFunction()" style="width: 100px;"/>                    
         </div>
     </body>
     <script>
