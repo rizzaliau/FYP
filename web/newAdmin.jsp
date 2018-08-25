@@ -192,7 +192,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-11">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
@@ -213,15 +213,15 @@
                             %> 
                             
                             </font></b></center>
-                            <br>
+                            
                             <!--start of form UI-->
                                 <div class="card-body">
                                     <h5 class="card-title"><font color = "red">Enter required fields to create a new Admin</font></h5>
                                     <br>
                                     <p class="card-category"><font color = "red">* denotes required fields</font></p>
                                          <p>
-                                        <br>
-                                        <br>
+                                       
+                                        
                                         <form method="post" action="newAdminController">
                                             <%
                                                 String currentModifier = usernameSession;
@@ -270,7 +270,7 @@
                                             </div>
 
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit" value="Add New Admin" style="margin-left:20px;"/>
-                                            <input class="btn btn-info btn-fill pull-right" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal" value="Cancel" style="margin-left:20px;"/>
+                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal" value="Cancel" style="margin-left:5px;"/>
                                     </form>
                                         
 
