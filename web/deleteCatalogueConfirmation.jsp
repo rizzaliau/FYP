@@ -33,6 +33,7 @@
 </head>
 
 <body>
+    <div class="wrapper">
 <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
                 <!--
@@ -169,8 +170,8 @@
                                 </div>
                                 </br>
                                 
-                                <center>Are you sure you want to deactivate this catalogue item?</center>
-
+                                <center> <i class="nc-icon nc-tag-content" ></i>&nbsp;Are you sure you want to deactivate this catalogue item?</center>
+                                
                                         <%  
                                             String itemCode = request.getParameter("itemCode");   
                                         %>
@@ -189,6 +190,7 @@
                     </div>
                 </div>
             </div>  
+        
 
             <footer class="footer">
                         <p class="copyright text-center">

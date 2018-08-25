@@ -170,7 +170,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-11">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
 
@@ -204,8 +204,8 @@
                                             <input type= "hidden" name="deliveryDateRecordToBeDeleted" value='<%= deliveryDate %>'/>
                                             <input type= "hidden" name="preferredLanguage" value='<%= salesOrderdetails.getPreferredLanguage() %>'/>
                                             <p>
-                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Confirm Cancel" style="margin-right: 20px; margin-top: 10px; margin-bottom: 20px; "> 
-                                            <a href="salesOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Cancel"  value="Back" style="margin-right:10px; margin-top: 10px; margin-bottom: 20px;"/></a>
+                                            <input type="submit" class="btn btn-info btn-fill pull-right" value="Confirm Cancel" style="margin-right: 100px; margin-top: 10px; margin-bottom: 20px; "> 
+                                            <a href="salesOrder.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Back" style="margin-left:15px; margin-top: 10px; margin-bottom: 20px;"/></a>
                                         </form>   
                                 
                                 

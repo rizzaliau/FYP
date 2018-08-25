@@ -312,7 +312,7 @@
 
                                      
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit" value="Add New Item" style="margin-left:20px;"/>
-                                            <input class="btn btn-info btn-fill pull-right" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal" value="Cancel" style="margin-left:20px;"/>
+                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal" value="Cancel"/>
                                     </form>
                                         
 

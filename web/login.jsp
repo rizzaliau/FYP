@@ -17,6 +17,8 @@
         <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
         <link rel="stylesheet" href="css/style.css">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
 
 
     <body>
@@ -68,7 +70,7 @@
                             </div>
                         </div>
                         <div class="simform__actions">
-                            <input class="sumbit" name="commit" type="submit" value="Log In" style="background-color: #e88347; border-radius: 20px; "/>
+                            <input class="btn btn-info btn-fill pull-right" name="commit" type="submit" value="Log In" style="border-radius: 10px; width: 520px; "/>
                             <!--    
                             <span class="simform__actions-sidetext"><a class="special" role="link" href="adminHome.jsp">Forgot your password?<br>Click here</a></span>
                             -->
