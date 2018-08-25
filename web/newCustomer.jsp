@@ -338,15 +338,15 @@
                                                     </div>
 
                                                 </div>
-                                            
+                                            </div>
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Add New Customer" />
                                             <a href="newCustomer.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="reset"  value="Reset" /></a>
                                             
-                                            
+                                          
                                             <div class="clearfix"></div>
                                         </form>
 
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -366,7 +366,7 @@
                 </footer>
             </div>
         </div>
-
+    
     </body>
     <!--   Core JS Files   -->
     <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
