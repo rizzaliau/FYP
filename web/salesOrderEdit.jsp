@@ -441,17 +441,7 @@
                                                             }
                                                                 DecimalFormat df = new DecimalFormat("0.00"); 
                                                         %>
-                                                    
-                                                    <tr><thead><th><b><font color="red">GST (7%)</font></b></th></thead>
-                                                        <td><%= df.format(total*0.07) %></td>
-                                                    </tr>    
-                                                    <tr><thead><th><b><font color="red">Total Amount ($)</font></b></th></thead>
-                                                        <td><%= df.format(total*1.07)%></td>
-                                                    </tr>
-                                                    
-                                                    <tr>
-                                                        <td><br></td> 
-                                                    </tr>
+
 
                                                     <%
 
@@ -490,6 +480,34 @@
                                                         }
 
                                                     %>
+                                                    <tr>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"><b><font color="red">Sub-Total ($)</font></b></td>
+                                                        <td bgcolor="white"><%= df.format(total) %></td>
+                                                        <td bgcolor="white"></td>
+                                                    </tr>                                                     
+                                                    <tr>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"><b><font color="red">GST (7%)</font></b></td>
+                                                        <td bgcolor="white"><%= df.format(total*0.07) %></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"></td>
+                                                        <td bgcolor="white"><b><font color="red">Total Amount ($)</font></b></td>
+                                                        <td bgcolor="white"><%= df.format(total*1.07)%></td>
+                                                    </tr>
 
                                                     </tbody>
                                                 </table>
