@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
@@ -221,8 +222,13 @@
                                         <form method="post" action="editController">
 
                                             <div class="row">
-                                                <%                                                    String currentModifier = usernameSession;
+                                                <%  String currentModifier = usernameSession;
                                                     String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+
+                                                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                    Date d2 = sdf2.parse(debtor.getLastModifiedTimeStamp());
+                                                    sdf2.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                    String lastModifiedTimeStampFormatted = sdf2.format(d2);
                                                 %>    
 
                                                 <div class="col-md-3 pr-1">
@@ -242,7 +248,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Last Modified Time</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= debtor.getLastModifiedTimeStamp()%>" size="10" disabled="">
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= lastModifiedTimeStampFormatted %>" size="10" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= currentTimeStamp%>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
@@ -258,273 +264,273 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Preferred Language*</label>
-                                                        <select name="status" class="form-control" required>
+                                                        <select name="language" class="form-control" required>
                                                             <%
                                                                 String language = debtor.getPreferredLanguage();
                                                                 if (language.equals("English")) {
                                                                     out.println("<option value='English'>English</option>");
                                                                     out.println("<option value='Chinese'>Chinese</option>");
                                                                 } else {
-                                                                    out.println("<option value='Chinese'>Chinese</option>");                                                                    
+                                                                    out.println("<option value='Chinese'>Chinese</option>");
                                                                     out.println("<option value='English'>English</option>");
                                                                 }
                                                             %> 
                                                         </select>
-                                                            </div>
-                                                            </div>
+                                                    </div>
+                                                </div>
 
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-5 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Billing Address*</label>
-                                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="<%= debtor.getInvAddr1()%>" size="10" name="invAddr1">
-                                                                        <br>
-                                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr2()%>" size="10" name="invAddr2">
-                                                                        <br>
-                                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr3()%>" size="10" name="invAddr3" >
-                                                                        <br>
-                                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr4()%>" size="10" name="invAddr4d">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-5 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Delivery Address* <input type="checkbox" name="billingtoo" onclick="fillDelivery(this.form)"><em>Same as Billing Address</em></input></label>
-                                                                        <input type="text" class="form-control" required placeholder="Delivery Address" value="<%= debtor.getDeliverAddr1()%>" size="10" name="deliverAddr1">
-                                                                        <br>
-                                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr2()%>" size="10" name="deliverAddr2">
-                                                                        <br>
-                                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr3()%>" size="10" name="deliverAddr3">
-                                                                        <br>
-                                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr4()%>" size="10" name="deliverAddr4" >
-                                                                    </div>
-                                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Billing Address*</label>
+                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="<%= debtor.getInvAddr1()%>" size="10" name="invAddr1">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr2()%>" size="10" name="invAddr2">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr3()%>" size="10" name="invAddr3" >
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getInvAddr4()%>" size="10" name="invAddr4d">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Delivery Address* <input type="checkbox" name="billingtoo" onclick="fillDelivery(this.form)"><em>Same as Billing Address</em></input></label>
+                                                        <input type="text" class="form-control" required placeholder="Delivery Address" value="<%= debtor.getDeliverAddr1()%>" size="10" name="deliverAddr1">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr2()%>" size="10" name="deliverAddr2">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr3()%>" size="10" name="deliverAddr3">
+                                                        <br>
+                                                        <input type="text" class="form-control" placeholder="" value="<%= debtor.getDeliverAddr4()%>" size="10" name="deliverAddr4" >
+                                                    </div>
+                                                </div>
 
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Contact Person*</label>
-                                                                        <input type="text" class="form-control" required placeholder="Customer Name" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-3 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Username*</label>
-                                                                        <input type="text" class="form-control" required placeholder="Username" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-md-3 pl-1">
-                                                                    <div class="form-group">
-                                                                        <label for = "password">      </label>
-                                                                        <input type="hidden" value="<%= debtor.getPassword()%>" name="hashPassword">
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-md-3 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Contact Number 1</label>
-                                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter 8 digit numbers" placeholder="Contact Number 1" value="<%= debtor.getDeliverContact()%>" size="10" name="deliverContact">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3 px-1">
-                                                                    <div class="form-group">
-                                                                        <!-- need to change the value of this field-->
-                                                                        <label>Contact Number 2</label>
-                                                                        <input type="text" class="form-control" placeholder="Contact Number 2" pattern="(^$)|(^\d{8}$)" title="Please enter 8 digit numbers" value="<%= debtor.getDeliverContact2()%>" size="10" name="deliverContact2">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-md-4 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Status*</label>                                                       
-                                                                        <select name="status" class="form-control" required>
-                                                                            <%
-                                                                                String sts = debtor.getStatus();
-                                                                                out.println(sts);
-                                                                                if (sts.equals("blacklisted") || sts.equals("Blacklisted")) {
-                                                                                    //out.println("equals blacklist");
-                                                                                    out.println("<option value='Blacklisted'>Blacklisted</option>");
-                                                                                    out.println("<option value='Inactive'>Inactive</option>");
-                                                                                    out.println("<option value='Active'>Active</option>");
-                                                                                } else if (sts.equals("inactive") || sts.equals("Inactive")) {
-                                                                                    //out.println("equals inactive");
-                                                                                    out.println("<option value='Inactive'>Inactive</option>");
-                                                                                    out.println("<option value='Active'>Active</option>");
-                                                                                    out.println("<option value='Blacklisted'>Blacklisted</option>");
-                                                                                } else {
-                                                                                    //out.println("equals active");
-                                                                                    out.println("<option value='Active'>Active</option>");
-                                                                                    out.println("<option value='Blacklisted'>Blacklisted</option>");
-                                                                                    out.println("<option value='Inactive'>Inactive</option>");
-                                                                                }
-
-                                                                            %>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!--                                                <div class="col-md-4 pr-1">
-                                                                                                                    <div class="form-group">
-                                                                                                                        <label>Payment Term</label>
-                                                                                                                        <select name="displayTerm" class="form-control" required > -->
-                                                                <%                                                                 /*                                                               String displayTerm = debtor.getDisplayTerm();
-                                                                   if (displayTerm.equals("C.O.D")) {
-                                                                       out.println("<option value='C.O.D'>C.O.D</option>");
-                                                                       out.println("<option value='1 day'>1 day</option>");
-                                                                       out.println("<option value='15 days'>15 days</option>");
-                                                                       out.println("<option value='30 days'>30 days</option>");
-                                                                   } else if (displayTerm.equals("1 day")) {
-                                                                       out.println("<option value='1 day'>1 day</option>");
-                                                                       out.println("<option value='15 days'>15 days</option>");
-                                                                       out.println("<option value='30 days'>30 days</option>");
-                                                                       out.println("<option value='C.O.D'>C.O.D</option>");
-
-                                                                   } else if (displayTerm.equals("15 days")) {
-                                                                       out.println("<option value='15 days'>15 days</option>");
-                                                                       out.println("<option value='30 days'>30 days</option>");
-                                                                       out.println("<option value='C.O.D'>C.O.D</option>");
-                                                                       out.println("<option value='1 day'>1 day</option>");
-                                                                   } else {
-                                                                       out.println("<option value='30 days'>30 days</option>");
-                                                                       out.println("<option value='C.O.D'>C.O.D</option>");
-                                                                       out.println("<option value='1 day'>1 day</option>");
-                                                                       out.println("<option value='15 days'>15 days</option>");
-                                                                   }
-                                                                     */
-                                                                %>
-                                                                <!--                                                        </select>                                                        
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                -->
-                                                                <input type="hidden" value='C.O.D' name="displayTerm" />
-
-                                                                <div class="col-md-4 pr-1">
-                                                                    <div class="form-group">                                                                                                         <label>Route*</label>
-                                                                        <select name ="routeNumber" class="form-control" required>
-                                                                            <%                                                                String routeNum = debtor.getRouteNumber();
-                                                                                for (int i = 1; i <= 18; i++) {
-                                                                                    if ((Integer.parseInt(routeNum) == i)) {
-                                                                                        out.print("<option value='" + i + "' selected>" + i + "</option>");
-                                                                                    } else {
-                                                                                        out.print("<option value='" + i + "'>" + i + "</option>");
-                                                                                    }
-                                                                                }
-                                                                            %>  
-                                                                        </select>
-                                                                        <script>
-                                                                            //sdocument.write(document.getElementByName('routeNumberDropdown').value);
-                                                                            document.write('<input type="hidden" name="displayTerm" value="' + document.getElementByName('routeNumberDropdown').value + ">");
-                                                                        </script>
-                                                                        <!--
-                                                                        <input type="hidden" name="routeNumber" id="routeNumber" value="<script>
-                                                                               document.getElementByName('routeNumberDropdown').value 
-                                                                               </script>">
-                                                                        -->
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>&companyName=<%= debtor.getCompanyName()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
-                                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" data-toggle="modal" data-target="#exampleModal"/>
-                                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" style="margin-right:15px;" />
-                                                            <div class="clearfix"></div>
-                                                            </form>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Contact Person*</label>
+                                                        <input type="text" class="form-control" required placeholder="Customer Name" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="<%= debtor.getDebtorName()%>" size="10" name="debtorName">
 
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Username*</label>
+                                                        <input type="text" class="form-control" required placeholder="Username" value="<%= debtor.getCompanyCode()%>" size="10" name="companyCode">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 pl-1">
+                                                    <div class="form-group">
+                                                        <label for = "password">      </label>
+                                                        <input type="hidden" value="<%= debtor.getPassword()%>" name="hashPassword">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Contact Number 1</label>
+                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter 8 digit numbers" placeholder="Contact Number 1" value="<%= debtor.getDeliverContact()%>" size="10" name="deliverContact">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 px-1">
+                                                    <div class="form-group">
+                                                        <!-- need to change the value of this field-->
+                                                        <label>Contact Number 2</label>
+                                                        <input type="text" class="form-control" placeholder="Contact Number 2" pattern="(^$)|(^\d{8}$)" title="Please enter 8 digit numbers" value="<%= debtor.getDeliverContact2()%>" size="10" name="deliverContact2">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Status*</label>                                                       
+                                                        <select name="status" class="form-control" required>
+                                                            <%
+                                                                String sts = debtor.getStatus();
+                                                                out.println(sts);
+                                                                if (sts.equals("blacklisted") || sts.equals("Blacklisted")) {
+                                                                    //out.println("equals blacklist");
+                                                                    out.println("<option value='Blacklisted'>Blacklisted</option>");
+                                                                    out.println("<option value='Inactive'>Inactive</option>");
+                                                                    out.println("<option value='Active'>Active</option>");
+                                                                } else if (sts.equals("inactive") || sts.equals("Inactive")) {
+                                                                    //out.println("equals inactive");
+                                                                    out.println("<option value='Inactive'>Inactive</option>");
+                                                                    out.println("<option value='Active'>Active</option>");
+                                                                    out.println("<option value='Blacklisted'>Blacklisted</option>");
+                                                                } else {
+                                                                    //out.println("equals active");
+                                                                    out.println("<option value='Active'>Active</option>");
+                                                                    out.println("<option value='Blacklisted'>Blacklisted</option>");
+                                                                    out.println("<option value='Inactive'>Inactive</option>");
+                                                                }
+
+                                                            %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <!--                                                <div class="col-md-4 pr-1">
+                                                                                                    <div class="form-group">
+                                                                                                        <label>Payment Term</label>
+                                                                                                        <select name="displayTerm" class="form-control" required > -->
+                                                <%                                                                 /*                                                               String displayTerm = debtor.getDisplayTerm();
+                                                   if (displayTerm.equals("C.O.D")) {
+                                                       out.println("<option value='C.O.D'>C.O.D</option>");
+                                                       out.println("<option value='1 day'>1 day</option>");
+                                                       out.println("<option value='15 days'>15 days</option>");
+                                                       out.println("<option value='30 days'>30 days</option>");
+                                                   } else if (displayTerm.equals("1 day")) {
+                                                       out.println("<option value='1 day'>1 day</option>");
+                                                       out.println("<option value='15 days'>15 days</option>");
+                                                       out.println("<option value='30 days'>30 days</option>");
+                                                       out.println("<option value='C.O.D'>C.O.D</option>");
+
+                                                   } else if (displayTerm.equals("15 days")) {
+                                                       out.println("<option value='15 days'>15 days</option>");
+                                                       out.println("<option value='30 days'>30 days</option>");
+                                                       out.println("<option value='C.O.D'>C.O.D</option>");
+                                                       out.println("<option value='1 day'>1 day</option>");
+                                                   } else {
+                                                       out.println("<option value='30 days'>30 days</option>");
+                                                       out.println("<option value='C.O.D'>C.O.D</option>");
+                                                       out.println("<option value='1 day'>1 day</option>");
+                                                       out.println("<option value='15 days'>15 days</option>");
+                                                   }
+                                                     */
+                                                %>
+                                                <!--                                                        </select>                                                        
+                                                                                                    </div>
+                                                                                                </div>
+                                                -->
+                                                <input type="hidden" value='C.O.D' name="displayTerm" />
+
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">                                                                                                         <label>Route*</label>
+                                                        <select name ="routeNumber" class="form-control" required>
+                                                            <%                                                                                String routeNum = debtor.getRouteNumber();
+                                                                for (int i = 1; i <= 18; i++) {
+                                                                    if ((Integer.parseInt(routeNum) == i)) {
+                                                                        out.print("<option value='" + i + "' selected>" + i + "</option>");
+                                                                    } else {
+                                                                        out.print("<option value='" + i + "'>" + i + "</option>");
+                                                                    }
+                                                                }
+                                                            %>  
+                                                        </select>
+                                                        <script>
+                                                            //sdocument.write(document.getElementByName('routeNumberDropdown').value);
+                                                            document.write('<input type="hidden" name="displayTerm" value="' + document.getElementByName('routeNumberDropdown').value + ">");
+                                                        </script>
+                                                        <!--
+                                                        <input type="hidden" name="routeNumber" id="routeNumber" value="<script>
+                                                               document.getElementByName('routeNumberDropdown').value 
+                                                               </script>">
+                                                        -->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>&companyName=<%= debtor.getCompanyName()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
+                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" data-toggle="modal" data-target="#exampleModal"/>
+                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" style="margin-right:15px;" />
+                                            <div class="clearfix"></div>
+                                        </form>
 
                                     </div>
                                 </div>
                             </div>
 
-                            <footer class="footer">
-                                <p class="copyright text-center">
-                                    This website's content is Copyright 
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script>
-                                    © Lim Kee Food Manufacturing Pte Ltd
-                                </p>
-                            </footer>
                         </div>
                     </div>
-                    <!--   Core JS Files   -->
-                    <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-                    <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-                    <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-                    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-                    <script src="assets/js/plugins/bootstrap-switch.js"></script>
-                    <!--  Google Maps Plugin    -->
-                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-                    <!--  Chartist Plugin  -->
-                    <script src="assets/js/plugins/chartist.min.js"></script>
-                    <!--  Notifications Plugin    -->
-                    <script src="assets/js/plugins/bootstrap-notify.js"></script>
-                    <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-                    <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
-                    <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-                    <script src="assets/js/demo.js"></script>
-                    <script type="text/javascript">
-                                        $(document).ready(function() {
-                                        // Javascript method's body can be found in assets/js/demos.js
-                                        demo.initDashboardPageCharts();
-                                        });
-                    </script>
-                    <script>
-                        function getSelectedStatus() {
-                        document.getElementByName("status").value = (Number)document.getElementByName("statusDropdown").value;
-                        return (Number)document.getElementByName("statusDropdown").value;
-                        }
-                        function getSelectedRouteNumber(){
-                        document.getElementByName("routeNumber").value = (Number)document.getElementByName("routeNumberDropdown").value;
-                        return (Number)document.getElementByName("routeNumberDropdown").value;
-                        }
-                        function getSelectedDisplayTerm(){
-                        document.getElementByName("displayTerm").value = (Number)document.getElementByName("displayTermDropdown").value;
-                        return (Number)document.getElementByName("displayTermDropdown").value;
-                        }
-                    </script>
-                    <!-- Cancel alert pop up -->
-                    <script>
-                        $('#myModal').on('shown.bs.modal', function () {
-                        $('#myInput').trigger('focus')
-                        })
-                    </script>
-                    <script>
-                                $(document).ready(
-                                function() {
-                                setInterval(function() {
-                                $('#notification').load('loyaltyProgramme.jsp #notification');
-                                }, 5000);
-                                });
-                    </script>
-                    <script>
-                        function fillDelivery(f) {
-                        if (f.billingtoo.checked == true) {
-                        f.deliverAddr1.value = f.inAddr1.value;
-                        f.deliverAddr2.value = f.invAddr2.value;
-                        f.deliverAddr3.value = f.invAddr3.value;
-                        f.deliverAddr4.value = f.invAddr4.value;
-                        } else {
-                        f.deliverAddr1.value = "";
-                        f.deliverAddr1.placeholder = "Delivery Address";
-                        f.deliverAddr2.value = "";
-                        f.deliverAddr3.value = "";
-                        f.deliverAddr4.value = "";
-                        }
-                        }
-                    </script>
+                </div>
 
-                    </html>
+                <footer class="footer">
+                    <p class="copyright text-center">
+                        This website's content is Copyright 
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        © Lim Kee Food Manufacturing Pte Ltd
+                    </p>
+                </footer>
+            </div>
+        </div>
+        <!--   Core JS Files   -->
+        <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+        <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+        <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+        <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+        <script src="assets/js/plugins/bootstrap-switch.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        <!--  Chartist Plugin  -->
+        <script src="assets/js/plugins/chartist.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="assets/js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+        <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+        <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+        <script src="assets/js/demo.js"></script>
+        <script type="text/javascript">
+                            $(document).ready(function() {
+                            // Javascript method's body can be found in assets/js/demos.js
+                            demo.initDashboardPageCharts();
+                            });
+        </script>
+        <script>
+            function getSelectedStatus() {
+            document.getElementByName("status").value = (Number)document.getElementByName("statusDropdown").value;
+            return (Number)document.getElementByName("statusDropdown").value;
+            }
+            function getSelectedRouteNumber(){
+            document.getElementByName("routeNumber").value = (Number)document.getElementByName("routeNumberDropdown").value;
+            return (Number)document.getElementByName("routeNumberDropdown").value;
+            }
+            function getSelectedDisplayTerm(){
+            document.getElementByName("displayTerm").value = (Number)document.getElementByName("displayTermDropdown").value;
+            return (Number)document.getElementByName("displayTermDropdown").value;
+            }
+        </script>
+        <!-- Cancel alert pop up -->
+        <script>
+            $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+            })
+        </script>
+        <script>
+                    function fillDelivery(f) {
+                    if (f.billingtoo.checked == true) {
+                    f.deliverAddr1.value = f.inAddr1.value;
+                    f.deliverAddr2.value = f.invAddr2.value;
+                    f.deliverAddr3.value = f.invAddr3.value;
+                    f.deliverAddr4.value = f.invAddr4.value;
+                    } else {
+                    f.deliverAddr1.value = "";
+                    f.deliverAddr1.placeholder = "Delivery Address";
+                    f.deliverAddr2.value = "";
+                    f.deliverAddr3.value = "";
+                    f.deliverAddr4.value = "";
+                    }
+                    }
+        </script>
+        <script>
+            $(document).ready(
+                    function() {
+                    setInterval(function() {
+                    $('#notification').load('loyaltyProgramme.jsp #notification');
+                    }, 5000);
+                    });
+        </script>
+
+</html>

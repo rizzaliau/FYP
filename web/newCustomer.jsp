@@ -297,7 +297,7 @@
                                                     <div class="form-group">
                                                         <label>Status*</label>
                                                         <select name="status" class="form-control" required>
-                                                            <option value="Active">Active</option>
+                                                            <option selected value="Active">Active</option>
                                                             <option value="Inactive">Inactive</option>
                                                             <option value="Blacklisted">Blacklisted</option>
                                                         </select>    
@@ -323,7 +323,7 @@
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Preferred Language*</label>
-                                                        <select name="status" class="form-control" required>
+                                                        <select name="language" class="form-control" required>
                                                             <option value="English">English</option>
                                                             <option value="Chinese">Chinese</option>
                                                         </select>
@@ -335,8 +335,6 @@
                                             <a href="newCustomer.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="reset"  value="Reset" /></a>
                                             <div class="clearfix"></div>
                                         </form>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -375,11 +373,11 @@
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
     <script type="text/javascript">
-                                $(document).ready(function () {
-                                    // Javascript method's body can be found in assets/js/demos.js
-                                    demo.initDashboardPageCharts();
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
 
-                                });
+        });
     </script>
     <script>
         function fillDelivery(f) {

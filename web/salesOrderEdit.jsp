@@ -229,11 +229,16 @@
                                                 Date d = sdf.parse(currentTimeStamp);
                                                 sdf.applyPattern("dd-MM-yyyy HH:mm:ss");
                                                 String currentTimeStampFormatted = sdf.format(d);
-                                                
+
                                                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                                 Date d2 = sdf.parse(salesOrderdetails.getCreateTimeStamp());
                                                 sdf.applyPattern("dd-MM-yyyy HH:mm:ss");
                                                 String orderDateFormatted = sdf.format(d);
+
+                                                SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                Date d3 = sdf3.parse(salesOrderdetails.getLastModifiedTimeStamp());
+                                                sdf3.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                String lastModifiedTimeStampFormatted = sdf3.format(d3);
                                             %>    
 
                                             <div class="row">
@@ -247,7 +252,7 @@
                                                 <div class="col-md-3 pr-2">
                                                     <div class="form-group">
                                                         <label>Last Modified TIme</label>
-                                                        <input type="text" class="form-control" placeholder="Last Modified TimeStamp" size="10" value="<%= salesOrderdetails.getLastModifiedTimeStamp()%>" disabled="">
+                                                        <input type="text" class="form-control" placeholder="Last Modified TimeStamp" size="10" value="<%= lastModifiedTimeStampFormatted%>" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= currentTimeStampFormatted%>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
