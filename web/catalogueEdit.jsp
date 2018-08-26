@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
@@ -232,6 +233,14 @@
                                             <%                                                
                                                 String currentModifier = usernameSession;
                                                 String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                                String lastModifiedTimeStampFormatted = orderItem.getLastModifiedTimeStamp();
+                                                if(!orderItem.getLastModifiedTimeStamp().equals("-")){
+                                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                    Date d = sdf.parse(orderItem.getLastModifiedTimeStamp());
+                                                    sdf.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                    lastModifiedTimeStampFormatted = sdf.format(d); 
+                                                }
+
                                             %>
                                             
                                                
@@ -252,7 +261,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Last Modified Time</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= orderItem.getLastModifiedTimeStamp()%>" size="10" disabled="">
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= lastModifiedTimeStampFormatted%>" size="10" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
