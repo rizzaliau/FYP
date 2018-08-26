@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
@@ -224,6 +225,15 @@
                                             <%
                                                 String currentModifier = usernameSession;
                                                 String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                Date d = sdf.parse(currentTimeStamp);
+                                                sdf.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                String currentTimeStampFormatted = sdf.format(d);
+                                                
+                                                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                Date d2 = sdf.parse(salesOrderdetails.getCreateTimeStamp());
+                                                sdf.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                String orderDateFormatted = sdf.format(d);
                                             %>    
 
                                             <div class="row">
@@ -238,7 +248,7 @@
                                                     <div class="form-group">
                                                         <label>Last Modified TIme</label>
                                                         <input type="text" class="form-control" placeholder="Last Modified TimeStamp" size="10" value="<%= salesOrderdetails.getLastModifiedTimeStamp()%>" disabled="">
-                                                        <input type="hidden" class="form-control" value="<%= currentTimeStamp%>" name="lastModifiedTimeStamp">
+                                                        <input type="hidden" class="form-control" value="<%= currentTimeStampFormatted%>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
                                             </div>
@@ -265,12 +275,6 @@
                                                         <input type="text" class="form-control" placeholder="Contact Number" size="10" name="ContactNumber" value="<%= salesOrderdetails.getDeliverContact()%>" disabled="">
                                                     </div>
                                                 </div>
-                                                <!--                                                <div class="col-md-3 pr-1">
-                                                                                                    <div class="form-group">
-                                                                                                        <label>Payment Term</label>
-                                                                                                        <input type="text" class="form-control" placeholder="Display Term" required placeholder="" value="<%= salesOrderdetails.getDisplayTerm()%>" size="10" name="DisplayTerm" disabled="">                                            
-                                                                                                    </div>
-                                                                                                </div>-->
                                                 <input type='hidden' name='DisplayTerm' value='C.O.D'>
                                             </div>
                                             <div class="row">
@@ -284,7 +288,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Order Date</label>
-                                                        <input type="text" class="form-control" placeholder="Order Date" required placeholder="" value="<%= salesOrderdetails.getCreateTimeStamp()%>" size="10" name="Order Date" disabled="">                                            
+                                                        <input type="text" class="form-control" placeholder="Order Date" required placeholder="" value="<%= orderDateFormatted%>" size="10" name="Order Date" disabled="">                                            
                                                     </div>
                                                 </div>
 

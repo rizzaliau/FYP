@@ -236,7 +236,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Delivery Address* <input type="checkbox" name="billingtoo" onclick="fillDelivery(this.form)"><em>Same as Billing Address</em></input></label>
-                                                        
+
                                                         <input type="text" class="form-control" required placeholder="Delivery Address" name="deliverAddr1">
                                                         <br>
                                                         <input type="text" class="form-control" required placeholder="" size="10" name="deliverAddr2">
@@ -304,17 +304,6 @@
                                                     </div>
                                                 </div>
 
-                                                <!--                                                <div class="col-md-4 pr-1">
-                                                                                                    <div class="form-group">
-                                                                                                        <label>Payment Term*</label>
-                                                                                                        <select name="displayTerm" class="form-control" required >
-                                                                                                            <option value="C.O.D">C.O.D</option>
-                                                                                                            <option value="1 day">1 day</option>
-                                                                                                            <option value="15 days">15 days</option>
-                                                                                                            <option value="30 days">30 days</option>
-                                                                                                        </select>
-                                                                                                    </div>
-                                                                                                </div>-->
                                                 <input type="hidden" value='C.O.D' name="displayTerm" />
 
                                                 <div class="col-md-4 pr-1">
@@ -334,15 +323,16 @@
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Preferred Language*</label>
-                                                        <input type="text" class="form-control" required placeholder="" title="Please only enter alphabets" value="English" size="10" name="preferredLanguage">                                                           
+                                                        <select name="status" class="form-control" required>
+                                                            <option value="English">English</option>
+                                                            <option value="Chinese">Chinese</option>
+                                                        </select>
                                                     </div>
 
                                                 </div>
                                             </div>
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Add New Customer" />
                                             <a href="newCustomer.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="reset"  value="Reset" /></a>
-
-
                                             <div class="clearfix"></div>
                                         </form>
 
@@ -385,25 +375,25 @@
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            // Javascript method's body can be found in assets/js/demos.js
-            demo.initDashboardPageCharts();
+                                $(document).ready(function () {
+                                    // Javascript method's body can be found in assets/js/demos.js
+                                    demo.initDashboardPageCharts();
 
-        });
+                                });
     </script>
     <script>
         function fillDelivery(f) {
             if (f.billingtoo.checked == true) {
-                f.deliverAddr1.value =f.inAddr1.value;
+                f.deliverAddr1.value = f.inAddr1.value;
                 f.deliverAddr2.value = f.invAddr2.value;
                 f.deliverAddr3.value = f.invAddr3.value;
                 f.deliverAddr4.value = f.invAddr4.value;
-            }else {
-                f.deliverAddr1.value="";
-                f.deliverAddr1.placeholder ="Delivery Address";
-                f.deliverAddr2.value ="";
-                f.deliverAddr3.value ="";
-                f.deliverAddr4.value ="";
+            } else {
+                f.deliverAddr1.value = "";
+                f.deliverAddr1.placeholder = "Delivery Address";
+                f.deliverAddr2.value = "";
+                f.deliverAddr3.value = "";
+                f.deliverAddr4.value = "";
             }
         }
     </script>
