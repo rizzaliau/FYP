@@ -184,10 +184,10 @@
                                     </div>    
                                     
                                     <%
-                                        //map parameters month, revenue
-                                        Map<Integer, Double> salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth();
+                                      Map<Integer, String> getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(6);
+                                      Map<String, Integer> qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(6);
 
-                                    %>    
+                                    %>
                                     <center>
                                     <script>
                                       let myChart = document.getElementById('myChart').getContext('2d');
@@ -200,15 +200,17 @@
                                       let massPopChart = new Chart(myChart, {
                                         type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
-                                          labels:['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                                          labels:['<%= getTop5ProductsByMonth.get(1)%>', '<%= getTop5ProductsByMonth.get(2)%>', 
+                                              '<%= getTop5ProductsByMonth.get(3)%>', '<%= getTop5ProductsByMonth.get(4)%>', 
+                                              '<%= getTop5ProductsByMonth.get(5)%>'],
                                           datasets:[{
                                             label:'Total Revenue Sales',
                                             data:[
-                                              <%= salesRevenueByMonthMap.get(1) %>,
-                                              <%= salesRevenueByMonthMap.get(2) %>,
-                                              <%= salesRevenueByMonthMap.get(3) %>,
-                                              <%= salesRevenueByMonthMap.get(7) %>,
-                                              <%= salesRevenueByMonthMap.get(6) %>
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1)) %>,
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(2)) %>,
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(3)) %>,
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(4)) %>,
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(5)) %>
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:[
@@ -249,23 +251,8 @@
                                           },
                                           tooltips:{
                                             enabled:true
-                                          },
-                                          scales: {
-                                            yAxes: [{
-                                              scaleLabel: {
-                                                display: true,
-                                                labelString: 'Revenue'
-                                              }
-                                            }],
+                                          }
 
-                                            xAxes: [{
-                                              scaleLabel: {
-                                                display: true,
-                                                labelString: 'Month'
-                                              }
-                                            }]
-
-                                          } 
                                         }
                                       });
                                       
@@ -360,6 +347,7 @@
                                       
                                     </script>
                                     
+
                                     
                         </div>
                     </div>
