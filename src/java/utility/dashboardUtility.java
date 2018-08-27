@@ -7,6 +7,7 @@ package utility;
 
 import dao.ConnectionManager;
 import entity.ItemDetails;
+import entity.OrderItem;
 import entity.SalesOrder;
 import entity.SalesOrderDetails;
 import entity.User;
@@ -14,8 +15,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  *
@@ -119,6 +126,144 @@ public class dashboardUtility {
        return string;
    }
     
+    //Final map to get top 5 products by month
+    public static Map<Integer, String> getTop5ProductsByMonth(int month){
+        
+        //return map 
+        Map<Integer, String> top5ProductsByMonth = new HashMap<>();
+        
+        //all sales orders for a particular month
+        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month);
+        
+        //List of all available order item (description)
+        List<String> orderItemDiscriptionList = getOrderItemList();
+        
+        //key orderitem description, value quantiy of product ordered
+        Map<String, Integer> getProductQtyForMonth = new HashMap<>();
+        
+        //Populate the getProductQtyForMonth Map for all the order items with 0 Quantity
+        for (int i = 0; i< orderItemDiscriptionList.size(); i++) {
+            getProductQtyForMonth.put(orderItemDiscriptionList.get(i), 0);
+        }
+        
+        //loop through the all the sales order for a particular month
+        for (Integer number : allSalesOrderMap.keySet()) {
+
+            SalesOrder salesOrder = allSalesOrderMap.get(number);
+
+            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
+
+            Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
+            
+                for (Integer itemNumber : itemDetailsMap.keySet()) {
+
+                    ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
+                    OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
+                    
+                    String description = item.getDescription();
+                    int qtyInt = Integer.parseInt(itemDetail.getQty());
+                    
+                    int newQuantity = getProductQtyForMonth.get(description)+qtyInt;
+                    
+                    getProductQtyForMonth.put(description, newQuantity);
+
+                }
+            
+            
+        }
+        
+        List<Entry<String, Integer>> list = new LinkedList<Entry<String, Integer>>(getProductQtyForMonth.entrySet());
+        
+        Collections.sort(list,new Comparator<Entry<String, Integer>>(){
+            public int compare(Entry<String,Integer> o1, Entry<String, Integer> o2){
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });
+        
+        int rank = 1;
+
+        for (int k = list.size()-1; k>=list.size()-5; k--){    
+            
+            Entry<String, Integer> entry = list.get(k);
+            
+            String key = entry.getKey();
+            int value = entry.getValue();
+            
+            System.out.println(entry);
+            System.out.println("Key is "+key);
+            
+            top5ProductsByMonth.put(rank,key);
+            rank++;
+            
+        }
+
+        return top5ProductsByMonth;
+    }
     
+    //Get list of all availabe orderitems
+    public static List<String> getOrderItemList(){
+        
+        List<String> orderItemsList = new ArrayList<>();
+        
+        Map<Integer, OrderItem> catalogueMap = salesOrderUtility.getCatalogueMap();
+        
+        for (Integer number : catalogueMap.keySet()) {
+            OrderItem orderItem = catalogueMap.get(number);
+            orderItemsList.add(orderItem.getDescription());
+
+        }
+
+        return orderItemsList;
+    }
     
+    //Key order description, Value qty for that particular month
+    public static Map<String, Integer> getQtyForItemDescriptionMonth(int month){
+        
+        //key orderitem description, value quantiy of product ordered
+        Map<String, Integer> getProductQtyForMonth = new HashMap<>();
+        
+        //all sales orders for a particular month
+        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month);
+        
+        //List of all available order item (description)
+        List<String> orderItemDiscriptionList = getOrderItemList();
+        
+
+        //Populate the getProductQtyForMonth Map for all the order items with 0 Quantity
+        for (int i = 0; i< orderItemDiscriptionList.size(); i++) {
+            getProductQtyForMonth.put(orderItemDiscriptionList.get(i), 0);
+        }
+        
+        //loop through the all the sales order for a particular month
+        for (Integer number : allSalesOrderMap.keySet()) {
+
+            SalesOrder salesOrder = allSalesOrderMap.get(number);
+
+            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
+
+            Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
+            
+                for (Integer itemNumber : itemDetailsMap.keySet()) {
+
+                    ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
+                    OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
+                    
+                    String description = item.getDescription();
+                    int qtyInt = Integer.parseInt(itemDetail.getQty());
+                    
+                    int newQuantity = getProductQtyForMonth.get(description)+qtyInt;
+                    
+                    getProductQtyForMonth.put(description, newQuantity);
+
+                }
+            
+            
+        }
+        
+        return getProductQtyForMonth;
+    }
+        
+        
+        
+        
 }
