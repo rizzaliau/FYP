@@ -41,6 +41,7 @@
 </head>
 
 <body>
+     <div class="wrapper">
            <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
                 <!--
@@ -214,7 +215,7 @@
                                             %>
                                             
                                             
-                                            <a href="readAllNotifications.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="readAllNotifications"  value="Read all notifications" style="margin-right:20px;" /></a>
+                                            <a href="readAllNotifications.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="readAllNotifications"  value="Read all notifications" style="margin-right:20px; margin-top: 20px; margin-bottom:-20px;" /></a>
                                             <%  
                                                 
 //                                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy h.mm aa");
