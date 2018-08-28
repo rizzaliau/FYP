@@ -228,7 +228,7 @@
                                         <script type="text/javascript" src="./js/uploadEdit.js"></script>
                                         <br>
                                         <br>
-                                            <div class="row">
+                                        <div class="row">
                                                 
                                             <%                                                
                                                 String currentModifier = usernameSession;
@@ -265,8 +265,9 @@
                                                         <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-5 px-1">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 pr-1">
                                                     <div class="form-group">
                                                         <label>English Description*</label>
                                                         <input type="text" class="form-control" placeholder="English description" required="" value="<%= orderItem.getDescription()%>" size="20" name="description">                                            
@@ -294,7 +295,7 @@
 
 
 
-                                            <div class="row">
+                                                        <div class="row" style="margin-left: -5px;">
 
                                                 <input type="hidden" class="form-control" value="<%= orderItem.getImageURL()%>" name="imageURL">
                                                 <div class="col-md-3 pr-1">
