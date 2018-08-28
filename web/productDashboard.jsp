@@ -305,7 +305,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Most Returned Products',
+                                            text:'Most Returned Products By Month',
                                             fontSize:25
                                           },
                                           legend:{

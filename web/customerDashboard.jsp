@@ -180,7 +180,7 @@
                                     <br>    
 
                                     <div class="container">
-                                      <canvas id="myChart"></canvas>
+                                      <canvas id="top10CustomersChart"></canvas>
                                     </div>    
                                     
                                     <%
@@ -190,20 +190,20 @@
                                     %>    
                                     <center>
                                     <script>
-                                      let myChart = document.getElementById('myChart').getContext('2d');
+                                      let myChart = document.getElementById('top10CustomersChart').getContext('2d');
 
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Lato';
                                       Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
-                                      let massPopChart = new Chart(myChart, {
-                                        type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                      let massPopChart = new Chart(top10CustomersChart, {
+                                        type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                                           datasets:[{
-                                            label:'Total Revenue Sales',
+                                            label:'Sales By Customer ($)',
                                             data:[
                                               <%= salesRevenueByMonthMap.get(1) %>,
                                               <%= salesRevenueByMonthMap.get(2) %>,
@@ -237,7 +237,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Lim Kee Revenue By Month',
+                                            text:'Top 10 Customers By Month By Year',
                                             fontSize:25
                                           },
                                           legend:{
@@ -262,14 +262,14 @@
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Revenue'
+                                                labelString: 'Customer Code'
                                               }
                                             }],
 
                                             xAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Month'
+                                                labelString: 'Sales ($)'
                                               }
                                             }]
 
@@ -283,24 +283,24 @@
                                     <br>
                                     
                                     <div class="container">
-                                      <canvas id="profitChart"></canvas>
+                                      <canvas id="customerWhoDoNotMeetRequirement"></canvas>
                                     </div> 
                                     
                                     <script>
-                                      let profitChart = document.getElementById('profitChart').getContext('2d');
+                                      let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
 
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Lato';
                                       Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
-                                      let massPopChart2 = new Chart(profitChart, {
-                                        type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                      let massPopChart2 = new Chart(customerWhoDoNotMeetRequirement, {
+                                        type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                                           datasets:[{
-                                            label:'Total Revenue Sales',
+                                            label:'Sales By Customer ($)',
                                             data:[
                                               <%= 0 %>,
                                               <%= 0 %>,
@@ -326,7 +326,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Lim Kee Profit By Month',
+                                            text:'Customers Do Not Meet Requirements By Month',
                                             fontSize:25
                                           },
                                           legend:{
@@ -351,7 +351,96 @@
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Profit'
+                                                labelString: 'Customer Code'
+                                              }
+                                            }],
+
+                                            xAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Sales ($)'
+                                              }
+                                            }]
+
+                                          } 
+                                        }
+                                      });
+                                      
+                                    </script>
+                                    <br>
+                                    <br>
+                                    
+                                    <div class="container">
+                                      <canvas id="returnProductsByCustomerChart"></canvas>
+                                    </div>    
+
+                                    <script>
+                                      let returnProductsByCustomerChart = document.getElementById('returnProductsByCustomerChart').getContext('2d');
+
+                                      // Global Options
+                                      Chart.defaults.global.defaultFontFamily = 'Lato';
+                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontColor = '#777';
+
+                                      let massPopChart3 = new Chart(returnProductsByCustomerChart, {
+                                        type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                        data:{
+                                          labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                          datasets:[{
+                                            label:'Returned Products By Customers',
+                                            data:[
+                                              <%= salesRevenueByMonthMap.get(1) %>,
+                                              <%= salesRevenueByMonthMap.get(2) %>,
+                                              <%= salesRevenueByMonthMap.get(3) %>,
+                                              <%= salesRevenueByMonthMap.get(4) %>,
+                                              <%= salesRevenueByMonthMap.get(5) %>,
+                                              <%= salesRevenueByMonthMap.get(6) %>,
+                                              <%= salesRevenueByMonthMap.get(7) %>,
+                                              <%= salesRevenueByMonthMap.get(8) %>,
+                                              <%= salesRevenueByMonthMap.get(9) %>,
+                                              <%= salesRevenueByMonthMap.get(10) %>,
+                                              <%= salesRevenueByMonthMap.get(11) %>,
+                                              <%= salesRevenueByMonthMap.get(12) %>
+                                            ],
+                                            //backgroundColor:'green',
+                                            backgroundColor:['white'
+                                            ],
+                                            borderWidth:2,
+                                            borderColor:'#FFA500',
+                                            hoverBorderWidth:3,
+                                            hoverBorderColor:'#000'
+                                          }]
+                                        },
+                                        options:{
+                                          title:{
+                                            display:true,
+                                            text:'Returned Products By Customers By Month',
+                                            fontSize:25
+                                          },
+                                          legend:{
+                                            display:true,
+                                            position:'right',
+                                            labels:{
+                                              fontColor:'#000'
+                                            }
+                                          },
+                                          layout:{
+                                            padding:{
+                                              left:50,
+                                              right:0,
+                                              bottom:0,
+                                              top:0
+                                            }
+                                          },
+                                          tooltips:{
+                                            enabled:true
+                                          },
+                                          scales: {
+                                            yAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Return Quantity'
                                               }
                                             }],
 
@@ -367,6 +456,8 @@
                                       });
                                       
                                     </script>
+                                    
+                                    
                                     
                                     
                         </div>
