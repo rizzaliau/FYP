@@ -456,8 +456,13 @@
                                       });
                                       
                                     </script>
-                                    
-                                    
+                                    <br>
+                                    <br>
+                                    <center>
+                                    Breakdown Of Products Return
+                                    <br>
+                                    Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
+                                    </center>
                                     
                                     
                         </div>
