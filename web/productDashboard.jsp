@@ -231,7 +231,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Top 5 Products by Volume',
+                                            text:'Top 5 Products by Volume by Month',
                                             fontSize:25
                                           },
                                           legend:{
@@ -262,24 +262,24 @@
                                     <br>
                                     
                                     <div class="container">
-                                      <canvas id="profitChart"></canvas>
+                                      <canvas id="mostReturnedChart"></canvas>
                                     </div> 
                                     
                                     <script>
-                                      let profitChart = document.getElementById('profitChart').getContext('2d');
+                                      let mostReturnedChart = document.getElementById('mostReturnedChart').getContext('2d');
 
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Lato';
                                       Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
-                                      let massPopChart2 = new Chart(profitChart, {
-                                        type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                      let massPopChart2 = new Chart(mostReturnedChart, {
+                                        type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                                           datasets:[{
-                                            label:'Total Revenue Sales',
+                                            label:'% Returned Rate',
                                             data:[
                                               <%= 0 %>,
                                               <%= 0 %>,
@@ -330,14 +330,14 @@
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Profit'
+                                                labelString: 'Item Name'
                                               }
                                             }],
 
                                             xAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Month'
+                                                labelString: 'Return Rate (%)'
                                               }
                                             }]
 
