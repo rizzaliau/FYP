@@ -256,7 +256,7 @@
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Revenue'
+                                                labelString: 'Revenue ($)'
                                               }
                                             }],
 
@@ -345,7 +345,7 @@
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Profit'
+                                                labelString: 'Profit ($)'
                                               }
                                             }],
 
