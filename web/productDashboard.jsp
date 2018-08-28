@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="utility.dashboardUtility"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
@@ -184,6 +185,7 @@
                                     </div>    
                                     
                                     <%
+                                      DecimalFormat df = new DecimalFormat("0.00");
                                       Map<Integer, String> getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(6);
                                       Map<String, Integer> qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(6);
 
@@ -261,9 +263,17 @@
                                     <br>
                                     <br>
                                     
+                                    <%
+                                      // Hardcoded for month 6, june
+                                      Map<Integer, String> getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(6);
+                                      Map<String, Double> getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6);
+
+                                    %>
+                                    
                                     <div class="container">
                                       <canvas id="mostReturnedChart"></canvas>
                                     </div> 
+                                    
                                     
                                     <script>
                                       let mostReturnedChart = document.getElementById('mostReturnedChart').getContext('2d');
@@ -276,23 +286,15 @@
                                       let massPopChart2 = new Chart(mostReturnedChart, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
-                                          labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                          labels:['<%= getMostReturnedProductsByMonth.get(1) %>', '<%= getMostReturnedProductsByMonth.get(2) %>', '<%= getMostReturnedProductsByMonth.get(3) %>', '<%= getMostReturnedProductsByMonth.get(4) %>', '<%= getMostReturnedProductsByMonth.get(5) %>'],
                                           datasets:[{
                                             label:'% Returned Rate',
                                             data:[
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 10 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1))) %>,
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2))) %>,
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3))) %>,
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4))) %>,
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5))) %>
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:'green',
@@ -305,7 +307,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Most Returned Products By Month',
+                                            text:'Top 5 Most Returned Products By Month',
                                             fontSize:25
                                           },
                                           legend:{
