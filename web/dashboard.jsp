@@ -165,12 +165,27 @@
                                     <div class="card-header ">
                                         <h4 class="card-title">Dashboard Management</h4>
                                     </div>   
-                                    <br>
+                                    
+                                    <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Select Dashboard : </label>
+                                                        <!--this should be a dropdown --> 
+
+                                                        <select name="status" class="form-control" id="my_selection">
+                                                            <option value="Sales" href="dashboard.jsp">Sales</option>
+                                                            <option value="Product" href="productDashboard.jsp">Product</option>
+                                                            <option value="Customer" href="customerDashboard.jsp">Customer</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                    </div>
+                                    <!-- HIDE THE BUTTON FIRST 
                                     <center>    
                                         <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
                                         <a href="productDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="productDashboard"  value="Product"  /></a>
                                         <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
                                     </center>
+                                   -->
                                     <br>    
 
                                     <div class="container">
@@ -421,6 +436,12 @@ $(document).ready(
                  $('#notification').load('loyaltyProgramme.jsp #notification'); 
             }, 5000);
         });
+</script>
+<!-- dropdown selection script -->
+<script>
+document.getElementById('my_selection').onchange = function() {
+    window.location.href = this.children[this.selectedIndex].getAttribute('href');
+}
 </script>
 
 </html>
