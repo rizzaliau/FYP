@@ -1,4 +1,5 @@
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="utility.dashboardUtility"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
@@ -195,7 +196,7 @@
                                     <%
                                         //map parameters month, revenue
                                         Map<Integer, Double> salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth();
-
+                                        DecimalFormat df = new DecimalFormat("0.00");
                                     %>    
                                     <center>
                                     <script>
@@ -214,18 +215,18 @@
                                           datasets:[{
                                             label:'Total Revenue Sales',
                                             data:[
-                                              <%= salesRevenueByMonthMap.get(1) %>,
-                                              <%= salesRevenueByMonthMap.get(2) %>,
-                                              <%= salesRevenueByMonthMap.get(3) %>,
-                                              <%= salesRevenueByMonthMap.get(4) %>,
-                                              <%= salesRevenueByMonthMap.get(5) %>,
-                                              <%= salesRevenueByMonthMap.get(6) %>,
-                                              <%= salesRevenueByMonthMap.get(7) %>,
-                                              <%= salesRevenueByMonthMap.get(8) %>,
-                                              <%= salesRevenueByMonthMap.get(9) %>,
-                                              <%= salesRevenueByMonthMap.get(10) %>,
-                                              <%= salesRevenueByMonthMap.get(11) %>,
-                                              <%= salesRevenueByMonthMap.get(12) %>
+                                              <%= df.format(salesRevenueByMonthMap.get(1)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(2)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(3)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(4)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(5)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(6)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(7)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(8)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(9)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(10)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(11)) %>,
+                                              <%= df.format(salesRevenueByMonthMap.get(12)) %>
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:[
@@ -246,7 +247,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Lim Kee Revenue By Month',
+                                            text:'Total Revenue By Month Breakdown',
                                             fontSize:25
                                           },
                                           legend:{
