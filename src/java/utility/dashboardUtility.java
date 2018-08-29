@@ -264,6 +264,193 @@ public class dashboardUtility {
     }
         
         
+    public static Map<Integer, String> getMostReturnedProductsByMonth(int month){
         
+        //return map 
+        Map<Integer, String> mostReturnedProductsByMonth = new HashMap<>();
+        
+        //all sales orders for a particular month
+        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month);
+        
+        //List of all available order item (description)
+        List<String> orderItemDiscriptionList = getOrderItemList();
+        
+        //key orderitem description, value quantity of product ordered
+        Map<String, Integer> getProductQtyForMonth = new HashMap<>();
+        
+        //key orderitem description, value returned quantity of product ordered
+        Map<String, Integer> getReturnedProductQtyForMonth = new HashMap<>();
+        
+        //key orderitem description, value % returned quantity of product ordered
+        Map<String, Double> getPercentageReturnedProductMap = new HashMap<>();
+        
+        //Populate the getProductQtyForMonth Map for all the order items with 0 Quantity
+        for (int i = 0; i< orderItemDiscriptionList.size(); i++) {
+            getProductQtyForMonth.put(orderItemDiscriptionList.get(i), 0);
+        }
+        
+        for (int i = 0; i< orderItemDiscriptionList.size(); i++) {
+            getReturnedProductQtyForMonth.put(orderItemDiscriptionList.get(i), 0);
+        }
+        
+        //loop through the all the sales order for a particular month
+        for (Integer number : allSalesOrderMap.keySet()) {
+
+            SalesOrder salesOrder = allSalesOrderMap.get(number);
+
+            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
+
+            Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
+            
+                for (Integer itemNumber : itemDetailsMap.keySet()) {
+
+                    ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
+                    OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
+                    
+                    String description = item.getDescription();
+                    int qtyInt = Integer.parseInt(itemDetail.getQty());
+                    int returnedQtyInt = Integer.parseInt(itemDetail.getReturnedQty());
+                    
+                    int newQuantity = getProductQtyForMonth.get(description)+qtyInt;
+                    int newReturnedQuantity = getReturnedProductQtyForMonth.get(description)+returnedQtyInt;
+                    
+                    getReturnedProductQtyForMonth.put(description, newReturnedQuantity);
+                    getProductQtyForMonth.put(description, newQuantity);
+
+                }
+            
+            
+        }
+        
+        //Loop to calculate percentage of returned items
+        for (String itemDescription : getProductQtyForMonth.keySet() ){
+            double percentageReturned = 0;
+            
+            int qty = getProductQtyForMonth.get(itemDescription);
+                    
+            double returnedQty = getReturnedProductQtyForMonth.get(itemDescription);
+            
+            if(qty==0 && returnedQty ==0){
+                getPercentageReturnedProductMap.put(itemDescription, 0.0);
+            }else{
+            
+                percentageReturned = (returnedQty/(qty+returnedQty))*100;
+
+                getPercentageReturnedProductMap.put(itemDescription, percentageReturned);
+
+                //System.out.println("returnedQty is "+returnedQty);
+                //System.out.println("Percentage Returned is"+percentageReturned);
+            }
+        }
+        
+
+        List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(getPercentageReturnedProductMap.entrySet());
+        
+        Collections.sort(list,new Comparator<Entry<String, Double>>(){
+            public int compare(Entry<String,Double> o1, Entry<String, Double> o2){
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });
+        
+        int rank = 1;
+
+        for (int k = list.size()-1; k>=list.size()-5; k--){    
+            
+            Entry<String, Double> entry = list.get(k);
+            
+            String key = entry.getKey();
+            double value = entry.getValue();
+            
+            System.out.println(entry);
+            System.out.println("Key is "+key);
+            
+            mostReturnedProductsByMonth.put(rank,key);
+            rank++;
+            
+        }
+
+        return mostReturnedProductsByMonth;
+    }
+    
+    public static Map<String, Double> getReturnedQtyPercentageForItemDescriptionMonth(int month){
+        
+        //key orderitem description, value % returned quantity of product ordered
+        Map<String, Double> getPercentageReturnedProductMap = new HashMap<>();
+        
+        //all sales orders for a particular month
+        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month);
+        
+        //List of all available order item (description)
+        List<String> orderItemDiscriptionList = getOrderItemList();
+        
+        //key orderitem description, value quantity of product ordered
+        Map<String, Integer> getProductQtyForMonth = new HashMap<>();
+        
+        //key orderitem description, value returned quantity of product ordered
+        Map<String, Integer> getReturnedProductQtyForMonth = new HashMap<>();
+        
+
+        //Populate the getProductQtyForMonth Map for all the order items with 0 Quantity
+        for (int i = 0; i< orderItemDiscriptionList.size(); i++) {
+            getProductQtyForMonth.put(orderItemDiscriptionList.get(i), 0);
+        }
+        
+        for (int i = 0; i< orderItemDiscriptionList.size(); i++) {
+            getReturnedProductQtyForMonth.put(orderItemDiscriptionList.get(i), 0);
+        }
+        
+        //loop through the all the sales order for a particular month
+        for (Integer number : allSalesOrderMap.keySet()) {
+
+            SalesOrder salesOrder = allSalesOrderMap.get(number);
+
+            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
+
+            Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
+            
+                for (Integer itemNumber : itemDetailsMap.keySet()) {
+
+                    ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
+                    OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
+                    
+                    String description = item.getDescription();
+                    int qtyInt = Integer.parseInt(itemDetail.getQty());
+                    int returnedQtyInt = Integer.parseInt(itemDetail.getReturnedQty());
+                    
+                    int newQuantity = getProductQtyForMonth.get(description)+qtyInt;
+                    int newReturnedQuantity = getReturnedProductQtyForMonth.get(description)+returnedQtyInt;
+                    
+                    getReturnedProductQtyForMonth.put(description, newReturnedQuantity);
+                    getProductQtyForMonth.put(description, newQuantity);
+
+                }
+            
+            
+        }
+        
+        //Loop to calculate percentage of returned items
+        for (String itemDescription : getProductQtyForMonth.keySet() ){
+            double percentageReturned = 0;
+            
+            int qty = getProductQtyForMonth.get(itemDescription);
+                    
+            double returnedQty = getReturnedProductQtyForMonth.get(itemDescription);
+            
+            if(qty==0 && returnedQty ==0){
+                getPercentageReturnedProductMap.put(itemDescription, 0.0);
+            }else{
+            
+                percentageReturned = (returnedQty/(qty+returnedQty))*100;
+
+                getPercentageReturnedProductMap.put(itemDescription, percentageReturned);
+
+                //System.out.println("returnedQty is "+returnedQty);
+                //System.out.println("Percentage Returned is"+percentageReturned);
+            }
+        }
+        
+        return getPercentageReturnedProductMap;
+    }
+    
         
 }
