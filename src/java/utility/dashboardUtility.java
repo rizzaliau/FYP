@@ -30,6 +30,7 @@ import java.util.Map.Entry;
  */
 public class dashboardUtility {
     
+    //Key Month, Value Revenue for a particular month
     public static Map<Integer, Double> getSalesRevenueByMonth(){
         
         Map<Integer, Double> salesRevenueByMonthMap = new HashMap<>();
@@ -69,6 +70,7 @@ public class dashboardUtility {
         return salesRevenueByMonthMap;
     }
     
+    //Key Month, Value SalesOrder for a particular month
     public static Map<Integer, SalesOrder> getAllRevenueSalesOrderMapByMonth(int month){
         Map<Integer, SalesOrder> salesOrderMap = new HashMap<>();
         

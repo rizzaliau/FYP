@@ -202,8 +202,11 @@
                                       let massPopChart = new Chart(myChart, {
                                         type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
-                                          labels:['<%= getTop5ProductsByMonth.get(1)%>', '<%= getTop5ProductsByMonth.get(2)%>', 
-                                              '<%= getTop5ProductsByMonth.get(3)%>', '<%= getTop5ProductsByMonth.get(4)%>', 
+                                          labels:[
+                                              '<%= getTop5ProductsByMonth.get(1)%>', 
+                                              '<%= getTop5ProductsByMonth.get(2)%>', 
+                                              '<%= getTop5ProductsByMonth.get(3)%>', 
+                                              '<%= getTop5ProductsByMonth.get(4)%>', 
                                               '<%= getTop5ProductsByMonth.get(5)%>'],
                                           datasets:[{
                                             label:'Total Revenue Sales',
@@ -286,7 +289,12 @@
                                       let massPopChart2 = new Chart(mostReturnedChart, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
-                                          labels:['<%= getMostReturnedProductsByMonth.get(1) %>', '<%= getMostReturnedProductsByMonth.get(2) %>', '<%= getMostReturnedProductsByMonth.get(3) %>', '<%= getMostReturnedProductsByMonth.get(4) %>', '<%= getMostReturnedProductsByMonth.get(5) %>'],
+                                          labels:[
+                                              '<%= getMostReturnedProductsByMonth.get(1) %>',
+                                              '<%= getMostReturnedProductsByMonth.get(2) %>', 
+                                              '<%= getMostReturnedProductsByMonth.get(3) %>', 
+                                              '<%= getMostReturnedProductsByMonth.get(4) %>', 
+                                              '<%= getMostReturnedProductsByMonth.get(5) %>'],
                                           datasets:[{
                                             label:'% Returned Rate',
                                             data:[
