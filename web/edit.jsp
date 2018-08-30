@@ -2,6 +2,7 @@
     Document   : edit
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
+<%@include file="protect.jsp" %>
 --%>
 
 
@@ -226,9 +227,20 @@
                                                     String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
 
                                                     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                                    Date d2 = sdf2.parse(debtor.getLastModifiedTimeStamp());
-                                                    sdf2.applyPattern("dd-MM-yyyy HH:mm:ss");
-                                                    String lastModifiedTimeStampFormatted = sdf2.format(d2);
+                                                    String lastModifiedTimeStampFormatted = "";
+
+                                                    if (!(debtor.getLastModifiedTimeStamp() == null || debtor.getLastModifiedTimeStamp().equals("-") || debtor.getLastModifiedTimeStamp().equals(""))) {
+                                                        Date d2 = sdf2.parse(debtor.getLastModifiedTimeStamp());
+                                                        sdf2.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                        lastModifiedTimeStampFormatted = sdf2.format(d2);
+                                                    } else {
+                                                        lastModifiedTimeStampFormatted = "-";
+                                                    }
+                                                    
+                                                    String lastModifiedBy = debtor.getLastModifiedBy();
+                                                    if (lastModifiedBy.equals("")) {
+                                                        lastModifiedBy = "-";
+                                                    }
                                                 %>    
 
                                                 <div class="col-md-3 pr-1">
@@ -241,14 +253,14 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Last Modified By</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= debtor.getLastModifiedBy()%>" size="10" disabled="">
+                                                               <input type="text" class="form-control" placeholder="" required="" value="<%= lastModifiedBy%>" size="10" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= currentModifier%>" name="lastModifiedBy">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Last Modified Time</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= lastModifiedTimeStampFormatted %>" size="10" disabled="">
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= lastModifiedTimeStampFormatted%>" size="10" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= currentTimeStamp%>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
