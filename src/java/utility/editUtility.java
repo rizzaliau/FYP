@@ -175,8 +175,9 @@ public class editUtility {
                     salesOrderQuantityStmt.executeUpdate();
                     
                     out.println("The Preferred language retrieved is"+preferredLanguageRetrieved);
-                    boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, "97597790", orderIDRetrieved);
-                    System.out.println("Edit Order SMS Sent is " + smsSentForEditOrder);
+                    
+                    //boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, "97597790", orderIDRetrieved);
+                    //System.out.println("Edit Order SMS Sent is " + smsSentForEditOrder);
 
                 } catch (SQLException ex) {
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

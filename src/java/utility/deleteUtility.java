@@ -162,8 +162,8 @@ public class deleteUtility {
                 //stmt3.executeUpdate();
                 out.println("passes rs");
                 
-                boolean smsSentForCancelOrder = sendSmsForCancelOrder(preferredLanguageRetrieved, "97597790", orderIDRetrieved);    
-                System.out.println("Cancel Order SMS Sent is " + smsSentForCancelOrder);
+                //boolean smsSentForCancelOrder = sendSmsForCancelOrder(preferredLanguageRetrieved, "97597790", orderIDRetrieved);    
+                //System.out.println("Cancel Order SMS Sent is " + smsSentForCancelOrder);
 
 
             } catch (SQLException ex) {

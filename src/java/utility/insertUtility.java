@@ -77,8 +77,8 @@ public class insertUtility {
             stmt.executeUpdate();
             out.println("passes rs");
             
-            boolean smsSentToCustomer = sendSmsToNewCustomer(preferredLanguage, "97597790", companyCode);
-            System.out.println("New account SMS Sent is " + smsSentToCustomer);
+            //boolean smsSentToCustomer = sendSmsToNewCustomer(preferredLanguage, "97597790", companyCode);
+            //System.out.println("New account SMS Sent is " + smsSentToCustomer);
 
 //        }catch (final ConstraintViolationException e) {
 //            
