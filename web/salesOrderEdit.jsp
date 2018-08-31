@@ -221,6 +221,7 @@
                                         <form method="post" action="editSalesOrderController">
 
                                             <input type="hidden" name="orderID" value="<%= orderID%>">
+                                            <input type="hidden" name="preferredLanguage" value="<%= salesOrderdetails.getPreferredLanguage() %>">
 
                                             <%
                                                 
