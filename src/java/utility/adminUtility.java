@@ -151,9 +151,17 @@ public class adminUtility {
         //Validation for Password
         if (!(newPassword1.equals(newPassword2))){   
             
-            request.setAttribute("serial", serialInt);
-            request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
-            request.getRequestDispatcher("editAdmin.jsp?serial="+serialInt).forward(request, response); 
+            if(newPassword1.equals("") || newPassword2.equals("")){
+                request.setAttribute("serial", serialInt);
+                request.setAttribute("status", "Blank fields detected. Please enter all fields.");
+                request.getRequestDispatcher("editAdmin.jsp?serial="+serialInt).forward(request, response); 
+                
+            }else{
+            
+                request.setAttribute("serial", serialInt);
+                request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
+                request.getRequestDispatcher("editAdmin.jsp?serial="+serialInt).forward(request, response); 
+            }
             
         }else{
             
