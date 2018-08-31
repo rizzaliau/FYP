@@ -291,7 +291,7 @@ public class editUtility {
                 myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[Lim Kee] Order #" + orderID 
                 + "\n" + "Your order has been modified. If you did not authorize this change, please call +65 758 5858." + "\"}";
             } else {
-                myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[林记] 订単 #"  + orderID + "\n" + "您的订单已修改完毕。若非您授权的，请拨打+65 6758 5858。" + "\"}";
+                myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[林记] 订単 #"  + orderID + "\n" + "您的订单已修改完毕。若非本人亲自操作，请拨打+65 6758 5858。" + "\"}";
             }
 
             // build the request based on the supplied settings
