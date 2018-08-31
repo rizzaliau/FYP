@@ -209,4 +209,27 @@ public class adminUtility {
        return string;
     }
     
+    //Format date from 
+    public static String formatDate(String date){
+        
+       String formattedDate = "";
+       
+       if(date == null || date.equals("null")){
+           return "-";
+       }
+       
+       //2018-08-31 23:44:58.0
+       
+       String yyyy = date.substring(0,4);
+       String MM = date.substring(5,7);
+       String dd = date.substring(8,10);
+       String HH = date.substring(11,13);
+       String mm = date.substring(14,16);
+       String ss = date.substring(17,19);
+       
+       formattedDate = dd+"-"+MM+"-"+yyyy+" "+HH+":"+mm+":"+ss;
+               
+       return formattedDate;
+    }
+    
 }

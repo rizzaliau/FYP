@@ -224,7 +224,11 @@
                                             
                                             String currentModifier = usernameSession;
                                             String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            //currentTimeStamp = adminUtility.formatDate(currentTimeStamp);
                                             //out.println(currentTimeStamp);
+                                            //out.println(currentTimeStamp.substring(17,19));
+
+                                            
                                         %>
 
 
@@ -249,7 +253,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Last Modified Time</label>
-                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= admin.getLastModifiedTimestamp()%>" size="10" disabled="">
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= adminUtility.formatDate(admin.getLastModifiedTimestamp())%>" size="10" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
