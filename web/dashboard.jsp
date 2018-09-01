@@ -183,14 +183,34 @@
                                     </center>
                                    -->
                                     <br>    
-
+                                    
+                                    <%
+                                      Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();  
+                                    %>
+                                    <center>
+                                        <div>
+                                            <input hidden id="mytext" type="text" value="Active" />    
+                                            <select class="example-filter-input" id="3">
+                                                <%
+                                                    for (int i = 1; i <= availableSalesOrderYears.size(); i++) {
+                                                            int year = availableSalesOrderYears.get(i);
+                                                            out.print("<option value='"+year+"'>"+year+"</option>");
+                                                            
+                                                    }
+                                                %>
+                                            </select>  
+                                            <label>Year</label>
+                                        </div>
+                                    </center>
+                                    
                                     <div class="container">
                                       <canvas id="myChart"></canvas>
                                     </div>    
                                     
                                     <%
                                         //map parameters month, revenue
-                                        Map<Integer, Double> salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth();
+                                        //hardcoded year to 2018
+                                        Map<Integer, Double> salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
                                         DecimalFormat df = new DecimalFormat("0.00");
                                     %>    
                                     <center>
@@ -242,7 +262,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Total Revenue By Month Breakdown',
+                                            text:'Total Revenue Monthly Breakdown By Year',
                                             fontSize:25
                                           },
                                           legend:{

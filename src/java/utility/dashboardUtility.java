@@ -31,13 +31,13 @@ import java.util.Map.Entry;
 public class dashboardUtility {
     
     //Key Month, Value Revenue for a particular month
-    public static Map<Integer, Double> getSalesRevenueByMonth(){
+    public static Map<Integer, Double> getSalesRevenueByMonth(int year){
         
         Map<Integer, Double> salesRevenueByMonthMap = new HashMap<>();
         
         for(int month = 1; month<=12 ; month++){
         
-            Map<Integer, SalesOrder> allSalesOrderRevenueMap = getAllRevenueSalesOrderMapByMonth(month);
+            Map<Integer, SalesOrder> allSalesOrderRevenueMap = getAllRevenueSalesOrderMapByMonth(month,year);
             
             double totalForMonth = 0;
             
@@ -71,7 +71,7 @@ public class dashboardUtility {
     }
     
     //Key Month, Value SalesOrder for a particular month
-    public static Map<Integer, SalesOrder> getAllRevenueSalesOrderMapByMonth(int month){
+    public static Map<Integer, SalesOrder> getAllRevenueSalesOrderMapByMonth(int month,int year){
         Map<Integer, SalesOrder> salesOrderMap = new HashMap<>();
         
         Connection conn = null;
@@ -86,8 +86,8 @@ public class dashboardUtility {
             String populateMap = "select so.OrderID, d.DebtorCode, d.DebtorName, d.RouteNumber from sales_order so \n" +
                 "inner join debtor d on so.DebtorCode = d.DebtorCode  \n" +
                 "inner join sales_order_detail sod on so.OrderID = sod.OrderID \n" +
-                "where (so.Status = 'Pending Delivery' and MONTH(`CreatedTimeStamp`) = '"+month+"') OR "
-                    + "(so.Status = 'Delivered' and MONTH(`CreatedTimeStamp`) = '"+month+"') "+
+                "where (so.Status = 'Pending Delivery' and MONTH(`CreatedTimeStamp`) = '"+month+"') and YEAR(`CreatedTimeStamp`) = '"+year+"' OR "
+                    + "(so.Status = 'Delivered' and MONTH(`CreatedTimeStamp`) = '"+month+"') and YEAR(`CreatedTimeStamp`) = '"+year+"' "+
                 "order by sod.DeliveryDate ASC, d.RouteNumber ASC";
 
             pstmt = conn.prepareStatement(populateMap);
@@ -129,13 +129,13 @@ public class dashboardUtility {
    }
     
     //Key Rank, Value OrderItem Description
-    public static Map<Integer, String> getTop5ProductsByMonth(int month){
+    public static Map<Integer, String> getTop5ProductsByMonth(int month,int year){
         
         //return map 
         Map<Integer, String> top5ProductsByMonth = new HashMap<>();
         
         //all sales orders for a particular month
-        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month);
+        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month,year);
         
         //List of all available order item (description)
         List<String> orderItemDiscriptionList = getOrderItemList();
@@ -219,13 +219,13 @@ public class dashboardUtility {
     }
     
     //Key order description, Value qty for that particular month
-    public static Map<String, Integer> getQtyForItemDescriptionMonth(int month){
+    public static Map<String, Integer> getQtyForItemDescriptionMonth(int month, int year){
         
         //key orderitem description, value quantiy of product ordered
         Map<String, Integer> getProductQtyForMonth = new HashMap<>();
         
         //all sales orders for a particular month
-        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month);
+        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month,year);
         
         //List of all available order item (description)
         List<String> orderItemDiscriptionList = getOrderItemList();
@@ -266,13 +266,13 @@ public class dashboardUtility {
     }
         
         
-    public static Map<Integer, String> getMostReturnedProductsByMonth(int month){
+    public static Map<Integer, String> getMostReturnedProductsByMonth(int month,int year){
         
         //return map 
         Map<Integer, String> mostReturnedProductsByMonth = new HashMap<>();
         
         //all sales orders for a particular month
-        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month);
+        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month,year);
         
         //List of all available order item (description)
         List<String> orderItemDiscriptionList = getOrderItemList();
@@ -374,13 +374,13 @@ public class dashboardUtility {
         return mostReturnedProductsByMonth;
     }
     
-    public static Map<String, Double> getReturnedQtyPercentageForItemDescriptionMonth(int month){
+    public static Map<String, Double> getReturnedQtyPercentageForItemDescriptionMonth(int month, int year){
         
         //key orderitem description, value % returned quantity of product ordered
         Map<String, Double> getPercentageReturnedProductMap = new HashMap<>();
         
         //all sales orders for a particular month
-        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month);
+        Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month,year);
         
         //List of all available order item (description)
         List<String> orderItemDiscriptionList = getOrderItemList();
@@ -454,5 +454,50 @@ public class dashboardUtility {
         return getPercentageReturnedProductMap;
     }
     
+    //Key index, Value Year
+    public static Map<Integer, Integer> getAvailableSalesOrderYears(){    
+    
+        //String sql = "SELECT DISTINCT YEAR(CreatedTimeStamp) FROM sales_order Where so.Status = 'Pending Delivery'";
+        Map<Integer,Integer> availableSalesOrderYears = new HashMap<>();
         
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int count = 1;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select DISTINCT YEAR(CreatedTimeStamp) from sales_order so \n" +
+                "inner join debtor d on so.DebtorCode = d.DebtorCode  \n" +
+                "inner join sales_order_detail sod on so.OrderID = sod.OrderID \n" +
+                "where so.Status = 'Pending Delivery' OR so.Status = 'Delivered'";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String year = checkForNull(rs.getString("YEAR(CreatedTimeStamp)"));
+                int yearInt = Integer.parseInt(year);
+                System.out.println(yearInt);
+                
+                availableSalesOrderYears.put(count, yearInt);
+                count++;
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by getSalesOrderMap method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        return availableSalesOrderYears;
+    }
 }
