@@ -473,7 +473,7 @@
                                     <br>
                                     Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
                                     </center>
-                                    
+                                    <br>
                                     
                         </div>
                     </div>
