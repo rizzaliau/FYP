@@ -197,8 +197,8 @@
                                     
                                     <%
                                       DecimalFormat df = new DecimalFormat("0.00");
-                                      Map<Integer, String> getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(6);
-                                      Map<String, Integer> qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(6);
+                                      Map<Integer, String> getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(6,2018);
+                                      Map<String, Integer> qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(6,2018);
 
                                     %>
                                     <center>
@@ -279,8 +279,8 @@
                                     
                                     <%
                                       // Hardcoded for month 6, june
-                                      Map<Integer, String> getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(6);
-                                      Map<String, Double> getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6);
+                                      Map<Integer, String> getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(6,2018);
+                                      Map<String, Double> getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
 
                                     %>
                                     
