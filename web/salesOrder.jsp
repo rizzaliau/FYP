@@ -204,7 +204,7 @@
                                                 }
                                             %> 
                                         </div></font>
-                                        <a href="orderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Order History"  value="Order History" style="margin-right:20px;" /></a>                                        
+                                        <a href="orderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Order History"  value="Order History" style="width:150px;" /></a>                                        
                                         <br>
                                         <label>
                                             
