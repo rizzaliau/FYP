@@ -33,6 +33,9 @@
     <link href="assets/css/demo.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+     <!--tabs for the button-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel='stylesheet' href='css/tabButton.css'/>
     
 </head>
 
@@ -170,13 +173,20 @@
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Dashboard Management</h4>
+                                        <ul class="tabrow" id="my_selection">
+                                                    <li><a href="dashboard.jsp">Sales</a></li>
+                                                    <li><a href="productDashboard.jsp">Product</a></li>
+                                                    <li class="selected"><a href="customerDashboard.jsp">Customer</a></li>
+                                                </ul>
                                     </div>   
                                     <br>
+                                    <!-- HIDE THE BUTTON FIRST 
                                     <center>    
                                         <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
                                         <a href="productDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="productDashboard"  value="Product"  /></a>
                                         <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
                                     </center>
+                                    -->
                                     <br>    
 
                                     <div class="container">
@@ -524,5 +534,12 @@ $(document).ready(
             }, 5000);
         });
 </script>
+<!--tabs button jquery script -->
+<script>
+document.getElementById('my_selection').onchange = function() {
+    window.location.href = this.children[this.selectedIndex].getAttribute('href');
+}
+</script>
+
 
 </html>
