@@ -205,6 +205,7 @@
                                                 <select id="filterYear" name="month" onchange="return setValue();">
                                                     
                                                     <%
+                                                        out.print("<option value='none'>Select Month</option>");
                                                         for (int i = 1; i <= allMonths.size(); i++) {
                                                                 String month = allMonths.get(i);
                                                                 out.print("<option value='"+i+"'>"+month+"");
@@ -214,9 +215,10 @@
 
                                                 </select>
                                                     
-                                                <select id="filterMonth" name="year" onchange="return setValue();">
+                                                <select id="filterYear" name="year" onchange="return setValue();">
                                                     
                                                     <%
+                                                        out.print("<option value='none'>Select Year</option>");
                                                         for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
                                                                 int year = availableSalesOrderYears.get(i);
                                                                 //out.print("<option value='"+year+"'>"+year+"</option>");
@@ -261,7 +263,14 @@
                                             
                                             //monthRetrieved = 1;
                                             yearRetrieved = "2018";
-
+                                        }else if(yearRetrieved.equals("none")&&monthRetrieved.equals("none") 
+                                            ||yearRetrieved.equals("none")|| monthRetrieved.equals("none")){
+                                            
+                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(1,2018);
+                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(1,2018);
+                                            
+                                            yearRetrieved = "2018";
+                                            
                                         }else{
                                             int yearInt = Integer.parseInt(yearRetrieved);
                                             monthInt = Integer.parseInt(monthRetrieved);
@@ -359,6 +368,7 @@
                                                 <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();">
                                                     
                                                     <%
+                                                        out.print("<option value='none'>Select Month");
                                                         for (int i = 1; i <= allMonths.size(); i++) {
                                                                 String month = allMonths.get(i);
                                                                 out.print("<option value='"+i+"'>"+month+"");
@@ -371,6 +381,7 @@
                                                 <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();">
                                                     
                                                     <%
+                                                        out.print("<option value='none'>Select Year");
                                                         for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
                                                                 int year = availableSalesOrderYears.get(i);
 
@@ -409,7 +420,16 @@
                                             
                                             //monthRetrieved = 1;
                                             yearProductReturnedRetrieved = "2018";
-
+                                            
+                                        }else if(yearProductReturnedRetrieved.equals("none")&&monthProductReturnedRetrieved.equals("none") 
+                                            ||yearProductReturnedRetrieved.equals("none")|| monthProductReturnedRetrieved.equals("none")){
+                                            
+                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(1,2018);
+                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
+                                            
+                                            yearProductReturnedRetrieved = "2018";
+                                            
+                                         
                                         }else{
                                             int yearProductReturnedInt = Integer.parseInt(yearProductReturnedRetrieved);
                                             monthReturnedInt = Integer.parseInt(monthProductReturnedRetrieved);
@@ -505,7 +525,7 @@
                                           } 
                                         }
                                       });
-                                      
+                                    
                                     </script>
                                     <br>
 

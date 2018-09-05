@@ -190,13 +190,15 @@
                                     <center>
                                         <div>
   
-                                            
+                                            <!-- Filter year for total revenue -->
                                             <form method="post" action="dashboard.jsp" name="filterYearForm">
                                                 <select id="filterYear" name="year" onchange="return setValue();">
+                                                    
                                                     <%
+                                                        out.print("<option value='none'>Select Year</option>");
                                                         for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
                                                                 int year = availableSalesOrderYears.get(i);
-                                                                //out.print("<option value='"+year+"'>"+year+"</option>");
+                                                                
                                                                 //out.print("<a href='filterSalesDashboard.jsp?year='"+year+"'>"+year+"</a>");
                                                                 //out.print("<option value='filterSalesDashboard.jsp?year="+year+"' >"+year+"</option>");
                                                                 out.print("<option value='"+year+"'>"+year+"");
@@ -226,7 +228,11 @@
                                         if(yearRetrieved==null){
                                             salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
                                             yearRetrieved = "2018";
-                                            
+
+                                        }else if(yearRetrieved.equals("none")){                                           
+                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
+                                            yearRetrieved = "2018";
+                                                                                   
                                         }else{
                                             int yearInt = Integer.parseInt(yearRetrieved);
                                             //map parameters month, revenue
