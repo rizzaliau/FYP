@@ -203,16 +203,30 @@
                                                 }
                                             %> 
                                         </div></font>
-                                        <form action="test.jsp" method="post">                                        
+                                        <div>
+                                            <div>
+                                                <input hidden id="mytext" type="text" value="Active" />    
+                                                <label>Route(s)</label>
+                                                <select class="example-filter-input" id="3">
+                                                    <option value="All"></option>
+                                                    <% for (int i = 1; i < 15; i++) {
+                                                            out.println("<option value='" + i + "'>" + i + "</option>");
+                                                        }
+                                                    %>
+
+                                                </select>  
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <form action="test.jsp" method="post">                                        
                                         <a href="orderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Order History"  value="Order History" style="margin-right:20px;" /></a>                                        
                                         <input class="btn btn-info btn-fill pull-right" type="submit" name="Print Selected"  value="Print Selected" style="margin-right:20px;" />
-                                        <label>
-
-                                        </label>
                                         <input readonly="readonly" type="search" id="4" class="example2-search-input datepicker">
                                         <div class="card-body table-full-width table-responsive">
+
                                             <table id="example2" class="order-table table table-hover table-striped display" style="width:100%">
-                                                <thead>   
+                                                <thead>
                                                     <tr>
                                                         <th>S/N</th>
                                                         <th>Order ID</th>
@@ -222,13 +236,11 @@
                                                         <th>Status</th>
                                                         <th>Edit/View</th>
                                                         <th>Cancel</th>
-                                                        <th>Print</th>
+                                                        <th><label>Select <br> All<!-- select all boxes --><input type="checkbox" name="select-all" id="select-all" /></input></label></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <!--   
-                                                    <form action="deleteMultipleSalesOrderConfirmation.jsp?status=<%=status%>&deliveryDate=<%=deliveryDate%>" method="post">
-                                                    -->
+
                                                     <%
                                                         int pendingCount = 1;
                                                         for (Integer number : salesOrderMap.keySet()) {
@@ -269,160 +281,176 @@
 
                                                                 //out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Print</a>&nbsp;&nbsp;&nbsp;<a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
                                                                 out.print("<td><a href='cancelSalesOrderConfirmation.jsp?orderID=" + salesOrder.getOrderID() + "&status=pendingDelivery&deliveryDate=2018-06-25'>Cancel</a></td>");
-                                                                out.print("<td><input type='checkbox' value='"+ salesOrder.getOrderID().toString()+",pendingDelivery' name='orderInfo'></input>");
+                                                                out.print("<td><input type='checkbox' value='" + salesOrder.getOrderID().toString() + ",pendingDelivery' name='orderInfo'></input>");
                                                                 //out.print("<input hidden type='text' value='" + salesOrder.getOrderID().toString() + "' name='status'></input>");
                                                                 out.print("</tr>");
                                                             }
                                                         }
 
                                                     %>
-                                                    </tbody>  
+                                                </tbody>  
                                             </table>
-                                            </form>
-                                            <br>                                                
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <!--
-                                                <input type="text" class="search form-control" style="margin-left:20px; width: 250px;" size="13" placeholder="Search Order" />
-                                                -->
-                                            </div>
-                                            <!-- 
-                                            <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
-                                            --> <div class="col-md-4">
-                                                <!--<img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">-->
-                                            </div>
-                                            <div class="col-md-2">
-                                                <!--
-                                               <select name="material" id="filter-material">
-                                                   <option selected="selected" value="">Select a Material</option>
-                                                   <option value="plastic">Plastic</option>
-                                                   <option value="glass">Glass</option>
-                                               </select> 
-                                              
-                                               <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
-                                                -->
-                                            </div>
-                                            <div class="col-md-2">
-                                                <!--
-                                                <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:50px;" name="salesOrderHistory"  value="Sales Order History" /></a>
-                                                -->
-                                            </div>
-                                            <div class="col-md-2">
-                                                <!--
-                                                <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:10px;" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
-                                                -->
-                                            </div>
-                                        </div>
-                                        <br>
+                                    </form>
+                                    <br>                                                
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
                                         <!--
-                                        <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
+                                        <input type="text" class="search form-control" style="margin-left:20px; width: 250px;" size="13" placeholder="Search Order" />
                                         -->
-                                        </form>   
-
+                                    </div>
+                                    <!-- 
+                                    <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
+                                    --> <div class="col-md-4">
+                                        <!--<img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">-->
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!--
+                                       <select name="material" id="filter-material">
+                                           <option selected="selected" value="">Select a Material</option>
+                                           <option value="plastic">Plastic</option>
+                                           <option value="glass">Glass</option>
+                                       </select> 
+                                      
+                                       <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
+                                        -->
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!--
+                                        <a href="salesOrderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:50px;" name="salesOrderHistory"  value="Sales Order History" /></a>
+                                        -->
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!--
+                                        <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:10px;" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
+                                        -->
                                     </div>
                                 </div>
+                                <br>
+                                <!--
+                                <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
+                                -->
+                                </form>   
+
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <footer class="footer">
-                    <p class="copyright text-center">
-                        This website's content is Copyright 
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script>
-                        © Lim Kee Food Manufacturing Pte Ltd
-                    </p>
-                </footer>
             </div>
         </div>
 
-    </body>
-    <!--   Core JS Files   -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
-    <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="assets/js/plugins/bootstrap-switch.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <!--  Chartist Plugin  -->
-    <script src="assets/js/plugins/chartist.min.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/plugins/bootstrap-notify.js"></script>
-    <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-    <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
-    <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-    <script src="assets/js/demo.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script>
-                            $(document).ready(function () {
+        <footer class="footer">
+            <p class="copyright text-center">
+                This website's content is Copyright 
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                © Lim Kee Food Manufacturing Pte Ltd
+            </p>
+        </footer>
+    </div>
+</div>
 
-                                var dataTable = $('#example2').DataTable({
-                                    /*
-                                     "columns": [
-                                     null,
-                                     null,
-                                     null,
-                                     null,
-                                     null,
-                                     null,
-                                     {"orderable": false},
-                                     {"orderable": false},
-                                     {"orderable": false},
-                                     ]
-                                     */
-                                });
+</body>
+<!--   Core JS Files   -->
+<script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!--  Chartist Plugin  -->
+<script src="assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+                    $(document).ready(function () {
 
-                                $('.example2-search-input').on('keyup click change', function () {
-                                    var i = $(this).attr('id');  // getting column index
-                                    var v = $(this).val();  // getting search input value
-                                    dataTable.columns(i).search(v).draw();
+                        var dataTable = $('#example2').DataTable({
+                            "columns": [
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                {"orderable": false},
+                            ]
+                        });
 
-                                });
+                        $('.example2-search-input').on('keyup click change', function () {
+                            var i = $(this).attr('id');  // getting column index
+                            var v = $(this).val();  // getting search input value
+                            dataTable.columns(i).search(v).draw();
 
-                                $(".datepicker").datepicker({
-                                    dateFormat: "dd-mm-yy",
-                                    showOn: "button",
-                                    showAnim: 'slideDown',
-                                    showButtonPanel: true,
-                                    autoSize: true,
-                                    buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
-                                    buttonImageOnly: true,
-                                    buttonText: "Select date",
-                                    closeText: "Clear"
-                                });
+                        });
+                        $('.example-filter-input').on('keyup click change', function () {
+                            var i = $(this).attr('id');  // getting column index
+                            var v = $(this).val();  // getting search input value
+                            if (v == 'All') {
+                                dataTable.columns(i).search('').draw();
+                            } else {
+                                dataTable.columns(i).search(v, false, false, false).draw();
+                            }
 
-                                $(document).on("click", ".ui-datepicker-close", function () {
-                                    $('.datepicker').val("");
-                                    dataTable.columns(4).search("").draw();
-                                });
-                            });
-    </script>
-    <!--
-    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.js"></script>
-    <script>
-        var options = {
-            valueNames: ['orderId'],
-            page: 10,
-            pagination: true
-        };
 
-        var orderList = new List('salesOrder', options);
-    </script>
-    -->
-    <script>
-        $(document).ready(
-                function () {
-                    setInterval(function () {
-                        $('#notification').load('loyaltyProgramme.jsp #notification');
-                    }, 5000);
-                });
-    </script>
+                        });
+                        $('.example-search-input').on('keyup click change', function () {
+                            var i = $(this).attr('id');  // getting column index
+                            var v = $(this).val();  // getting search input value
+                            dataTable.columns(i).search(v).draw();
+
+                        });
+
+                        $(".datepicker").datepicker({
+                            dateFormat: "dd-mm-yy",
+                            showOn: "button",
+                            showAnim: 'slideDown',
+                            showButtonPanel: true,
+                            autoSize: true,
+                            buttonImage: "//jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                            buttonImageOnly: true,
+                            buttonText: "Select date",
+                            closeText: "Clear"
+                        });
+
+                        $(document).on("click", ".ui-datepicker-close", function () {
+                            $('.datepicker').val("");
+                            dataTable.columns(4).search("").draw();
+                        });
+                    });
+</script>
+
+<script>
+    $(document).ready(
+            function () {
+                setInterval(function () {
+                    $('#notification').load('loyaltyProgramme.jsp #notification');
+                }, 5000);
+            });
+    $('#select-all').click(function (event) {
+        if (this.checked) {
+            // Iterate each checkbox
+            $(':checkbox').each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function () {
+                this.checked = false;
+            });
+        }
+    });
+
+</script>
 
 
 </html>
