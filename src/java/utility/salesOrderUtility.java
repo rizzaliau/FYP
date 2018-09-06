@@ -609,5 +609,47 @@ public class salesOrderUtility {
         
         return orderItemReturned;
     }
+    
+    public static String getCustomerCode(String orderID,String status){
+        
+        String customerCode = null;
+        
+        if(orderID== null || status==null){
+            return "none";
+        }else{
+            Connection conn = null;
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
 
+            //int count = 1;
+
+            try {
+                conn = ConnectionManager.getConnection();
+                String populateMap = "Select d.DebtorCode " +
+                    "from sales_order so inner join sales_order_detail sod ON so.OrderID = sod.OrderID\n" +
+                    "inner join debtor d ON so.DebtorCode = d.DebtorCode \n" +
+                    "where so.Status = \""+status+"\" and so.OrderID = \"" + orderID + "\"";
+
+                pstmt = conn.prepareStatement(populateMap);
+                rs = pstmt.executeQuery();
+
+                System.out.println("Passed connection");
+
+                while (rs.next()) {
+                    customerCode = checkForNull(rs.getString("DebtorCode"));
+                }
+
+            }catch(SQLException e){
+
+                System.out.println("SQLException thrown by getCustomerCode method");
+                System.out.println(e.getMessage());
+
+            }finally{
+                ConnectionManager.close(conn, pstmt, rs);
+            }
+
+            return customerCode;
+        }
+    }
+    
 }
