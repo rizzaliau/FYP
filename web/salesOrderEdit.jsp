@@ -210,6 +210,8 @@
                                             }
 
                                             SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderID, status);
+                                            
+                                            String customerCode = salesOrderUtility.getCustomerCode(orderID, status);
 
                                             Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(orderID, status);
 
