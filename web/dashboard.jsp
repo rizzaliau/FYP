@@ -189,29 +189,57 @@
                                     %>
                                     <center>
                                         <div>
-                                            <input hidden id="mytext" type="text" value="Active" />    
-                                            <select class="example-filter-input" id="3">
-                                                <%
-                                                    for (int i = 1; i <= availableSalesOrderYears.size(); i++) {
-                                                            int year = availableSalesOrderYears.get(i);
-                                                            out.print("<option value='"+year+"'>"+year+"</option>");
-                                                            
-                                                    }
-                                                %>
-                                            </select>  
+  
+                                            <!-- Filter year for total revenue -->
+                                            <form method="post" action="dashboard.jsp" name="filterYearForm">
+                                                <select id="filterYear" name="year" onchange="return setValue();">
+                                                    
+                                                    <%
+                                                        out.print("<option value='none'>Select Year</option>");
+                                                        for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                int year = availableSalesOrderYears.get(i);
+                                                                
+                                                                //out.print("<a href='filterSalesDashboard.jsp?year='"+year+"'>"+year+"</a>");
+                                                                //out.print("<option value='filterSalesDashboard.jsp?year="+year+"' >"+year+"</option>");
+                                                                out.print("<option value='"+year+"'>"+year+"");
+
+                                                        }
+                                                    %>
+
+                                                </select>
+                                                <input type="hidden" name="dropdown" id="dropdown">
+                                                <input type="submit" value="Filter" name="btn_dropdown">
+                                            <form>
+                                            
                                             <label>Year</label>
                                         </div>
                                     </center>
-                                    
+                                    <br>
                                     <div class="container">
                                       <canvas id="myChart"></canvas>
                                     </div>    
                                     
                                     <%
-                                        //map parameters month, revenue
-                                        //hardcoded year to 2018
-                                        Map<Integer, Double> salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
+                                        Map<Integer, Double> salesRevenueByMonthMap = null;
                                         DecimalFormat df = new DecimalFormat("0.00");
+                                        
+                                        String yearRetrieved = request.getParameter("year");
+                                        
+                                        if(yearRetrieved==null){
+                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
+                                            yearRetrieved = "2018";
+
+                                        }else if(yearRetrieved.equals("none")){                                           
+                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
+                                            yearRetrieved = "2018";
+                                                                                   
+                                        }else{
+                                            int yearInt = Integer.parseInt(yearRetrieved);
+                                            //map parameters month, revenue
+                                            //hardcoded year to 2018
+                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(yearInt);
+         
+                                        }
                                     %>    
                                     <center>
                                     <script>
@@ -262,7 +290,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Total Revenue Monthly Breakdown By Year',
+                                            text:'Total Revenue Monthly Breakdown By Year <%= yearRetrieved %>',
                                             fontSize:25
                                           },
                                           legend:{

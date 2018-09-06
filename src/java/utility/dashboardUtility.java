@@ -500,4 +500,27 @@ public class dashboardUtility {
         
         return availableSalesOrderYears;
     }
+    
+    //Key Index, Value Month
+    public static Map<Integer, String> getAllMonths(){    
+
+        Map<Integer,String> allMonths = new HashMap<>();
+        
+        allMonths.put(1,"January");
+        allMonths.put(2,"February");
+        allMonths.put(3,"March");
+        allMonths.put(4,"April");
+        allMonths.put(5,"May");
+        allMonths.put(6,"June");
+        allMonths.put(7,"July");
+        allMonths.put(8,"August");
+        allMonths.put(9,"September");
+        allMonths.put(10,"October");
+        allMonths.put(11,"November");
+        allMonths.put(12,"December");
+
+        return allMonths;
+    }
+    
+    
 }

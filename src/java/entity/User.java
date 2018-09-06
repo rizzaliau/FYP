@@ -67,6 +67,9 @@ public class User {
   }
   
   public String getLastModifiedTimestamp(){
+      if(lastModifiedTimestamp == null || lastModifiedTimestamp.equals("")){
+          return "-";
+      }
       return lastModifiedTimestamp;
   }
   

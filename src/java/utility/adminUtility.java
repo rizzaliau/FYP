@@ -214,7 +214,7 @@ public class adminUtility {
         
        String formattedDate = "";
        
-       if(date == null || date.equals("null")){
+       if(date.equals("-")||date == null){
            return "-";
        }
        
