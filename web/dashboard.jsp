@@ -187,12 +187,13 @@
                                     <%
                                       Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();  
                                     %>
+                                    
                                     <center>
                                         <div>
   
                                             <!-- Filter year for total revenue -->
-                                            <form method="post" action="dashboard.jsp" name="filterYearForm">
-                                                <select id="filterYear" name="year" onchange="return setValue();">
+                                            <form method="post" action="dashboard.jsp" name="filterTotalSalesYearForm">
+                                                <select id="filterYear" name="yearTotalRevenue" onchange="return setValue();">
                                                     
                                                     <%
                                                         out.print("<option value='none'>Select Year</option>");
@@ -209,21 +210,23 @@
                                                 </select>
                                                 <input type="hidden" name="dropdown" id="dropdown">
                                                 <input type="submit" value="Filter" name="btn_dropdown">
-                                            <form>
+                                            </form>
                                             
                                             <label>Year</label>
                                         </div>
                                     </center>
                                     <br>
+                                    
+                                    <!-- Total Revenue Chart -->
                                     <div class="container">
-                                      <canvas id="myChart"></canvas>
+                                      <canvas id="totalRevenueChart"></canvas>
                                     </div>    
                                     
                                     <%
                                         Map<Integer, Double> salesRevenueByMonthMap = null;
                                         DecimalFormat df = new DecimalFormat("0.00");
                                         
-                                        String yearRetrieved = request.getParameter("year");
+                                        String yearRetrieved = request.getParameter("yearTotalRevenue");
                                         
                                         if(yearRetrieved==null){
                                             salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
@@ -243,14 +246,14 @@
                                     %>    
                                     <center>
                                     <script>
-                                      let myChart = document.getElementById('myChart').getContext('2d');
+                                      let totalRevenueChart = document.getElementById('totalRevenueChart').getContext('2d');
 
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Lato';
                                       Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
-                                      let massPopChart = new Chart(myChart, {
+                                      let massPopChart = new Chart(totalRevenueChart, {
                                         type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -334,6 +337,351 @@
                                     </center>
                                     <br>
                                     <br>
+
+                                    
+                                    <%
+                                      //Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears(); 
+
+                                      Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
+                                    %>   
+                                    
+                                    
+                                    <!-- Filter month/year for top 5 Products -->
+                                    <center>
+                                        <div>
+
+                                            <form method="post" action="dashboard.jsp" name="filterYearForm">
+                                                <select id="filterYear" name="month" onchange="return setValue();">
+                                                    
+                                                    <%
+                                                        out.print("<option value='none'>Select Month</option>");
+                                                        for (int i = 1; i <= allMonths.size(); i++) {
+                                                                String month = allMonths.get(i);
+                                                                out.print("<option value='"+i+"'>"+month+"");
+
+                                                        }
+                                                    %>
+
+                                                </select>
+                                                    
+                                                <select id="filterYear" name="year" onchange="return setValue();">
+                                                    
+                                                    <%
+                                                        out.print("<option value='none'>Select Year</option>");
+                                                        for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                int year = availableSalesOrderYears.get(i);
+                                                                //out.print("<option value='"+year+"'>"+year+"</option>");
+                                                                //out.print("<a href='filterSalesDashboard.jsp?year='"+year+"'>"+year+"</a>");
+                                                                //out.print("<option value='filterSalesDashboard.jsp?year="+year+"' >"+year+"</option>");
+                                                                out.print("<option value='"+year+"'>"+year+"");
+
+                                                        }
+                                                    %>
+
+                                                </select>
+                                                    
+                                                <input type="hidden" name="dropdown" id="dropdown">
+                                                <input type="submit" value="Filter" name="btn_dropdown">
+                                            </form>
+                                            
+                                            <label>Month | Year</label>
+                                        </div>
+                                    </center>
+                                    <br>
+                                    
+                                    <!-- Graph for top 5 Products -->
+                                    <div class="container">
+                                      <canvas id="getTop5ProductsChart" width="500" height="300"></canvas>
+                                    </div>    
+                                    
+                                    <%
+                                      //DecimalFormat df = new DecimalFormat("0.00");
+                                      //Map<Integer, String> getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(6,2018);
+                                      
+                                      
+                                        Map<Integer, String> getTop5ProductsByMonth = null;
+                                        Map<String, Integer> qtyForItemDescriptionMonthMap = null;
+                                        
+                                        //DecimalFormat df = new DecimalFormat("0.00");
+
+                                        String yearRetrievedTop5 = request.getParameter("year");
+                                        String monthRetrievedTop5 = request.getParameter("month");
+                                        int monthInt = 1;
+
+                                        if(yearRetrievedTop5==null&&monthRetrievedTop5==null){
+                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(1,2018);
+                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(1,2018);
+                                            
+                                            //monthRetrievedTop5 = 1;
+                                            yearRetrievedTop5 = "2018";
+                                        }else if(yearRetrievedTop5.equals("none")&&monthRetrievedTop5.equals("none") 
+                                            ||yearRetrievedTop5.equals("none")|| monthRetrievedTop5.equals("none")){
+                                            
+                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(1,2018);
+                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(1,2018);
+                                            
+                                            yearRetrievedTop5 = "2018";
+                                            
+                                        }else{
+                                            int yearInt = Integer.parseInt(yearRetrievedTop5);
+                                            monthInt = Integer.parseInt(monthRetrievedTop5);
+                                            //map parameters month, revenue
+                                            //hardcoded year to 2018
+                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(monthInt,yearInt);
+                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(monthInt,yearInt);
+
+                                        }
+
+                                      
+
+                                    %>
+                                    <center>
+                                    <script>
+                                      let getTop5ProductsChart = document.getElementById('getTop5ProductsChart').getContext('2d');
+
+                                      // Global Options
+                                      Chart.defaults.global.defaultFontFamily = 'Lato';
+                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontColor = '#777';
+
+                                      let massPopChart2 = new Chart(getTop5ProductsChart, {
+                                        type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                        data:{
+                                          labels:[
+                                              '<%= getTop5ProductsByMonth.get(1)%>', 
+                                              '<%= getTop5ProductsByMonth.get(2)%>', 
+                                              '<%= getTop5ProductsByMonth.get(3)%>', 
+                                              '<%= getTop5ProductsByMonth.get(4)%>', 
+                                              '<%= getTop5ProductsByMonth.get(5)%>'],
+                                          datasets:[{
+                                            label:'Total Revenue Sales',
+                                            data:[
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1)) %>,
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(2)) %>,
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(3)) %>,
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(4)) %>,
+                                              <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(5)) %>
+                                            ],
+                                            //backgroundColor:'green',
+                                            backgroundColor:[
+                                              'rgba(255, 99, 132, 0.6)',
+                                              'rgba(54, 162, 235, 0.6)',
+                                              'rgba(255, 206, 86, 0.6)',
+                                              'rgba(75, 192, 192, 0.6)',
+                                              'rgba(153, 102, 255, 0.6)',
+                                              'rgba(255, 159, 64, 0.6)',
+                                              'rgba(255, 99, 132, 0.6)'
+                                            ],
+                                            borderWidth:1,
+                                            borderColor:'#777',
+                                            hoverBorderWidth:3,
+                                            hoverBorderColor:'#000'
+                                          }]
+                                        },
+                                        options:{
+                                          title:{
+                                            display:true,
+                                            text:'Top 5 Products by Volume <%= allMonths.get(monthInt) %> <%= yearRetrievedTop5 %>',
+                                            fontSize:25
+                                          },
+                                          legend:{
+                                            display:true,
+                                            position:'right',
+                                            labels:{
+                                              fontColor:'#000'
+                                            }
+                                          },
+                                          layout:{
+                                            padding:{
+                                              left:50,
+                                              right:0,
+                                              bottom:0,
+                                              top:0
+                                            }
+                                          },
+                                          tooltips:{
+                                            enabled:true
+                                          }
+
+                                        }
+                                      });
+                                      
+                                    </script>
+                                    </center>
+                                    <br>
+                                    <br>
+                                    
+                                    
+                                    
+                                     <!--filter for Top 5 Most returned products -->
+                                    <center>
+                                        <div>
+
+                                            <form method="post" action="dashboard.jsp" name="filterReturnedProductsForm">
+                                                <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();">
+                                                    
+                                                    <%
+                                                        out.print("<option value='none'>Select Month");
+                                                        for (int i = 1; i <= allMonths.size(); i++) {
+                                                                String month = allMonths.get(i);
+                                                                out.print("<option value='"+i+"'>"+month+"");
+
+                                                        }
+                                                    %>
+
+                                                </select>
+                                                    
+                                                <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();">
+                                                    
+                                                    <%
+                                                        out.print("<option value='none'>Select Year");
+                                                        for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                int year = availableSalesOrderYears.get(i);
+
+                                                                out.print("<option value='"+year+"'>"+year+"");
+
+                                                        }
+                                                    %>
+
+                                                </select>
+                                                    
+                                                <input type="hidden" name="dropdown" id="dropdown">
+                                                <input type="submit" value="Filter" name="btn_dropdown">
+                                            </form>
+                                            
+                                            <label>Month | Year</label>
+                                        </div>
+                                    </center>
+                                    <br>                             
+                                    <%
+                                      // Hardcoded for month 6, june
+                                      //Map<Integer, String> getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(6,2018);
+                                      //Map<String, Double> getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
+
+                                        Map<Integer, String> getMostReturnedProductsByMonth = null;
+                                        Map<String, Double> getMostReturnedProductsByMonthPercentage = null;
+                                        
+                                        //DecimalFormat df = new DecimalFormat("0.00");
+
+                                        String yearProductReturnedRetrieved = request.getParameter("yearReturnedProducts");
+                                        String monthProductReturnedRetrieved = request.getParameter("monthReturnedProducts");
+                                        int monthReturnedInt = 1;
+
+                                        if(yearProductReturnedRetrieved==null&&monthProductReturnedRetrieved==null){
+                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(1,2018);
+                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
+                                            
+                                            //monthRetrieved = 1;
+                                            yearProductReturnedRetrieved = "2018";
+                                            
+                                        }else if(yearProductReturnedRetrieved.equals("none")&&monthProductReturnedRetrieved.equals("none") 
+                                            ||yearProductReturnedRetrieved.equals("none")|| monthProductReturnedRetrieved.equals("none")){
+                                            
+                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(1,2018);
+                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
+                                            
+                                            yearProductReturnedRetrieved = "2018";
+                                            
+                                         
+                                        }else{
+                                            int yearProductReturnedInt = Integer.parseInt(yearProductReturnedRetrieved);
+                                            monthReturnedInt = Integer.parseInt(monthProductReturnedRetrieved);
+
+                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(monthReturnedInt,yearProductReturnedInt);
+                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(monthReturnedInt,yearProductReturnedInt);
+
+                                        }
+
+
+                                    %>
+                                    
+                                    
+                                    <!--Graph for Top 5 Most returned products -->
+                                    <div class="container">
+                                      <canvas id="mostReturnedChart"></canvas>
+                                    </div> 
+                                    
+                                    
+                                    <script>
+                                      let mostReturnedChart = document.getElementById('mostReturnedChart').getContext('2d');
+
+                                      // Global Options
+                                      Chart.defaults.global.defaultFontFamily = 'Lato';
+                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontColor = '#777';
+
+                                      let massPopChart3 = new Chart(mostReturnedChart, {
+                                        type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                        data:{
+                                          labels:[
+                                              '<%= getMostReturnedProductsByMonth.get(1) %>',
+                                              '<%= getMostReturnedProductsByMonth.get(2) %>', 
+                                              '<%= getMostReturnedProductsByMonth.get(3) %>', 
+                                              '<%= getMostReturnedProductsByMonth.get(4) %>', 
+                                              '<%= getMostReturnedProductsByMonth.get(5) %>'],
+                                          datasets:[{
+                                            label:'% Returned Rate',
+                                            data:[
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1))) %>,
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2))) %>,
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3))) %>,
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4))) %>,
+                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5))) %>
+                                            ],
+                                            //backgroundColor:'green',
+                                            backgroundColor:'green',
+                                            borderWidth:1,
+                                            borderColor:'#777',
+                                            hoverBorderWidth:3,
+                                            hoverBorderColor:'#000'
+                                          }]
+                                        },
+                                        options:{
+                                          title:{
+                                            display:true,
+                                            text:'Top 5 Most Returned Products <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedRetrieved %>',
+                                            fontSize:25
+                                          },
+                                          legend:{
+                                            display:true,
+                                            position:'right',
+                                            labels:{
+                                              fontColor:'#000'
+                                            }
+                                          },
+                                          layout:{
+                                            padding:{
+                                              left:50,
+                                              right:0,
+                                              bottom:0,
+                                              top:0
+                                            }
+                                          },
+                                          tooltips:{
+                                            enabled:true
+                                          },
+                                          scales: {
+                                            yAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Item Name'
+                                              }
+                                            }],
+
+                                            xAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Return Rate (%)'
+                                              }
+                                            }]
+
+                                          } 
+                                        }
+                                      });
+                                    
+                                    </script>
+                                    <br>
+
 
                         </div>
                     </div>
