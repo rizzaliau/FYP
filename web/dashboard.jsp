@@ -164,15 +164,17 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-7">
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Dashboard Management</h4>
+                                        <h4 class="card-title">Sales Revenue</h4>
+                                                <!--
                                         	 <ul class="tabrow" id="my_selection">
                                                     <li class="selected"><a href="dashboard.jsp">Sales</a></li>
                                                     <li><a href="productDashboard.jsp">Product</a></li>
                                                     <li><a href="customerDashboard.jsp">Customer</a></li>
                                                 </ul>
+                                                -->
                                     </div>   
                                    
                                     <!-- HIDE THE BUTTON FIRST 
@@ -188,12 +190,14 @@
                                       Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();  
                                     %>
                                     
-                                    <center>
+                                   
                                         <div>
-  
+                                            <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
                                             <!-- Filter year for total revenue -->
                                             <form method="post" action="dashboard.jsp" name="filterTotalSalesYearForm">
-                                                <select id="filterYear" name="yearTotalRevenue" onchange="return setValue();">
+                                                
+                                                <select id="filterYear" name="yearTotalRevenue" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
                                                         out.print("<option value='none'>Select Year</option>");
@@ -208,13 +212,17 @@
                                                     %>
 
                                                 </select>
+                                                    
+                                                    
                                                 <input type="hidden" name="dropdown" id="dropdown">
                                                 <input type="submit" value="Filter" name="btn_dropdown">
                                             </form>
+                                                    </div>
+                                            </div>
                                             
-                                            <label>Year</label>
+                                            
                                         </div>
-                                    </center>
+                                    
                                     <br>
                                     
                                     <!-- Total Revenue Chart -->
@@ -249,9 +257,9 @@
                                       let totalRevenueChart = document.getElementById('totalRevenueChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 10;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart = new Chart(totalRevenueChart, {
                                         type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -276,16 +284,11 @@
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:[
-                                              'rgba(255, 99, 132, 0.6)',
-                                              'rgba(54, 162, 235, 0.6)',
-                                              'rgba(255, 206, 86, 0.6)',
-                                              'rgba(75, 192, 192, 0.6)',
-                                              'rgba(153, 102, 255, 0.6)',
-                                              'rgba(255, 159, 64, 0.6)',
-                                              'rgba(255, 99, 132, 0.6)'
+                                              'rgba(245,104,41,100)',
+                                              
                                             ],
                                             borderWidth:1,
-                                            borderColor:'#777',
+                                            borderColor:'black',
                                             hoverBorderWidth:3,
                                             hoverBorderColor:'#000'
                                           }]
@@ -294,13 +297,14 @@
                                           title:{
                                             display:true,
                                             text:'Total Revenue Monthly Breakdown By Year <%= yearRetrieved %>',
-                                            fontSize:25
+                                            fontSize:12
+                                            
                                           },
                                           legend:{
                                             display:true,
                                             position:'right',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{
@@ -337,8 +341,17 @@
                                     </center>
                                     <br>
                                     <br>
-
                                     
+                                </div>
+                            </div>
+
+                        <div class="col-md-5">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Products</h4>
+                                    <p class="card-category">Products Performance</p>
+                                </div>
+                                <div class="card-body ">
                                     <%
                                       //Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears(); 
 
@@ -349,9 +362,10 @@
                                     <!-- Filter month/year for top 5 Products -->
                                     <center>
                                         <div>
-
-                                            <form method="post" action="dashboard.jsp" name="filterYearForm">
-                                                <select id="filterYear" name="month" onchange="return setValue();">
+                                            <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                            <form method="post" action="dashboard.jsp" name="filterYearForm"  >
+                                                <select id="filterYear" name="month" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
                                                         out.print("<option value='none'>Select Month</option>");
@@ -364,7 +378,7 @@
 
                                                 </select>
                                                     
-                                                <select id="filterYear" name="year" onchange="return setValue();">
+                                                <select id="filterYear" name="year" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
                                                         out.print("<option value='none'>Select Year</option>");
@@ -383,6 +397,8 @@
                                                 <input type="hidden" name="dropdown" id="dropdown">
                                                 <input type="submit" value="Filter" name="btn_dropdown">
                                             </form>
+                                                    </div>
+                                            </div>
                                             
                                             <label>Month | Year</label>
                                         </div>
@@ -440,9 +456,9 @@
                                       let getTop5ProductsChart = document.getElementById('getTop5ProductsChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 10;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart2 = new Chart(getTop5ProductsChart, {
                                         type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -464,31 +480,32 @@
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:[
-                                              'rgba(255, 99, 132, 0.6)',
-                                              'rgba(54, 162, 235, 0.6)',
-                                              'rgba(255, 206, 86, 0.6)',
-                                              'rgba(75, 192, 192, 0.6)',
-                                              'rgba(153, 102, 255, 0.6)',
+                                              'rgba(245, 104, 41, 1)',
+                                              'rgba(14, 61, 89, 1)',
+                                              'rgba(135, 166, 28,1)',
+                                              'rgba(242, 159, 5, 1)',
+                                              'rgba(217, 37, 38, 1)',
                                               'rgba(255, 159, 64, 0.6)',
                                               'rgba(255, 99, 132, 0.6)'
                                             ],
                                             borderWidth:1,
-                                            borderColor:'#777',
+                                            borderColor:'black',
                                             hoverBorderWidth:3,
-                                            hoverBorderColor:'#000'
+                                            hoverBorderColor:'black'
                                           }]
                                         },
                                         options:{
                                           title:{
                                             display:true,
                                             text:'Top 5 Products by Volume <%= allMonths.get(monthInt) %> <%= yearRetrievedTop5 %>',
-                                            fontSize:25
+                                            fontSize:12
                                           },
                                           legend:{
                                             display:true,
                                             position:'right',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
+                                              
                                             }
                                           },
                                           layout:{
@@ -511,8 +528,16 @@
                                     <br>
                                     <br>
                                     
-                                    
-                                    
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-md-8">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Return Products</h4>
+                                    <p class="card-category">24 Hours performance</p>
+                                </div>
+                                <div class="card-body ">
                                      <!--filter for Top 5 Most returned products -->
                                     <center>
                                         <div>
@@ -681,13 +706,15 @@
                                     
                                     </script>
                                     <br>
+                                </div>
+                            </div>
+                    </div>
 
 
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+       
                 
                             
             <footer class="footer">
