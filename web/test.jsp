@@ -62,10 +62,16 @@
                     content: none !important;
                 }
             }
+            #printpagebutton{
+                width: 100px;
+                position: relative;
+                top:100px;
+                left:45px;
+            }
         </style>
     </head>
     <body>
-        <input id="printpagebutton" class="btn btn-info btn-fill pull-right" type="button" value="Print" onclick="printFunction()" style="width: 100px;"/>
+        <input id="printpagebutton" class="btn btn-info btn-fill pull-right" type="button" value="Print" onclick="printFunction()"/>
         <%
             String[] orderInfos = request.getParameterValues("orderInfo");
 
@@ -273,11 +279,13 @@
 </table>
       
 <%
-            out.println("</div>");
+        out.println("</div>");
         }
     } else {
         out.println("No orders selected! ");
+
     }
+
 %>
 </body>
 <script>
@@ -290,4 +298,5 @@
         location.reload()
     }
 </script>
+
 </html>
