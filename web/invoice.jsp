@@ -1,5 +1,10 @@
-
-
+<%-- 
+    Document   : test.jsp
+    Created on : 2 Sep, 2018, 12:15:02 AM
+    Author     : Zx Low
+--%>
+<%@page import="java.util.Arrays"%>
+<%@page import="dao.UserDAO"%>
 <%@page import="entity.OrderItem"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="entity.ItemDetails"%>
@@ -12,293 +17,286 @@
 <%@page import="entity.Debtor"%>
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
+<%@page import="java.util.Arrays"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="protect.jsp" %>
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>Lim Kee Food Manufacturing Pte Ltd</title>
-       <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-       <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="css/sheets-of-paper-a4.css">
         <style>
-            @page {
-                margin: 0;
+            #t1{
+                margin-top: 200px;
+                margin-left: 40px;
+                width: 1040px;
+                height: 200px;
+
+                position: relative
+            }
+            #t2{
+                margin-top: 230px;
+                margin-left: 40px;
+                width: 1040px;
+                height: 500px;
+
+                position: relative
             }
 
-            .invoice-box {
-                max-width: 800px;
-                margin: auto;
-                padding: 30px;
-                border: 1px solid #eee;
-                box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-                font-size: 16px;
-                line-height: 24px;
-                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-                color: #555;
+            #t3{
+                margin-top: 150px;
+                margin-left: 35px;
+                width: 1040px;
+                height: 60px;
+
+                position: relative  
             }
-
-            .invoice-box table {
-                width: 100%;
-                line-height: inherit;
-                text-align: left;
+            #id{
+                left: 35px;
             }
-
-            .invoice-box table td {
-                padding: 5px;
-                vertical-align: top;
-            }
-
-            .invoice-box table tr td:nth-child(2) {
-                text-align: right;
-            }
-
-            .invoice-box table tr.top table td {
-                padding-bottom: 20px;
-            }
-
-            .invoice-box table tr.top table td.title {
-                font-size: 45px;
-                line-height: 45px;
-                color: #333;
-            }
-
-            .invoice-box table tr.information table td {
-                padding-bottom: 40px;
-            }
-
-            .invoice-box table tr.heading td {
-                background: #eee;
-                border-bottom: 1px solid #ddd;
-                font-weight: bold;
-            }
-
-            .invoice-box table tr.details td {
-                padding-bottom: 20px;
-            }
-
-            .invoice-box table tr.item td{
-                border-bottom: 1px solid #eee;
-            }
-
-            .invoice-box table tr.item.last td {
-                border-bottom: none;
-            }
-
-            .invoice-box table tr.total td:nth-child(2) {
-                border-top: 2px solid #eee;
-                font-weight: bold;
-            }
-
-            @media only screen and (max-width: 600px) {
-                .invoice-box table tr.top table td {
-                    width: 100%;
-                    display: block;
-                    text-align: center;
-                }
-
-                .invoice-box table tr.information table td {
-                    width: 100%;
-                    display: block;
-                    text-align: center;
+            @media print {
+                div { page-break-after: always; }
+                a[href]:after {
+                    content: none !important;
                 }
             }
-
-            /** RTL **/
-            .rtl {
-                direction: rtl;
-                font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-            }
-
-            .rtl table {
-                text-align: right;
-            }
-
-            .rtl table tr td:nth-child(2) {
-                text-align: left;
+            #printpagebutton{
+                width: 100px;
+                position: relative;
+                top:100px;
+                left:45px;
             }
         </style>
     </head>
-
     <body>
+        <input id="printpagebutton" class="btn btn-info btn-fill pull-right" type="button" value="Print" onclick="printFunction()"/>
         <%
-            String orderID = request.getParameter("orderID");
-            String status = request.getParameter("status");
+            String[] orderInfos = request.getParameterValues("orderInfo");
 
-            if (status.equals("pendingDelivery")) {
-                status = "Pending Delivery";
-            }
+            if (orderInfos != null && orderInfos.length > 0) {
+                for (int i = 0; i < orderInfos.length; i++) {
+                    String order = orderInfos[i];
+                    int marker = order.indexOf(',');
+                    String orderID = order.substring(0, marker);
+                    String status = order.substring(marker + 1);
+                    //out.println(Arrays.toString(orderIDs));
+                    //out.print("Order Id:" + orderID);
+                    //out.print("Status:" + status);
+                    //out.print("</br>");
+                    if (status.equals("pendingDelivery")) {
+                        status = "Pending Delivery";
+                    }
 
-            SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderID, status);
+                    SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderID, status);
 
-            Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(orderID, status);
+                    Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(orderID, status);
 
-            Map<Integer, ItemDetails> refundedItemDetailsMap = salesOrderUtility.getRefundedItemDetailsMap(orderID);
+                    Map<Integer, ItemDetails> refundedItemDetailsMap = salesOrderUtility.getRefundedItemDetailsMap(orderID);
+
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                    Date d2 = sdf2.parse(salesOrderdetails.getDeliveryDate());
+                    sdf2.applyPattern("dd-MM-yyyy");
+                    String deliveryDateFormatted = sdf2.format(d2);
+
+                    String timestamp = salesOrderdetails.getCreateTimeStamp();
+                    String orderDate = timestamp.substring(0, timestamp.indexOf(" "));
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date d = sdf.parse(orderDate);
+                    sdf.applyPattern("dd-MM-yyyy");
+                    String orderDateFormatted = sdf.format(d);
+                    /*
+                    out.println("<p id='left2-col'>");
+                    out.print(orderID);
+                    out.print("<br>");
+                    out.println(orderDateFormatted);
+                    out.println("<br>");
+                    out.println(salesOrderdetails.getDisplayTerm());
+                    out.println("<br>");
+                    out.println("Route No." + salesOrderdetails.getRouteNumber());
+
+                    out.println("</p>");
+                    out.println("<p id='left-col'>");
+                     */
+                    out.println("<div>");
+                    out.println("<table id='t1' border='0'>");
+                    out.println("<thead>");
+                    out.println("<th>");
+                    out.println("</th>");
+                    out.println("<th>");
+                    out.println("</th>");
+                    out.println("</thead>");
+                    out.println("<tr>");
+                    out.println("<td>");
+                    out.println("Customer Code: XXXX-XXXX");
+                    out.println("</td>");
+                    out.println("<td>");
+                    out.println("</td>");
+                    out.println("</tr>");
+
 
         %>
+    <tr>
+        <td>
+            <b><%= salesOrderdetails.getCompanyName()%></b><br>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <%= salesOrderdetails.getDeliverAddr1()%><br>
+        </td>
+        <td>
+            <%=orderID%>
+        </td>
+    <tr>
+    <tr>
+        <td>
+            <%= salesOrderdetails.getDeliverAddr2()%>
+        </td>
+        <td>
+            <%=orderDateFormatted%>
+        </td>
+        <% if (!salesOrderdetails.getDeliverAddr3().equals("-")) {
+                out.println("<tr>");
+                out.println("<td>");
+                out.println(salesOrderdetails.getDeliverAddr3());
+                out.println("</td>");
+                 if (!salesOrderdetails.getDeliverAddr4().equals("-")) {
+                out.println("<td>");
+                out.println(salesOrderdetails.getDeliverAddr4());
+                out.println("</td>");
+                }
+                out.println("</tr>");
+            }
+        %>
 
+    <tr>
+        <td>
+            Contact Number: <%= salesOrderdetails.getDeliverContact() + " |" + " "%>
+            Contact Person: <%= salesOrderdetails.getDebtorName()%><br>
+        </td>
+        <td>
+            <%=salesOrderdetails.getDisplayTerm()%>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td>
+            Route <%=salesOrderdetails.getRouteNumber()%>
 
-        <div class="invoice-box">
-            <table cellpadding="0" cellspacing="0">
-                <tr class="top">
-                    <td colspan="6">
-                        <table>
-                            <tr>
-                                <td class="title">
-                                    <img src="assets/img/navbar.png" style="width:100%; max-width:100px;">
-                                </td>
+        </td>
+    </tr>
+</p>
+<table id ="t2" border="0">
+    <thead>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+</thead>
+<tbody>
+    <%  double total = 0;
+        int size = itemDetailsMap.keySet().size();
+        int count = 0;
+        for (Integer number : itemDetailsMap.keySet()) {
+            double subtotal = 0;
+            count += 1;
+            out.println("<tr>");
+            ItemDetails itemDetail = itemDetailsMap.get(number);
+            OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
 
-                                <td>
-                                    No:<%= orderID%><br>
-                                    <%
-                                        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-                                        Date d2 = sdf2.parse(salesOrderdetails.getDeliveryDate());
-                                        sdf2.applyPattern("dd-MM-yyyy");
-                                        String deliveryDateFormatted = sdf2.format(d2);
+            int qtyDouble = Integer.parseInt(itemDetail.getQty());
+            int returnedQty = Integer.parseInt(itemDetail.getReturnedQty());
+            int finalqty = qtyDouble - returnedQty;
+            out.print("<td style='width: 40px'>" + finalqty + "</td>");
 
-                                        String timestamp = salesOrderdetails.getCreateTimeStamp();
-                                        String orderDate = timestamp.substring(0, timestamp.indexOf(" "));
+            double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
 
-                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                        Date d = sdf.parse(orderDate);
-                                        sdf.applyPattern("dd-MM-yyyy");
-                                        String orderDateFormatted = sdf.format(d);
+            out.print("<td style='width: 30px'>" + item.getUnitOfMetric() + "</td>");
+            out.print("<td style='width: 270px'>" + item.getDescriptionChinese() + "  " + item.getDescription() + "</td>");
+            out.print("<td style='width: 45px'>" + item.getRetailPrice2DP() + "</td>");
+            out.print("<td style='width: 45px'>" + itemDetail.getUnitPrice2DP() + "</td>");
 
-                                    %>
-                                    Delivery Date: <%= deliveryDateFormatted%><br>
-                                    Order Date: <%= orderDateFormatted%><br>
-                                    Terms:<%= salesOrderdetails.getDisplayTerm()%>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+            subtotal = qtyDouble * unitPriceDouble;
+            DecimalFormat df = new DecimalFormat("0.00");
+            out.print("<td style='width: 40px'>" + df.format(subtotal) + "</td>");
 
-                <tr class="information">
-                    <td colspan="6">
-                        <table>
-                            <tr>
-                                <td>
-                                    <b><%= salesOrderdetails.getCompanyName()%></b><br>
-                                    <%= salesOrderdetails.getDeliverAddr1()%><br>
-                                    <%= salesOrderdetails.getDeliverAddr2()%><br>
-                                    <%= salesOrderdetails.getDeliverAddr3()%><br>
-                                    <%= salesOrderdetails.getDeliverAddr4()%>
-                                </td>
-                                <td>
-                                    Contact Person:<%= salesOrderdetails.getDebtorName()%><br>
-                                    Contact No: <%= salesOrderdetails.getDeliverContact()%><br>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-
-                <tr class="heading">
-                    <td>
-                        Qty
-                    </td>
-                    <td>
-                        UOM
-                    </td>
-                    <td>
-                        Description
-                    </td>
-                    <td>
-                        Retail Price
-                    </td>                    
-                    <td>
-                        Unit Price
-                    </td>
-                    <td>
-                        Amount ($$)
-                    </td>                                                                                  
-                </tr>
-
-                <tr class="item">
-                    <%  double total = 0;
-                        int size = itemDetailsMap.keySet().size();
-                        int count = 0;
-                        for (Integer number : itemDetailsMap.keySet()) {
-                            double subtotal = 0;
-                            if ((int) number == size - 1) {
-                                out.print("<tr class='item last'>");
-                            } else {
-                                out.print("<tr class='item'>");
-                            }
-                            ItemDetails itemDetail = itemDetailsMap.get(number);
-                            OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
-
-                            int qtyDouble = Integer.parseInt(itemDetail.getQty());
-                            int returnedQty = Integer.parseInt(itemDetail.getReturnedQty());
-                            int finalqty = qtyDouble - returnedQty;
-                            out.print("<td>" + finalqty + "</td>");
-
-                            double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
-
-                            out.print("<td>" + item.getUnitOfMetric() + "</td>");
-                            out.print("<td>" + item.getDescriptionChinese() + "  " + item.getDescription() + "</td>");
-                            out.print("<td>" + item.getRetailPrice2DP() + "</td>");
-                            out.print("<td>" + itemDetail.getUnitPrice2DP() + "</td>");
-
-                            subtotal = qtyDouble * unitPriceDouble;
-                            DecimalFormat df = new DecimalFormat("0.00");
-                            out.print("<td>" + df.format(subtotal) + "</td>");
-
-                            total += subtotal;
-                            out.print("</tr>");
-                        }
-                        DecimalFormat df = new DecimalFormat("0.00");
-                    %>
-                <tr class="total">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <b>Subtotal:</b>
-                    </td>
-                    <td>
-                        <%= df.format(total)%>
-                    </td>
-                </tr>
-                <tr class="total">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <b>Add GST (7%): </b>
-                    </td>
-                    <td>
-                        <%= df.format(total * 0.07)%>
-                    </td>
-                </tr>
-                <tr class="total">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <b>Total: </b>
-                    </td>
-                    <td>
-                        <%= df.format(total * 1.07)%>
-                    </td>
-                </tr>
-            </table>
-            <br>
-            <input id="printpagebutton" class="btn btn-info btn-fill pull-right" type="button" value="Print" onclick="printFunction()" style="width: 100px;"/>                    
-        </div>
-    </body>
-    <script>
-        function printFunction() {
-            var printButton = document.getElementById("printpagebutton");
-            //Set the print button visibility to 'hidden' 
-            printButton.style.visibility = 'hidden';
-            window.print();           
-            printButton.style.visibility = 'show';
-            location.reload()
+            total += subtotal;
+            out.print("</tr>");
         }
-    </script>
+        while (count < 27) {
+            out.println("<tr>");
+            out.println("<td></td>");
+            out.println("<td></td>");
+            out.println("<td></td>");
+            out.println("<td></td>");
+            out.println("<td></td>");
+            out.println("<td></td>");
+            out.println("</tr>");
+            count += 1;
+        }
+
+        DecimalFormat df = new DecimalFormat("0.00");
+
+    %>
+</tbody>
+</table>
+<table id ="t3" collapsed>
+    <tr>
+        <td style='width: 35px'></td>
+        <td style='width: 30px'></td>
+        <td style='width: 315px'></td>
+        <td style='width: 80px'><b>Subtotal ($)</b></td>
+        <td style='width: 40px'><%=df.format(total)%></td>
+    </tr>
+    <tr>
+        <td style='width: 35px'></td>
+        <td style='width: 30px'></td>
+        <td style='width: 315px'></td>
+        <td style='width: 80px'><b>Add GST (7%)</b></td>
+        <td style='width: 40px'><%=df.format(total * 0.07)%></td>
+    </tr>
+    <tr>
+        <td style='width: 35px'></td>
+        <td style='width: 30px'></td>
+        <td style='width: 315px'></td>
+        <td style='width: 80px'><b>Total ($)</b></td>
+        <td style='width: 40px'><%=df.format(total * 1.07)%></td>
+    </tr> 
+    <tr>
+        <td style='width: 35px'></td>
+        <td style='width: 30px'></td>
+        <td style='width: 315px'></td>
+        <td style='width: 80px'></td>
+        <% String usernameSession = (String) session.getAttribute("username"); %>  
+        <td style='width: 40px'><i><%= usernameSession %></i></td>
+    </tr>
+</table>
+      
+<%
+        out.println("</div>");
+        }
+    } else {
+        out.println("No orders selected! ");
+
+    }
+
+%>
+</body>
+<script>
+    function printFunction() {
+        var printButton = document.getElementById("printpagebutton");
+        //Set the print button visibility to 'hidden' 
+        printButton.style.visibility = 'hidden';
+        window.print();
+        printButton.style.visibility = 'show';
+        location.reload()
+    }
+</script>
+
 </html>
