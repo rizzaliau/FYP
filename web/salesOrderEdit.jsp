@@ -411,6 +411,7 @@
                                                                     + "<th><b></b></th>"
                                                                     + "<th><b>Quantity</b></th>"
                                                                     + "<th><b>Returned Quantity</b></th>"
+                                                                    + "<th><b>Reduced Quantity</b></th>"
                                                                     + "<th><b>Unit Price($)</b></th>"
                                                                     + "<th><b>Subtotal($)</b></th></thead>");
 
@@ -437,6 +438,7 @@
                                                                 out.print("<td><input type='text' size='10' name='qty' value='" + itemDetail.getQty() + "'></td>");
                                                                 //out.print("<tr><thead><th>Returned Quantity</th></thead>");
                                                                 out.print("<td>" + itemDetail.getReturnedQty() + "</td>");
+                                                                out.print("<td>" + itemDetail.getReducedQty() + "</td>");
                                                                 //out.print("<tr><thead><th>Unit Price</th></thead>");
                                                                 out.print("<td>" + itemDetail.getUnitPrice2DP() + "</td>");
                                                                 //out.print("<tr><thead><th>Subtotal</th></thead>");
