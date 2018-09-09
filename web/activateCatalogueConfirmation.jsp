@@ -4,6 +4,7 @@
     Author     : Rizza
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="entity.Debtor"%>
@@ -172,12 +173,17 @@
                                 <center>Are you sure you want to activate this catalogue item?</center>
 
                                         <%  
-                                            String itemCode = request.getParameter("itemCode");   
+                                            String itemCode = request.getParameter("itemCode");  
+                                            String currentModifier = usernameSession;
+                                            String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                         %>
                                         
 
                                         <form action="activateCatalogueController" method="post">
                                             <input type= "hidden" name="recordToBeActivated" value='<%= itemCode %>'/>
+                                            <input type="hidden" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
+                                            <input type="hidden" value="<%= currentModifier %>" name="lastModifiedBy">
                                             <br>
                                             <br>
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Activate" style="margin-right:20px; margin-bottom: 30px;"> 

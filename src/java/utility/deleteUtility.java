@@ -328,6 +328,8 @@ public class deleteUtility {
     public static void activateCatalogue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String itemCodeRetrieved = request.getParameter("recordToBeActivated");
+        String lastModifiedTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
+        String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
         
         //System.out.println("debtorCodeRetrived is : "+debtorCodeRetrived);
 
@@ -337,7 +339,9 @@ public class deleteUtility {
             out.println("passes conn");
 
             //String sql = "DELETE FROM `order_item` WHERE itemCode = '" + itemCodeRetrieved + "'";
-            String sql = "UPDATE `order_item` SET Status='Active'"
+            String sql = "UPDATE `order_item` SET Status='Active'," 
+                + " LastModifiedTimestamp = '" + lastModifiedTimeStampRetrieved + "',"
+                + " LastModifiedBy = '" + lastModifiedByRetrieved + "'"
                 + "WHERE ItemCode = '" + itemCodeRetrieved + "'";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
