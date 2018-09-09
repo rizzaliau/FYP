@@ -128,6 +128,11 @@ public class deleteUtility {
         String orderIDRetrieved = request.getParameter("orderIDRecordToBeDeleted");
         String cancelledReasonRetrieved = request.getParameter("cancelledReason");
         String preferredLanguageRetrieved = request.getParameter("preferredLanguage");
+        String lastModifiedTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
+        String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
+        
+        System.out.println("Last modified timestamp is: "+lastModifiedTimeStampRetrieved);
+        System.out.println(lastModifiedByRetrieved);
         
         if(cancelledReasonRetrieved.equals("")||cancelledReasonRetrieved==null||cancelledReasonRetrieved.equals("null")){
             request.setAttribute("msgStatus", "Please enter a cancelled reason!");
@@ -148,7 +153,9 @@ public class deleteUtility {
                         //+ "AND status='"+statusRetrieved+"' ";
 
                 String cancelSalesOrderSQL = "UPDATE `sales_order` SET Status='Cancelled',"
-                        + " CancelledReason = '" + cancelledReasonRetrieved + "'"
+                        + " CancelledReason = '" + cancelledReasonRetrieved + "',"
+                        + " LastModifiedTimestamp = '" + lastModifiedTimeStampRetrieved + "',"
+                        + " LastModifiedBy = '" + lastModifiedByRetrieved + "'"
                         + "WHERE OrderID = '" + orderIDRetrieved + "'";
 
 

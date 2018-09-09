@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
 <%@page import="utility.salesOrderUtility"%>
@@ -166,6 +167,12 @@
                                             String status = request.getParameter("status"); 
                                             String deliveryDate = request.getParameter("deliveryDate"); 
                                             SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(orderID);
+                                               
+                                            String currentModifier = usernameSession;
+                                            String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                            
+
                                         %>
             <div class="content">
                 <div class="container-fluid">
@@ -203,6 +210,8 @@
                                             <input type= "hidden" name="statusRecordToBeDeleted" value='<%= status %>'/>
                                             <input type= "hidden" name="deliveryDateRecordToBeDeleted" value='<%= deliveryDate %>'/>
                                             <input type= "hidden" name="preferredLanguage" value='<%= salesOrderdetails.getPreferredLanguage() %>'/>
+                                            <input type="hidden" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
+                                            <input type="hidden" value="<%= currentModifier %>" name="lastModifiedBy">
                                             <p>
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Confirm Cancel" style="margin-right: 100px; margin-top: 10px; margin-bottom: 20px; "> 
                                             <a href="salesOrder.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Back" style="margin-left:15px; margin-top: 10px; margin-bottom: 20px;"/></a>
