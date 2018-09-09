@@ -270,7 +270,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "Select soq.ItemCode, soq.Qty, soq.ReturnedQty, oi.UnitPrice from sales_order so \n" +
+            String populateMap = "Select soq.ItemCode, soq.Qty, soq.ReturnedQty, soq.ReducedQty, oi.UnitPrice from sales_order so \n" +
                     "inner join sales_order_quantity soq ON so.OrderID = soq.OrderID \n" +
                     "inner join order_item oi ON soq.ItemCode = oi.ItemCode\n" +
                     "where so.Status = \""+status+"\" and so.OrderID = \""+orderID+"\"";
@@ -287,9 +287,10 @@ public class salesOrderUtility {
                 String itemCode=checkForNull(rs.getString("ItemCode"));
                 String qty=checkForNull(rs.getString("Qty"));
                 String returnedQty=checkForNull(rs.getString("ReturnedQty"));
+                String reducedQty=checkForNull(rs.getString("ReducedQty"));
                 String unitPrice=checkForNull(rs.getString("UnitPrice"));
 
-                ItemDetails itemDetails = new ItemDetails (itemCode,qty,returnedQty,unitPrice);
+                ItemDetails itemDetails = new ItemDetails (itemCode,qty,returnedQty,reducedQty, unitPrice);
                 
                 //itemDetailsReturn = itemDetails;
                 
@@ -520,7 +521,7 @@ public class salesOrderUtility {
         
         try {
             conn = ConnectionManager.getConnection();
-            String populateMap = "Select soq.ItemCode, soq.Qty, soq.ReturnedQty, oi.UnitPrice from sales_order so \n" +
+            String populateMap = "Select soq.ItemCode, soq.Qty, soq.ReturnedQty, soq.ReducedQty, oi.UnitPrice from sales_order so \n" +
                     "inner join sales_order_quantity soq ON so.OrderID = soq.OrderID \n" +
                     "inner join order_item oi ON soq.ItemCode = oi.ItemCode\n" +
                     "where soq.ReturnedQty > 0 and so.OrderID = \""+orderID+"\"";
@@ -537,9 +538,10 @@ public class salesOrderUtility {
                 String itemCode=checkForNull(rs.getString("ItemCode"));
                 String qty=checkForNull(rs.getString("Qty"));
                 String returnedQty=checkForNull(rs.getString("ReturnedQty"));
+                String reducedQty=checkForNull(rs.getString("ReducedQty"));
                 String unitPrice=checkForNull(rs.getString("UnitPrice"));
 
-                ItemDetails itemDetails = new ItemDetails (itemCode,qty,returnedQty,unitPrice);
+                ItemDetails itemDetails = new ItemDetails (itemCode,qty,returnedQty,reducedQty,unitPrice);
                 
                 //itemDetailsReturn = itemDetails;
                 

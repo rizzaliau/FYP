@@ -147,8 +147,11 @@ public class editUtility {
                     String itemCode = itemCodeRetrieved[i];
                     String qty = qtyItemCodeRetrieved[i];
                     String originalQty = originalQtyRetrieved[i];
+                    
                     int qtyToRefund = Integer.parseInt(originalQty)-Integer.parseInt(qty);
                     String qtyToRefundString = ""+qtyToRefund;
+                    
+                    
                     
                     //out.println(qty);
                     //out.println(originalQty);
@@ -156,19 +159,40 @@ public class editUtility {
                     
                     String salesOrderQuantitySql = "";
                     
-                    //Update Quantity
-                    if(qtyToRefund >= 0){
-                        //update item code qty for each item
-                        salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"', ReturnedQty = ReturnedQty + '"+qtyToRefundString+"' WHERE orderID = '" + orderIDRetrieved + "' "
-                        + "AND itemCode ='"+itemCode+"'";
-                    }else if(qtyToRefund == 0){
-                        salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
-                        + "AND itemCode ='"+itemCode+"'";
-                    }else{
-                        request.setAttribute("status", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode);
+                    
+                    if(statusRetrieved.equals("Delivered")){
+                        
+                        //Update Returned Quantity
+                        if(qtyToRefund >= 0){
+                            //update item code qty for each item
+                            salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"', ReturnedQty = ReturnedQty + '"+qtyToRefundString+"' WHERE orderID = '" + orderIDRetrieved + "' "
+                            + "AND itemCode ='"+itemCode+"'";
+                        }else if(qtyToRefund == 0){
+                            salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
+                            + "AND itemCode ='"+itemCode+"'";
+                        }else{
+                            request.setAttribute("status", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode);
 
-                        request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
-                    }    
+                            request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
+                        } 
+                    
+                    }else{
+                        
+                        //Update Reduced Quantity
+                        if(qtyToRefund >= 0){
+                            //update item code qty for each item
+                            salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"', ReducedQty = ReducedQty + '"+qtyToRefundString+"' WHERE orderID = '" + orderIDRetrieved + "' "
+                            + "AND itemCode ='"+itemCode+"'";
+                        }else if(qtyToRefund == 0){
+                            salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
+                            + "AND itemCode ='"+itemCode+"'";
+                        }else{
+                            request.setAttribute("status", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode);
+
+                            request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
+                        } 
+                        
+                    }
 
                     PreparedStatement salesOrderQuantityStmt = conn.prepareStatement(salesOrderQuantitySql);
 
