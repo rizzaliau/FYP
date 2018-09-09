@@ -15,12 +15,14 @@ public class ItemDetails {
     private String itemCode;
     private String qty;
     private String returnedQty;
+    private String reducedQty;
     private String unitPrice;
     
-    public ItemDetails(String itemCode, String qty, String returnedQty, String unitPrice){
+    public ItemDetails(String itemCode, String qty, String returnedQty, String reducedQty, String unitPrice){
         this.itemCode=itemCode;
         this.qty=qty;
         this.returnedQty=returnedQty;
+        this.reducedQty= reducedQty;
         this.unitPrice=unitPrice;
     }
     
@@ -50,5 +52,9 @@ public class ItemDetails {
         double unitPriceDouble = Double.parseDouble(unitPrice);
         
         return df.format(unitPriceDouble);
+    }
+    
+    public String getReducedQty(){
+        return reducedQty;
     }
 }
