@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="entity.Notification"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Debtor"%>
@@ -174,11 +175,17 @@
                                 
                                         <%  
                                             String itemCode = request.getParameter("itemCode");   
+                                            String currentModifier = usernameSession;
+                                            String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                            
                                         %>
                                         
 
                                         <form action="deleteCatalogueController" method="post">
                                             <input type= "hidden" name="recordToBeDeleted" value='<%= itemCode %>'/>
+                                            <input type="hidden" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
+                                            <input type="hidden" value="<%= currentModifier %>" name="lastModifiedBy">
                                             <br>
                                             <br>
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Deactivate" style="margin-right:20px; margin-bottom: 20px;"> 
