@@ -163,10 +163,11 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Sales Revenue</h4>
+                                        <p class="card-category">Sales Performance</p>
                                         <!--
                                          <ul class="tabrow" id="my_selection">
                                             <li class="selected"><a href="dashboard.jsp">Sales</a></li>
@@ -214,7 +215,7 @@
 
 
                                                     <input type="hidden" name="dropdown" id="dropdown">
-                                                    <input type="submit" value="Filter" name="btn_dropdown">
+                                                    <input type="submit" value="Filter" name="btn_dropdown" style="position: relative; left:155px; bottom:40px;" class="btn btn-info btn-fill pull-left" type="button">
                                                 </form>
                                             </div>
                                         </div>
@@ -257,7 +258,7 @@
 
                                             // Global Options
                                             Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                            Chart.defaults.global.defaultFontSize = 10;
+                                            Chart.defaults.global.defaultFontSize = 12;
                                             Chart.defaults.global.defaultFontColor = 'black';
 
                                             let massPopChart = new Chart(totalRevenueChart, {
@@ -265,8 +266,13 @@
                                                 data: {
                                                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                                         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                                        fontFamily: 'Segoe UI',
+                                                        fontSize: 12,
+                                                    
                                                     datasets: [{
                                                             label: 'Total Revenue Sales',
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: 12,
                                                             data: [
                                             <%= df.format(salesRevenueByMonthMap.get(1))%>,
                                             <%= df.format(salesRevenueByMonthMap.get(2))%>,
@@ -288,46 +294,58 @@
                                                             borderWidth: 1,
                                                             borderColor: 'black',
                                                             hoverBorderWidth: 3,
-                                                            hoverBorderColor: '#000'
+                                                            hoverBorderColor: 'black',
+                                                            fontFamily: 'Segoe UI',
+                                                            fontSize: 12,
                                                         }]
                                                 },
                                                 options: {
                                                     title: {
                                                         display: true,
                                                         text: 'Total Revenue Monthly Breakdown By Year <%= yearRetrieved%>',
-                                                        fontSize: 12
+                                                        fontSize: 12,
+                                                        fontFamily: 'Segoe UI'
 
                                                     },
                                                     legend: {
                                                         display: true,
                                                         position: 'bottom',
+                                                        fontFamily: 'Segoe UI',
+                                                        fontSize: 12,
                                                         labels: {
                                                             fontColor: 'black'
+                                                            
                                                         }
                                                     },
                                                     layout: {
                                                         padding: {
-                                                            left: 50,
+                                                            left: 0,
                                                             right: 0,
                                                             bottom: 0,
                                                             top: 0
                                                         }
                                                     },
                                                     tooltips: {
-                                                        enabled: true
+                                                        enabled: true,
+                                                        fontFamily: 'Segoe UI',
+                                                        fontSize: 12
                                                     },
                                                     scales: {
                                                         yAxes: [{
                                                                 scaleLabel: {
                                                                     display: true,
-                                                                    labelString: 'Revenue ($)'
+                                                                    labelString: 'Revenue ($)',
+                                                                    fontSize: 12,
+                                                                    fontFamily: 'Segoe UI'
                                                                 }
                                                             }],
 
                                                         xAxes: [{
                                                                 scaleLabel: {
                                                                     display: true,
-                                                                    labelString: 'Month'
+                                                                    labelString: 'Month',
+                                                                    fontSize: 12,
+                                                                    fontFamily: 'Segoe UI'
                                                                 }
                                                             }]
 
@@ -343,7 +361,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <div class="card ">
                                     <div class="card-header ">
                                         <h4 class="card-title">Products</h4>
@@ -378,7 +396,7 @@
                                                                 </select>
                                                         </div>
                                                     </div>
-                                                    <div class="row">                
+                                                                   
                                                     <div class="col-md-5 pr-1">
                                                         <div class="form-group">
                                                             <select id="filterYear" name="year" onchange="return setValue();" class="form-control">
@@ -398,18 +416,10 @@
                                                             </select>
                                                                  </div>
                                                     </div>
-<div class="col-md-1 pr-1">                         <div class="col-md-1 pr-1">
-                                                        <div class="form-group">
+                   
                                                             <input type="hidden" name="dropdown" id="dropdown">
-                                                            <input type="submit" value="Filter" name="btn_dropdown" style="position: relative; right:10px; top: 5px;">
+                                                            <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
                                                             </form>
-                                                                </div>
-</div>
-                                                       
-                                                </div>
-                                                    </div>
-
-                                           
                                         </center>
                                         <br>
 
@@ -495,7 +505,9 @@
                                                                 borderWidth: 1,
                                                                 borderColor: 'black',
                                                                 hoverBorderWidth: 3,
-                                                                hoverBorderColor: 'black'
+                                                                hoverBorderColor: 'black',
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: '12'
                                                             }]
                                                     },
                                                     options: {
@@ -508,9 +520,11 @@
                                                         legend: {
                                                             display: true,
                                                             position: 'bottom',
+                                                            fontSize: 12,
+                                                            
                                                             labels: {
-                                                                fontColor: 'black'
-
+                                                                fontColor: 'black',
+                                                                fontSize: 12
                                                             }
                                                         },
                                                         layout: {
@@ -522,7 +536,9 @@
                                                             }
                                                         },
                                                         tooltips: {
-                                                            enabled: true
+                                                            enabled: true,
+                                                            fontFamily: 'Segoe UI',
+                                                            fontSize: 12
                                                         }
 
                                                     }
@@ -540,15 +556,16 @@
                                 <div class="card ">
                                     <div class="card-header ">
                                         <h4 class="card-title">Return Products</h4>
-                                        <p class="card-category">24 Hours performance</p>
+                                        <p class="card-category">Return performances</p>
                                     </div>
                                     <div class="card-body ">
                                         <!--filter for Top 5 Most returned products -->
                                         <center>
-                                            <div>
-
+                                             <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">   
                                                 <form method="post" action="dashboard.jsp" name="filterReturnedProductsForm">
-                                                    <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();">
+                                                    <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();" class="form-control">
 
                                                         <%
                                                             out.print("<option value='none'>Select Month");
@@ -560,8 +577,12 @@
                                                         %>
 
                                                     </select>
-
-                                                    <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">   
+                                                    <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();" class="form-control" >
 
                                                         <%
                                                             out.print("<option value='none'>Select Year");
@@ -574,12 +595,14 @@
                                                         %>
 
                                                     </select>
+                                                    </div>
+                                                </div>
 
                                                     <input type="hidden" name="dropdown" id="dropdown">
-                                                    <input type="submit" value="Filter" name="btn_dropdown">
+                                                    <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" style="position: relative; left:2px;; height: 40px;">
                                                 </form>
 
-                                                <label>Month | Year</label>
+                                                
                                             </div>
                                         </center>
                                         <br>                             
@@ -633,9 +656,9 @@
                                             let mostReturnedChart = document.getElementById('mostReturnedChart').getContext('2d');
 
                                             // Global Options
-                                            Chart.defaults.global.defaultFontFamily = 'Lato';
-                                            Chart.defaults.global.defaultFontSize = 18;
-                                            Chart.defaults.global.defaultFontColor = '#777';
+                                            Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                            Chart.defaults.global.defaultFontSize = 12;
+                                            Chart.defaults.global.defaultFontColor = 'black';
 
                                             let massPopChart3 = new Chart(mostReturnedChart, {
                                                 type: 'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -667,7 +690,7 @@
                                                     title: {
                                                         display: true,
                                                         text: 'Top 5 Most Returned Products <%= allMonths.get(monthReturnedInt)%> <%= yearProductReturnedRetrieved%>',
-                                                        fontSize: 25
+                                                        fontSize: 12
                                                     },
                                                     legend: {
                                                         display: true,
@@ -678,7 +701,7 @@
                                                     },
                                                     layout: {
                                                         padding: {
-                                                            left: 50,
+                                                            left: 0,
                                                             right: 0,
                                                             bottom: 0,
                                                             top: 0
