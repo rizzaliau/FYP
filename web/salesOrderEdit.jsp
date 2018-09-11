@@ -229,6 +229,8 @@
                                                 
                                                 String currentModifier = usernameSession;
                                                 String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                                //out.println("current TimeStamp is"+currentTimeStamp);
+                                                        
                                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
                                                 Date d2 = sdf.parse(salesOrderdetails.getCreateTimeStamp());
@@ -237,11 +239,16 @@
                                                 
                                                 SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                                 String lastModifiedTimeStampFormatted = "";
+                                                
                                                 if(salesOrderdetails.getLastModifiedTimeStamp()!=null &&  !salesOrderdetails.getLastModifiedTimeStamp().equals("-")){
-                                                Date d3 = sdf3.parse(salesOrderdetails.getLastModifiedTimeStamp());
-                                                sdf3.applyPattern("dd-MM-yyyy HH:mm:ss");
-                                                lastModifiedTimeStampFormatted = sdf3.format(d3);
+                                                    //out.println("lastModifiedTimeStampFormatted is "+lastModifiedTimeStampFormatted);
+                                                    //out.println(salesOrderdetails.getLastModifiedTimeStamp());
+                                                    Date d3 = sdf3.parse(salesOrderdetails.getLastModifiedTimeStamp());
+                                                    sdf3.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                    lastModifiedTimeStampFormatted = sdf3.format(d3);
+                                                    //out.println("lastModifiedTimeStampFormatted is "+lastModifiedTimeStampFormatted);
                                                 }else{
+                                                    
                                                     lastModifiedTimeStampFormatted = salesOrderdetails.getLastModifiedTimeStamp();
                                                 }
                                                 
@@ -257,9 +264,9 @@
                                                 </div>
                                                 <div class="col-md-3 pr-2">
                                                     <div class="form-group">
-                                                        <label>Last Modified TIme</label>
+                                                        <label>Last Modified Time</label>
                                                         <input type="text" class="form-control" placeholder="Last Modified TimeStamp" size="10" value="<%=lastModifiedTimeStampFormatted%>" disabled="">
-                                                        <input type="hidden" class="form-control" value="<%= currentTimeStamp%>" name="lastModifiedTimeStamp">
+                                                        <input type="hidden" class="form-control" value="<%=currentTimeStamp%>" name="lastModifiedTimeStamp">
                                                     </div>
                                                 </div>
                                             </div>
