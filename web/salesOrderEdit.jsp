@@ -210,7 +210,7 @@
                                             }
 
                                             SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderID, status);
-                                            
+
                                             String customerCode = salesOrderUtility.getCustomerCode(orderID, status);
 
                                             Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(orderID, status);
@@ -219,14 +219,13 @@
 
                                         %>
 
-
                                         <form method="post" action="editSalesOrderController">
 
                                             <input type="hidden" name="orderID" value="<%= orderID%>">
-                                            <input type="hidden" name="preferredLanguage" value="<%= salesOrderdetails.getPreferredLanguage() %>">
+                                            <input type="hidden" name="preferredLanguage" value="<%= salesOrderdetails.getPreferredLanguage()%>">
 
                                             <%
-                                                
+
                                                 String currentModifier = usernameSession;
                                                 String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
                                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -234,17 +233,17 @@
                                                 Date d2 = sdf.parse(salesOrderdetails.getCreateTimeStamp());
                                                 sdf.applyPattern("dd-MM-yyyy HH:mm:ss");
                                                 String orderDateFormatted = sdf.format(d2);
-                                                
+
                                                 SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                                 String lastModifiedTimeStampFormatted = "";
-                                                if(salesOrderdetails.getLastModifiedTimeStamp()!=null &&  !salesOrderdetails.getLastModifiedTimeStamp().equals("-")){
-                                                Date d3 = sdf3.parse(salesOrderdetails.getLastModifiedTimeStamp());
-                                                sdf3.applyPattern("dd-MM-yyyy HH:mm:ss");
-                                                lastModifiedTimeStampFormatted = sdf3.format(d3);
-                                                }else{
+                                                if (salesOrderdetails.getLastModifiedTimeStamp() != null && !salesOrderdetails.getLastModifiedTimeStamp().equals("-")) {
+                                                    Date d3 = sdf3.parse(salesOrderdetails.getLastModifiedTimeStamp());
+                                                    sdf3.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                    lastModifiedTimeStampFormatted = sdf3.format(d3);
+                                                } else {
                                                     lastModifiedTimeStampFormatted = salesOrderdetails.getLastModifiedTimeStamp();
                                                 }
-                                                
+
                                             %>    
 
                                             <div class="row">
@@ -308,13 +307,16 @@
                                                         <label>Status</label>
                                                         <!--this should be a dropdown --> 
 
-                                                        <select name="status" class="form-control">
+                                                        <select name="status" class="form-control" id="status">
                                                             <%
                                                                 String sts = salesOrderdetails.getStatus();
                                                                 if (sts.equals("Pending Delivery") || sts.equals("pendingDelivery")) {
                                                                     out.println("<option value='Pending Delivery'>Pending Delivery</option>");
                                                                     out.println("<option value='Delivered'>Delivered</option>");
 
+                                                                }
+                                                                if (sts.equals("Cancelled") || sts.equals("cancelled")) {
+                                                                    out.println("<option disable value='Cancelled'>Cancelled</option>");
                                                                 } else {
                                                                     out.println("<option value='Delivered'>Delivered</option>");
                                                                     out.println("<option value='Pending Delivery'>Pending Delivery</option>");
@@ -435,7 +437,7 @@
                                                                 out.print("<input type='hidden' size='10' name='itemCode' value='" + itemDetail.getItemCode() + "'>");
                                                                 out.print("<input type='hidden' size='10' name='originalQty' value='" + itemDetail.getQty() + "'>");
                                                                 //out.print("<tr><thead><th>Quantity</th></thead>");
-                                                                out.print("<td><input type='text' size='10' name='qty' value='" + itemDetail.getQty() + "'></td>");
+                                                                out.print("<td><input type='number' size='10' name='qty' id='indivQty' onChange='updatePrices("+itemDetail.getItemCode()+")' value='" + itemDetail.getQty() + "'></td>");
                                                                 //out.print("<tr><thead><th>Returned Quantity</th></thead>");
                                                                 out.print("<td>" + itemDetail.getReturnedQty() + "</td>");
                                                                 out.print("<td>" + itemDetail.getReducedQty() + "</td>");
@@ -443,7 +445,7 @@
                                                                 out.print("<td>" + itemDetail.getUnitPrice2DP() + "</td>");
                                                                 //out.print("<tr><thead><th>Subtotal</th></thead>");
                                                                 DecimalFormat df = new DecimalFormat("0.00");
-                                                                out.print("<td>" + df.format(subtotal) + "</td>");
+                                                                out.print("<td id="+ itemDetail.getItemCode() +"'indivSubtotal' >" + df.format(subtotal) + "</td>");
                                                                 out.print("</tr>");
 
                                                                 total += subtotal;
@@ -574,6 +576,7 @@
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     })
+
 </script>
 
 <script>
@@ -582,6 +585,22 @@
                 setInterval(function () {
                     $('#notification').load('loyaltyProgramme.jsp #notification');
                 }, 5000);
+                //document.write($("#status").value);
+                if (document.getElementById('status').value == 'Cancelled') {
+
+                    var elems = document.getElementsByTagName('input');
+                    var dropdowns = document.getElementsByTagName('select');
+                    var len = elems.length;
+
+                    for (var i = 0; i < len; i++) {
+                        elems[i].disabled = true;
+                    }
+                    len = dropdowns.length;
+                    for (var i = 0; i < len; i++) {
+                        dropdowns[i].disabled = true;
+                    }
+
+                }
             });
 </script>
 
