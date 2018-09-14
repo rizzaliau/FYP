@@ -314,15 +314,14 @@
                                                                     out.println("<option value='Pending Delivery'>Pending Delivery</option>");
                                                                     out.println("<option value='Delivered'>Delivered</option>");
 
-                                                                }
-                                                                if (sts.equals("Cancelled") || sts.equals("cancelled")) {
+                                                                }else if (sts.equals("Cancelled") || sts.equals("cancelled")) {
                                                                     out.println("<option disable value='Cancelled'>Cancelled</option>");
-                                                                } else {
+                                                                } {
                                                                     out.println("<option value='Delivered'>Delivered</option>");
-                                                                    out.println("<option value='Pending Delivery'>Pending Delivery</option>");
-                                                                }
-
-                                                            %> 
+                                                                    out.println("<option value='Pending Delivery'>Pending Delivery</option>");    
+                                                            }
+                                                                
+                                                           %> 
                                                         </select>
                                                     </div>
                                                 </div>
