@@ -522,5 +522,182 @@ public class dashboardUtility {
         return allMonths;
     }
     
+    //Key Index, Value Top 10 Customer for a particular month and year
+    public static Map<Integer, String> getTop10CustomersByYearMonth(int year,int month){
+        
+        Map<Integer, String> top10CustomersByYearMonth = new HashMap<>();
+        
+        //Key Customer Code, Value Sales for a particular month and year
+        Map<String, Double> allCustomerSalesByYearMonth = new HashMap<>();
+        
+        //Get all the sales orders for a particular month and year
+        Map<Integer, SalesOrder> allSalesOrderRevenueMap = getAllRevenueSalesOrderMapByMonth(month,year);
+
+        //loop through each sales order
+        for (Integer number : allSalesOrderRevenueMap.keySet()) {
+
+            double salesOrdertotalForCustomer = 0;
+
+            SalesOrder salesOrder = allSalesOrderRevenueMap.get(number);
+
+            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
+
+            Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
+
+            String debtorCode = salesOrder.getDebtorCode();
+            
+            System.out.println("Debtor code retrieved is "+debtorCode);
+
+            //for each item in the sales order
+            for (Integer itemNumber : itemDetailsMap.keySet()) {
+
+                ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
+
+                double qtyDouble = Double.parseDouble(itemDetail.getQty());
+                double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
+
+                salesOrdertotalForCustomer += qtyDouble *  unitPriceDouble;
+
+            }
+
+            //allCustomerSalesByYearMonth.put(debtorCode,salesOrdertotalForCustomer);
+            //salesRevenueByMonthMap.put(month, totalForMonth);
+
+
+            if(allCustomerSalesByYearMonth.get(debtorCode) == null){
+                allCustomerSalesByYearMonth.put(debtorCode, salesOrdertotalForCustomer);
+            }else{
+                double newTotal = salesOrdertotalForCustomer + allCustomerSalesByYearMonth.get(debtorCode);
+                allCustomerSalesByYearMonth.put(debtorCode, newTotal);
+            }    
+
+        }
+
+        //System.out.print("Value is"+allCustomerSalesByYearMonth.get("301-C028"));
+        //System.out.print("Code reaches this point");
+        
+        
+        List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(allCustomerSalesByYearMonth.entrySet());
+        
+        Collections.sort(list,new Comparator<Entry<String, Double>>(){
+            public int compare(Entry<String,Double> o1, Entry<String, Double> o2){
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });
+        
+        int rank = 1;
+
+//        for (int k = 10; k>=1; k--){    
+//            
+//            Entry<String, Double> entry = list.get(k);
+//            
+//            //System.out.println("Entry is "+entry);
+//            
+//            if(entry==null){
+//                
+//                String value = "";
+//                top10CustomersByYearMonth.put(rank,value);
+//                rank++;
+//                
+//            }else{
+//            
+//                String key = entry.getKey();
+//                double value = entry.getValue();
+//
+//                System.out.println(entry);
+//                System.out.println("Key is "+key);
+//
+//                top10CustomersByYearMonth.put(rank,key);
+//                rank++;
+//            }
+//            
+//        }
+    System.out.println("list size is"+list.size());
+
+        for (int k = list.size(); k >= 1; k--){    
+            
+            Entry<String, Double> entryRetrieved = list.get(k-1);
+            
+            String key = entryRetrieved.getKey();
+            double value = entryRetrieved.getValue();
+            
+            System.out.println(entryRetrieved);
+            System.out.println("Key is "+key);
+            
+            top10CustomersByYearMonth.put(rank,key);
+            rank++;
+            
+        }
+        
+//        if(rank != top10CustomersByYearMonth.size()){
+//            rank--;
+//        }
+        
+        while(top10CustomersByYearMonth.size() < 10){
+            
+            top10CustomersByYearMonth.put(rank," ");
+            rank++;
+            
+            System.out.println("Rank is "+rank);
+        }
+        
+        
+        //top10CustomersByYearMonth.put(1,"Test");
+
+        return top10CustomersByYearMonth;
+    }
+    
+    // Key Customer code, value sales for a particular month and year
+    public static Map<String, Double> getAllCustomerSalesByYearMonth(int year, int month){
+        
+        //Key Customer Code, Value Sales for a particular month and year
+        Map<String, Double> allCustomerSalesByYearMonth = new HashMap<>();
+        
+        //Get all the sales orders for a particular month and year
+        Map<Integer, SalesOrder> allSalesOrderRevenueMap = getAllRevenueSalesOrderMapByMonth(month,year);
+
+        //loop through each sales order
+        for (Integer number : allSalesOrderRevenueMap.keySet()) {
+
+            double salesOrdertotalForCustomer = 0;
+
+            SalesOrder salesOrder = allSalesOrderRevenueMap.get(number);
+
+            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
+
+            Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
+
+            String debtorCode = salesOrder.getDebtorCode();
+            
+            System.out.println("Debtor code retrieved is "+debtorCode);
+
+            //for each item in the sales order
+            for (Integer itemNumber : itemDetailsMap.keySet()) {
+
+                ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
+
+                double qtyDouble = Double.parseDouble(itemDetail.getQty());
+                double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
+
+                salesOrdertotalForCustomer += qtyDouble *  unitPriceDouble;
+
+            }
+
+            //allCustomerSalesByYearMonth.put(debtorCode,salesOrdertotalForCustomer);
+            //salesRevenueByMonthMap.put(month, totalForMonth);
+
+
+            if(allCustomerSalesByYearMonth.get(debtorCode) == null){
+                allCustomerSalesByYearMonth.put(debtorCode, salesOrdertotalForCustomer);
+            }else{
+                double newTotal = salesOrdertotalForCustomer + allCustomerSalesByYearMonth.get(debtorCode);
+                allCustomerSalesByYearMonth.put(debtorCode, newTotal);
+            }    
+
+        }
+        
+        return allCustomerSalesByYearMonth;
+        
+    }
     
 }
