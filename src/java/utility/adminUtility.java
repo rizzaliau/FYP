@@ -232,4 +232,33 @@ public class adminUtility {
        return formattedDate;
     }
     
+    //returns month, single digit from 1-9 and double digit for 10-12
+    public static String getMonthTimestamp(String date){
+        
+       if(date.equals("-")||date == null){
+           return "-";
+       }
+
+       String MM = date.substring(5,7);
+       
+       if(MM.charAt(0)=='0'){
+           return MM.charAt(1)+"";
+       }
+
+       return MM;
+    }
+    
+    public static String getYearTimestamp(String date){
+        
+       if(date.equals("-")||date == null){
+           return "-";
+       }
+
+       String yyyy = date.substring(0,4);
+
+     
+       return yyyy;
+    }
+    
+    
 }
