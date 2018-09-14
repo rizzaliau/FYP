@@ -1,4 +1,6 @@
 
+<%@page import="utility.adminUtility"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="utility.dashboardUtility"%>
 <%@page import="utility.notificationUtility"%>
@@ -187,7 +189,14 @@
                                     <br>    
 
                                     <%
+                                        // Resuable variables
                                         Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();
+                                        
+                                        String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                        String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
+                                        String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
+                                        
+
                                     %>
 
 
@@ -251,6 +260,8 @@
                                             salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(yearInt);
 
                                         }
+                                        
+                                        
                                     %>    
                                     <center>
                                         <script>
@@ -274,18 +285,18 @@
                                                                 fontFamily: 'Segoe UI',
                                                                 fontSize: 12,
                                                             data: [
-                                            <%= df.format(salesRevenueByMonthMap.get(1))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(2))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(3))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(4))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(5))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(6))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(7))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(8))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(9))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(10))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(11))%>,
-                                            <%= df.format(salesRevenueByMonthMap.get(12))%>
+                                                                <%= df.format(salesRevenueByMonthMap.get(1))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(2))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(3))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(4))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(5))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(6))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(7))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(8))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(9))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(10))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(11))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(12))%>
                                                             ],
                                                             //backgroundColor:'green',
                                                             backgroundColor: [
@@ -377,11 +388,11 @@
 
                                         <!-- Filter month/year for top 5 Products -->
                                         <center>
-                                            
+                                            <form method="post" action="dashboard.jsp" name="filterYearForm"  >
                                                 <div class="row">
                                                     <div class="col-md-5 pr-1">
                                                         <div class="form-group">
-                                                            <form method="post" action="dashboard.jsp" name="filterYearForm"  >
+                                                            
                                                                 <select id="filterYear" name="month" onchange="return setValue();" class="form-control">
 
                                                                     <%
@@ -417,9 +428,9 @@
                                                                  </div>
                                                     </div>
                    
-                                                            <input type="hidden" name="dropdown" id="dropdown">
-                                                            <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                                            </form>
+                                                <input type="hidden" name="dropdown" id="dropdown">
+                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
+                                                </form>
                                         </center>
                                         <br>
 
@@ -735,6 +746,392 @@
                                 </div>
                             </div>
 
+                       <!-- Start of Dashboard II charts -->  
+                       
+                       
+                       <!-- Start of Filter month/year for top 10 Customers -->
+                            <center>
+                                <form method="post" action="dashboard.jsp" name="top10CustomersForm" >
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                    <select id="top10Year" name="top10CustomersMonth" onchange="return setValue();" class="form-control">
+
+                                                        <%
+                                                            out.print("<option value='none'>Select Month</option>");
+                                                            for (int i = 1; i <= allMonths.size(); i++) {
+                                                                String month = allMonths.get(i);
+                                                                out.print("<option value='" + i + "'>" + month + "");
+
+                                                            }
+                                                        %>
+
+                                                    </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <select id="top10Month" name="top10CustomersYear" onchange="return setValue();" class="form-control">
+
+                                                    <%
+                                                        out.print("<option value='none'>Select Year</option>");
+                                                        for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                            int year = availableSalesOrderYears.get(i);
+                                                            out.print("<option value='" + year + "'>" + year + "");
+
+                                                        }
+                                                    %>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="dropdown" id="dropdown">
+                                        <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
+                                    </form>
+                            </center>
+                            <br>
+                         <!-- End of Filter month/year for top 10 Customers -->
+                                        
+                         <!-- Chart for top 10 Customers -->    
+                         
+                            <div class="container">
+                                <canvas id="top10CustomersChart"></canvas>
+                            </div> 
+                            <br>
+                                    
+                                    <%
+                                        //Key rank, String customer code
+                                        Map<Integer, String> top10CustomersByYearMonth = null;
+                                        
+                                        Map<String, Double> allCustomerSalesByYearMonth = null;
+                                        
+                                        //Retrieve parameters from form
+                                        String yearRetrievedTop10Customers = request.getParameter("top10CustomersYear");
+                                        String monthRetrievedTop10Customers = request.getParameter("top10CustomersMonth");
+
+                                        int top10MonthInt = 1;
+
+                                        //out.println(yearRetrievedTop10Customers);
+                                        //out.println(monthRetrievedTop10Customers);
+
+                                        if (yearRetrievedTop10Customers == null && monthRetrievedTop10Customers == null) {
+
+                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(2018,6);
+                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,6);
+
+                                            yearRetrievedTop10Customers = "2018";
+
+                                        } else if (yearRetrievedTop10Customers.equals("none") && monthRetrievedTop10Customers.equals("none")
+                                                || yearRetrievedTop10Customers.equals("none") || monthRetrievedTop10Customers.equals("none")) {
+
+                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(2018,6);
+                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,6);
+
+                                            yearRetrievedTop10Customers = "2018";
+
+                                        } else {
+                                            int top10YearInt = Integer.parseInt(yearRetrievedTop10Customers);
+                                            top10MonthInt = Integer.parseInt(monthRetrievedTop10Customers);
+                                            //map parameters month, revenue
+                                            //hardcoded year to 2018
+                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(top10YearInt,top10MonthInt);
+                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(top10YearInt,top10MonthInt);
+
+                                        }
+
+                                    %>    
+                                    <center>
+                                    <script>
+                                      let myChart = document.getElementById('top10CustomersChart').getContext('2d');
+
+                                      // Global Options
+                                      Chart.defaults.global.defaultFontFamily = 'Lato';
+                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontColor = '#777';
+
+                                      let massPopChart4 = new Chart(top10CustomersChart, {
+                                        type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                        data:{
+                                          labels:['<%= top10CustomersByYearMonth.get(1) %>',
+                                                  '<%= top10CustomersByYearMonth.get(2) %>', 
+                                                  '<%= top10CustomersByYearMonth.get(3) %>',
+                                                  '<%= top10CustomersByYearMonth.get(4) %>',
+                                                  '<%= top10CustomersByYearMonth.get(5) %>',
+                                                  '<%= top10CustomersByYearMonth.get(6) %>',
+                                                  '<%= top10CustomersByYearMonth.get(7) %>',
+                                                  '<%= top10CustomersByYearMonth.get(8) %>',
+                                                  '<%= top10CustomersByYearMonth.get(9) %>', 
+                                                  '<%= top10CustomersByYearMonth.get(10)%>'],
+                                          datasets:[{
+                                            label:'Sales By Customer ($)',
+                                            data:[
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(1)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(2)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(3)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(4)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(5)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(6)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(7)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(8)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(9)) %>,
+                                              <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(10)) %>
+                                            ],
+                                            //backgroundColor:'green',
+                                            backgroundColor:[
+                                              'rgba(255, 99, 132, 0.6)',
+                                              'rgba(54, 162, 235, 0.6)',
+                                              'rgba(255, 206, 86, 0.6)',
+                                              'rgba(75, 192, 192, 0.6)',
+                                              'rgba(153, 102, 255, 0.6)',
+                                              'rgba(255, 159, 64, 0.6)',
+                                              'rgba(255, 99, 132, 0.6)'
+                                            ],
+                                            borderWidth:1,
+                                            borderColor:'#777',
+                                            hoverBorderWidth:3,
+                                            hoverBorderColor:'#000'
+                                          }]
+                                        },
+                                        options:{
+                                          title:{
+                                            display:true,
+                                            text:'Top 10 Customers <%= allMonths.get(top10MonthInt)%> <%= yearRetrievedTop10Customers%> ',
+                                            fontSize:25
+                                          },
+                                          legend:{
+                                            display:true,
+                                            position:'right',
+                                            labels:{
+                                              fontColor:'#000'
+                                            }
+                                          },
+                                          layout:{
+                                            padding:{
+                                              left:50,
+                                              right:0,
+                                              bottom:0,
+                                              top:0
+                                            }
+                                          },
+                                          tooltips:{
+                                            enabled:true
+                                          },
+                                          scales: {
+                                            yAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Customer Code'
+                                              }
+                                            }],
+
+                                            xAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Sales ($)'
+                                              }
+                                            }]
+
+                                          } 
+                                        }
+                                      });
+                                      
+                                    </script>
+                                    </center>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    
+                                    <div class="container">
+                                      <canvas id="customerWhoDoNotMeetRequirement"></canvas>
+                                    </div> 
+                                    
+                                    <script>
+                                      let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
+                                      // Global Options
+                                      Chart.defaults.global.defaultFontFamily = 'Lato';
+                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontColor = '#777';
+
+                                      let massPopChart5 = new Chart(customerWhoDoNotMeetRequirement, {
+                                        type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                        data:{
+                                          labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                          datasets:[{
+                                            label:'Sales By Customer ($)',
+                                            data:[
+                                              <%= 0 %>,
+                                              <%= 0 %>,
+                                              <%= 0 %>,
+                                              <%= 0 %>,
+                                              <%= 0 %>,
+                                              <%= 10 %>,
+                                              <%= 0 %>,
+                                              <%= 0 %>,
+                                              <%= 0 %>,
+                                              <%= 0 %>,
+                                              <%= 0 %>,
+                                              <%= 0 %>
+                                            ],
+                                            //backgroundColor:'green',
+                                            backgroundColor:'green',
+                                            borderWidth:1,
+                                            borderColor:'#777',
+                                            hoverBorderWidth:3,
+                                            hoverBorderColor:'#000'
+                                          }]
+                                        },
+                                        options:{
+                                          title:{
+                                            display:true,
+                                            text:'Customers Do Not Meet Requirements By Month',
+                                            fontSize:25
+                                          },
+                                          legend:{
+                                            display:true,
+                                            position:'right',
+                                            labels:{
+                                              fontColor:'#000'
+                                            }
+                                          },
+                                          layout:{
+                                            padding:{
+                                              left:50,
+                                              right:0,
+                                              bottom:0,
+                                              top:0
+                                            }
+                                          },
+                                          tooltips:{
+                                            enabled:true
+                                          },
+                                          scales: {
+                                            yAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Customer Code'
+                                              }
+                                            }],
+
+                                            xAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Sales ($)'
+                                              }
+                                            }]
+
+                                          } 
+                                        }
+                                      });
+                                      
+                                    </script>
+                                    <br>
+                                    <br>
+                                    
+                                    <div class="container">
+                                      <canvas id="returnProductsByCustomerChart"></canvas>
+                                    </div>    
+
+                                    <script>
+                                      let returnProductsByCustomerChart = document.getElementById('returnProductsByCustomerChart').getContext('2d');
+
+                                      // Global Options
+                                      Chart.defaults.global.defaultFontFamily = 'Lato';
+                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontColor = '#777';
+
+                                      let massPopChart6 = new Chart(returnProductsByCustomerChart, {
+                                        type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                                        data:{
+                                          labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                          datasets:[{
+                                            label:'Returned Products By Customers',
+                                            data:[
+                                              <%= salesRevenueByMonthMap.get(1) %>,
+                                              <%= salesRevenueByMonthMap.get(2) %>,
+                                              <%= salesRevenueByMonthMap.get(3) %>,
+                                              <%= salesRevenueByMonthMap.get(4) %>,
+                                              <%= salesRevenueByMonthMap.get(5) %>,
+                                              <%= salesRevenueByMonthMap.get(6) %>,
+                                              <%= salesRevenueByMonthMap.get(7) %>,
+                                              <%= salesRevenueByMonthMap.get(8) %>,
+                                              <%= salesRevenueByMonthMap.get(9) %>,
+                                              <%= salesRevenueByMonthMap.get(10) %>,
+                                              <%= salesRevenueByMonthMap.get(11) %>,
+                                              <%= salesRevenueByMonthMap.get(12) %>
+                                            ],
+                                            //backgroundColor:'green',
+                                            backgroundColor:['white'
+                                            ],
+                                            borderWidth:2,
+                                            borderColor:'#FFA500',
+                                            hoverBorderWidth:3,
+                                            hoverBorderColor:'#000'
+                                          }]
+                                        },
+                                        options:{
+                                          title:{
+                                            display:true,
+                                            text:'Returned Products By Customers By Month',
+                                            fontSize:25
+                                          },
+                                          legend:{
+                                            display:true,
+                                            position:'right',
+                                            labels:{
+                                              fontColor:'#000'
+                                            }
+                                          },
+                                          layout:{
+                                            padding:{
+                                              left:50,
+                                              right:0,
+                                              bottom:0,
+                                              top:0
+                                            }
+                                          },
+                                          tooltips:{
+                                            enabled:true
+                                          },
+                                          scales: {
+                                            yAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Return Quantity'
+                                              }
+                                            }],
+
+                                            xAxes: [{
+                                              scaleLabel: {
+                                                display: true,
+                                                labelString: 'Month'
+                                              }
+                                            }]
+
+                                          } 
+                                        }
+                                      });
+                                      
+                                    </script>
+                                    <br>
+                                    <br>
+                                    <center>
+                                    Breakdown Of Products Return
+                                    <br>
+                                    Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
+                                    </center>
+                                    <br>                                 
+                                                        
+                                                        
+                                                        
+                                  <!-- End of Dashboard II charts -->                          
+                                                        
 
                         </div>
                     </div>
