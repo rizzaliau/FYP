@@ -946,9 +946,59 @@
                                     <br>
                                     <br>
                                     
-                                    <div class="container">
-                                      <canvas id="customerWhoDoNotMeetRequirement"></canvas>
-                                    </div> 
+           
+                        <!-- Start of Filter month/year for Customers Who Do Not Meet the Requirement Chart -->
+                             <center>
+                                 <form method="post" action="dashboard.jsp" name="customersDoNotMeetRequirementForm" >
+                                     <div class="row">
+                                         <div class="col-md-5 pr-1">
+                                             <div class="form-group">
+                                                     <select id="top10Year" name="customersDoNotMeetRequirementMonth" onchange="return setValue();" class="form-control">
+
+                                                         <%
+                                                             out.print("<option value='none'>Select Month</option>");
+                                                             for (int i = 1; i <= allMonths.size(); i++) {
+                                                                 String month = allMonths.get(i);
+                                                                 out.print("<option value='" + i + "'>" + month + "");
+
+                                                             }
+                                                         %>
+
+                                                     </select>
+                                             </div>
+                                         </div>
+
+                                         <div class="col-md-5 pr-1">
+                                             <div class="form-group">
+                                                 <select id="top10Month" name="customersDoNotMeetRequirementYear" onchange="return setValue();" class="form-control">
+
+                                                     <%
+                                                         out.print("<option value='none'>Select Year</option>");
+                                                         for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                             int year = availableSalesOrderYears.get(i);
+                                                             out.print("<option value='" + year + "'>" + year + "");
+
+                                                         }
+                                                     %>
+
+                                                 </select>
+                                             </div>
+                                         </div>
+
+                                         <input type="hidden" name="dropdown" id="dropdown">
+                                         <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
+                                     </form>
+                             </center>
+                             <br>
+                             
+                             <!-- End of Filter month/year for Customers Who Do Not Meet the Requirement Chart -->
+                             
+
+                             <!-- Start of Customers Who Do Not Meet the Requirement Chart -->       
+                                    
+                            <div class="container">
+                              <canvas id="customerWhoDoNotMeetRequirement"></canvas>
+                            </div> 
                                     
                                     <script>
                                       let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
@@ -1032,6 +1082,11 @@
                                     </script>
                                     <br>
                                     <br>
+                                    
+                                    
+                                    <!-- End of Customers Who Do Not Meet the Requirement Chart -->  
+                                    
+                                    
                                     
                                     <div class="container">
                                       <canvas id="returnProductsByCustomerChart"></canvas>
