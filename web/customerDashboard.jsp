@@ -11,7 +11,7 @@
 <%@page import="java.util.Map"%>
 <!DOCTYPE html>
 
-<%@include file="protect.jsp" %>
+<%--<%@include file="protect.jsp" %>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html lang="en">
@@ -59,14 +59,14 @@
                         <%
                            String isMasterAdmin = (String) session.getAttribute("isMaster");
                                    
-                           if(isMasterAdmin.equals("1")){ 
-                                out.print("<li>");
-                                out.print("<a class='nav-link' href='admin.jsp'>");
-                                out.print("<i class='nc-icon nc-key-25'></i>");
-                                out.print("<p>Admin</p>");
-                                out.print("</a>");
-                                out.print("</li>");
-                           }
+//                           if(isMasterAdmin.equals("1")){ 
+//                                out.print("<li>");
+//                                out.print("<a class='nav-link' href='admin.jsp'>");
+//                                out.print("<i class='nc-icon nc-key-25'></i>");
+//                                out.print("<p>Admin</p>");
+//                                out.print("</a>");
+//                                out.print("</li>");
+//                           }
                            
                         %>
                         <li class='nav-item active'>
@@ -188,6 +188,57 @@
                                     </center>
                                     -->
                                     <br>    
+                                    <%
+                                        Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears(); 
+
+                                        Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
+                                    %>   
+                                    
+                                        <center>
+                                             <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">   
+                                                <form method="post" action="dashboard.jsp" name="filterReturnedProductsForm">
+                                                    <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();" class="form-control">
+
+                                                        <%
+                                                            out.print("<option value='none'>Select Month");
+                                                            for (int i = 1; i <= allMonths.size(); i++) {
+                                                                String month = allMonths.get(i);
+                                                                out.print("<option value='" + i + "'>" + month + "");
+
+                                                            }
+                                                        %>
+
+                                                    </select>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">   
+                                                    <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();" class="form-control" >
+
+                                                        <%
+                                                            out.print("<option value='none'>Select Year");
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                int year = availableSalesOrderYears.get(i);
+
+                                                                out.print("<option value='" + year + "'>" + year + "");
+
+                                                            }
+                                                        %>
+
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                    <input type="hidden" name="dropdown" id="dropdown">
+                                                    <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" style="position: relative; left:2px;; height: 40px;">
+                                                </form>
+
+                                                
+                                            </div>
+                                        </center>
 
                                     <div class="container">
                                       <canvas id="top10CustomersChart"></canvas>
@@ -195,7 +246,7 @@
                                     
                                     <%
                                         //map parameters month, revenue
-                                        Map<Integer, Double> salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth();
+                                        Map<Integer, Double> salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
 
                                     %>    
                                     <center>
@@ -207,7 +258,7 @@
                                       Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
-                                      let massPopChart = new Chart(top10CustomersChart, {
+                                      let massPopChart4 = new Chart(top10CustomersChart, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -304,7 +355,7 @@
                                       Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
-                                      let massPopChart2 = new Chart(customerWhoDoNotMeetRequirement, {
+                                      let massPopChart5 = new Chart(customerWhoDoNotMeetRequirement, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -392,7 +443,7 @@
                                       Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
-                                      let massPopChart3 = new Chart(returnProductsByCustomerChart, {
+                                      let massPopChart6 = new Chart(returnProductsByCustomerChart, {
                                         type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
