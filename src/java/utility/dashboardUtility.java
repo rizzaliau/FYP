@@ -700,4 +700,96 @@ public class dashboardUtility {
         
     }
     
+    
+ //Key Index, Value Customers Who Do not meet the requirement for a particular month and year
+    public static Map<Integer, String> getCustomersWhoDoNotMeetRequirementByYearMonth(int year,int month){
+        
+        //Key Rank, Value Sales for a particular month and year
+        Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth = new HashMap<>();
+        
+        //Key Customer Code, Value Sales for a particular month and year
+        Map<String, Double> allCustomerSalesByYearMonth = new HashMap<>();
+        
+        //Get all the sales orders for a particular month and year
+        Map<Integer, SalesOrder> allSalesOrderRevenueMap = getAllRevenueSalesOrderMapByMonth(month,year);
+
+        //loop through each sales order
+        for (Integer number : allSalesOrderRevenueMap.keySet()) {
+
+            double salesOrdertotalForCustomer = 0;
+
+            SalesOrder salesOrder = allSalesOrderRevenueMap.get(number);
+
+            SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
+
+            Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
+
+            String debtorCode = salesOrder.getDebtorCode();
+            
+            //for each item in the sales order
+            for (Integer itemNumber : itemDetailsMap.keySet()) {
+
+                ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
+
+                double qtyDouble = Double.parseDouble(itemDetail.getQty());
+                double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
+
+                salesOrdertotalForCustomer += qtyDouble *  unitPriceDouble;
+
+            }
+
+            if(allCustomerSalesByYearMonth.get(debtorCode) == null){
+                allCustomerSalesByYearMonth.put(debtorCode, salesOrdertotalForCustomer);
+            }else{
+                double newTotal = salesOrdertotalForCustomer + allCustomerSalesByYearMonth.get(debtorCode);
+                allCustomerSalesByYearMonth.put(debtorCode, newTotal);
+            }    
+
+        }
+        
+        List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(allCustomerSalesByYearMonth.entrySet());
+        
+        Collections.sort(list,new Comparator<Entry<String, Double>>(){
+            public int compare(Entry<String,Double> o1, Entry<String, Double> o2){
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });
+        
+        int rank = 1;
+
+        for (int k = list.size(); k >= 1; k--){    
+            
+            Entry<String, Double> entryRetrieved = list.get(k-1);
+            
+            String key = entryRetrieved.getKey();
+            double value = entryRetrieved.getValue();
+            
+            System.out.println(entryRetrieved);
+            System.out.println("Key is "+key);
+            
+            double minimumRequirement = 200;
+            
+            if(value<=minimumRequirement){
+                
+                customersWhoDoNotMeetRequirementByYearMonth.put(rank,key);
+                rank++;
+                
+            }
+            
+        }
+        
+        //To populate the map with blank values
+        while(customersWhoDoNotMeetRequirementByYearMonth.size() < 10){
+            
+            customersWhoDoNotMeetRequirementByYearMonth.put(rank," ");
+            rank++;
+            
+            System.out.println("Rank is "+rank);
+        }
+        
+        return customersWhoDoNotMeetRequirementByYearMonth;
+    }
+    
+   
+    
 }
