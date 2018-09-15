@@ -984,8 +984,8 @@
                                     <div class="col-md-12">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">2017 Sales</h4>
-                                    <p class="card-category">All products including Taxes</p>
+                                    <h4 class="card-title">Customer Requirements</h4>
+                                    <p class="card-category">Customers Requirement Chart</p>
                                 </div>
                                 <div class="card-body ">
                                     <div class="container">
@@ -995,15 +995,17 @@
                                     <script>
                                       let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 12;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart5 = new Chart(customerWhoDoNotMeetRequirement, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
                                           datasets:[{
                                             label:'Sales By Customer ($)',
                                             data:[
@@ -1025,45 +1027,60 @@
                                             borderWidth:1,
                                             borderColor:'#777',
                                             hoverBorderWidth:3,
-                                            hoverBorderColor:'#000'
+                                            hoverBorderColor:'#000',
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
                                           }]
                                         },
                                         options:{
                                           title:{
                                             display:true,
                                             text:'Customers Do Not Meet Requirements By Month',
-                                            fontSize:25
+                                            fontSize:12,
+                                            fontFamily: 'Segoe UI',
+
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
+                                            
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'#000',
+                                              fontFamily: 'Segoe UI',
+                                              fontSize: 12,
                                             }
                                           },
                                           layout:{
                                             padding:{
-                                              left:50,
+                                              left:0,
                                               right:0,
                                               bottom:0,
                                               top:0
                                             }
                                           },
                                           tooltips:{
-                                            enabled:true
+                                            enabled:true,
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12
                                           },
                                           scales: {
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Customer Code'
+                                                labelString: 'Customer Code',
+                                                fontFamily: 'Segoe UI',
+                                                fontSize: 12
                                               }
                                             }],
 
                                             xAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Sales ($)'
+                                                labelString: 'Sales ($)',
+                                                fontFamily: 'Segoe UI',
+                                                fontSize: 12
                                               }
                                             }]
 
