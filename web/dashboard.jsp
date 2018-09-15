@@ -1059,27 +1059,29 @@
 
                                 if (yearRetrievedCustomersDoNotMeetRequirement == null && monthRetrievedCustomersDoNotMeetRequirement == null) {
 
-                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2017,11);
-                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2017,11);
+                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2018,1);
+                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,1);
 
                                     yearRetrievedCustomersDoNotMeetRequirement = "2018";
 
                                 } else if (yearRetrievedCustomersDoNotMeetRequirement.equals("none") && monthRetrievedCustomersDoNotMeetRequirement.equals("none")
                                         || yearRetrievedCustomersDoNotMeetRequirement.equals("none") || monthRetrievedCustomersDoNotMeetRequirement.equals("none")) {
 
-                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2017,11);
-                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2017,11);
+                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2018,11);
+                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,1);
 
                                     yearRetrievedCustomersDoNotMeetRequirement = "2018";
 
                                 } else {
-                                    int customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedTop10Customers);
-                                    customersDoNotMeetRequirementMonthInt = Integer.parseInt(monthRetrievedTop10Customers);
+                                    
+                                    int customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedCustomersDoNotMeetRequirement);
+                                    customersDoNotMeetRequirementMonthInt = Integer.parseInt(monthRetrievedCustomersDoNotMeetRequirement);
                                     //map parameters month, revenue
                                     //hardcoded year to 2018
-                                    top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
-                                    allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
+                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
+                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
 
+                                    //yearRetrievedCustomersDoNotMeetRequirement = "2018";
                                 }
 
 
@@ -1096,15 +1098,15 @@
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                             labels:['<%= customersWhoDoNotMeetRequirementByYearMonth.get(1) %>', 
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(2) %>',
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(3) %>', 
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(4) %>', 
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(5) %>', 
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(6) %>',
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(7) %>', 
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(8) %>', 
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(9) %>', 
-                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(10) %>'],
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(2) %>',
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(3) %>', 
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(4) %>', 
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(5) %>', 
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(6) %>',
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(7) %>', 
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(8) %>', 
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(9) %>', 
+                                                    '<%= customersWhoDoNotMeetRequirementByYearMonth.get(10) %>'],
                                             fontFamily: 'Segoe UI',
                                             fontSize: 12,
                                             datasets:[{
@@ -1134,7 +1136,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Customers Do Not Meet Requirements By Month',
+                                            text:'Customers Do Not Meet Requirements <%= allMonths.get(customersDoNotMeetRequirementMonthInt)%> <%= yearRetrievedCustomersDoNotMeetRequirement%>',
                                             fontSize:12,
                                             fontFamily: 'Segoe UI',
 
