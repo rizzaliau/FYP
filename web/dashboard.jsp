@@ -692,7 +692,7 @@
                                             <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)))%>
                                                             ],
                                                             //backgroundColor:'green',
-                                                            backgroundColor: 'green',
+                                                            backgroundColor: 'rgba(245,104,41,100)',
                                                             borderWidth: 1,
                                                             borderColor: '#777',
                                                             hoverBorderWidth: 3,
