@@ -795,7 +795,13 @@
                          <!-- End of Filter month/year for top 10 Customers -->
                                         
                          <!-- Chart for top 10 Customers -->    
-                         
+                        <div class="col-md-12">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">2017 Sales</h4>
+                                    <p class="card-category">All products including Taxes</p>
+                                </div>
+                                <div class="card-body ">    
                             <div class="container">
                                 <canvas id="top10CustomersChart"></canvas>
                             </div> 
@@ -945,7 +951,16 @@
                                     <br>
                                     <br>
                                     <br>
-                                    
+                                </div>
+                            </div>
+                        </div>
+                                    <div class="col-md-12">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">2017 Sales</h4>
+                                    <p class="card-category">All products including Taxes</p>
+                                </div>
+                                <div class="card-body ">
                                     <div class="container">
                                       <canvas id="customerWhoDoNotMeetRequirement"></canvas>
                                     </div> 
@@ -1032,7 +1047,17 @@
                                     </script>
                                     <br>
                                     <br>
-                                    
+                                </div>
+                            </div>
+                        </div>
+                                            
+                        <div class="col-md-12">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">2017 Sales</h4>
+                                    <p class="card-category">All products including Taxes</p>
+                                </div>
+                                <div class="card-body ">
                                     <div class="container">
                                       <canvas id="returnProductsByCustomerChart"></canvas>
                                     </div>    
@@ -1126,7 +1151,10 @@
                                     <br>
                                     Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
                                     </center>
-                                    <br>                                 
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
                                                         
                                                         
                                                         
