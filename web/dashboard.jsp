@@ -1034,7 +1034,57 @@
                             <div class="container">
                               <canvas id="customerWhoDoNotMeetRequirement"></canvas>
                             </div> 
+                             
+                            <% 
+                                //Logic for customerWhoDoNotMeetRequirement
+                                 
+                                 //Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2017,11);
                                     
+                                 //Map<String, Double> allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2017,11);
+
+                                //Key rank, String customer code
+                                
+                                Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth = null;
+
+                                Map<String, Double> allCustomerWhoDoNotMeetRequirementSalesByYearMonth = null;
+
+                                //Retrieve parameters from form
+                                String yearRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementYear");
+                                String monthRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementMonth");
+
+                                int customersDoNotMeetRequirementMonthInt = 1;
+
+                                //out.println(yearRetrievedTop10Customers);
+                                //out.println(monthRetrievedTop10Customers);
+
+                                if (yearRetrievedCustomersDoNotMeetRequirement == null && monthRetrievedCustomersDoNotMeetRequirement == null) {
+
+                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2017,11);
+                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2017,11);
+
+                                    yearRetrievedCustomersDoNotMeetRequirement = "2018";
+
+                                } else if (yearRetrievedCustomersDoNotMeetRequirement.equals("none") && monthRetrievedCustomersDoNotMeetRequirement.equals("none")
+                                        || yearRetrievedCustomersDoNotMeetRequirement.equals("none") || monthRetrievedCustomersDoNotMeetRequirement.equals("none")) {
+
+                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2017,11);
+                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2017,11);
+
+                                    yearRetrievedCustomersDoNotMeetRequirement = "2018";
+
+                                } else {
+                                    int customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedTop10Customers);
+                                    customersDoNotMeetRequirementMonthInt = Integer.parseInt(monthRetrievedTop10Customers);
+                                    //map parameters month, revenue
+                                    //hardcoded year to 2018
+                                    top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
+                                    allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
+
+                                }
+
+
+                            %>
+
                                     <script>
                                       let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
                                       // Global Options
@@ -1045,25 +1095,31 @@
                                       let massPopChart5 = new Chart(customerWhoDoNotMeetRequirement, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
-                                          labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                            labels:['<%= customersWhoDoNotMeetRequirementByYearMonth.get(1) %>', 
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(2) %>',
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(3) %>', 
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(4) %>', 
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(5) %>', 
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(6) %>',
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(7) %>', 
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(8) %>', 
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(9) %>', 
+                                                  '<%= customersWhoDoNotMeetRequirementByYearMonth.get(10) %>'],
                                             fontFamily: 'Segoe UI',
                                             fontSize: 12,
-                                          datasets:[{
+                                            datasets:[{
                                             label:'Sales By Customer ($)',
                                             data:[
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 10 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>,
-                                              <%= 0 %>
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(1)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(2)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(3)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(4)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(5)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(6)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(7)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(8)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(9)) %>,
+                                              <%= allCustomerWhoDoNotMeetRequirementSalesByYearMonth.get(customersWhoDoNotMeetRequirementByYearMonth.get(10)) %>
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:'green',
