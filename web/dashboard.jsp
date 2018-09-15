@@ -763,10 +763,17 @@
                        
                        
                        <!-- Start of Filter month/year for top 10 Customers -->
-                            <center>
-                                <form method="post" action="dashboard.jsp" name="top10CustomersForm" >
-                                    <div class="row">
-                                        <div class="col-md-5 pr-1">
+                            
+                            <form method="post" action="dashboard.jsp" name="top10CustomersForm" >
+                            
+                               <div class="col-md-12">
+                                    <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Customer Requirements</h4>
+                                    <p class="card-category">Customers Requirement Chart</p>
+                                </div>
+                                <div class="card-body ">
+                                        
                                             <div class="form-group">
                                                     <select id="top10Year" name="top10CustomersMonth" onchange="return setValue();" class="form-control">
 
@@ -781,9 +788,9 @@
 
                                                     </select>
                                             </div>
-                                        </div>
+                                        
 
-                                        <div class="col-md-5 pr-1">
+                                       
                                             <div class="form-group">
                                                 <select id="top10Month" name="top10CustomersYear" onchange="return setValue();" class="form-control">
 
@@ -798,23 +805,17 @@
 
                                                 </select>
                                             </div>
-                                        </div>
+                                      
 
                                         <input type="hidden" name="dropdown" id="dropdown">
                                         <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
                                     </form>
-                            </center>
+                            
                             <br>
                          <!-- End of Filter month/year for top 10 Customers -->
                                         
                          <!-- Chart for top 10 Customers -->    
-                        <div class="col-md-12">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Top 10 Customers</h4>
-                                    <p class="card-category">Customers Performance</p>
-                                </div>
-                                <div class="card-body ">    
+                       
                             <div class="container">
                                 <canvas id="top10CustomersChart"></canvas>
                             </div> 
@@ -978,16 +979,8 @@
                                     </center>
                                     <br>
 
-                                </div>
-                            </div>
-                        </div>
-                                    <div class="col-md-12">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Customer Requirements</h4>
-                                    <p class="card-category">Customers Requirement Chart</p>
-                                </div>
-                                <div class="card-body ">
+                        
+                                    
            
                         <!-- Start of Filter month/year for Customers Who Do Not Meet the Requirement Chart -->
                              <center>
@@ -1141,17 +1134,9 @@
                                     </script>
                                     <br>
                                     <br>
-                                </div>
-                            </div>
-                        </div>
+                     
                                             
-                        <div class="col-md-12">
-                            <div class="card ">
-                                <div class="card-header ">
-                                    <h4 class="card-title">2017 Sales</h4>
-                                    <p class="card-category">All products including Taxes</p>
-                                </div>
-                                <div class="card-body ">
+                       
                                     
                                     <!-- End of Customers Who Do Not Meet the Requirement Chart -->  
                                     
@@ -1252,15 +1237,14 @@
                                     Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
                                     </center>
                                     <br>
+                                
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                                                        
+                            </div>      
                                                         
                                                         
                                   <!-- End of Dashboard II charts -->                          
-                                                        
-
+                           
                         </div>
                     </div>
                 </div>
