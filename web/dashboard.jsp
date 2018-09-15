@@ -1110,8 +1110,8 @@
                                       let returnProductsByCustomerChart = document.getElementById('returnProductsByCustomerChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 12;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
                                       let massPopChart6 = new Chart(returnProductsByCustomerChart, {
@@ -1137,6 +1137,7 @@
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:['white'
+                                                
                                             ],
                                             borderWidth:2,
                                             borderColor:'#FFA500',
@@ -1148,18 +1149,18 @@
                                           title:{
                                             display:true,
                                             text:'Returned Products By Customers By Month',
-                                            fontSize:25
+                                            fontSize:12
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
                                               fontColor:'#000'
                                             }
                                           },
                                           layout:{
                                             padding:{
-                                              left:50,
+                                              left:0,
                                               right:0,
                                               bottom:0,
                                               top:0
