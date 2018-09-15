@@ -53,7 +53,7 @@
 
                     </div>
                     <ul class="nav">
-                        <%                            String isMasterAdmin = (String) session.getAttribute("isMaster");
+                        <%  String isMasterAdmin = (String) session.getAttribute("isMaster");
 
                             if (isMasterAdmin.equals("1")) {
                                 out.print("<li>");
@@ -170,13 +170,7 @@
                                     <div class="card-header ">
                                         <h4 class="card-title">Sales Revenue</h4>
                                         <p class="card-category">Sales Performance</p>
-                                        <!--
-                                         <ul class="tabrow" id="my_selection">
-                                            <li class="selected"><a href="dashboard.jsp">Sales</a></li>
-                                            <li><a href="productDashboard.jsp">Product</a></li>
-                                            <li><a href="customerDashboard.jsp">Customer</a></li>
-                                        </ul>
-                                        -->
+                                      
                                     </div>   
 
                                     <!-- HIDE THE BUTTON FIRST 
@@ -228,11 +222,7 @@
                                                 </form>
                                             </div>
                                         </div>
-
-
                                     </div>
-
-                                    <br>
 
                                     <!-- Total Revenue Chart -->
                                     <div class="container">
@@ -303,9 +293,9 @@
                                                                 'rgba(245,104,41,100)',
                                                             ],
                                                             borderWidth: 1,
-                                                            borderColor: 'black',
+                                                            borderColor: '#777',
                                                             hoverBorderWidth: 3,
-                                                            hoverBorderColor: 'black',
+                                                            hoverBorderColor: '#000',
                                                             fontFamily: 'Segoe UI',
                                                             fontSize: 12,
                                                         }]
@@ -368,7 +358,7 @@
                                     </center>
                                     <br>
                                     <br>
-
+                                    <br>
                                 </div>
                             </div>
 
@@ -482,7 +472,7 @@
 
                                                 // Global Options
                                                 Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                                Chart.defaults.global.defaultFontSize = 10;
+                                                Chart.defaults.global.defaultFontSize = 12;
                                                 Chart.defaults.global.defaultFontColor = 'black';
 
                                                 let massPopChart2 = new Chart(getTop5ProductsChart, {
@@ -494,8 +484,12 @@
                                                             '<%= getTop5ProductsByMonth.get(3)%>',
                                                             '<%= getTop5ProductsByMonth.get(4)%>',
                                                             '<%= getTop5ProductsByMonth.get(5)%>'],
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: 12,
                                                         datasets: [{
                                                                 label: 'Total Revenue Sales',
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: 12,
                                                                 data: [
                                                 <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1))%>,
                                                 <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(2))%>,
@@ -503,6 +497,7 @@
                                                 <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(4))%>,
                                                 <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(5))%>
                                                                 ],
+                                                                
                                                                 //backgroundColor:'green',
                                                                 backgroundColor: [
                                                                     'rgba(245, 104, 41, 1)',
@@ -514,9 +509,9 @@
                                                                     'rgba(255, 99, 132, 0.6)'
                                                                 ],
                                                                 borderWidth: 1,
-                                                                borderColor: 'black',
+                                                                borderColor: '#777',
                                                                 hoverBorderWidth: 3,
-                                                                hoverBorderColor: 'black',
+                                                                hoverBorderColor: '#000',
                                                                 fontFamily: 'Segoe UI',
                                                                 fontSize: '12'
                                                             }]
@@ -525,17 +520,20 @@
                                                         title: {
                                                             display: true,
                                                             text: 'Top 5 Products by Volume <%= allMonths.get(monthInt)%> <%= yearRetrievedTop5%>',
-                                                            fontSize: 12
+                                                            fontFamily: 'Segoe UI',
+                                                            fontSize: 12,
                                                     
                                                         },
                                                         legend: {
                                                             display: true,
                                                             position: 'bottom',
+                                                            fontFamily: 'Segoe UI',
                                                             fontSize: 12,
                                                             
                                                             labels: {
                                                                 fontColor: 'black',
-                                                                fontSize: 12
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: 12,
                                                             }
                                                         },
                                                         layout: {
@@ -680,8 +678,12 @@
                                                         '<%= getMostReturnedProductsByMonth.get(3)%>',
                                                         '<%= getMostReturnedProductsByMonth.get(4)%>',
                                                         '<%= getMostReturnedProductsByMonth.get(5)%>'],
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: 12,
                                                     datasets: [{
                                                             label: '% Returned Rate',
+                                                            fontFamily: 'Segoe UI',
+                                                            fontSize: 12,
                                                             data: [
                                             <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)))%>,
                                             <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2)))%>,
@@ -690,24 +692,29 @@
                                             <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)))%>
                                                             ],
                                                             //backgroundColor:'green',
-                                                            backgroundColor: 'green',
+                                                            backgroundColor: 'rgba(245,104,41,100)',
                                                             borderWidth: 1,
                                                             borderColor: '#777',
                                                             hoverBorderWidth: 3,
-                                                            hoverBorderColor: '#000'
+                                                            hoverBorderColor: '#000',
+                                                            fontFamily: 'Segoe UI',
+                                                            fontSize: 12,
                                                         }]
                                                 },
                                                 options: {
                                                     title: {
                                                         display: true,
                                                         text: 'Top 5 Most Returned Products <%= allMonths.get(monthReturnedInt)%> <%= yearProductReturnedRetrieved%>',
-                                                        fontSize: 12
+                                                        fontFamily: 'Segoe UI',
+                                                        fontSize: 12,
                                                     },
                                                     legend: {
                                                         display: true,
-                                                        position: 'right',
+                                                        position: 'bottom',
                                                         labels: {
-                                                            fontColor: '#000'
+                                                            fontColor: 'black',
+                                                            fontFamily: 'Segoe UI',
+                                                            fontSize: 12,
                                                         }
                                                     },
                                                     layout: {
@@ -719,20 +726,26 @@
                                                         }
                                                     },
                                                     tooltips: {
-                                                        enabled: true
+                                                        enabled: true,
+                                                        fontFamily: 'Segoe UI',
+                                                        fontSize: 12,
                                                     },
                                                     scales: {
                                                         yAxes: [{
                                                                 scaleLabel: {
-                                                                    display: true,
-                                                                    labelString: 'Item Name'
+                                                                display: true,
+                                                                labelString: 'Item Name',
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: 12,
                                                                 }
                                                             }],
 
                                                         xAxes: [{
                                                                 scaleLabel: {
                                                                     display: true,
-                                                                    labelString: 'Return Rate (%)'
+                                                                    labelString: 'Return Rate (%)',
+                                                                    fontFamily: 'Segoe UI',
+                                                                    fontSize: 12,
                                                                 }
                                                             }]
 
@@ -795,7 +808,13 @@
                          <!-- End of Filter month/year for top 10 Customers -->
                                         
                          <!-- Chart for top 10 Customers -->    
-                         
+                        <div class="col-md-12">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Top 10 Customers</h4>
+                                    <p class="card-category">Customers Performance</p>
+                                </div>
+                                <div class="card-body ">    
                             <div class="container">
                                 <canvas id="top10CustomersChart"></canvas>
                             </div> 
@@ -847,9 +866,9 @@
                                       let myChart = document.getElementById('top10CustomersChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 12;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart4 = new Chart(top10CustomersChart, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -864,6 +883,8 @@
                                                   '<%= top10CustomersByYearMonth.get(8) %>',
                                                   '<%= top10CustomersByYearMonth.get(9) %>', 
                                                   '<%= top10CustomersByYearMonth.get(10)%>'],
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: 12,
                                           datasets:[{
                                             label:'Sales By Customer ($)',
                                             data:[
@@ -878,6 +899,8 @@
                                               <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(9)) %>,
                                               <%= allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(10)) %>
                                             ],
+                                                                fontFamily: 'Segoe UI',
+                                                                fontSize: 12,
                                             //backgroundColor:'green',
                                             backgroundColor:[
                                               'rgba(255, 99, 132, 0.6)',
@@ -891,45 +914,59 @@
                                             borderWidth:1,
                                             borderColor:'#777',
                                             hoverBorderWidth:3,
-                                            hoverBorderColor:'#000'
+                                            hoverBorderColor:'#000',
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
                                           }]
                                         },
                                         options:{
                                           title:{
                                             display:true,
                                             text:'Top 10 Customers <%= allMonths.get(top10MonthInt)%> <%= yearRetrievedTop10Customers%> ',
-                                            fontSize:25
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
+                                            
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'#000',
+                                              fontFamily: 'Segoe UI',
+                                              fontSize: 12,
                                             }
                                           },
                                           layout:{
                                             padding:{
-                                              left:50,
+                                              left:0,
                                               right:0,
                                               bottom:0,
                                               top:0
                                             }
                                           },
                                           tooltips:{
-                                            enabled:true
+                                            enabled:true,
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
                                           },
                                           scales: {
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Customer Code'
+                                                labelString: 'Customer Code',
+                                                fontFamily: 'Segoe UI',
+                                                fontSize: 12,
                                               }
                                             }],
 
                                             xAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Sales ($)'
+                                                labelString: 'Sales ($)',
+                                                fontFamily: 'Segoe UI',
+                                                fontSize: 12,
                                               }
                                             }]
 
@@ -940,12 +977,17 @@
                                     </script>
                                     </center>
                                     <br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    
+
+                                </div>
+                            </div>
+                        </div>
+                                    <div class="col-md-12">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Customer Requirements</h4>
+                                    <p class="card-category">Customers Requirement Chart</p>
+                                </div>
+                                <div class="card-body ">
            
                         <!-- Start of Filter month/year for Customers Who Do Not Meet the Requirement Chart -->
                              <center>
@@ -1003,15 +1045,17 @@
                                     <script>
                                       let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 12;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart5 = new Chart(customerWhoDoNotMeetRequirement, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
                                           labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
                                           datasets:[{
                                             label:'Sales By Customer ($)',
                                             data:[
@@ -1033,45 +1077,60 @@
                                             borderWidth:1,
                                             borderColor:'#777',
                                             hoverBorderWidth:3,
-                                            hoverBorderColor:'#000'
+                                            hoverBorderColor:'#000',
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
                                           }]
                                         },
                                         options:{
                                           title:{
                                             display:true,
                                             text:'Customers Do Not Meet Requirements By Month',
-                                            fontSize:25
+                                            fontSize:12,
+                                            fontFamily: 'Segoe UI',
+
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12,
+                                            
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'#000',
+                                              fontFamily: 'Segoe UI',
+                                              fontSize: 12,
                                             }
                                           },
                                           layout:{
                                             padding:{
-                                              left:50,
+                                              left:0,
                                               right:0,
                                               bottom:0,
                                               top:0
                                             }
                                           },
                                           tooltips:{
-                                            enabled:true
+                                            enabled:true,
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 12
                                           },
                                           scales: {
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Customer Code'
+                                                labelString: 'Customer Code',
+                                                fontFamily: 'Segoe UI',
+                                                fontSize: 12
                                               }
                                             }],
 
                                             xAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Sales ($)'
+                                                labelString: 'Sales ($)',
+                                                fontFamily: 'Segoe UI',
+                                                fontSize: 12
                                               }
                                             }]
 
@@ -1082,7 +1141,17 @@
                                     </script>
                                     <br>
                                     <br>
-                                    
+                                </div>
+                            </div>
+                        </div>
+                                            
+                        <div class="col-md-12">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">2017 Sales</h4>
+                                    <p class="card-category">All products including Taxes</p>
+                                </div>
+                                <div class="card-body ">
                                     
                                     <!-- End of Customers Who Do Not Meet the Requirement Chart -->  
                                     
@@ -1096,8 +1165,8 @@
                                       let returnProductsByCustomerChart = document.getElementById('returnProductsByCustomerChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 12;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
                                       let massPopChart6 = new Chart(returnProductsByCustomerChart, {
@@ -1123,6 +1192,7 @@
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:['white'
+                                                
                                             ],
                                             borderWidth:2,
                                             borderColor:'#FFA500',
@@ -1134,18 +1204,18 @@
                                           title:{
                                             display:true,
                                             text:'Returned Products By Customers By Month',
-                                            fontSize:25
+                                            fontSize:12
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
                                               fontColor:'#000'
                                             }
                                           },
                                           layout:{
                                             padding:{
-                                              left:50,
+                                              left:0,
                                               right:0,
                                               bottom:0,
                                               top:0
@@ -1181,7 +1251,10 @@
                                     <br>
                                     Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
                                     </center>
-                                    <br>                                 
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
                                                         
                                                         
                                                         
