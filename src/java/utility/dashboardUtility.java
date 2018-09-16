@@ -265,7 +265,7 @@ public class dashboardUtility {
         return getProductQtyForMonth;
     }
         
-        
+    //Key Rank, Value, Top Return product name
     public static Map<Integer, String> getMostReturnedProductsByMonth(int month,int year){
         
         //return map 
@@ -790,6 +790,57 @@ public class dashboardUtility {
         return customersWhoDoNotMeetRequirementByYearMonth;
     }
     
-   
+
+    //Key Month, Value Return products qty for a particular month
+    public static Map<Integer, Double> getReturnProductsByCustomerYearBreakdown(int year, String customerCodeInput){
+        
+        //return map 
+        Map<Integer, Double> returnProductsByCustomerYearBreakdown = new HashMap<>();
+        
+        for(int month = 1; month<=12 ; month++){
+        
+            //all sales orders for a particular month
+            Map<Integer, SalesOrder> allSalesOrderMap = getAllRevenueSalesOrderMapByMonth(month,year);
+            
+            //all returned qty for a particular month and particular customer
+            double totalReturnedQty = 0;
+
+            //loop through the all the sales order for a particular month
+            for (Integer number : allSalesOrderMap.keySet()) {
+
+                SalesOrder salesOrder = allSalesOrderMap.get(number);
+
+                String customerCodeRetrieved = salesOrder.getDebtorCode();
+                
+                if(customerCodeRetrieved.equals(customerCodeInput)){
+                    
+                    SalesOrderDetails salesOrderdetails = salesOrderUtility.getAllSalesOrderDetails(salesOrder.getOrderID());
+
+                    Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
+
+                    for (Integer itemNumber : itemDetailsMap.keySet()) {
+
+                        ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
+                        OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
+
+                        int returnedQtyInt = Integer.parseInt(itemDetail.getReturnedQty());
+
+                        totalReturnedQty += returnedQtyInt;
+
+                    }
+                    
+                }
+
+
+            }
+            
+            returnProductsByCustomerYearBreakdown.put(month,totalReturnedQty);
+        
+        }
+        
+        return returnProductsByCustomerYearBreakdown;
+    }
+    
+    
     
 }
