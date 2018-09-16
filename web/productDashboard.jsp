@@ -181,7 +181,7 @@
                                                 </ul>
                                     </div>  
                                     
-                                    <br>
+                                   
                                       <!-- HIDE THE BUTTON FIRST 
                                     <center>    
                                         <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
@@ -189,20 +189,19 @@
                                         <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
                                     </center>
                                        -->
-                                    <br>   
-                                    
+                                
                                     <%
                                       Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears(); 
 
                                       Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
                                     %>
 
-                                    
-                                    <center>
-                                        <div>
+                                    <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                            <div class="form-group">
 
-                                            <form method="post" action="productDashboard.jsp" name="filterYearForm">
-                                                <select id="filterYear" name="month" onchange="return setValue();">
+                                            <form method="post" action="productDashboard.jsp" name="filterYearForm" >
+                                                <select id="filterYear" name="month" onchange="return setValue();"  class="form-control">
                                                     
                                                     <%
                                                         out.print("<option value='none'>Select Month</option>");
@@ -214,8 +213,11 @@
                                                     %>
 
                                                 </select>
-                                                    
-                                                <select id="filterYear" name="year" onchange="return setValue();">
+                                            </div>
+                                            </div>
+                                            <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <select id="filterYear" name="year" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
                                                         out.print("<option value='none'>Select Year</option>");
@@ -232,13 +234,12 @@
                                                 </select>
                                                     
                                                 <input type="hidden" name="dropdown" id="dropdown">
-                                                <input type="submit" value="Filter" name="btn_dropdown">
+                                                <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" >
                                             <form>
-                                            
-                                            <label>Month | Year</label>
+                                            </div>
+                                           
                                         </div>
-                                    </center>
-                                    <br>
+                                    </div>
                                     <div class="container">
                                       <canvas id="myChart" width="500" height="300"></canvas>
                                     </div>    
