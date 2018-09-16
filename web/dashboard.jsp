@@ -168,7 +168,7 @@
                             <div class="col-md-6">
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Sales Revenue</h4>
+                                        <h4 class="card-title"><a href="SalesRevenueDashboard.jsp"><font color="black">Sales Revenue</font></a></h4>
                                         <p class="card-category">Sales Performance</p>
                                       
                                     </div>   
@@ -769,7 +769,7 @@
                                <div class="col-md-12">
                                     <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Customer Requirements</h4>
+                                    <h4 class="card-title"><a href="customerDashboard.jsp"><font color = "black">Customer Requirements</font></a></h4>
                                     <p class="card-category">Customers Requirement Chart</p>
                                 </div>
                                 <div class="card-body ">

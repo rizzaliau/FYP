@@ -172,14 +172,15 @@
                             <div class="col-md-12">
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Dashboard Management</h4>
+                                        <h4 class="card-title">Customer Dashboard Management</h4>
                                         <ul class="tabrow" id="my_selection">
-                                                    <li><a href="dashboard.jsp">Sales</a></li>
+                                                    <li><a href="SalesRevenueDashboard.jsp">Sales</a></li>
                                                     <li><a href="productDashboard.jsp">Product</a></li>
                                                     <li class="selected"><a href="customerDashboard.jsp">Customer</a></li>
                                                 </ul>
                                     </div>   
-                                    <br>
+                                    
+                                    <div class="card-body ">
                                     <!-- HIDE THE BUTTON FIRST 
                                     <center>    
                                         <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
@@ -187,7 +188,7 @@
                                         <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
                                     </center>
                                     -->
-                                    <br>    
+                                      
                                     <%
                                         Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears(); 
 
@@ -254,9 +255,9 @@
                                       let myChart = document.getElementById('top10CustomersChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 16;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart4 = new Chart(top10CustomersChart, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -299,13 +300,13 @@
                                           title:{
                                             display:true,
                                             text:'Top 10 Customers By Month By Year',
-                                            fontSize:25
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{
@@ -351,9 +352,9 @@
                                       let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 16;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart5 = new Chart(customerWhoDoNotMeetRequirement, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -388,13 +389,13 @@
                                           title:{
                                             display:true,
                                             text:'Customers Do Not Meet Requirements By Month',
-                                            fontSize:25
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{
@@ -439,8 +440,8 @@
                                       let returnProductsByCustomerChart = document.getElementById('returnProductsByCustomerChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 16;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
                                       let massPopChart6 = new Chart(returnProductsByCustomerChart, {
@@ -477,13 +478,13 @@
                                           title:{
                                             display:true,
                                             text:'Returned Products By Customers By Month',
-                                            fontSize:25
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{
@@ -525,7 +526,7 @@
                                     Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
                                     </center>
                                     <br>
-                                    
+                                    </div> 
                         </div>
                     </div>
                 </div>
