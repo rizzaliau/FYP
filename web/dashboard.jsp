@@ -1193,16 +1193,70 @@
                                     <br>
                                     <br>
                      
-                                            
-                       
-                                    
                                     <!-- End of Customers Who Do Not Meet the Requirement Chart -->  
                                     
                                     
                                     
+                                    <!-- Start of Filter year/customer for Return Products By Customers Chart -->
+                                    <center>
+                                        <form method="post" action="dashboard.jsp" name="returnProductsByCustomerForm" >
+                                            <div class="row">
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                            <select id="returnProductsByCustomerCustomerCode" name="returnProductsByCustomerCustomerCode" onchange="return setValue();" class="form-control">
+
+                                                                <%
+                                                                    out.print("<option value='none'>Select Month</option>");
+                                                                    for (int i = 1; i <= allMonths.size(); i++) {
+                                                                        String month = allMonths.get(i);
+                                                                        out.print("<option value='" + i + "'>" + month + "");
+
+                                                                    }
+                                                                %>
+
+                                                            </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <select id="returnProductsByCustomerYear" name="returnProductsByCustomerYear" onchange="return setValue();" class="form-control">
+
+                                                            <%
+                                                                out.print("<option value='none'>Select Year</option>");
+                                                                for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    out.print("<option value='" + year + "'>" + year + "");
+
+                                                                }
+                                                            %>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <input type="hidden" name="dropdown" id="dropdown">
+                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
+                                            </form>
+                                    </center>
+                                    <br>
+
+                                    <!-- End of Filter year/customer for Return Products By Customers Chart -->
+                                    
+                                    
+                                    <!-- Start of Return Products By Customers Chart --> 
+                                    
                                     <div class="container">
                                       <canvas id="returnProductsByCustomerChart"></canvas>
-                                    </div>    
+                                    </div>   
+                                    
+                                    
+                                    <%
+                                        
+                                        Map<Integer, Double> returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
+
+                                    %>
+                                    
 
                                     <script>
                                       let returnProductsByCustomerChart = document.getElementById('returnProductsByCustomerChart').getContext('2d');
@@ -1220,18 +1274,18 @@
                                           datasets:[{
                                             label:'Returned Products By Customers',
                                             data:[
-                                              <%= salesRevenueByMonthMap.get(1) %>,
-                                              <%= salesRevenueByMonthMap.get(2) %>,
-                                              <%= salesRevenueByMonthMap.get(3) %>,
-                                              <%= salesRevenueByMonthMap.get(4) %>,
-                                              <%= salesRevenueByMonthMap.get(5) %>,
-                                              <%= salesRevenueByMonthMap.get(6) %>,
-                                              <%= salesRevenueByMonthMap.get(7) %>,
-                                              <%= salesRevenueByMonthMap.get(8) %>,
-                                              <%= salesRevenueByMonthMap.get(9) %>,
-                                              <%= salesRevenueByMonthMap.get(10) %>,
-                                              <%= salesRevenueByMonthMap.get(11) %>,
-                                              <%= salesRevenueByMonthMap.get(12) %>
+                                              <%= returnProductsByCustomerYearBreakdown.get(1) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(2) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(3) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(4) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(5) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(6) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(7) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(8) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(9) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(10) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(11) %>,
+                                              <%= returnProductsByCustomerYearBreakdown.get(12) %>
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:['white'
