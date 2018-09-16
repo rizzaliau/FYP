@@ -173,7 +173,7 @@
                             <div class="col-md-12">
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Dashboard Management</h4>
+                                        <h4 class="card-title">Product Dashboard Management</h4>
                                          <ul class="tabrow" id="my_selection">
                                                     <li><a href="dashboard.jsp">Sales</a></li>
                                                     <li class="selected"><a href="productDashboard.jsp">Product</a></li>
@@ -507,7 +507,7 @@
                                             padding:{
                                               left:50,
                                               right:0,
-                                              bottom:0,
+                                              bottom:50,
                                               top:0
                                             }
                                           },
@@ -535,7 +535,7 @@
                                     
                                     </script>
                                     
-                           </div>    
+                           
                         </div>
                     </div>
                 </div>
