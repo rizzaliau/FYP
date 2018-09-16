@@ -365,7 +365,7 @@
                             <div class="col-md-6">
                                 <div class="card ">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Products</h4>
+                                        <h4 class="card-title"><a href="productDashboard.jsp"><font color="black">Products</font></a></h4>
                                         <p class="card-category">Products Performance</p>
                                     </div>
                                     <div class="card-body ">
