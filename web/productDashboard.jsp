@@ -338,7 +338,7 @@
                                             display:true,
                                             position:'bottom',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{
@@ -498,9 +498,9 @@
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{

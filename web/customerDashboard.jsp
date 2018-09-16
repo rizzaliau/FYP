@@ -255,9 +255,9 @@
                                       let myChart = document.getElementById('top10CustomersChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 16;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart4 = new Chart(top10CustomersChart, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -300,13 +300,13 @@
                                           title:{
                                             display:true,
                                             text:'Top 10 Customers By Month By Year',
-                                            fontSize:25
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{
@@ -352,9 +352,9 @@
                                       let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 16;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart5 = new Chart(customerWhoDoNotMeetRequirement, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -389,13 +389,13 @@
                                           title:{
                                             display:true,
                                             text:'Customers Do Not Meet Requirements By Month',
-                                            fontSize:25
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{
@@ -440,8 +440,8 @@
                                       let returnProductsByCustomerChart = document.getElementById('returnProductsByCustomerChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 16;
                                       Chart.defaults.global.defaultFontColor = '#777';
 
                                       let massPopChart6 = new Chart(returnProductsByCustomerChart, {
@@ -478,13 +478,13 @@
                                           title:{
                                             display:true,
                                             text:'Returned Products By Customers By Month',
-                                            fontSize:25
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
-                                              fontColor:'#000'
+                                              fontColor:'black'
                                             }
                                           },
                                           layout:{

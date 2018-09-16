@@ -263,7 +263,7 @@
 
                                             // Global Options
                                             Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                            Chart.defaults.global.defaultFontSize = 12;
+                                            Chart.defaults.global.defaultFontSize = 16;
                                             Chart.defaults.global.defaultFontColor = 'black';
 
                                             let massPopChart = new Chart(totalRevenueChart, {
@@ -272,12 +272,11 @@
                                                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                                         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                                                         fontFamily: 'Segoe UI',
-                                                        fontSize: 12,
+                                                        fontSize: 16,
                                                     
                                                     datasets: [{
                                                             label: 'Total Revenue Sales',
-                                                                fontFamily: 'Segoe UI',
-                                                                fontSize: 12,
+                                                               
                                                             data: [
                                                                 <%= df.format(salesRevenueByMonthMap.get(1))%>,
                                                                 <%= df.format(salesRevenueByMonthMap.get(2))%>,
@@ -300,15 +299,14 @@
                                                             borderColor: '#777',
                                                             hoverBorderWidth: 3,
                                                             hoverBorderColor: '#000',
-                                                            fontFamily: 'Segoe UI',
-                                                            fontSize: 12,
+                                                            
                                                         }]
                                                 },
                                                 options: {
                                                     title: {
                                                         display: true,
                                                         text: 'Total Revenue Monthly Breakdown By Year <%= yearRetrieved%>',
-                                                        fontSize: 12,
+                                                        fontSize: 18,
                                                         fontFamily: 'Segoe UI'
 
                                                     },
