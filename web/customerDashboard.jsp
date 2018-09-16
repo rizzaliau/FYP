@@ -172,14 +172,15 @@
                             <div class="col-md-12">
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Dashboard Management</h4>
+                                        <h4 class="card-title">Customer Dashboard Management</h4>
                                         <ul class="tabrow" id="my_selection">
-                                                    <li><a href="dashboard.jsp">Sales</a></li>
+                                                    <li><a href="SalesRevenueDashboard.jsp">Sales</a></li>
                                                     <li><a href="productDashboard.jsp">Product</a></li>
                                                     <li class="selected"><a href="customerDashboard.jsp">Customer</a></li>
                                                 </ul>
                                     </div>   
-                                    <br>
+                                    
+                                    <div class="card-body ">
                                     <!-- HIDE THE BUTTON FIRST 
                                     <center>    
                                         <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
@@ -187,7 +188,7 @@
                                         <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
                                     </center>
                                     -->
-                                    <br>    
+                                      
                                     <%
                                         Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears(); 
 
@@ -525,7 +526,7 @@
                                     Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
                                     </center>
                                     <br>
-                                    
+                                    </div> 
                         </div>
                     </div>
                 </div>

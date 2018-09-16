@@ -168,8 +168,12 @@
                             <div class="col-md-12">
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Sales Revenue</h4>
-                                        <p class="card-category">Sales Performance</p>
+                                        <h4 class="card-title">Sales Dashboard Management</h4>
+                                        <ul class="tabrow" id="my_selection">
+                                                    <li class="selected"><a href="SalesRevenueDashboard.jsp">Sales</a></li>
+                                                    <li><a href="productDashboard.jsp">Product</a></li>
+                                                    <li><a href="customerDashboard.jsp">Customer</a></li>
+                                        </ul>
                                       
                                     </div>   
 

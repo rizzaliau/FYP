@@ -175,7 +175,7 @@
                                     <div class="card-header ">
                                         <h4 class="card-title">Product Dashboard Management</h4>
                                          <ul class="tabrow" id="my_selection">
-                                                    <li><a href="dashboard.jsp">Sales</a></li>
+                                                    <li><a href="SalesRevenueDashboard.jsp">Sales</a></li>
                                                     <li class="selected"><a href="productDashboard.jsp">Product</a></li>
                                                     <li><a href="customerDashboard.jsp">Customer</a></li>
                                                 </ul>
@@ -483,7 +483,7 @@
                                               <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5))) %>
                                             ],
                                             //backgroundColor:'green',
-                                            backgroundColor:'green',
+                                            backgroundColor:'rgba(245,104,41,100)',
                                             borderWidth:1,
                                             borderColor:'#777',
                                             hoverBorderWidth:3,
