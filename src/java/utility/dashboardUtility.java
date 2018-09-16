@@ -841,6 +841,48 @@ public class dashboardUtility {
         return returnProductsByCustomerYearBreakdown;
     }
     
-    
+    //Key Index, Value CustomerCode
+    public static Map<Integer, String> getAllAvailableCustomers(){    
+
+        Map<Integer,String> allAvailableCustomers = new HashMap<>();
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int count = 1;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select DISTINCT d.DebtorCode from sales_order so \n" +
+                "inner join debtor d on so.DebtorCode = d.DebtorCode\n" +
+                "inner join sales_order_detail sod on so.OrderID = sod.OrderID \n" +
+                "where so.Status = 'Pending Delivery' OR so.Status = 'Delivered'";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String customerCode = checkForNull(rs.getString("DebtorCode"));
+                
+                allAvailableCustomers.put(count, customerCode);
+                count++;
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by allAvailableCustomers method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+        return allAvailableCustomers;
+    }
     
 }
