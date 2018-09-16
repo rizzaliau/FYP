@@ -181,7 +181,7 @@
                                                 </ul>
                                     </div>  
                                     
-                                   
+                                   <div class="card-body">
                                       <!-- HIDE THE BUTTON FIRST 
                                     <center>    
                                         <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
@@ -197,7 +197,7 @@
                                     %>
 
                                     <div class="row">
-                                            <div class="col-md-4 pr-1">
+                                            <div class="col-md-3 pr-1">
                                             <div class="form-group">
 
                                             <form method="post" action="productDashboard.jsp" name="filterYearForm" >
@@ -215,7 +215,7 @@
                                                 </select>
                                             </div>
                                             </div>
-                                            <div class="col-md-5 pr-1">
+                                            <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <select id="filterYear" name="year" onchange="return setValue();" class="form-control">
                                                     
@@ -234,14 +234,14 @@
                                                 </select>
                                                     
                                                 <input type="hidden" name="dropdown" id="dropdown">
-                                                <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" >
+                                                <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" style="position: relative; left:250px; bottom:40px;">
                                             <form>
                                             </div>
                                            
                                         </div>
                                     </div>
                                     <div class="container">
-                                      <canvas id="myChart" width="500" height="300"></canvas>
+                                      <canvas id="myChart" width="400" height="200"></canvas>
                                     </div>    
                                     
                                     <%
@@ -290,9 +290,9 @@
                                       let myChart = document.getElementById('myChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 16;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart = new Chart(myChart, {
                                         type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -332,11 +332,11 @@
                                           title:{
                                             display:true,
                                             text:'Top 5 Products by Volume <%= allMonths.get(monthInt) %> <%= yearRetrieved %>',
-                                            fontSize:25
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
-                                            position:'right',
+                                            position:'bottom',
                                             labels:{
                                               fontColor:'#000'
                                             }
@@ -345,7 +345,7 @@
                                             padding:{
                                               left:50,
                                               right:0,
-                                              bottom:0,
+                                              bottom:50,
                                               top:0
                                             }
                                           },
@@ -362,11 +362,13 @@
                                     <br>
                                     
                                     <!--filter for Top 5 Most returned products -->
-                                    <center>
-                                        <div>
+                                    <center
+                                        <div class="row">
+                                            <div class="col-md-3 pr-1">
+                                            <div class="form-group">
 
                                             <form method="post" action="productDashboard.jsp" name="filterReturnedProductsForm">
-                                                <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();">
+                                                <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
                                                         out.print("<option value='none'>Select Month");
@@ -378,8 +380,11 @@
                                                     %>
 
                                                 </select>
-                                                    
-                                                <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();">
+                                            </div>
+                                            </div>
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
                                                         out.print("<option value='none'>Select Year");
@@ -392,15 +397,16 @@
                                                     %>
 
                                                 </select>
-                                                    
+                                                    </div>
+                                                </div>
                                                 <input type="hidden" name="dropdown" id="dropdown">
-                                                <input type="submit" value="Filter" name="btn_dropdown">
+                                                <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" style="position: relative; left:10px; height: 40px;">
                                             <form>
                                             
-                                            <label>Month | Year</label>
+                                           
                                         </div>
-                                    </center>
-                                    <br>                             
+                                   
+                                                                 
                                     <%
                                       // Hardcoded for month 6, june
                                       //Map<Integer, String> getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(6,2018);
@@ -454,9 +460,9 @@
                                       let mostReturnedChart = document.getElementById('mostReturnedChart').getContext('2d');
 
                                       // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Lato';
-                                      Chart.defaults.global.defaultFontSize = 18;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
+                                      Chart.defaults.global.defaultFontSize = 16;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart2 = new Chart(mostReturnedChart, {
                                         type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -488,7 +494,7 @@
                                           title:{
                                             display:true,
                                             text:'Top 5 Most Returned Products <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedRetrieved %>',
-                                            fontSize:25
+                                            fontSize:16
                                           },
                                           legend:{
                                             display:true,
@@ -528,9 +534,8 @@
                                       });
                                     
                                     </script>
-                                    <br>
-
                                     
+                           </div>    
                         </div>
                     </div>
                 </div>
