@@ -168,7 +168,7 @@
                             <div class="col-md-6">
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
-                                        <h4 class="card-title">Sales Revenue</h4>
+                                        <h4 class="card-title"><a href="SalesRevenueDashboard.jsp"><font color="black">Sales Revenue</font></a></h4>
                                         <p class="card-category">Sales Performance</p>
                                       
                                     </div>   
