@@ -1192,12 +1192,18 @@
                                     </script>
                                     <br>
                                     <br>
-                     
                                     <!-- End of Customers Who Do Not Meet the Requirement Chart -->  
                                     
                                     
                                     
+                                    
                                     <!-- Start of Filter year/customer for Return Products By Customers Chart -->
+                                    
+                                    <%
+                                        Map<Integer, String> allAvailableCustomers = dashboardUtility.getAllAvailableCustomers();
+                                    %>
+                                    
+                                    
                                     <center>
                                         <form method="post" action="dashboard.jsp" name="returnProductsByCustomerForm" >
                                             <div class="row">
@@ -1206,10 +1212,10 @@
                                                             <select id="returnProductsByCustomerCustomerCode" name="returnProductsByCustomerCustomerCode" onchange="return setValue();" class="form-control">
 
                                                                 <%
-                                                                    out.print("<option value='none'>Select Month</option>");
-                                                                    for (int i = 1; i <= allMonths.size(); i++) {
-                                                                        String month = allMonths.get(i);
-                                                                        out.print("<option value='" + i + "'>" + month + "");
+                                                                    out.print("<option value='none'>Select Customer Code</option>");
+                                                                    for (int i = 1; i <= allAvailableCustomers.size(); i++) {
+                                                                        String customerCode = allAvailableCustomers.get(i);
+                                                                        out.print("<option value='" + customerCode + "'>" + customerCode + "");
 
                                                                     }
                                                                 %>
@@ -1254,6 +1260,34 @@
                                     <%
                                         
                                         Map<Integer, Double> returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
+
+                                        //Retrieve parameters from form
+                                        String yearRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerYear");
+                                        String customerCodeRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerCustomerCode");
+
+                                        if (yearRetrievedReturnProductsByCustomer == null && customerCodeRetrievedReturnProductsByCustomer == null) {
+
+                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
+
+                                            yearRetrievedReturnProductsByCustomer = "2018";
+                                            
+                                            customerCodeRetrievedReturnProductsByCustomer = "301-C028";
+
+                                        } else if (yearRetrievedReturnProductsByCustomer.equals("none") && customerCodeRetrievedReturnProductsByCustomer.equals("none")
+                                            || yearRetrievedReturnProductsByCustomer.equals("none") || customerCodeRetrievedReturnProductsByCustomer.equals("none")) {
+
+                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
+
+                                            yearRetrievedReturnProductsByCustomer = "2018";
+                                            
+                                            customerCodeRetrievedReturnProductsByCustomer = "301-C028";
+
+                                        } else {
+
+                                            int customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedReturnProductsByCustomer);
+
+                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(customersWhoDoNotMeetRequirementYearInt,customerCodeRetrievedReturnProductsByCustomer);
+                                        }
 
                                     %>
                                     
@@ -1300,7 +1334,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Returned Products By Customers By Month',
+                                            text:'Returned Products For Customer <%= customerCodeRetrievedReturnProductsByCustomer%> for Year <%= yearRetrievedReturnProductsByCustomer%>',
                                             fontSize:12
                                           },
                                           legend:{
@@ -1355,7 +1389,7 @@
                             </div>      
                                                         
                                                         
-                                  <!-- End of Dashboard II charts -->                          
+                            <!-- End of Dashboard II charts -->                              
                            
                         </div>
                     </div>
