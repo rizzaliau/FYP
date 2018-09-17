@@ -173,11 +173,13 @@
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Customer Dashboard Management</h4>
+                                        <!--commented the tabs for the dashboard
                                         <ul class="tabrow" id="my_selection">
                                                     <li><a href="SalesRevenueDashboard.jsp">Sales</a></li>
                                                     <li><a href="productDashboard.jsp">Product</a></li>
                                                     <li class="selected"><a href="customerDashboard.jsp">Customer</a></li>
                                                 </ul>
+                                        -->
                                     </div>   
                                     
                                     <div class="card-body ">
