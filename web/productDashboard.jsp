@@ -174,8 +174,8 @@
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Product Dashboard Management</h4>
-                                         <ul class="tabrow" id="my_selection">
-                                             <!--commented the tabs for the dashboard
+                                        <!-- <ul class="tabrow" id="my_selection">
+                                             commented the tabs for the dashboard
                                                     <li><a href="SalesRevenueDashboard.jsp">Sales</a></li>
                                                     <li class="selected"><a href="productDashboard.jsp">Product</a></li>
                                                     <li><a href="customerDashboard.jsp">Customer</a></li>
