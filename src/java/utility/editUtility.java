@@ -7,6 +7,7 @@ package utility;
 
 import dao.ConnectionManager;
 import dao.UserDAO;
+import entity.SalesOrderDetails;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +16,7 @@ import java.io.OutputStreamWriter;
 import static java.lang.System.out;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -153,10 +155,6 @@ public class editUtility {
                     
                     
                     
-                    //out.println(qty);
-                    //out.println(originalQty);
-                    //out.println(qtyToRefundString);
-                    
                     String salesOrderQuantitySql = "";
                     
                     
@@ -200,8 +198,29 @@ public class editUtility {
                     
                     out.println("The Preferred language retrieved is"+preferredLanguageRetrieved);
                     
-                    //boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, "97597790", orderIDRetrieved);
-                    //System.out.println("Edit Order SMS Sent is " + smsSentForEditOrder);
+                    SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderIDRetrieved, statusRetrieved);
+                    String deliverContact = salesOrderdetails.getDeliverContact();                 
+                    String debtorName = salesOrderdetails.getDebtorName();
+
+                    if (orderIDRetrieved != null && preferredLanguageRetrieved != null && deliverContact != null){
+                        if (orderIDRetrieved.length() == 11 &&  preferredLanguageRetrieved.length() == 7 && deliverContact.length() == 8){
+
+                            boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, "97597790", orderIDRetrieved);
+
+                            if(!smsSentForEditOrder){
+                                //show alert to inform admin sms not sent to customer
+                                System.out.println("SMS is not send to " + debtorName  + " contact number at " + deliverContact + ".");
+                            } else {
+                                //inform admin sms is sent to customer 
+                                System.out.println("SMS is send to " + debtorName  + " contact number at " + deliverContact + ".");
+
+                            } 
+                        } else {
+                            System.out.println("Wrong length in preferred language / orderID / contact number.");
+                        }
+                    } else {
+                         System.out.println("Null in preferred language / orderID / contact number.");
+                    }
 
                 } catch (SQLException ex) {
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -297,75 +316,94 @@ public class editUtility {
     
     public static boolean sendSmsForEditOrder(String language, String contactNumber, String orderID){
         boolean result = false;
-        String myData = "";
 
-        //check if parameters is valid (not null and length not = 0)
-        if (language != null && contactNumber != null && orderID != null & language.length() > 0 && contactNumber.length() >0 && orderID.length() > 0){
+        String toNumber = "65" + contactNumber;
+        String limkeeNum = "6758 5858";
+        
+        try{
+            String data = "";
+            String smsMsg = "";
 
-            try {
-            // This URL is used for sending messages
-            String myURI = "https://api.bulksms.com/v1/messages";
+            String api_key = "98060002"; 
+            String api_secret = "Infoatlimkee1";  
 
-            // change these values to match your own account
-            String myUsername = "F89898B66F9C4AA2A051176711AE05AE-02-C";
-            String myPassword = "aeaIP2IprPZa89K!!PWo!UQQlemgd";
-
-            String toNumber = "+65" + contactNumber;
-           if (language.equals("English")){
-                myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[Lim Kee] Order #" + orderID 
-                + "\n" + "Your order has been modified. If you did not authorize this change, please call +65 758 5858." + "\"}";
+            if (language.equals("English")){
+                smsMsg = "(Lim Kee) Order #" + orderID + "\n" + "Your order has been modified. If you did not authorize this change, please call 6758 5858.";
+                    
+                //use ascii content for type    
+                data += "ID=" + api_key
+                        + "&Password=" + api_secret
+                        + "&Mobile=" + toNumber
+                        + "&Type=" + "A"
+                        + "&Message=" + smsMsg;
             } else {
-                myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"[林记] 订単 #"  + orderID + "\n" + "您的订单已修改完毕。若非本人亲自操作，请拨打+65 6758 5858。" + "\"}";
+                
+                   
+                orderID = "#" + orderID;
+
+                //get unicode of each string
+                String orderNo = "";
+                for(int i =0; i < orderID.length();i++)
+                {
+                    char c = orderID.charAt(i);
+                    orderNo += toUnicode(c);
+                }
+                
+                String num = "";
+                for(int i =0; i< limkeeNum.length();i++)
+                {
+                    char c = limkeeNum.charAt(i);
+                    num += toUnicode(c);
+                }
+              
+                smsMsg = "FF0867978BB0FF0900208BA2535553F70020" + orderNo + "000A60A876848BA253555DF24FEe65395B8c6BD5002E002082E5975e672c4EBa4EB281Ea64Cd4F5c002C8BF762E862530020" + num + "002E";
+
+                //use unicode for type
+                data += "ID=" + api_key
+                        + "&Password=" + api_secret
+                        + "&Mobile=" + toNumber
+                        + "&Type=" + "U"
+                        + "&Message=" + smsMsg;
+
             }
 
-            // build the request based on the supplied settings
-            URL url = new URL(myURI);
-            HttpURLConnection request = (HttpURLConnection) url.openConnection();
-            request.setDoOutput(true);
+            URL url = new URL("https://www.commzgate.net/gateway/SendMsg");
 
-            // supply the credentials
-            String authStr = myUsername + ":" + myPassword;
-            String authEncoded = Base64.getEncoder().encodeToString(authStr.getBytes()); 
-            request.setRequestProperty("Authorization", "Basic " + authEncoded);
+            URLConnection conn = url.openConnection();
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            wr.write(data);
+            wr.flush();
 
-            request.setRequestMethod("POST");
-            request.setRequestProperty( "Content-Type", "application/json");
-
-            // write the data to the request
-            OutputStreamWriter out = new OutputStreamWriter(request.getOutputStream());
-            out.write(myData);
-            out.close();
-
-            try {
-              // make the call to the API
-              InputStream response = request.getInputStream();
-              BufferedReader in = new BufferedReader(new InputStreamReader(response));
-              String replyText;
-              while ((replyText = in.readLine()) != null) {
-                System.out.println(replyText);
-              }
-              in.close();
-
-              result = true;
-            } catch (IOException ex) {
-              System.out.println("An error occurred:" + ex.getMessage());
-              BufferedReader in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
-              // print the detail that comes with the error
-              String replyText;
-              while ((replyText = in.readLine()) != null) {
-                System.out.println(replyText);
-              }
-              in.close();
+            // Get the response
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = rd.readLine()) != null) {
+                // Print the response output...
+                System.out.println(line);
+                  if ((line.substring(0,5)).equals("01010")){
+                    //sms is sent
+                    result = true;
+                } 
             }
-            request.disconnect();
-            } catch (Exception e){
-                System.out.println(e);
-            }
-        }else{
-            System.out.println("Parameters is null/blank");
+            wr.close();
+            rd.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return result;
-
+          
+    
+    return result;  
+      
+    }
+    
+    public static String toUnicode(char ch) {
+        String unicode = "";
+        
+        String code = String.format("\\u%04x", (int) ch);
+        unicode = code.substring(2);
+       
+        return unicode;
     }
     
     
