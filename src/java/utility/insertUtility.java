@@ -16,6 +16,7 @@ import java.io.OutputStreamWriter;
 import static java.lang.System.out;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -53,7 +54,7 @@ public class insertUtility {
         String displayTerm = request.getParameter("displayTerm");
         String status = request.getParameter("status");
         String routeNumber = request.getParameter("routeNumber");
-        String preferredLanguage = request.getParameter("preferredLanguage");
+        String preferredLanguage = request.getParameter("language");
         String lastModifiedTimeStamp = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedBy = request.getParameter("lastModifiedBy");
         
@@ -77,14 +78,43 @@ public class insertUtility {
             stmt.executeUpdate();
             out.println("passes rs");
             
-            //boolean smsSentToCustomer = sendSmsToNewCustomer(preferredLanguage, "97597790", companyCode);
-            //System.out.println("New account SMS Sent is " + smsSentToCustomer);
+            if (debtorName != null && companyCode != null && preferredLanguage != null && deliverContact != null){
+                    if (debtorName.length() > 0 && preferredLanguage.length() == 7 && deliverContact.length() == 8){
+                        
+                        //Need to change deliverContact
+                        boolean smsSentToCustomer = sendSmsToNewCustomer(preferredLanguage, "97597790", companyCode);
 
-//        }catch (final ConstraintViolationException e) {
-//            
-//            request.setAttribute("status", "Please enter a unique customer code!");
-//            request.getRequestDispatcher("newCustomer.jsp").forward(request, response);
-//            
+                        if(!smsSentToCustomer){
+                            //show alert to inform admin sms not sent to customer
+                            System.out.println("SMS is not send to " + debtorName  + " contact number at " + deliverContact + ".");
+                        } else {
+                            //inform admin sms is sent to customer 
+                            System.out.println("SMS is send to " + debtorName  + " contact number at " + deliverContact + ".");
+                        } 
+
+                        if (!smsSentToCustomer){
+                            //show alert to inform admin sms not sent to customer
+                            System.out.println("SMS is not send to " + debtorName  + " contact number at " + deliverContact + ".");
+                        } else {
+                            //only chinese sms call additional SMS api to send google playstore url (seperate smses for chinese)
+                           if (preferredLanguage.equals("Chinese")){
+                                boolean appUrlSMS = sendGooglePlayURL(deliverContact);
+                                if (!appUrlSMS){
+                                    //show alert to inform admin sms not sent to customer
+                                    System.out.println("SMS is not send to " + debtorName  + " contact number at " + deliverContact + ".");
+                                } else {
+                                    //inform admin sms is sent to customer 
+                                    System.out.println("Google play address SMS is send to " + debtorName  + " contact number at " + deliverContact + ".");
+                                }
+                            } 
+                        } 
+                    } else {
+                        System.out.println("Wrong length in preferred language / contact number.");
+                    }
+                } else {
+                System.out.println("Null in preferred language / contact number.");
+                }
+            
         }catch (SQLException ex) {
             
             if(ex instanceof MySQLIntegrityConstraintViolationException){
@@ -180,80 +210,153 @@ public class insertUtility {
            return "-";
        }
        return string;
-   }    
+   }
+
+    public static String toUnicode(char ch) {
+        String unicode = "";
         
-public static boolean sendSmsToNewCustomer(String language, String contactNumber, String username){
-    boolean result = false;
-    String myData = "";
+        String code = String.format("\\u%04x", (int) ch);
+        unicode = code.substring(2);
+       
+        return unicode;
+    }    
     
-    //check if parameters is valid (not null and length not = 0)
-    if (language != null && contactNumber != null && username != null & language.length() > 0 && contactNumber.length() >0 && username.length() > 0){
-    
-        try {
-        // This URL is used for sending messages
-        String myURI = "https://api.bulksms.com/v1/messages";
+    public static boolean sendSmsToNewCustomer(String language, String contactNumber, String username){
+        boolean result = false;
+           
+       String toNumber = "65" + contactNumber;
+       
+        try{
+            String data = "";
+            String smsMsg = "";
 
-        String myUsername = "F89898B66F9C4AA2A051176711AE05AE-02-C";
-        String myPassword = "aeaIP2IprPZa89K!!PWo!UQQlemgd";
+            String api_key = "98060002"; 
+            String api_secret = "Infoatlimkee1";  
+
+            if (language.equals("English")){
+                smsMsg = "Dear " +  username + ", your account is now activated! Download Lim Kee's app from https://play.google.com/store/apps/details?id=com.limkee to start ordering. Thank you!";
+                    
+                //use ascii content for type    
+                data += "ID=" + api_key
+                        + "&Password=" + api_secret
+                        + "&Mobile=" + toNumber
+                        + "&Type=" + "A"
+                        + "&Message=" + smsMsg;
+            } else {
+                
+                //get unicode for every character 
+                String appUrl = "https://play.google.com/store/apps/details?id=com.limkee";
+
+                String dlAddress = "";
+                for(int i =0; i< appUrl.length();i++)
+                {   
+                    char c = appUrl.charAt(i);
+                     dlAddress += toUnicode(c);
+                } 
+                
+                String companyCode = "";
+                for(int i =0; i< username.length();i++)
+                {   
+                    char c = username.charAt(i);
+                     companyCode += toUnicode(c);
+                }     
+                    
+                smsMsg = "60A8597d0020" + companyCode + "002C002060A876845E1053F75DF26FC06D3b002100208BF757286B644E0b8F0967978BB07684" + toUnicode('A') + toUnicode('P') + toUnicode('P') + "0020540e5F0059Cb4e0b5355002E00208C228C220021";
+
+                //use unicode for type
+                data += "ID=" + api_key
+                        + "&Password=" + api_secret
+                        + "&Mobile=" + toNumber
+                        + "&Type=" + "U"
+                        + "&Message=" + smsMsg;
+            }
         
-        String toNumber = "+65" + contactNumber;
-         
-        if (language.equals("English")){
-            myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"Dear " + username 
-           +  ", your account is now active! Download Lim Kee's app from https://play.google.com/store/apps/details?id=com.limkee to start ordering! Thank you!"  +  "\"}";              
-        } else {
-            myData = "{to: \"" + toNumber + "\", encoding: \"UNICODE\", body: \"您好 " + username 
-           +  ", 您的帐号已激活！请在此下载林记的APP https://play.google.com/store/apps/details?id=com.limkee 后开始下单。谢谢!"  +  "\"}";              
-        }
+            URL url = new URL("https://www.commzgate.net/gateway/SendMsg");
 
-        //build the request based on the supplied settings
-        URL url = new URL(myURI);
-        HttpURLConnection request = (HttpURLConnection) url.openConnection();
-        request.setDoOutput(true);
+            URLConnection conn = url.openConnection();
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            wr.write(data);
+            wr.flush();
 
-        // supply the credentials
-        String authStr = myUsername + ":" + myPassword;
-        String authEncoded = Base64.getEncoder().encodeToString(authStr.getBytes()); 
-        request.setRequestProperty("Authorization", "Basic " + authEncoded);
-
-        request.setRequestMethod("POST");
-        request.setRequestProperty( "Content-Type", "application/json");
-
-        // write the data to the request
-        OutputStreamWriter out = new OutputStreamWriter(request.getOutputStream());
-        out.write(myData);
-        out.close();
-
-        try {
-            // make the call to the API
-            InputStream response = request.getInputStream();
-            BufferedReader in = new BufferedReader(new InputStreamReader(response));
-            String replyText;
-            while ((replyText = in.readLine()) != null) {
-                System.out.println(replyText);
+            // Get the response
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+             while ((line = rd.readLine()) != null) {
+                // Print the response output...
+                System.out.println(line);
+                if ((line.substring(0,5)).equals("01010")){
+                    //sms is sent
+                    result = true;
+                    
+                } 
             }
-            in.close();
-            result = true; 
-        } catch (IOException ex) {
-            System.out.println("An error occurred:" + ex.getMessage());
-            BufferedReader in = new BufferedReader(new InputStreamReader(request.getErrorStream()));
-            // print the detail that comes with the error
-            String replyText;
-            while ((replyText = in.readLine()) != null) {
-                System.out.println(replyText);
-            }
-            in.close();
-        }
-        request.disconnect();
-        } catch (Exception e){
-            System.out.println(e);
-        }
-    } else {
-        System.out.println("Parameters is null/blank");
+            wr.close();
+            rd.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
+        return result;
     }
     
-     return result;
- 
+    public static boolean sendGooglePlayURL(String contactNumber) {
+        boolean result = false;
+        
+        String toNumber = "65" + contactNumber;
+       
+        try{
+            String data = "";
+            String smsMsg = "";
+
+            String api_key = "98060002"; 
+            String api_secret = "Infoatlimkee1";  
+
+            //get unicode for every character 
+            String appUrl = "https://play.google.com/store/apps/details?id=com.limkee";
+
+            //get unicode of each string
+            String dlAddress = "";
+            for(int i =0; i< appUrl.length();i++)
+            {   
+                char c = appUrl.charAt(i);
+                 dlAddress += toUnicode(c);
+            } 
+            
+            smsMsg = dlAddress;
+
+            //use unicode for type
+            data += "ID=" + api_key
+                    + "&Password=" + api_secret
+                    + "&Mobile=" + toNumber
+                    + "&Type=" + "U"
+                    + "&Message=" + smsMsg;
+
+        
+            URL url = new URL("https://www.commzgate.net/gateway/SendMsg");
+
+            URLConnection conn = url.openConnection();
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            wr.write(data);
+            wr.flush();
+
+            // Get the response
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+             while ((line = rd.readLine()) != null) {
+                // Print the response output...
+                System.out.println(line);
+                  if ((line.substring(0,5)).equals("01010")){
+                    //sms is sent
+                    result = true;
+                } 
+            }
+            wr.close();
+            rd.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }
