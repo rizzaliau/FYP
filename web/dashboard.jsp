@@ -165,8 +165,9 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="card striped-tabled-with-hover">
+                            <div class ="col-md-6">
+                                
+                                <div class="card striped-tabled-with-hover" onclick="window.location = 'SalesRevenueDashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="SalesRevenueDashboard.jsp"><font color="black">Sales Revenue</font></a></h4>
                                         <p class="card-category">Sales Performance</p>
@@ -363,7 +364,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="card ">
+                                <div class="card" onclick="window.location = 'productDashboard.jsp';" onmouseover="" style="cursor: pointer;">
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="productDashboard.jsp"><font color="black">Products</font></a></h4>
                                         <p class="card-category">Products Performance</p>
@@ -562,7 +563,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="card ">
+                                <div class="card" onclick="window.location = 'productDashboard.jsp';" onmouseover="" style="cursor: pointer;">
                                     <div class="card-header ">
                                         <h4 class="card-title">Return Products</h4>
                                         <p class="card-category">Return performances</p>
@@ -767,7 +768,7 @@
                             <form method="post" action="dashboard.jsp" name="top10CustomersForm" >
                             
                                <div class="col-md-12">
-                                    <div class="card ">
+                                    <div class="card " onclick="window.location = 'customerDashboard.jsp';" onmouseover="" style="cursor: pointer;">
                                 <div class="card-header ">
                                     <h4 class="card-title"><a href="customerDashboard.jsp"><font color = "black">Customer Requirements</font></a></h4>
                                     <p class="card-category">Customers Requirement Chart</p>
