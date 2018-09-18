@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="utility.adminUtility"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="utility.dashboardUtility"%>
 <%@page import="utility.notificationUtility"%>
@@ -196,6 +198,12 @@
                                       Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears(); 
 
                                       Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
+                                      
+                                      String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                                      String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
+                                      String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
+                                      int currentMonthInt = Integer.parseInt(currentMonth);
+                                      int currentYearInt = Integer.parseInt(currentYear);
                                     %>
 
                                     <div class="row">
@@ -258,21 +266,22 @@
 
                                         String yearRetrieved = request.getParameter("year");
                                         String monthRetrieved = request.getParameter("month");
-                                        int monthInt = 1;
+                                        int monthInt = currentMonthInt;
 
                                         if(yearRetrieved==null&&monthRetrieved==null){
-                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(1,2018);
-                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(1,2018);
+                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(currentMonthInt,currentYearInt);
+                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(currentMonthInt,currentYearInt);
                                             
                                             //monthRetrieved = 1;
-                                            yearRetrieved = "2018";
+                                            yearRetrieved = currentYear;
+                                            
                                         }else if(yearRetrieved.equals("none")&&monthRetrieved.equals("none") 
                                             ||yearRetrieved.equals("none")|| monthRetrieved.equals("none")){
                                             
-                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(1,2018);
-                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(1,2018);
+                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(currentMonthInt,currentYearInt);
+                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(currentMonthInt,currentYearInt);
                                             
-                                            yearRetrieved = "2018";
+                                            yearRetrieved = currentYear;
                                             
                                         }else{
                                             int yearInt = Integer.parseInt(yearRetrieved);
@@ -421,22 +430,22 @@
 
                                         String yearProductReturnedRetrieved = request.getParameter("yearReturnedProducts");
                                         String monthProductReturnedRetrieved = request.getParameter("monthReturnedProducts");
-                                        int monthReturnedInt = 1;
+                                        int monthReturnedInt = currentMonthInt;
 
                                         if(yearProductReturnedRetrieved==null&&monthProductReturnedRetrieved==null){
-                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(1,2018);
-                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
+                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt,currentYearInt);
+                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(currentMonthInt,currentYearInt);
                                             
                                             //monthRetrieved = 1;
-                                            yearProductReturnedRetrieved = "2018";
+                                            yearProductReturnedRetrieved = currentYear;
                                             
                                         }else if(yearProductReturnedRetrieved.equals("none")&&monthProductReturnedRetrieved.equals("none") 
                                             ||yearProductReturnedRetrieved.equals("none")|| monthProductReturnedRetrieved.equals("none")){
                                             
-                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(1,2018);
-                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
+                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt,currentYearInt);
+                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(currentMonthInt,currentYearInt);
                                             
-                                            yearProductReturnedRetrieved = "2018";
+                                            yearProductReturnedRetrieved = currentYear;
                                             
                                          
                                         }else{
