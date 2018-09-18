@@ -767,7 +767,7 @@ public class dashboardUtility {
             System.out.println(entryRetrieved);
             System.out.println("Key is "+key);
             
-            double minimumRequirement = 200;
+            double minimumRequirement = 300;
             
             if(value<=minimumRequirement){
                 
