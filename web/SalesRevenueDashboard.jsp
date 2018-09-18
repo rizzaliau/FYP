@@ -194,6 +194,8 @@
                                         String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
                                         String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
                                         String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
+                                        int currentMonthInt = Integer.parseInt(currentMonth);
+                                        int currentYearInt = Integer.parseInt(currentYear);
                                         
 
                                     %>
@@ -241,12 +243,12 @@
                                         String yearRetrieved = request.getParameter("yearTotalRevenue");
 
                                         if (yearRetrieved == null) {
-                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
-                                            yearRetrieved = "2018";
+                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
+                                            yearRetrieved = currentYear;
 
                                         } else if (yearRetrieved.equals("none")) {
-                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
-                                            yearRetrieved = "2018";
+                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
+                                            yearRetrieved = currentYear;
 
                                         } else {
                                             int yearInt = Integer.parseInt(yearRetrieved);
