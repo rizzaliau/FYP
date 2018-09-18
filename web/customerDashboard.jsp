@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="utility.adminUtility"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.dashboardUtility"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
@@ -192,6 +194,18 @@
                                       
                        <!-- Start of Dashboard II charts -->  
                        
+                        <%
+                            // Resuable variables
+
+                            String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                            String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
+                            String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
+                            int currentMonthInt = Integer.parseInt(currentMonth);
+                            int currentYearInt = Integer.parseInt(currentYear);
+
+
+                        %>
+                       
                        
                        <!-- Start of Filter month/year for top 10 Customers -->
                             
@@ -261,31 +275,30 @@
                                         String yearRetrievedTop10Customers = request.getParameter("top10CustomersYear");
                                         String monthRetrievedTop10Customers = request.getParameter("top10CustomersMonth");
 
-                                        int top10MonthInt = 1;
+                                        int top10MonthInt = currentMonthInt;
 
                                         //out.println(yearRetrievedTop10Customers);
                                         //out.println(monthRetrievedTop10Customers);
 
                                         if (yearRetrievedTop10Customers == null && monthRetrievedTop10Customers == null) {
 
-                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(2018,6);
-                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,6);
+                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(currentYearInt,currentMonthInt);
+                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(currentYearInt,currentMonthInt);
 
-                                            yearRetrievedTop10Customers = "2018";
+                                            yearRetrievedTop10Customers = currentYear;
 
                                         } else if (yearRetrievedTop10Customers.equals("none") && monthRetrievedTop10Customers.equals("none")
                                                 || yearRetrievedTop10Customers.equals("none") || monthRetrievedTop10Customers.equals("none")) {
 
-                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(2018,6);
-                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,6);
+                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(currentYearInt,currentMonthInt);
+                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(currentYearInt,currentMonthInt);
 
-                                            yearRetrievedTop10Customers = "2018";
+                                            yearRetrievedTop10Customers = currentYear;
 
                                         } else {
                                             int top10YearInt = Integer.parseInt(yearRetrievedTop10Customers);
                                             top10MonthInt = Integer.parseInt(monthRetrievedTop10Customers);
-                                            //map parameters month, revenue
-                                            //hardcoded year to 2018
+
                                             top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(top10YearInt,top10MonthInt);
                                             allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(top10YearInt,top10MonthInt);
 
@@ -482,25 +495,25 @@
                                 String yearRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementYear");
                                 String monthRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementMonth");
 
-                                int customersDoNotMeetRequirementMonthInt = 1;
+                                int customersDoNotMeetRequirementMonthInt = currentMonthInt;
 
                                 //out.println(yearRetrievedTop10Customers);
                                 //out.println(monthRetrievedTop10Customers);
 
                                 if (yearRetrievedCustomersDoNotMeetRequirement == null && monthRetrievedCustomersDoNotMeetRequirement == null) {
 
-                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2018,1);
-                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,1);
+                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt);
+                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(currentYearInt,currentMonthInt);
 
-                                    yearRetrievedCustomersDoNotMeetRequirement = "2018";
+                                    yearRetrievedCustomersDoNotMeetRequirement = currentYear;
 
                                 } else if (yearRetrievedCustomersDoNotMeetRequirement.equals("none") && monthRetrievedCustomersDoNotMeetRequirement.equals("none")
                                         || yearRetrievedCustomersDoNotMeetRequirement.equals("none") || monthRetrievedCustomersDoNotMeetRequirement.equals("none")) {
 
-                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2018,11);
-                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,1);
+                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt);
+                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(currentYearInt,currentMonthInt);
 
-                                    yearRetrievedCustomersDoNotMeetRequirement = "2018";
+                                    yearRetrievedCustomersDoNotMeetRequirement = currentYear;
 
                                 } else {
                                     
@@ -697,20 +710,20 @@
 
                                         if (yearRetrievedReturnProductsByCustomer == null && customerCodeRetrievedReturnProductsByCustomer == null) {
 
-                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
+                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(currentYearInt,allAvailableCustomers.get(1));
 
-                                            yearRetrievedReturnProductsByCustomer = "2018";
+                                            yearRetrievedReturnProductsByCustomer = currentYear;
                                             
-                                            customerCodeRetrievedReturnProductsByCustomer = "301-C028";
+                                            customerCodeRetrievedReturnProductsByCustomer = allAvailableCustomers.get(1);
 
                                         } else if (yearRetrievedReturnProductsByCustomer.equals("none") && customerCodeRetrievedReturnProductsByCustomer.equals("none")
                                             || yearRetrievedReturnProductsByCustomer.equals("none") || customerCodeRetrievedReturnProductsByCustomer.equals("none")) {
 
-                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
+                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(currentYearInt,allAvailableCustomers.get(1));
 
-                                            yearRetrievedReturnProductsByCustomer = "2018";
+                                            yearRetrievedReturnProductsByCustomer = currentYear;
                                             
-                                            customerCodeRetrievedReturnProductsByCustomer = "301-C028";
+                                            customerCodeRetrievedReturnProductsByCustomer = allAvailableCustomers.get(1);
 
                                         } else {
 
