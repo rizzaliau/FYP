@@ -190,6 +190,8 @@
                                         String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
                                         String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
                                         String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
+                                        int currentMonthInt = Integer.parseInt(currentMonth);
+                                        int currentYearInt = Integer.parseInt(currentYear);
                                         
 
                                     %>
@@ -197,31 +199,7 @@
 
                                     <div>
                                         <div class="col-md-4 pr-1">
-                                            <div class="form-group">
-                                                <!-- Filter year for total revenue -->
-                                                <form method="post" action="dashboard.jsp" name="filterTotalSalesYearForm">
 
-                                                    <select id="filterYear" name="yearTotalRevenue" onchange="return setValue();" class="form-control">
-
-                                                        <%
-                                                            out.print("<option value='none'>Select Year</option>");
-                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                int year = availableSalesOrderYears.get(i);
-
-                                                                //out.print("<a href='filterSalesDashboard.jsp?year='"+year+"'>"+year+"</a>");
-                                                                //out.print("<option value='filterSalesDashboard.jsp?year="+year+"' >"+year+"</option>");
-                                                                out.print("<option value='" + year + "'>" + year + "");
-
-                                                            }
-                                                        %>
-
-                                                    </select>
-
-
-                                                    <input type="hidden" name="dropdown" id="dropdown">
-                                                    <input type="submit" value="Filter" name="btn_dropdown" style="position: relative; left:155px; bottom:40px;" class="btn btn-info btn-fill pull-left" type="button">
-                                                </form>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -234,23 +212,9 @@
                                         Map<Integer, Double> salesRevenueByMonthMap = null;
                                         DecimalFormat df = new DecimalFormat("0.00");
 
-                                        String yearRetrieved = request.getParameter("yearTotalRevenue");
+                                        salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
 
-                                        if (yearRetrieved == null) {
-                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
-                                            yearRetrieved = "2018";
-
-                                        } else if (yearRetrieved.equals("none")) {
-                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(2018);
-                                            yearRetrieved = "2018";
-
-                                        } else {
-                                            int yearInt = Integer.parseInt(yearRetrieved);
-                                            //map parameters month, revenue
-                                            //hardcoded year to 2018
-                                            salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(yearInt);
-
-                                        }
+                                        
                                         
                                         
                                     %>    
@@ -304,7 +268,7 @@
                                                 options: {
                                                     title: {
                                                         display: true,
-                                                        text: 'Total Revenue Monthly Breakdown By Year <%= yearRetrieved%>',
+                                                        text: 'Total Revenue Monthly Breakdown By Year <%= currentYearInt%>',
                                                         fontSize: 12,
                                                         fontFamily: 'Segoe UI'
 
@@ -377,54 +341,6 @@
                                         %>   
 
 
-                                        <!-- Filter month/year for top 5 Products -->
-                                        <center>
-                                            <form method="post" action="dashboard.jsp" name="filterYearForm"  >
-                                                <div class="row">
-                                                    <div class="col-md-5 pr-1">
-                                                        <div class="form-group">
-                                                            
-                                                                <select id="filterYear" name="month" onchange="return setValue();" class="form-control">
-
-                                                                    <%
-                                                                        out.print("<option value='none'>Select Month</option>");
-                                                                        for (int i = 1; i <= allMonths.size(); i++) {
-                                                                            String month = allMonths.get(i);
-                                                                            out.print("<option value='" + i + "'>" + month + "");
-
-                                                                        }
-                                                                    %>
-
-                                                                </select>
-                                                        </div>
-                                                    </div>
-                                                                   
-                                                    <div class="col-md-5 pr-1">
-                                                        <div class="form-group">
-                                                            <select id="filterYear" name="year" onchange="return setValue();" class="form-control">
-
-                                                                <%
-                                                                    out.print("<option value='none'>Select Year</option>");
-                                                                    for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                        int year = availableSalesOrderYears.get(i);
-                                                                        //out.print("<option value='"+year+"'>"+year+"</option>");
-                                                                        //out.print("<a href='filterSalesDashboard.jsp?year='"+year+"'>"+year+"</a>");
-                                                                        //out.print("<option value='filterSalesDashboard.jsp?year="+year+"' >"+year+"</option>");
-                                                                        out.print("<option value='" + year + "'>" + year + "");
-
-                                                                    }
-                                                                %>
-
-                                                            </select>
-                                                                 </div>
-                                                    </div>
-                   
-                                                <input type="hidden" name="dropdown" id="dropdown">
-                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                                </form>
-                                        </center>
-                                        <br>
-
                                         <!-- Graph for top 5 Products -->
                                         <div class="container">
                                             <canvas id="getTop5ProductsChart" width="500" height="300"></canvas>
@@ -436,34 +352,8 @@
                                             Map<Integer, String> getTop5ProductsByMonth = null;
                                             Map<String, Integer> qtyForItemDescriptionMonthMap = null;
 
-                                            //DecimalFormat df = new DecimalFormat("0.00");
-                                            String yearRetrievedTop5 = request.getParameter("year");
-                                            String monthRetrievedTop5 = request.getParameter("month");
-                                            int monthInt = 1;
-
-                                            if (yearRetrievedTop5 == null && monthRetrievedTop5 == null) {
-                                                getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(1, 2018);
-                                                qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(1, 2018);
-
-                                                //monthRetrievedTop5 = 1;
-                                                yearRetrievedTop5 = "2018";
-                                            } else if (yearRetrievedTop5.equals("none") && monthRetrievedTop5.equals("none")
-                                                    || yearRetrievedTop5.equals("none") || monthRetrievedTop5.equals("none")) {
-
-                                                getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(1, 2018);
-                                                qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(1, 2018);
-
-                                                yearRetrievedTop5 = "2018";
-
-                                            } else {
-                                                int yearInt = Integer.parseInt(yearRetrievedTop5);
-                                                monthInt = Integer.parseInt(monthRetrievedTop5);
-                                                //map parameters month, revenue
-                                                //hardcoded year to 2018
-                                                getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(monthInt, yearInt);
-                                                qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(monthInt, yearInt);
-
-                                            }
+                                            getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(currentMonthInt, currentYearInt);
+                                            qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(currentMonthInt, currentYearInt);
 
 
                                         %>
@@ -520,7 +410,7 @@
                                                     options: {
                                                         title: {
                                                             display: true,
-                                                            text: 'Top 5 Products by Volume <%= allMonths.get(monthInt)%> <%= yearRetrievedTop5%>',
+                                                            text: 'Top 5 Products by Volume <%= allMonths.get(currentMonthInt)%> <%= currentYearInt%>',
                                                             fontFamily: 'Segoe UI',
                                                             fontSize: 12,
                                                     
@@ -569,89 +459,15 @@
                                         <p class="card-category">Return performances</p>
                                     </div>
                                     <div class="card-body ">
-                                        <!--filter for Top 5 Most returned products -->
-                                        <center>
-                                             <div class="row">
-                                                <div class="col-md-4 pr-1">
-                                                    <div class="form-group">   
-                                                <form method="post" action="dashboard.jsp" name="filterReturnedProductsForm">
-                                                    <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();" class="form-control">
 
-                                                        <%
-                                                            out.print("<option value='none'>Select Month");
-                                                            for (int i = 1; i <= allMonths.size(); i++) {
-                                                                String month = allMonths.get(i);
-                                                                out.print("<option value='" + i + "'>" + month + "");
-
-                                                            }
-                                                        %>
-
-                                                    </select>
-                                                        
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 pr-1">
-                                                    <div class="form-group">   
-                                                    <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();" class="form-control" >
-
-                                                        <%
-                                                            out.print("<option value='none'>Select Year");
-                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                int year = availableSalesOrderYears.get(i);
-
-                                                                out.print("<option value='" + year + "'>" + year + "");
-
-                                                            }
-                                                        %>
-
-                                                    </select>
-                                                    </div>
-                                                </div>
-
-                                                    <input type="hidden" name="dropdown" id="dropdown">
-                                                    <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" style="position: relative; left:2px;; height: 40px;">
-                                                </form>
-
-                                                
-                                            </div>
-                                        </center>
                                         <br>                             
                                         <%
-                                            // Hardcoded for month 6, june
-                                            //Map<Integer, String> getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(6,2018);
-                                            //Map<String, Double> getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
+
                                             Map<Integer, String> getMostReturnedProductsByMonth = null;
                                             Map<String, Double> getMostReturnedProductsByMonthPercentage = null;
 
-                                            //DecimalFormat df = new DecimalFormat("0.00");
-                                            String yearProductReturnedRetrieved = request.getParameter("yearReturnedProducts");
-                                            String monthProductReturnedRetrieved = request.getParameter("monthReturnedProducts");
-                                            int monthReturnedInt = 1;
-
-                                            if (yearProductReturnedRetrieved == null && monthProductReturnedRetrieved == null) {
-                                                getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(1, 2018);
-                                                getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6, 2018);
-
-                                                //monthRetrieved = 1;
-                                                yearProductReturnedRetrieved = "2018";
-
-                                            } else if (yearProductReturnedRetrieved.equals("none") && monthProductReturnedRetrieved.equals("none")
-                                                    || yearProductReturnedRetrieved.equals("none") || monthProductReturnedRetrieved.equals("none")) {
-
-                                                getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(1, 2018);
-                                                getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6, 2018);
-
-                                                yearProductReturnedRetrieved = "2018";
-
-                                            } else {
-                                                int yearProductReturnedInt = Integer.parseInt(yearProductReturnedRetrieved);
-                                                monthReturnedInt = Integer.parseInt(monthProductReturnedRetrieved);
-
-                                                getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(monthReturnedInt, yearProductReturnedInt);
-                                                getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(monthReturnedInt, yearProductReturnedInt);
-
-                                            }
-
+                                            getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt, currentYearInt);
+                                            getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(currentMonthInt, currentYearInt);
 
                                         %>
 
@@ -705,7 +521,7 @@
                                                 options: {
                                                     title: {
                                                         display: true,
-                                                        text: 'Top 5 Most Returned Products <%= allMonths.get(monthReturnedInt)%> <%= yearProductReturnedRetrieved%>',
+                                                        text: 'Top 5 Most Returned Products <%= allMonths.get(currentMonthInt)%> <%= currentYearInt%>',
                                                         fontFamily: 'Segoe UI',
                                                         fontSize: 12,
                                                     },
@@ -765,53 +581,23 @@
                        
                        <!-- Start of Filter month/year for top 10 Customers -->
                             
-                            <form method="post" action="dashboard.jsp" name="top10CustomersForm" >
-                            
                                <div class="col-md-12">
                                     <div class="card " onclick="window.location = 'customerDashboard.jsp';" onmouseover="" style="cursor: pointer;">
                                 <div class="card-header ">
-                                    <h4 class="card-title"><a href="customerDashboard.jsp"><font color = "black">Customer Requirements</font></a></h4>
-                                    <p class="card-category">Customers Requirement Chart</p>
                                 </div>
                                 <div class="card-body ">
                                         
                                             <div class="form-group">
-                                                    <select id="top10Year" name="top10CustomersMonth" onchange="return setValue();" class="form-control">
 
-                                                        <%
-                                                            out.print("<option value='none'>Select Month</option>");
-                                                            for (int i = 1; i <= allMonths.size(); i++) {
-                                                                String month = allMonths.get(i);
-                                                                out.print("<option value='" + i + "'>" + month + "");
-
-                                                            }
-                                                        %>
-
-                                                    </select>
                                             </div>
                                         
 
                                        
                                             <div class="form-group">
-                                                <select id="top10Month" name="top10CustomersYear" onchange="return setValue();" class="form-control">
 
-                                                    <%
-                                                        out.print("<option value='none'>Select Year</option>");
-                                                        for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                            int year = availableSalesOrderYears.get(i);
-                                                            out.print("<option value='" + year + "'>" + year + "");
-
-                                                        }
-                                                    %>
-
-                                                </select>
                                             </div>
                                       
-
-                                        <input type="hidden" name="dropdown" id="dropdown">
-                                        <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                    </form>
-                            
+                                </div>
                             <br>
                          <!-- End of Filter month/year for top 10 Customers -->
                                         
@@ -824,43 +610,11 @@
                                     
                                     <%
                                         //Key rank, String customer code
-                                        Map<Integer, String> top10CustomersByYearMonth = null;
-                                        
+                                        Map<Integer, String> top10CustomersByYearMonth = null;                           
                                         Map<String, Double> allCustomerSalesByYearMonth = null;
                                         
-                                        //Retrieve parameters from form
-                                        String yearRetrievedTop10Customers = request.getParameter("top10CustomersYear");
-                                        String monthRetrievedTop10Customers = request.getParameter("top10CustomersMonth");
-
-                                        int top10MonthInt = 1;
-
-                                        //out.println(yearRetrievedTop10Customers);
-                                        //out.println(monthRetrievedTop10Customers);
-
-                                        if (yearRetrievedTop10Customers == null && monthRetrievedTop10Customers == null) {
-
-                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(2018,6);
-                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,6);
-
-                                            yearRetrievedTop10Customers = "2018";
-
-                                        } else if (yearRetrievedTop10Customers.equals("none") && monthRetrievedTop10Customers.equals("none")
-                                                || yearRetrievedTop10Customers.equals("none") || monthRetrievedTop10Customers.equals("none")) {
-
-                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(2018,6);
-                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,6);
-
-                                            yearRetrievedTop10Customers = "2018";
-
-                                        } else {
-                                            int top10YearInt = Integer.parseInt(yearRetrievedTop10Customers);
-                                            top10MonthInt = Integer.parseInt(monthRetrievedTop10Customers);
-                                            //map parameters month, revenue
-                                            //hardcoded year to 2018
-                                            top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(top10YearInt,top10MonthInt);
-                                            allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(top10YearInt,top10MonthInt);
-
-                                        }
+                                        top10CustomersByYearMonth = dashboardUtility.getTop10CustomersByYearMonth(currentYearInt,currentMonthInt);
+                                        allCustomerSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(currentYearInt,currentMonthInt);
 
                                     %>    
                                     <center>
@@ -924,7 +678,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Top 10 Customers <%= allMonths.get(top10MonthInt)%> <%= yearRetrievedTop10Customers%> ',
+                                            text:'Top 10 Customers <%= allMonths.get(currentMonthInt)%> <%= currentYearInt %> ',
                                             fontFamily: 'Segoe UI',
                                             fontSize: 12,
                                             
@@ -985,45 +739,15 @@
            
                         <!-- Start of Filter month/year for Customers Who Do Not Meet the Requirement Chart -->
                              <center>
-                                 <form method="post" action="dashboard.jsp" name="customersDoNotMeetRequirementForm" >
                                      <div class="row">
                                          <div class="col-md-5 pr-1">
-                                             <div class="form-group">
-                                                     <select id="top10Year" name="customersDoNotMeetRequirementMonth" onchange="return setValue();" class="form-control">
 
-                                                         <%
-                                                             out.print("<option value='none'>Select Month</option>");
-                                                             for (int i = 1; i <= allMonths.size(); i++) {
-                                                                 String month = allMonths.get(i);
-                                                                 out.print("<option value='" + i + "'>" + month + "");
-
-                                                             }
-                                                         %>
-
-                                                     </select>
-                                             </div>
                                          </div>
 
                                          <div class="col-md-5 pr-1">
-                                             <div class="form-group">
-                                                 <select id="top10Month" name="customersDoNotMeetRequirementYear" onchange="return setValue();" class="form-control">
 
-                                                     <%
-                                                         out.print("<option value='none'>Select Year</option>");
-                                                         for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                             int year = availableSalesOrderYears.get(i);
-                                                             out.print("<option value='" + year + "'>" + year + "");
-
-                                                         }
-                                                     %>
-
-                                                 </select>
-                                             </div>
                                          </div>
 
-                                         <input type="hidden" name="dropdown" id="dropdown">
-                                         <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                     </form>
                              </center>
                              <br>
                              
@@ -1037,54 +761,13 @@
                             </div> 
                              
                             <% 
-                                //Logic for customerWhoDoNotMeetRequirement
-                                 
-                                 //Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2017,11);
-                                    
-                                 //Map<String, Double> allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2017,11);
-
-                                //Key rank, String customer code
                                 
                                 Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth = null;
 
                                 Map<String, Double> allCustomerWhoDoNotMeetRequirementSalesByYearMonth = null;
 
-                                //Retrieve parameters from form
-                                String yearRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementYear");
-                                String monthRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementMonth");
-
-                                int customersDoNotMeetRequirementMonthInt = 1;
-
-                                //out.println(yearRetrievedTop10Customers);
-                                //out.println(monthRetrievedTop10Customers);
-
-                                if (yearRetrievedCustomersDoNotMeetRequirement == null && monthRetrievedCustomersDoNotMeetRequirement == null) {
-
-                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2018,1);
-                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,1);
-
-                                    yearRetrievedCustomersDoNotMeetRequirement = "2018";
-
-                                } else if (yearRetrievedCustomersDoNotMeetRequirement.equals("none") && monthRetrievedCustomersDoNotMeetRequirement.equals("none")
-                                        || yearRetrievedCustomersDoNotMeetRequirement.equals("none") || monthRetrievedCustomersDoNotMeetRequirement.equals("none")) {
-
-                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2018,11);
-                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2018,1);
-
-                                    yearRetrievedCustomersDoNotMeetRequirement = "2018";
-
-                                } else {
-                                    
-                                    int customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedCustomersDoNotMeetRequirement);
-                                    customersDoNotMeetRequirementMonthInt = Integer.parseInt(monthRetrievedCustomersDoNotMeetRequirement);
-                                    //map parameters month, revenue
-                                    //hardcoded year to 2018
-                                    customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
-                                    allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
-
-                                    //yearRetrievedCustomersDoNotMeetRequirement = "2018";
-                                }
-
+                                customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt);
+                                allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(currentYearInt,currentMonthInt);
 
                             %>
 
@@ -1137,7 +820,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Customers Do Not Meet Requirements <%= allMonths.get(customersDoNotMeetRequirementMonthInt)%> <%= yearRetrievedCustomersDoNotMeetRequirement%>',
+                                            text:'Customers Do Not Meet Requirements <%= allMonths.get(currentMonthInt)%> <%= currentYearInt %>',
                                             fontSize:12,
                                             fontFamily: 'Segoe UI',
 
@@ -1210,41 +893,16 @@
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                            <select id="returnProductsByCustomerCustomerCode" name="returnProductsByCustomerCustomerCode" onchange="return setValue();" class="form-control">
 
-                                                                <%
-                                                                    out.print("<option value='none'>Select Customer Code</option>");
-                                                                    for (int i = 1; i <= allAvailableCustomers.size(); i++) {
-                                                                        String customerCode = allAvailableCustomers.get(i);
-                                                                        out.print("<option value='" + customerCode + "'>" + customerCode + "");
-
-                                                                    }
-                                                                %>
-
-                                                            </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <select id="returnProductsByCustomerYear" name="returnProductsByCustomerYear" onchange="return setValue();" class="form-control">
 
-                                                            <%
-                                                                out.print("<option value='none'>Select Year</option>");
-                                                                for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                    int year = availableSalesOrderYears.get(i);
-                                                                    out.print("<option value='" + year + "'>" + year + "");
-
-                                                                }
-                                                            %>
-
-                                                        </select>
                                                     </div>
                                                 </div>
 
-                                                <input type="hidden" name="dropdown" id="dropdown">
-                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                            </form>
                                     </center>
                                     <br>
 
@@ -1260,35 +918,7 @@
                                     
                                     <%
                                         
-                                        Map<Integer, Double> returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
-
-                                        //Retrieve parameters from form
-                                        String yearRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerYear");
-                                        String customerCodeRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerCustomerCode");
-
-                                        if (yearRetrievedReturnProductsByCustomer == null && customerCodeRetrievedReturnProductsByCustomer == null) {
-
-                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
-
-                                            yearRetrievedReturnProductsByCustomer = "2018";
-                                            
-                                            customerCodeRetrievedReturnProductsByCustomer = "301-C028";
-
-                                        } else if (yearRetrievedReturnProductsByCustomer.equals("none") && customerCodeRetrievedReturnProductsByCustomer.equals("none")
-                                            || yearRetrievedReturnProductsByCustomer.equals("none") || customerCodeRetrievedReturnProductsByCustomer.equals("none")) {
-
-                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
-
-                                            yearRetrievedReturnProductsByCustomer = "2018";
-                                            
-                                            customerCodeRetrievedReturnProductsByCustomer = "301-C028";
-
-                                        } else {
-
-                                            int customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedReturnProductsByCustomer);
-
-                                            returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(customersWhoDoNotMeetRequirementYearInt,customerCodeRetrievedReturnProductsByCustomer);
-                                        }
+                                        Map<Integer, Double> returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(currentYearInt,allAvailableCustomers.get(1));
 
                                     %>
                                     
@@ -1335,7 +965,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Returned Products For Customer <%= customerCodeRetrievedReturnProductsByCustomer%> for Year <%= yearRetrievedReturnProductsByCustomer%>',
+                                            text:'Returned Products For Customer <%= allAvailableCustomers.get(1)%> for Year <%= currentYearInt%>',
                                             fontSize:12
                                           },
                                           legend:{
