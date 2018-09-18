@@ -203,7 +203,7 @@
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
                                                 <!-- Filter year for total revenue -->
-                                                <form method="post" action="dashboard.jsp" name="filterTotalSalesYearForm">
+                                                <form method="post" action="SalesRevenueDashboard.jsp" name="filterTotalSalesYearForm">
 
                                                     <select id="filterYear" name="yearTotalRevenue" onchange="return setValue();" class="form-control">
 
