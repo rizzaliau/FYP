@@ -41,7 +41,7 @@
 
 <body>
     <div class="wrapper">
-           <!-- Sidebar -->
+            <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
                 <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
@@ -56,18 +56,17 @@
 
                     </div>
                     <ul class="nav">
-                        <%
-                           String isMasterAdmin = (String) session.getAttribute("isMaster");
-                                   
-//                           if(isMasterAdmin.equals("1")){ 
-//                                out.print("<li>");
-//                                out.print("<a class='nav-link' href='admin.jsp'>");
-//                                out.print("<i class='nc-icon nc-key-25'></i>");
-//                                out.print("<p>Admin</p>");
-//                                out.print("</a>");
-//                                out.print("</li>");
-//                           }
-                           
+                        <%  String isMasterAdmin = (String) session.getAttribute("isMaster");
+
+                            if (isMasterAdmin.equals("1")) {
+                                out.print("<li>");
+                                out.print("<a class='nav-link' href='admin.jsp'>");
+                                out.print("<i class='nc-icon nc-key-25'></i>");
+                                out.print("<p>Admin</p>");
+                                out.print("</a>");
+                                out.print("</li>");
+                            }
+
                         %>
                         <li class='nav-item active'>
                             <a class="nav-link" href="dashboard.jsp">
@@ -109,7 +108,7 @@
                     </ul>
                 </div>
             </div>
-            <!--End Sidebar -->     
+            <!--End Sidebar -->        
         <div class="main-panel">
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
