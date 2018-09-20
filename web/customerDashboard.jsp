@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="entity.BreakdownItem"%>
 <%@page import="utility.adminUtility"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.dashboardUtility"%>
@@ -826,8 +828,35 @@
                                     Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
                                     </center>
                                     <br>
+                                    
+                                    <%
+                                      Map<Integer, BreakdownItem> breakdownProductsMap = dashboardUtility.getBreakdownProductsMap(4,currentYearInt, allAvailableCustomers.get(1));  
+                                    %>
                                 
+                                        <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Item Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Returned Quantity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
+                                                <%  
+                                                    DecimalFormat df = new DecimalFormat("0");
+                                                    for (Integer number : breakdownProductsMap.keySet()) {
+                                                        out.print("<tr>");
+                                                        BreakdownItem breakdownItem = breakdownProductsMap.get(number);
+                                                        out.print("<td>" + breakdownItem.getItemName() + "</td>");
+                                                        out.print("<td>" + df.format(breakdownItem.getQty()) + "</td>");
+                                                        out.print("<td>" + df.format(breakdownItem.getReturnedQty()) + "</td>");
+                                                        out.print("</tr>");
+                                                    }
+
+                                                %>
+                                            </tbody>
+                                        </table>
                                                         
                                                         
                             <!-- End of Dashboard II charts -->                              
