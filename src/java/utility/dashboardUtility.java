@@ -960,7 +960,7 @@ public class dashboardUtility {
                     
             double returnedQty = getReturnedProductQtyForMonth.get(itemDescription);
             
-            if(qty==0 && returnedQty ==0){
+            if(returnedQty ==0){
                 //getPercentageReturnedProductMap.put(itemDescription, 0.0);
             }else{
                 BreakdownItem breakdownItem = new BreakdownItem(itemDescription,qty,returnedQty);
