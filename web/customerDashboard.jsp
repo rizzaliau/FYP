@@ -709,6 +709,8 @@
                                         //Retrieve parameters from form
                                         String yearRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerYear");
                                         String customerCodeRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerCustomerCode");
+                                        
+                                        int customersWhoDoNotMeetRequirementYearInt = currentYearInt;
 
                                         if (yearRetrievedReturnProductsByCustomer == null && customerCodeRetrievedReturnProductsByCustomer == null) {
 
@@ -729,7 +731,7 @@
 
                                         } else {
 
-                                            int customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedReturnProductsByCustomer);
+                                            customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedReturnProductsByCustomer);
 
                                             returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(customersWhoDoNotMeetRequirementYearInt,customerCodeRetrievedReturnProductsByCustomer);
                                         }
@@ -822,17 +824,120 @@
                                     </script>
                                     <br>
                                     <br>
+                                    
+                                    <!-- Start of Filter month for Return Products By Customers table -->
+                                    
+                                    
                                     <center>
-                                    Breakdown Of Products Return
+                                        <form method="post" action="customerDashboard.jsp" name="returnProductsBreakdownByCustomerForm" >
+                                            <div class="row">
+
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <select id="returnProductsByCustomerMonth" name="returnProductsBreakdownByCustomerMonth" onchange="return setValue();" class="form-control">
+
+                                                            <%
+                                                                out.print("<option value='none'>Select Month</option>");
+                                                                for (int i = 1; i <= allMonths.size(); i++) {
+                                                                    String month = allMonths.get(i);
+                                                                    out.print("<option value='" + i + "'>" + month + "");
+
+                                                                }
+                                                            %>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                            
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <select id="returnProductsByCustomerYear" name="returnProductsBreakdownByCustomerYear" onchange="return setValue();" class="form-control">
+
+                                                            <%
+                                                                out.print("<option value='none'>Select Year</option>");
+                                                                for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    out.print("<option value='" + year + "'>" + year + "");
+
+                                                                }
+                                                            %>
+
+                                                        </select>
+                                                    </div>
+                                                </div>                  
+                                                            
+                                               
+                                                
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                            <select id="returnProductsByCustomerCustomerCode" name="returnProductsBreakdownByCustomerCustomerCode" onchange="return setValue();" class="form-control">
+
+                                                                <%
+                                                                    out.print("<option value='none'>Select Customer Code</option>");
+                                                                    for (int i = 1; i <= allAvailableCustomers.size(); i++) {
+                                                                        String customerCode = allAvailableCustomers.get(i);
+                                                                        out.print("<option value='" + customerCode + "'>" + customerCode + "");
+
+                                                                    }
+                                                                %>
+
+                                                            </select>
+                                                    </div>
+                                                </div>
+
+       
+                                                            
+                                                
+                                                <input type="hidden" name="dropdown" id="dropdown">
+                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
+                                            </form>
+                                    </center>
                                     <br>
-                                    Note: Table with Columns Item Name, Original Qty and Returned Qty to be Inserted
+
+                                    <!-- End of Filter month for Return Products By Customers table -->
+                                    
+                                    
+                                    <!-- Start of return products breakdown table -->
+                                    
+
+                                    
+                                    <%
+                                      String returnProductsBreakdownByCustomerMonth = request.getParameter("returnProductsBreakdownByCustomerMonth");
+                                      String returnProductsBreakdownByCustomerYear = request.getParameter("returnProductsBreakdownByCustomerYear");
+                                      String returnProductsBreakdownByCustomerCustomerCode = request.getParameter("returnProductsBreakdownByCustomerCustomerCode");
+                                      
+                                      Map<Integer, BreakdownItem> breakdownProductsMap = null;
+                                      int returnProductsBreakdownByCustomerMonthInt = currentMonthInt;
+                                      int returnProductsBreakdownByCustomerYearInt = currentYearInt;
+                                      
+                                      if(returnProductsBreakdownByCustomerMonth==null&&returnProductsBreakdownByCustomerYear==null 
+                                            && returnProductsBreakdownByCustomerCustomerCode == null){                            
+
+                                            breakdownProductsMap = dashboardUtility.getBreakdownProductsMap(currentMonthInt,currentYearInt, allAvailableCustomers.get(1));  
+                                            returnProductsBreakdownByCustomerCustomerCode=allAvailableCustomers.get(1);
+                                            
+                                      }else if(returnProductsBreakdownByCustomerMonth.equals("none")&&returnProductsBreakdownByCustomerYear.equals("none") 
+                                            && returnProductsBreakdownByCustomerCustomerCode.equals("none")){
+                                      
+                                            breakdownProductsMap = dashboardUtility.getBreakdownProductsMap(currentMonthInt,currentYearInt, allAvailableCustomers.get(1));  
+                                            returnProductsBreakdownByCustomerCustomerCode=allAvailableCustomers.get(1);
+                                          
+                                      }else{
+                                           returnProductsBreakdownByCustomerMonthInt = Integer.parseInt(returnProductsBreakdownByCustomerMonth);
+                                           returnProductsBreakdownByCustomerYearInt = Integer.parseInt(returnProductsBreakdownByCustomerYear);
+                                        
+                                           breakdownProductsMap = dashboardUtility.getBreakdownProductsMap(returnProductsBreakdownByCustomerMonthInt,returnProductsBreakdownByCustomerYearInt, returnProductsBreakdownByCustomerCustomerCode);          
+                                      
+                                             
+                                      }
+                                    %>
+                                
+                                    
+                                    <center>
+                                        <p class="card-category"><b>Breakdown Of Returned Products For Customer <%= returnProductsBreakdownByCustomerCustomerCode%> for <%= allMonths.get(returnProductsBreakdownByCustomerMonthInt) %> <%= returnProductsBreakdownByCustomerYearInt%></b></p>
                                     </center>
                                     <br>
                                     
-                                    <%
-                                      Map<Integer, BreakdownItem> breakdownProductsMap = dashboardUtility.getBreakdownProductsMap(4,currentYearInt, allAvailableCustomers.get(1));  
-                                    %>
-                                
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
                                                 <tr>
@@ -855,6 +960,7 @@
                                                     }
 
                                                 %>
+                                                
                                             </tbody>
                                         </table>
                                                         
