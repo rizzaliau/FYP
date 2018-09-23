@@ -228,7 +228,7 @@
                                     </div>
                                     <a href="newCustomer.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New User"  value="Add New Customer" style="margin-right:20px;" /></a>
                                     <br>
-                                    <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px;">
+                                    <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left:5px;">
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
                                                 <tr>
@@ -276,7 +276,7 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
 
                     <footer class="footer">
                                 <p class="copyright text-center">
