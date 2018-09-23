@@ -221,8 +221,9 @@
                                     <form action="invoice.jsp" method="post">                                        
                                         <a href="orderHistory.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Order History"  value="Order History" style="margin-right:20px;" /></a>                                        
                                         <input class="btn btn-info btn-fill pull-right" type="submit" name="Print Selected"  value="Print Selected" style="margin-right:20px;" />
-                                        <input readonly="readonly" type="search" id="4" class="example2-search-input datepicker">
-                                        <div class="card-body table-full-width table-responsive">
+                                        <br>
+                                        <input readonly="readonly" type="search" id="4" class="example2-search-input datepicker"  style="margin-right:15px; margin-left: 15px;">
+                                        <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left:5px;">
 
                                             <table id="example2" class="order-table table table-hover table-striped display" style="width:100%">
                                                 <thead>
@@ -336,8 +337,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
         <footer class="footer">
             <p class="copyright text-center">
                 This website's content is Copyright 
