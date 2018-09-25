@@ -132,7 +132,14 @@ public class deleteUtility {
         String preferredLanguageRetrieved = request.getParameter("preferredLanguage");
         String lastModifiedTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
-        String statusRetrieved = request.getParameter("status");
+        String statusRetrieved = request.getParameter("statusConfirmation");
+        
+        System.out.println(orderIDRetrieved);
+        System.out.println(cancelledReasonRetrieved);
+        System.out.println(preferredLanguageRetrieved);
+        System.out.println(lastModifiedTimeStampRetrieved);
+        System.out.println(lastModifiedByRetrieved);
+        System.out.println(statusRetrieved);
         
         System.out.println("Last modified timestamp is: "+lastModifiedTimeStampRetrieved);
         System.out.println(lastModifiedByRetrieved);
@@ -172,8 +179,15 @@ public class deleteUtility {
                 //stmt3.executeUpdate();
                 out.println("passes rs");
                 
-                SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderIDRetrieved, statusRetrieved);
-                String deliverContact = salesOrderdetails.getDeliverContact();                 
+                
+                if(statusRetrieved.equals("pendingDelivery")){
+                    statusRetrieved = "Pending Delivery";
+                }
+                
+                
+                SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderIDRetrieved, "Cancelled");
+                
+                String deliverContact = salesOrderdetails.getDeliverContact();  
                 String debtorName = salesOrderdetails.getDebtorName();
                 
                 if (orderIDRetrieved != null && preferredLanguageRetrieved != null && deliverContact != null){
