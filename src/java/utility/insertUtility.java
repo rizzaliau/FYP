@@ -82,7 +82,7 @@ public class insertUtility {
                     if (debtorName.length() > 0 && preferredLanguage.length() == 7 && deliverContact.length() == 8){
                         
                         //Need to change deliverContact
-                        boolean smsSentToCustomer = sendSmsToNewCustomer(preferredLanguage, "97597790", companyCode);
+                        boolean smsSentToCustomer = sendSmsToNewCustomer(preferredLanguage, deliverContact, companyCode);
 
                         if(!smsSentToCustomer){
                             //show alert to inform admin sms not sent to customer

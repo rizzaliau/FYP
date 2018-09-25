@@ -340,9 +340,11 @@ public class dashboardUtility {
                 percentageReturned = (returnedQty/(qty+returnedQty))*100;
 
                 getPercentageReturnedProductMap.put(itemDescription, percentageReturned);
-
-                //System.out.println("returnedQty is "+returnedQty);
-                //System.out.println("Percentage Returned is"+percentageReturned);
+                
+                System.out.println("item description is "+itemDescription);
+                System.out.println("qty is "+qty);
+                System.out.println("returnedQty is "+returnedQty);
+                System.out.println("Percentage Returned is"+percentageReturned);
             }
         }
         
