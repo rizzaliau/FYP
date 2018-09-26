@@ -520,7 +520,7 @@
                                                     </tbody>
                                                 </table>
 
-                                                <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Edit Sales Order" />
+                                                <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" />
                                                 <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal"  value="Cancel" />
                                         </form>
 
