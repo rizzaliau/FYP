@@ -230,7 +230,7 @@
                                                     <tr>
                                                         <th>S/N</th>
                                                         <th>Order ID</th>
-                                                        <th>Contact Person</th>
+                                                        <th>Customer Code</th>
                                                         <th>Route</th>
                                                         <th>Delivery Date</th>
                                                         <th>Status</th>
@@ -254,7 +254,7 @@
                                                                 out.print("<td>" + pendingCount + "</td>");
                                                                 pendingCount++;
                                                                 out.print("<td>" + salesOrder.getOrderID().toString() + "</td>");
-                                                                out.print("<td>" + salesOrder.getDebtorName() + "</td>");
+                                                                out.print("<td>" + salesOrder.getDebtorCode() + "</td>");
                                                                 out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
 
                                                                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
