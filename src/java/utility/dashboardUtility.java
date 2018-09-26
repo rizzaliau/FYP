@@ -348,7 +348,6 @@ public class dashboardUtility {
             }
         }
         
-
         List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(getPercentageReturnedProductMap.entrySet());
         
         Collections.sort(list,new Comparator<Entry<String, Double>>(){
@@ -590,34 +589,9 @@ public class dashboardUtility {
         
         int rank = 1;
 
-//        for (int k = 10; k>=1; k--){    
-//            
-//            Entry<String, Double> entry = list.get(k);
-//            
-//            //System.out.println("Entry is "+entry);
-//            
-//            if(entry==null){
-//                
-//                String value = "";
-//                top10CustomersByYearMonth.put(rank,value);
-//                rank++;
-//                
-//            }else{
-//            
-//                String key = entry.getKey();
-//                double value = entry.getValue();
-//
-//                System.out.println(entry);
-//                System.out.println("Key is "+key);
-//
-//                top10CustomersByYearMonth.put(rank,key);
-//                rank++;
-//            }
-//            
-//        }
-    System.out.println("list size is"+list.size());
+        System.out.println("list size is"+list.size());
 
-        for (int k = list.size(); k >= 1; k--){    
+        for (int k = list.size(); k >= 1; k--){  
             
             Entry<String, Double> entryRetrieved = list.get(k-1);
             
@@ -627,8 +601,10 @@ public class dashboardUtility {
             System.out.println(entryRetrieved);
             System.out.println("Key is "+key);
             
-            top10CustomersByYearMonth.put(rank,key);
-            rank++;
+            if(value>300){
+                top10CustomersByYearMonth.put(rank,key);
+                rank++;
+            }
             
         }
         
