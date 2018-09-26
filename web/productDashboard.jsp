@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="entity.BreakdownItem"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.adminUtility"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -425,12 +426,14 @@
 
                                         Map<Integer, String> getMostReturnedProductsByMonth = null;
                                         Map<String, Double> getMostReturnedProductsByMonthPercentage = null;
+                                        Map<String, BreakdownItem> getBreakdownItemForItemDescriptionMonth = null;
                                         
                                         //DecimalFormat df = new DecimalFormat("0.00");
 
                                         String yearProductReturnedRetrieved = request.getParameter("yearReturnedProducts");
                                         String monthProductReturnedRetrieved = request.getParameter("monthReturnedProducts");
                                         int monthReturnedInt = currentMonthInt;
+                                        int yearProductReturnedInt = currentYearInt;
 
                                         if(yearProductReturnedRetrieved==null&&monthProductReturnedRetrieved==null){
                                             getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt,currentYearInt);
@@ -438,6 +441,8 @@
                                             
                                             //monthRetrieved = 1;
                                             yearProductReturnedRetrieved = currentYear;
+                                            
+                                            getBreakdownItemForItemDescriptionMonth = dashboardUtility.getBreakdownItemForItemDescriptionMonth(currentMonthInt,currentYearInt);
                                             
                                         }else if(yearProductReturnedRetrieved.equals("none")&&monthProductReturnedRetrieved.equals("none") 
                                             ||yearProductReturnedRetrieved.equals("none")|| monthProductReturnedRetrieved.equals("none")){
@@ -447,14 +452,16 @@
                                             
                                             yearProductReturnedRetrieved = currentYear;
                                             
-                                         
+                                            getBreakdownItemForItemDescriptionMonth = dashboardUtility.getBreakdownItemForItemDescriptionMonth(currentMonthInt,currentYearInt);
+                                            
                                         }else{
-                                            int yearProductReturnedInt = Integer.parseInt(yearProductReturnedRetrieved);
+                                            yearProductReturnedInt = Integer.parseInt(yearProductReturnedRetrieved);
                                             monthReturnedInt = Integer.parseInt(monthProductReturnedRetrieved);
 
                                             getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(monthReturnedInt,yearProductReturnedInt);
                                             getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(monthReturnedInt,yearProductReturnedInt);
-
+                                            
+                                            getBreakdownItemForItemDescriptionMonth = dashboardUtility.getBreakdownItemForItemDescriptionMonth(monthReturnedInt,yearProductReturnedInt);
                                         }
 
 
@@ -545,8 +552,39 @@
                                       });
                                     
                                     </script>
+                                                                       
+                                    <center>
+                                        <p class="card-category"><b>Breakdown Of Top 5 Most Returned Products for <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedInt%></b></p>
+                                    </center>
+                                    <br>
                                     
-                           
+                                    
+                                    <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Item Name</th>
+                                                <th>Quantity</th>
+                                                <th>Returned Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <%  
+                                                DecimalFormat df2 = new DecimalFormat("0");
+                                                for (String itemDescription : getBreakdownItemForItemDescriptionMonth.keySet()) {
+                                                    out.print("<tr>");
+                                                    BreakdownItem breakdownItem = getBreakdownItemForItemDescriptionMonth.get(itemDescription);
+                                                    out.print("<td>" + breakdownItem.getItemName() + "</td>");
+                                                    out.print("<td>" + df2.format(breakdownItem.getQty()) + "</td>");
+                                                    out.print("<td>" + df2.format(breakdownItem.getReturnedQty()) + "</td>");
+                                                    out.print("</tr>");
+                                                }
+
+                                            %>
+
+                                        </tbody>
+                                    </table>
+
                         </div>
                     </div>
                 </div>
