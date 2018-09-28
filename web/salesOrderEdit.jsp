@@ -506,7 +506,7 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                            
+                                                           
                                                             <td><b><font color="red">GST (7%)</font></b></td>
                                                             <td><b><%= df.format(total * 0.07)%></b></td>
                                                         </tr>
