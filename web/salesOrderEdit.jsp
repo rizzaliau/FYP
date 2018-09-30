@@ -337,7 +337,7 @@
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>...</label>
+                                                        <label>&nbsp;</label>
                                                         <input type="text" class="form-control" placeholder="Delivery Address2" required placeholder="" value="<%= salesOrderdetails.getDeliverAddr2()%>" size="10" name="Delivery Address2" disabled="">                                            
                                                     </div>
                                                 </div>
@@ -346,13 +346,13 @@
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>...</label>
+                                                        <label></label>
                                                         <input type="text" class="form-control" placeholder="Delivery Address3" size="10" name="Delivery Address3" value="<%= salesOrderdetails.getDeliverAddr3()%>" disabled="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>...</label>
+                                                        <label></label>
                                                         <input type="text" class="form-control" placeholder="Delivery Address4" required placeholder="" value="<%= salesOrderdetails.getDeliverAddr4()%>" size="10" name="Delivery Address4" disabled="">                                            
                                                     </div>
                                                 </div>
