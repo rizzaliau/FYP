@@ -224,11 +224,11 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Billing Address*</label>
-                                                        <input type="text" class="form-control" required placeholder="Billing Address" value="" size="10" name="inAddr1">
+                                                        <input type="text" class="form-control" required placeholder="Billing Address Line 1" value="" size="10" name="inAddr1">
                                                         <br>
-                                                        <input type="text" class="form-control" required placeholder="" value="" size="10" name="invAddr2">
+                                                        <input type="text" class="form-control" required placeholder="Billing Address Line 2" value="" size="10" name="invAddr2">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr3" >
+                                                        <input type="text" class="form-control" placeholder="Postal Code" value="" size="10" name="invAddr3" >
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr4d">
                                                     </div>
@@ -237,11 +237,11 @@
                                                     <div class="form-group">
                                                         <label>Delivery Address* <input type="checkbox" name="billingtoo" onclick="fillDelivery(this.form)"><em>Same as Billing Address</em></input></label>
 
-                                                        <input type="text" class="form-control" required placeholder="Delivery Address" name="deliverAddr1">
+                                                        <input type="text" class="form-control" required placeholder="Delivery Address Line 1" name="deliverAddr1">
                                                         <br>
-                                                        <input type="text" class="form-control" required placeholder="" size="10" name="deliverAddr2">
+                                                        <input type="text" class="form-control" required placeholder="Delivery Address Line 2" size="10" name="deliverAddr2">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="" size="10" name="deliverAddr3">
+                                                        <input type="text" class="form-control" placeholder="Postal Code" size="10" name="deliverAddr3">
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" size="10" name="deliverAddr4" >
                                                     </div>
