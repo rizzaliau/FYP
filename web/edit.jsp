@@ -455,7 +455,7 @@
 
                                             <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>&companyName=<%= debtor.getCompanyName()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
                                             <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" data-toggle="modal" data-target="#exampleModal"/>
-                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" style="margin-right:15px;" />
+                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Done" style="margin-right:15px;" />
                                             <div class="clearfix"></div>
                                         </form>
 

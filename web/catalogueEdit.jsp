@@ -330,7 +330,7 @@
 
                                             </div>
 
-                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Update" style="margin-right:20px;"/>
+                                            <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Done"/>
                                             <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal"  value="Cancel" style = "margin-right: 10px;"/>
                                         </form>
 
