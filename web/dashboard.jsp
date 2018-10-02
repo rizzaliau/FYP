@@ -209,13 +209,24 @@
 
                                     <%
                                         Map<Integer, Double> salesRevenueByMonthMap = null;
-                                        DecimalFormat df = new DecimalFormat("0.00");
+                                        DecimalFormat df = new DecimalFormat("#0.00");
 
                                         salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
+                                        
+                                        //Retrieve and Round up values
+                                        int janValue = (int)Math.rint(salesRevenueByMonthMap.get(1));
+                                        int febValue = (int)Math.rint(salesRevenueByMonthMap.get(2));
+                                        int marValue = (int)Math.rint(salesRevenueByMonthMap.get(3));
+                                        int aprValue = (int)Math.rint(salesRevenueByMonthMap.get(4));
+                                        int mayValue = (int)Math.rint(salesRevenueByMonthMap.get(5));
+                                        int junValue = (int)Math.rint(salesRevenueByMonthMap.get(6));
+                                        int julValue = (int)Math.rint(salesRevenueByMonthMap.get(7));
+                                        int augValue = (int)Math.rint(salesRevenueByMonthMap.get(8));
+                                        int sepValue = (int)Math.rint(salesRevenueByMonthMap.get(9));
+                                        int octValue = (int)Math.rint(salesRevenueByMonthMap.get(10));
+                                        int novValue = (int)Math.rint(salesRevenueByMonthMap.get(11));
+                                        int decValue = (int)Math.rint(salesRevenueByMonthMap.get(12));
 
-                                        
-                                        
-                                        
                                     %>    
                                     <center>
                                         <script>
@@ -239,18 +250,18 @@
                                                                 fontFamily: 'Segoe UI',
                                                                 fontSize: 12,
                                                             data: [
-                                                                <%= df.format(salesRevenueByMonthMap.get(1))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(2))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(3))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(4))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(5))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(6))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(7))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(8))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(9))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(10))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(11))%>,
-                                                                <%= df.format(salesRevenueByMonthMap.get(12))%>
+                                                                <%=janValue%>,
+                                                                <%=febValue%>,
+                                                                <%=marValue%>,
+                                                                <%=aprValue%>,
+                                                                <%=mayValue%>,
+                                                                <%=junValue%>,
+                                                                <%=julValue%>,
+                                                                <%=augValue%>,
+                                                                <%=sepValue%>,
+                                                                <%=octValue%>,
+                                                                <%=novValue%>,
+                                                                <%=decValue%>
                                                             ],
                                                             //backgroundColor:'green',
                                                             backgroundColor: [
