@@ -364,6 +364,13 @@
 
                                             getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(currentMonthInt, currentYearInt);
                                             qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(currentMonthInt, currentYearInt);
+                                            
+                                            //Retrieve and Round up values
+                                            int top5Rank1 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1)));
+                                            int top5Rank2 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(2)));
+                                            int top5Rank3 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(3)));
+                                            int top5Rank4 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(4)));
+                                            int top5Rank5 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(5)));
 
 
                                         %>
@@ -392,11 +399,11 @@
                                                                 fontFamily: 'Segoe UI',
                                                                 fontSize: 12,
                                                                 data: [
-                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1))%>,
-                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(2))%>,
-                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(3))%>,
-                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(4))%>,
-                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(5))%>
+                                                <%= top5Rank1%>,
+                                                <%= top5Rank2%>,
+                                                <%= top5Rank3%>,
+                                                <%= top5Rank4%>,
+                                                <%= top5Rank5%>
                                                                 ],
                                                                 
                                                                 //backgroundColor:'green',
@@ -478,6 +485,14 @@
 
                                             getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt, currentYearInt);
                                             getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(currentMonthInt, currentYearInt);
+                                            
+                                            //Retrieve and Round up values
+                                            int top5MostReturnedRank1 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)));
+                                            int top5MostReturnedRank2 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2)));
+                                            int top5MostReturnedRank3 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3)));
+                                            int top5MostReturnedRank4 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4)));
+                                            int top5MostReturnedRank5 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)));
+
 
                                         %>
 
@@ -512,11 +527,11 @@
                                                             fontFamily: 'Segoe UI',
                                                             fontSize: 12,
                                                             data: [
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)))%>,
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2)))%>,
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3)))%>,
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4)))%>,
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)))%>
+                                                                    <%= top5MostReturnedRank1 %>,
+                                                                    <%= top5MostReturnedRank2 %>,
+                                                                    <%= top5MostReturnedRank3 %>,
+                                                                    <%= top5MostReturnedRank4 %>,
+                                                                    <%= top5MostReturnedRank5 %>
                                                             ],
                                                             //backgroundColor:'green',
                                                             backgroundColor: 'rgba(245,104,41,100)',
@@ -778,7 +793,7 @@
 
                                 customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt);
                                 allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(currentYearInt,currentMonthInt);
-
+                                
                             %>
 
                                     <script>
