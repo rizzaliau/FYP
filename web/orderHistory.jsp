@@ -37,6 +37,8 @@
     </head>
 
     <body>
+        
+        <div class="wrapper">
         <!-- Sidebar -->
         <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
             <!--
@@ -177,7 +179,8 @@
                         <div class="col-md-12">
                             <div class="card striped-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h4>Order History</h4>
+                                    <h4 class="card-title">Order History</h4>
+                                    <br>
                                     <label>Order(s):</label>
                                     <select class="example3-filter-input" id="5">
                                         <option value="All">All</option>
@@ -217,8 +220,8 @@
                                         <a href="./salesOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Current Orders"  value="Current Orders" style="margin-right:20px;" /></a>
                                         <input class="btn btn-info btn-fill pull-right" type="submit" name="Print Selected"  value="Print Selected" style="margin-right:20px;" />
 
-                                        <input readonly="readonly" type="search" id="4" class="example3-search-input datepicker">                                                                                                
-                                        <div class="card-body table-full-width table-responsive">
+                                        <input readonly="readonly" type="search" id="4" class="example3-search-input datepicker" style="margin-right:15px; margin-left: 15px;">                                                                                                
+                                        <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left:5px;">
                                             <table id="example3" class="order-table table table-hover table-striped display" style="width:100%">
                                                 <thead>   
                                                     <tr>
@@ -312,6 +315,7 @@
                     </div>
                 </div>
             </div>
+        
 
             <footer class="footer">
                 <p class="copyright text-center">
