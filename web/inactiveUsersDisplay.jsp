@@ -48,37 +48,37 @@
                  <ul class="nav">
                          <li>
                             <a class="nav-link" href="dashboard.jsp">
-                                <i class="nc-icon nc-chart-pie-35"></i>
+                                <img src="assets/img/dashboard_icon.png"/>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="./userMGMT.jsp">
-                                <i class="nc-icon nc-circle-09"></i>
+                                <img src="assets/img/debtor_icon.png"/>
                                 <p>Customer Mgmt</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="./salesOrderMGMT.jsp">
-                                <i class="nc-icon nc-notes"></i>
+                                <img src="assets/img/salesOrder_icon.png"/>
                                 <p>Sales Order Mgmt</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
-                                <i class="nc-icon nc-paper-2"></i>
+                                <img src="assets/img/item_icon.png"/>
                                 <p>Catalogue Mgmt</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="loyaltyProgramme.jsp">
-                                <i class="nc-icon nc-single-02"></i>
+                                <img src="assets/img/wallet_icon.png"/>
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="./accountSettings.jsp">
-                                <i class="nc-icon nc-settings-gear-64"></i>
+                                <img src="assets/img/accSettings_icon.png"/>
                                 <p>Account Settings</p>
                             </a>
                         </li>
