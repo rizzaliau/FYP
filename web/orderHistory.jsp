@@ -180,7 +180,7 @@
                             <div class="card striped-tabled-with-hover">
                                 <div class="card-header ">
                                     <h4 class="card-title">Order History</h4>
-                                    <br>
+                                    
                                     <label>Order(s):</label>
                                     <select class="example3-filter-input" id="5">
                                         <option value="All">All</option>
@@ -217,11 +217,11 @@
                                     </div> 
 
                                     <form action="invoice.jsp" method="post">
-                                        <a href="./salesOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Current Orders"  value="Current Orders" style="margin-right:20px;" /></a>
+                                        <a href="./salesOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Current Orders"  value="Current Orders" style="margin-right:5px;" /></a>
                                         <input class="btn btn-info btn-fill pull-right" type="submit" name="Print Selected"  value="Print Selected" style="margin-right:20px;" />
-
-                                        <input readonly="readonly" type="search" id="4" class="example3-search-input datepicker" style="margin-right:15px; margin-left: 15px;">                                                                                                
-                                        <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left:5px;">
+                                        <br>
+                                        <input readonly="readonly" type="search" id="4" class="example3-search-input datepicker" style="margin-right:5px; margin-left:5px;">                                                                                                
+                                        <div class="card-body table-full-width table-responsive">
                                             <table id="example3" class="order-table table table-hover table-striped display" style="width:100%">
                                                 <thead>   
                                                     <tr>
