@@ -213,7 +213,7 @@
                                             <input type= "hidden" name="preferredLanguage" value='<%= salesOrderdetails.getPreferredLanguage() %>'/>
                                             <input type="hidden" value="<%= currentTimeStamp %>" name="lastModifiedTimeStamp">
                                             <input type="hidden" value="<%= currentModifier %>" name="lastModifiedBy">
-                                            <input type="hidden" value="<%= status %>" name="status">
+                                            <input type="hidden" value="<%= status %>" name="statusConfirmation">
                                             <p>
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Confirm Cancel" style="margin-right: 100px; margin-top: 10px; margin-bottom: 20px; "> 
                                             <a href="salesOrder.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Back" style="margin-left:15px; margin-top: 10px; margin-bottom: 20px;"/></a>
