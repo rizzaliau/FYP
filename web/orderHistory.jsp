@@ -37,6 +37,8 @@
     </head>
 
     <body>
+        
+        <div class="wrapper">
         <!-- Sidebar -->
         <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
             <!--
@@ -67,37 +69,37 @@
                     %>
                     <li>
                         <a class="nav-link" href="dashboard.jsp">
-                            <i class="nc-icon nc-chart-pie-35"></i>
+                             <img src="assets/img/dashboard_icon.png"/>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="customer.jsp">
-                            <i class="nc-icon nc-circle-09"></i>
+                             <img src="assets/img/debtor_icon.png"/>
                             <p>Customer</p>
                         </a>
                     </li>
                     <li class='nav-item active'>
                         <a class="nav-link" href="salesOrder.jsp">
-                            <i class="nc-icon nc-notes"></i>
+                           <img src="assets/img/salesOrder_icon.png"/>
                             <p>Sales Order</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="catalogue.jsp">
-                            <i class="nc-icon nc-paper-2"></i>
+                             <img src="assets/img/item_icon.png"/>
                             <p>Catalogue</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="loyaltyProgramme.jsp">
-                            <i class="nc-icon nc-single-02"></i>
+                             <img src="assets/img/wallet_icon.png"/>
                             <p>Loyalty Programme</p>
                         </a>
                     </li>
                     <li>
                         <a class="nav-link" href="./accountSettings.jsp">
-                            <i class="nc-icon nc-settings-gear-64"></i>
+                            <img src="assets/img/accSettings_icon.png"/>
                             <p>Account Settings</p>
                         </a>
                     </li>
@@ -177,7 +179,8 @@
                         <div class="col-md-12">
                             <div class="card striped-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h4>Order History</h4>
+                                    <h4 class="card-title">Order History</h4>
+                                    
                                     <label>Order(s):</label>
                                     <select class="example3-filter-input" id="5">
                                         <option value="All">All</option>
@@ -214,10 +217,10 @@
                                     </div> 
 
                                     <form action="invoice.jsp" method="post">
-                                        <a href="./salesOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Current Orders"  value="Current Orders" style="margin-right:20px;" /></a>
+                                        <a href="./salesOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Current Orders"  value="Current Orders" style="margin-right:5px;" /></a>
                                         <input class="btn btn-info btn-fill pull-right" type="submit" name="Print Selected"  value="Print Selected" style="margin-right:20px;" />
-
-                                        <input readonly="readonly" type="search" id="4" class="example3-search-input datepicker">                                                                                                
+                                        <br>
+                                        <input readonly="readonly" type="search" id="4" class="example3-search-input datepicker" style="margin-right:5px; margin-left:5px;">                                                                                                
                                         <div class="card-body table-full-width table-responsive">
                                             <table id="example3" class="order-table table table-hover table-striped display" style="width:100%">
                                                 <thead>   
@@ -312,6 +315,7 @@
                     </div>
                 </div>
             </div>
+        
 
             <footer class="footer">
                 <p class="copyright text-center">

@@ -75,37 +75,37 @@
                         %>
                         <li class='nav-item active'>
                             <a class="nav-link" href="dashboard.jsp">
-                                <i class="nc-icon nc-chart-pie-35"></i>
+                                <img src="assets/img/dashboard_icon.png"/>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="customer.jsp">
-                                <i class="nc-icon nc-circle-09"></i>
+                                  <img src="assets/img/debtor_icon.png"/>
                                 <p>Customer</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="salesOrder.jsp">
-                                <i class="nc-icon nc-notes"></i>
+                               <img src="assets/img/salesOrder_icon.png"/>
                                 <p>Sales Order</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
-                                <i class="nc-icon nc-paper-2"></i>
+                                <img src="assets/img/item_icon.png"/>
                                 <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="loyaltyProgramme.jsp">
-                                <i class="nc-icon nc-single-02"></i>
+                                  <img src="assets/img/wallet_icon.png"/>
                                 <p>Loyalty Programme</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="./accountSettings.jsp">
-                                <i class="nc-icon nc-settings-gear-64"></i>
+                                <img src="assets/img/accSettings_icon.png"/>
                                 <p>Account Settings</p>
                             </a>
                         </li>
@@ -554,7 +554,7 @@
                                     </script>
                                                                        
                                     <center>
-                                        <p class="card-category"><b>Breakdown Of Top 5 Most Returned Products for <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedInt%></b></p>
+                                        <p class="card-category"><b><font color = "black"><font face = "Segoe UI" >Breakdown Of Top 5 Most Returned Products for <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedInt%> </font></font></b></p>
                                     </center>
                                     <br>
                                     
@@ -562,6 +562,7 @@
                                     <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>Item Name</th>
                                                 <th>Quantity</th>
                                                 <th>Returned Quantity</th>
@@ -574,6 +575,7 @@
                                                 for (String itemDescription : getBreakdownItemForItemDescriptionMonth.keySet()) {
                                                     out.print("<tr>");
                                                     BreakdownItem breakdownItem = getBreakdownItemForItemDescriptionMonth.get(itemDescription);
+                                                    out.print("<td>"+"</td>");
                                                     out.print("<td>" + breakdownItem.getItemName() + "</td>");
                                                     out.print("<td>" + df2.format(breakdownItem.getQty()) + "</td>");
                                                     out.print("<td>" + df2.format(breakdownItem.getReturnedQty()) + "</td>");
