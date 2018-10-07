@@ -6,6 +6,8 @@
 --%>
 
 
+<%@page import="utility.dashboardUtility"%>
+<%@page import="utility.adminUtility"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
@@ -222,7 +224,7 @@
 
                                         <form method="post" action="editController">
 
-                                            <div class="row">
+                                            
                                                 <%  String currentModifier = usernameSession;
                                                     String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
 
@@ -241,8 +243,42 @@
                                                     if (lastModifiedBy.equals("")) {
                                                         lastModifiedBy = "-";
                                                     }
+                                                    
+                                                    String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
+                                                    String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
+                                                    int currentMonthInt = Integer.parseInt(currentMonth);
+                                                    int currentYearInt = Integer.parseInt(currentYear);
+                                                    
+                                                    Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
+                                                    Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth1 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt-1);
+                                                    Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth2 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt-2);
+                                                    Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth3 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt-3);
+                                                    
+                                                    for (Integer number : customersWhoDoNotMeetRequirementByYearMonth1.keySet()) {
+                                                        if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth1.get(number))){
+                                                            //out.println("<font color = 'red'>");
+                                                            out.println("<font color = 'red'>ALERT: Customer "+debtor.getDebtorName()+" did not meet the requirements in  "+allMonths.get(currentMonthInt-1)+" "+currentYearInt+"</font>");
+                                                        }
+                                                    }
+                                                    
+                                                    for (Integer number : customersWhoDoNotMeetRequirementByYearMonth2.keySet()) {
+                                                        if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth2.get(number))){
+                                                            out.println("<font color = 'red'>ALERT: Customer "+debtor.getDebtorName()+" did not meet the requirements in  "+allMonths.get(currentMonthInt-2)+"</font>");
+                                                        }
+                                                    }
+                                                    
+                                                    for (Integer number : customersWhoDoNotMeetRequirementByYearMonth3.keySet()) {
+                                                        if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth3.get(number))){
+                                                            out.println("<br>");
+                                                            out.println("<font color = 'red'>ALERT: Customer "+debtor.getDebtorName()+" did not meet the requirements in "+allMonths.get(currentMonthInt-3)+"</font>");
+                                                        }
+                                                    }
+                                                    
+
+                                                    
                                                 %>    
 
+                                                <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Customer Code*</label>
