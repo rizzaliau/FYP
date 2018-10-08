@@ -376,6 +376,7 @@ public class dashboardUtility {
         return mostReturnedProductsByMonth;
     }
     
+    // key item name, value returned qty percentage for a particular month and year
     public static Map<String, Double> getReturnedQtyPercentageForItemDescriptionMonth(int month, int year){
         
         //key orderitem description, value % returned quantity of product ordered
@@ -445,8 +446,10 @@ public class dashboardUtility {
             }else{
             
                 percentageReturned = (returnedQty/(qty+returnedQty))*100;
+                
+                double percentageReturnedRounded =  (int)Math.rint(percentageReturned);
 
-                getPercentageReturnedProductMap.put(itemDescription, percentageReturned);
+                getPercentageReturnedProductMap.put(itemDescription, percentageReturnedRounded);
 
                 //System.out.println("returnedQty is "+returnedQty);
                 //System.out.println("Percentage Returned is"+percentageReturned);
