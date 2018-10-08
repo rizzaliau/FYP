@@ -116,7 +116,7 @@
                         <li>
                             <a class="nav-link" href="loyaltyProgramme.jsp">
                                 <img src="assets/img/wallet_icon.png"/>
-                                <p>Loyalty Programme</p>
+                                <p>Wallet</p>
                             </a>
                         </li>
                         <li>
@@ -257,7 +257,7 @@
                                                     for (Integer number : customersWhoDoNotMeetRequirementByYearMonth1.keySet()) {
                                                         if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth1.get(number))){
                                                             //out.println("<font color = 'red'>");
-                                                            out.println("<font color = 'red'>ALERT: Customer "+debtor.getDebtorName()+" did not meet the requirements in  "+allMonths.get(currentMonthInt-1)+" "+currentYearInt+"</font>");
+                                                            out.println("<font color = 'red'> ALERT: Customer "+debtor.getDebtorName()+" did not meet the requirements in  "+allMonths.get(currentMonthInt-1)+" "+currentYearInt+"</font>");
                                                         }
                                                     }
                                                     
