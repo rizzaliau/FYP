@@ -224,10 +224,32 @@
                                                     <select id="top10Year" name="top10CustomersMonth" onchange="return setValue();" class="form-control">
 
                                                         <%
-                                                            out.print("<option value='none'>Select Month</option>");
-                                                            for (int i = 1; i <= allMonths.size(); i++) {
-                                                                String month = allMonths.get(i);
-                                                                out.print("<option value='" + i + "'>" + month + "");
+                                                            //Retrieve parameters from form
+                                                            String yearRetrievedTop10Customers = request.getParameter("top10CustomersYear");
+                                                            String monthRetrievedTop10Customers = request.getParameter("top10CustomersMonth");
+                                                            
+                                                            
+                                                            if(monthRetrievedTop10Customers==null || monthRetrievedTop10Customers.equals("none")){
+                                                                out.print("<option value='none'>Select Month</option>");
+                                                                for (int i = 1; i <= allMonths.size(); i++) {
+                                                                        String month = allMonths.get(i);
+                                                                        out.print("<option value='"+i+"'>"+month+"");
+
+                                                                }
+
+                                                            }else{
+                                                                int monthRetrievedTop10CustomersInt = Integer.parseInt(monthRetrievedTop10Customers);
+
+                                                                out.print("<option value='"+monthRetrievedTop10CustomersInt+"'>"+allMonths.get(monthRetrievedTop10CustomersInt)+"</option>");
+                                                                for (int i = 1; i <= allMonths.size(); i++) {
+
+                                                                        String month = allMonths.get(i);
+
+                                                                        if(monthRetrievedTop10CustomersInt != i){
+                                                                            out.print("<option value='"+i+"'>"+month+"");
+                                                                        }
+
+                                                                }
 
                                                             }
                                                         %>
@@ -241,11 +263,28 @@
                                                 <select id="top10Month" name="top10CustomersYear" onchange="return setValue();" class="form-control">
 
                                                     <%
-                                                        out.print("<option value='none'>Select Year</option>");
-                                                        for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                            int year = availableSalesOrderYears.get(i);
-                                                            out.print("<option value='" + year + "'>" + year + "");
+                                                        if(yearRetrievedTop10Customers==null || yearRetrievedTop10Customers.equals("none")){
+                                                            out.print("<option value='none'>Select Year</option>");
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    out.print("<option value='"+year+"'>"+year+"");
 
+                                                            }
+                                                        }else{
+                                                            int yearRetrievedTop10CustomersInt = Integer.parseInt(yearRetrievedTop10Customers);
+                                                            out.print("<option value='"+yearRetrievedTop10CustomersInt+"'>"+yearRetrievedTop10CustomersInt+"</option>");
+                                                            
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    
+                                                                    if(yearRetrievedTop10CustomersInt != year){
+                                                                        out.print("<option value='"+year+"'>"+year+"");
+                                                                    }
+                                                                    
+                                                                    
+
+                                                            }
                                                         }
                                                     %>
 
@@ -255,7 +294,7 @@
 
                                         <input type="hidden" name="dropdown" id="dropdown">
                                         <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                    </form>
+                                   
                             
                             <br>
                          <!-- End of Filter month/year for top 10 Customers -->
@@ -273,14 +312,8 @@
                                         
                                         Map<String, Double> allCustomerSalesByYearMonth = null;
                                         
-                                        //Retrieve parameters from form
-                                        String yearRetrievedTop10Customers = request.getParameter("top10CustomersYear");
-                                        String monthRetrievedTop10Customers = request.getParameter("top10CustomersMonth");
-
                                         int top10MonthInt = currentMonthInt;
 
-                                        //out.println(yearRetrievedTop10Customers);
-                                        //out.println(monthRetrievedTop10Customers);
 
                                         if (yearRetrievedTop10Customers == null && monthRetrievedTop10Customers == null) {
 
@@ -436,12 +469,33 @@
                                                      <select id="top10Year" name="customersDoNotMeetRequirementMonth" onchange="return setValue();" class="form-control">
 
                                                          <%
-                                                             out.print("<option value='none'>Select Month</option>");
-                                                             for (int i = 1; i <= allMonths.size(); i++) {
-                                                                 String month = allMonths.get(i);
-                                                                 out.print("<option value='" + i + "'>" + month + "");
+                                                            //Retrieve parameters from form
+                                                            String yearRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementYear");
+                                                            String monthRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementMonth");
+                                                            
+                                                            if(monthRetrievedCustomersDoNotMeetRequirement==null || monthRetrievedCustomersDoNotMeetRequirement.equals("none")){
+                                                                out.print("<option value='none'>Select Month</option>");
+                                                                for (int i = 1; i <= allMonths.size(); i++) {
+                                                                        String month = allMonths.get(i);
+                                                                        out.print("<option value='"+i+"'>"+month+"");
 
-                                                             }
+                                                                }
+
+                                                            }else{
+                                                                int monthProductReturnedRetrievedInt = Integer.parseInt(monthRetrievedCustomersDoNotMeetRequirement);
+
+                                                                out.print("<option value='"+monthProductReturnedRetrievedInt+"'>"+allMonths.get(monthProductReturnedRetrievedInt)+"</option>");
+                                                                for (int i = 1; i <= allMonths.size(); i++) {
+
+                                                                        String month = allMonths.get(i);
+
+                                                                        if(monthProductReturnedRetrievedInt != i){
+                                                                            out.print("<option value='"+i+"'>"+month+"");
+                                                                        }
+
+                                                                }
+
+                                                            }
                                                          %>
 
                                                      </select>
@@ -453,12 +507,29 @@
                                                  <select id="top10Month" name="customersDoNotMeetRequirementYear" onchange="return setValue();" class="form-control">
 
                                                      <%
-                                                         out.print("<option value='none'>Select Year</option>");
-                                                         for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                             int year = availableSalesOrderYears.get(i);
-                                                             out.print("<option value='" + year + "'>" + year + "");
+                                                        if(yearRetrievedCustomersDoNotMeetRequirement==null || yearRetrievedCustomersDoNotMeetRequirement.equals("none")){
+                                                            out.print("<option value='none'>Select Year</option>");
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    out.print("<option value='"+year+"'>"+year+"");
 
-                                                         }
+                                                            }
+                                                        }else{
+                                                            int yearRetrievedCustomersDoNotMeetRequirementInt = Integer.parseInt(yearRetrievedCustomersDoNotMeetRequirement);
+                                                            out.print("<option value='"+yearRetrievedCustomersDoNotMeetRequirementInt+"'>"+yearRetrievedCustomersDoNotMeetRequirementInt+"</option>");
+                                                            
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    
+                                                                    if(yearRetrievedCustomersDoNotMeetRequirementInt != year){
+                                                                        out.print("<option value='"+year+"'>"+year+"");
+                                                                    }
+                                                                    
+                                                                    
+
+                                                            }
+                                                        }
                                                      %>
 
                                                  </select>
@@ -467,7 +538,7 @@
 
                                          <input type="hidden" name="dropdown" id="dropdown">
                                          <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                     </form>
+                                     
                              </center>
                              <br>
                              
@@ -481,26 +552,15 @@
                             </div> 
                              
                             <% 
-                                //Logic for customerWhoDoNotMeetRequirement
-                                 
-                                 //Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(2017,11);
-                                    
-                                 //Map<String, Double> allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(2017,11);
 
                                 //Key rank, String customer code
                                 
                                 Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth = null;
-
                                 Map<String, Double> allCustomerWhoDoNotMeetRequirementSalesByYearMonth = null;
 
-                                //Retrieve parameters from form
-                                String yearRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementYear");
-                                String monthRetrievedCustomersDoNotMeetRequirement = request.getParameter("customersDoNotMeetRequirementMonth");
 
                                 int customersDoNotMeetRequirementMonthInt = currentMonthInt;
 
-                                //out.println(yearRetrievedTop10Customers);
-                                //out.println(monthRetrievedTop10Customers);
 
                                 if (yearRetrievedCustomersDoNotMeetRequirement == null && monthRetrievedCustomersDoNotMeetRequirement == null) {
 
@@ -521,12 +581,10 @@
                                     
                                     int customersWhoDoNotMeetRequirementYearInt = Integer.parseInt(yearRetrievedCustomersDoNotMeetRequirement);
                                     customersDoNotMeetRequirementMonthInt = Integer.parseInt(monthRetrievedCustomersDoNotMeetRequirement);
-                                    //map parameters month, revenue
-                                    //hardcoded year to 2018
+
                                     customersWhoDoNotMeetRequirementByYearMonth = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
                                     allCustomerWhoDoNotMeetRequirementSalesByYearMonth = dashboardUtility.getAllCustomerSalesByYearMonth(customersWhoDoNotMeetRequirementYearInt,customersDoNotMeetRequirementMonthInt);
 
-                                    //yearRetrievedCustomersDoNotMeetRequirement = "2018";
                                 }
 
 
@@ -657,10 +715,32 @@
                                                             <select id="returnProductsByCustomerCustomerCode" name="returnProductsByCustomerCustomerCode" onchange="return setValue();" class="form-control">
 
                                                                 <%
-                                                                    out.print("<option value='none'>Select Customer Code</option>");
-                                                                    for (int i = 1; i <= allAvailableCustomers.size(); i++) {
-                                                                        String customerCode = allAvailableCustomers.get(i);
-                                                                        out.print("<option value='" + customerCode + "'>" + customerCode + "");
+                                                                    //Retrieve parameters from form
+                                                                    String yearRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerYear");
+                                                                    String customerCodeRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerCustomerCode");
+                                        
+                                                                    if(customerCodeRetrievedReturnProductsByCustomer==null || customerCodeRetrievedReturnProductsByCustomer.equals("none")){
+                                                                        out.print("<option value='none'>Select Customer Code</option>");
+                                                                        for (int i = 1; i <= allAvailableCustomers.size(); i++) {
+                                                                            String customerCode = allAvailableCustomers.get(i);
+                                                                            out.print("<option value='" + customerCode + "'>" + customerCode + "");
+
+                                                                        }
+
+                                                                    }else{
+
+                                                                        out.print("<option value='"+customerCodeRetrievedReturnProductsByCustomer+"'>"+customerCodeRetrievedReturnProductsByCustomer+"</option>");
+                                                                        
+                                                                        for (int i = 1; i <= allAvailableCustomers.size(); i++) {
+
+                                                                                String customerCode = allAvailableCustomers.get(i);
+
+                                                                                if(!customerCodeRetrievedReturnProductsByCustomer.equals(customerCode)){
+
+                                                                                    out.print("<option value='" + customerCode + "'>" + customerCode + "");
+                                                                                }
+
+                                                                        }
 
                                                                     }
                                                                 %>
@@ -674,11 +754,28 @@
                                                         <select id="returnProductsByCustomerYear" name="returnProductsByCustomerYear" onchange="return setValue();" class="form-control">
 
                                                             <%
-                                                                out.print("<option value='none'>Select Year</option>");
-                                                                for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                    int year = availableSalesOrderYears.get(i);
-                                                                    out.print("<option value='" + year + "'>" + year + "");
+                                                                if(yearRetrievedReturnProductsByCustomer==null || yearRetrievedReturnProductsByCustomer.equals("none")){
+                                                                    out.print("<option value='none'>Select Year</option>");
+                                                                    for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                            int year = availableSalesOrderYears.get(i);
+                                                                            out.print("<option value='"+year+"'>"+year+"");
 
+                                                                    }
+                                                                }else{
+                                                                    int yearRetrievedReturnProductsByCustomerInt = Integer.parseInt(yearRetrievedReturnProductsByCustomer);
+                                                                    out.print("<option value='"+yearRetrievedReturnProductsByCustomerInt+"'>"+yearRetrievedReturnProductsByCustomerInt+"</option>");
+
+                                                                    for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+
+                                                                            int year = availableSalesOrderYears.get(i);
+
+                                                                            if(yearRetrievedReturnProductsByCustomerInt != year){
+                                                                                out.print("<option value='"+year+"'>"+year+"");
+                                                                            }
+
+
+
+                                                                    }
                                                                 }
                                                             %>
 
@@ -688,7 +785,7 @@
 
                                                 <input type="hidden" name="dropdown" id="dropdown">
                                                 <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                            </form>
+                                            
                                     </center>
                                     <br>
 
@@ -706,9 +803,6 @@
                                         
                                         Map<Integer, Double> returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(2018,"301-C028");
 
-                                        //Retrieve parameters from form
-                                        String yearRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerYear");
-                                        String customerCodeRetrievedReturnProductsByCustomer = request.getParameter("returnProductsByCustomerCustomerCode");
                                         
                                         int customersWhoDoNotMeetRequirementYearInt = currentYearInt;
 
@@ -837,12 +931,35 @@
                                                         <select id="returnProductsByCustomerMonth" name="returnProductsBreakdownByCustomerMonth" onchange="return setValue();" class="form-control">
 
                                                             <%
-                                                                out.print("<option value='none'>Select Month</option>");
-                                                                for (int i = 1; i <= allMonths.size(); i++) {
-                                                                    String month = allMonths.get(i);
-                                                                    out.print("<option value='" + i + "'>" + month + "");
+                                                                String returnProductsBreakdownByCustomerMonth = request.getParameter("returnProductsBreakdownByCustomerMonth");
+                                                                String returnProductsBreakdownByCustomerYear = request.getParameter("returnProductsBreakdownByCustomerYear");
+                                                                String returnProductsBreakdownByCustomerCustomerCode = request.getParameter("returnProductsBreakdownByCustomerCustomerCode");
+
+                                                                if(returnProductsBreakdownByCustomerMonth==null || returnProductsBreakdownByCustomerMonth.equals("none")){
+                                                                    out.print("<option value='none'>Select Month</option>");
+                                                                    for (int i = 1; i <= allMonths.size(); i++) {
+                                                                            String month = allMonths.get(i);
+                                                                            out.print("<option value='"+i+"'>"+month+"");
+
+                                                                    }
+
+                                                                }else{
+                                                                    int monthProductReturnedRetrievedInt = Integer.parseInt(returnProductsBreakdownByCustomerMonth);
+
+                                                                    out.print("<option value='"+monthProductReturnedRetrievedInt+"'>"+allMonths.get(monthProductReturnedRetrievedInt)+"</option>");
+                                                                    for (int i = 1; i <= allMonths.size(); i++) {
+
+                                                                            String month = allMonths.get(i);
+
+                                                                            if(monthProductReturnedRetrievedInt != i){
+                                                                                out.print("<option value='"+i+"'>"+month+"");
+                                                                            }
+
+                                                                    }
 
                                                                 }
+                                                                
+
                                                             %>
 
                                                         </select>
@@ -854,11 +971,28 @@
                                                         <select id="returnProductsByCustomerYear" name="returnProductsBreakdownByCustomerYear" onchange="return setValue();" class="form-control">
 
                                                             <%
-                                                                out.print("<option value='none'>Select Year</option>");
-                                                                for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                    int year = availableSalesOrderYears.get(i);
-                                                                    out.print("<option value='" + year + "'>" + year + "");
+                                                                if(returnProductsBreakdownByCustomerYear==null || returnProductsBreakdownByCustomerYear.equals("none")){
+                                                                    out.print("<option value='none'>Select Year</option>");
+                                                                    for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                            int year = availableSalesOrderYears.get(i);
+                                                                            out.print("<option value='"+year+"'>"+year+"");
 
+                                                                    }
+                                                                }else{
+                                                                    int yearRetrievedInt = Integer.parseInt(returnProductsBreakdownByCustomerYear);
+                                                                    out.print("<option value='"+yearRetrievedInt+"'>"+yearRetrievedInt+"</option>");
+
+                                                                    for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+
+                                                                            int year = availableSalesOrderYears.get(i);
+
+                                                                            if(yearRetrievedInt != year){
+                                                                                out.print("<option value='"+year+"'>"+year+"");
+                                                                            }
+
+
+
+                                                                    }
                                                                 }
                                                             %>
 
@@ -873,10 +1007,28 @@
                                                             <select id="returnProductsByCustomerCustomerCode" name="returnProductsBreakdownByCustomerCustomerCode" onchange="return setValue();" class="form-control">
 
                                                                 <%
-                                                                    out.print("<option value='none'>Select Customer Code</option>");
-                                                                    for (int i = 1; i <= allAvailableCustomers.size(); i++) {
-                                                                        String customerCode = allAvailableCustomers.get(i);
-                                                                        out.print("<option value='" + customerCode + "'>" + customerCode + "");
+                                                                    if(returnProductsBreakdownByCustomerCustomerCode==null || returnProductsBreakdownByCustomerCustomerCode.equals("none")){
+                                                                        out.print("<option value='none'>Select Customer Code</option>");
+                                                                        for (int i = 1; i <= allAvailableCustomers.size(); i++) {
+                                                                            String customerCode = allAvailableCustomers.get(i);
+                                                                            out.print("<option value='" + customerCode + "'>" + customerCode + "");
+
+                                                                        }
+
+                                                                    }else{
+
+                                                                        out.print("<option value='"+returnProductsBreakdownByCustomerCustomerCode+"'>"+returnProductsBreakdownByCustomerCustomerCode+"</option>");
+                                                                        
+                                                                        for (int i = 1; i <= allAvailableCustomers.size(); i++) {
+
+                                                                                String customerCode = allAvailableCustomers.get(i);
+
+                                                                                if(!returnProductsBreakdownByCustomerCustomerCode.equals(customerCode)){
+
+                                                                                    out.print("<option value='" + customerCode + "'>" + customerCode + "");
+                                                                                }
+
+                                                                        }
 
                                                                     }
                                                                 %>
@@ -902,9 +1054,7 @@
 
                                     
                                     <%
-                                      String returnProductsBreakdownByCustomerMonth = request.getParameter("returnProductsBreakdownByCustomerMonth");
-                                      String returnProductsBreakdownByCustomerYear = request.getParameter("returnProductsBreakdownByCustomerYear");
-                                      String returnProductsBreakdownByCustomerCustomerCode = request.getParameter("returnProductsBreakdownByCustomerCustomerCode");
+
                                       
                                       Map<Integer, BreakdownItem> breakdownProductsMap = null;
                                       int returnProductsBreakdownByCustomerMonthInt = currentMonthInt;
