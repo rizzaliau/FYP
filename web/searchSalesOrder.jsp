@@ -54,25 +54,25 @@
                         <li>
                             <a class="nav-link" href="./userMGMT.jsp">
                                 <img src="assets/img/debtor_icon.png"/>
-                                <p>Customer Mgmt</p>
+                                <p>Customer</p>
                             </a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="./salesOrderMGMT.jsp">
                                 <img src="assets/img/salesOrder_icon.png"/>
-                                <p>Sales Order Mgmt</p>
+                                <p>Sales Order</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="catalogue.jsp">
                                 <img src="assets/img/item_icon.png"/>
-                                <p>Catalogue Mgmt</p>
+                                <p>Catalogue</p>
                             </a>
                         </li>
                         <li>
                             <a class="nav-link" href="loyaltyProgramme.jsp">
                                 <img src="assets/img/wallet_icon.png"/>
-                                <p>Loyalty Programme</p>
+                                <p>Wallet</p>
                             </a>
                         </li>
                         <li>

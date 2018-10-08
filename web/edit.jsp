@@ -82,8 +82,8 @@
                             if (isMasterAdmin.equals("1")) {
                                 out.print("<li>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
-                                out.print("<i class='nc-icon nc-key-25'></i>");
-                                out.print("<p>Admin</p>");
+                                out.print("<img src='assets/img/masterAdmin_icon.png'/>");
+                                out.print("<p>&nbspAdmin</p>");
                                 out.print("</a>");
                                 out.print("</li>");
                             }
@@ -277,16 +277,26 @@
                                                     for (Integer number : customersWhoDoNotMeetRequirementByYearMonth2.keySet()) {
                                                         if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth2.get(number))){
                                                             
-                                                            customersWhoDoNotMeetRequirementAlertMessage += ", "+allMonths.get(currentMonthInt-2);
-                                                            countDoNotMeetRequirements++;
+                                                            if(countDoNotMeetRequirements == 1){
+                                                                customersWhoDoNotMeetRequirementAlertMessage += ", "+allMonths.get(currentMonthInt-2);
+                                                            }else{                                                           
+                                                                customersWhoDoNotMeetRequirementAlertMessage += allMonths.get(currentMonthInt-2);
+                                                                countDoNotMeetRequirements++;
+                                                            }
                                                         }
                                                     }
                                                     
                                                     for (Integer number : customersWhoDoNotMeetRequirementByYearMonth3.keySet()) {
                                                         if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth3.get(number))){
                                                             
-                                                            customersWhoDoNotMeetRequirementAlertMessage += " and "+allMonths.get(currentMonthInt-3);
-                                                            countDoNotMeetRequirements++;
+                                                            if(countDoNotMeetRequirements == 1){
+                                                                customersWhoDoNotMeetRequirementAlertMessage += ", "+allMonths.get(currentMonthInt-3);
+                                                                countDoNotMeetRequirements++;
+   
+                                                            }else{
+                                                                customersWhoDoNotMeetRequirementAlertMessage += " and "+allMonths.get(currentMonthInt-3);
+                                                                countDoNotMeetRequirements++;
+                                                            }
                                                         }
                                                     }
                                                     
