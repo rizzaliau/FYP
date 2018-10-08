@@ -13,11 +13,13 @@ public class BreakdownItem {
     private String itemName;
     private Double qty;
     private Double returnedQty;
+    private Double percentageReturned;
     
-    public BreakdownItem(String itemName,Double qty, Double returnedQty){
+    public BreakdownItem(String itemName,Double qty, Double returnedQty,Double percentageReturned){
         this.itemName = itemName;
         this.qty = qty;
         this.returnedQty = returnedQty;
+        this.percentageReturned = percentageReturned;
     }
     
     public String getItemName(){
@@ -30,6 +32,10 @@ public class BreakdownItem {
             
     public Double getReturnedQty(){
         return returnedQty;
+    }
+    
+    public Double getPercentageReturned(){
+        return percentageReturned;
     }
     
 }
