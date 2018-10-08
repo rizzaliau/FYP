@@ -91,7 +91,7 @@
                         <li>
                             <a class="nav-link" href="loyaltyProgramme.jsp">
                                 <img src="assets/img/wallet_icon.png"/>
-                                <p>Loyalty Programme</p>
+                                <p>Wallet</p>
                             </a>
                         </li>
                         <li>
