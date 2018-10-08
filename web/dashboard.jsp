@@ -594,6 +594,8 @@
                                                     }
                                                 }
                                             });
+                                            
+                                            
 
                                         </script>
                                         <br>
@@ -901,139 +903,9 @@
                                     </script>
                                     <br>
                                     <br>
+                                    
                                     <!-- End of Customers Who Do Not Meet the Requirement Chart -->  
-                                    
-                                    
-                                    
-                                    
-                                    <!-- Start of Filter year/customer for Return Products By Customers Chart -->
-                                    
-                                    <%
-                                        Map<Integer, String> allAvailableCustomers = dashboardUtility.getAllAvailableCustomers();
-                                    %>
-                                    
-                                    
-                                    <center>
-                                        <form method="post" action="dashboard.jsp" name="returnProductsByCustomerForm" >
-                                            <div class="row">
-                                                <div class="col-md-5 pr-1">
-                                                    <div class="form-group">
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-5 pr-1">
-                                                    <div class="form-group">
-
-                                                    </div>
-                                                </div>
-
-                                    </center>
-                                    <br>
-
-                                    <!-- End of Filter year/customer for Return Products By Customers Chart -->
-                                    
-                                    
-                                    <!-- Start of Return Products By Customers Chart --> 
-                                    
-                                    <div class="container">
-                                      <canvas id="returnProductsByCustomerChart"></canvas>
-                                    </div>   
-                                    
-                                    
-                                    <%
-                                        
-                                        Map<Integer, Double> returnProductsByCustomerYearBreakdown = dashboardUtility.getReturnProductsByCustomerYearBreakdown(currentYearInt,allAvailableCustomers.get(1));
-
-                                    %>
-                                    
-
-                                    <script>
-                                      let returnProductsByCustomerChart = document.getElementById('returnProductsByCustomerChart').getContext('2d');
-
-                                      // Global Options
-                                      Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                      Chart.defaults.global.defaultFontSize = 12;
-                                      Chart.defaults.global.defaultFontColor = '#777';
-
-                                      let massPopChart6 = new Chart(returnProductsByCustomerChart, {
-                                        type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-                                        data:{
-                                          labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                                          datasets:[{
-                                            label:'Returned Products By Customers',
-                                            data:[
-                                              <%= returnProductsByCustomerYearBreakdown.get(1) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(2) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(3) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(4) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(5) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(6) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(7) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(8) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(9) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(10) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(11) %>,
-                                              <%= returnProductsByCustomerYearBreakdown.get(12) %>
-                                            ],
-                                            //backgroundColor:'green',
-                                            backgroundColor:['white'
-                                                
-                                            ],
-                                            borderWidth:2,
-                                            borderColor:'#FFA500',
-                                            hoverBorderWidth:3,
-                                            hoverBorderColor:'#000'
-                                          }]
-                                        },
-                                        options:{
-                                          title:{
-                                            display:true,
-                                            text:'Returned Products For Customer <%= allAvailableCustomers.get(1)%> for Year <%= currentYearInt%>',
-                                            fontSize:12
-                                          },
-                                          legend:{
-                                            display:true,
-                                            position:'bottom',
-                                            labels:{
-                                              fontColor:'#000'
-                                            }
-                                          },
-                                          layout:{
-                                            padding:{
-                                              left:0,
-                                              right:0,
-                                              bottom:0,
-                                              top:0
-                                            }
-                                          },
-                                          tooltips:{
-                                            enabled:true
-                                          },
-                                          scales: {
-                                            yAxes: [{
-                                              scaleLabel: {
-                                                display: true,
-                                                labelString: 'Return Quantity'
-                                              }
-                                            }],
-
-                                            xAxes: [{
-                                              scaleLabel: {
-                                                display: true,
-                                                labelString: 'Month'
-                                              }
-                                            }]
-
-                                          } 
-                                        }
-                                      });
-                                      
-                                    </script>
-                                    <br>
-                                    <br>
-                                
+                                                                       
                                     </div>
                                 </div>
                             </div>      
