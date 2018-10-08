@@ -205,6 +205,9 @@
                                       String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
                                       int currentMonthInt = Integer.parseInt(currentMonth);
                                       int currentYearInt = Integer.parseInt(currentYear);
+                                      
+                                      String yearRetrieved = request.getParameter("year");
+                                      String monthRetrieved = request.getParameter("month");
                                     %>
 
                                     <div class="row">
@@ -215,11 +218,28 @@
                                                 <select id="filterYear" name="month" onchange="return setValue();"  class="form-control">
                                                     
                                                     <%
-                                                        out.print("<option value='none'>Select Month</option>");
-                                                        for (int i = 1; i <= allMonths.size(); i++) {
-                                                                String month = allMonths.get(i);
-                                                                out.print("<option value='"+i+"'>"+month+"");
+                                                        if(monthRetrieved==null|| monthRetrieved.equals("none")){
+                                                            out.print("<option value='none'>Select Month</option>");
+                                                            for (int i = 1; i <= allMonths.size(); i++) {
+                                                                    String month = allMonths.get(i);
+                                                                    out.print("<option value='"+i+"'>"+month+"");
 
+                                                            }
+
+                                                        }else{
+                                                            int monthRetrievedInt = Integer.parseInt(monthRetrieved);
+                                                            
+                                                            out.print("<option value='"+monthRetrievedInt+"'>"+allMonths.get(monthRetrievedInt)+"</option>");
+                                                            for (int i = 1; i <= allMonths.size(); i++) {
+                                                                
+                                                                    String month = allMonths.get(i);
+                                                                    
+                                                                    if(monthRetrievedInt != i){
+                                                                        out.print("<option value='"+i+"'>"+month+"");
+                                                                    }
+
+                                                            }
+                                                            
                                                         }
                                                     %>
 
@@ -231,14 +251,28 @@
                                                 <select id="filterYear" name="year" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
-                                                        out.print("<option value='none'>Select Year</option>");
-                                                        for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                int year = availableSalesOrderYears.get(i);
-                                                                //out.print("<option value='"+year+"'>"+year+"</option>");
-                                                                //out.print("<a href='filterSalesDashboard.jsp?year='"+year+"'>"+year+"</a>");
-                                                                //out.print("<option value='filterSalesDashboard.jsp?year="+year+"' >"+year+"</option>");
-                                                                out.print("<option value='"+year+"'>"+year+"");
+                                                        if(yearRetrieved==null || yearRetrieved.equals("none")){
+                                                            out.print("<option value='none'>Select Year</option>");
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    out.print("<option value='"+year+"'>"+year+"");
 
+                                                            }
+                                                        }else{
+                                                            int yearRetrievedInt = Integer.parseInt(yearRetrieved);
+                                                            out.print("<option value='"+yearRetrievedInt+"'>"+yearRetrievedInt+"</option>");
+                                                            
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    
+                                                                    if(yearRetrievedInt != year){
+                                                                        out.print("<option value='"+year+"'>"+year+"");
+                                                                    }
+                                                                    
+                                                                    
+
+                                                            }
                                                         }
                                                     %>
 
@@ -256,17 +290,14 @@
                                     </div>    
                                     
                                     <%
-                                      //DecimalFormat df = new DecimalFormat("0.00");
-                                      //Map<Integer, String> getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(6,2018);
-                                      
                                       
                                         Map<Integer, String> getTop5ProductsByMonth = null;
                                         Map<String, Integer> qtyForItemDescriptionMonthMap = null;
                                         
                                         DecimalFormat df = new DecimalFormat("0.00");
 
-                                        String yearRetrieved = request.getParameter("year");
-                                        String monthRetrieved = request.getParameter("month");
+                                        //String yearRetrieved = request.getParameter("year");
+                                        //String monthRetrieved = request.getParameter("month");
                                         int monthInt = currentMonthInt;
 
                                         if(yearRetrieved==null&&monthRetrieved==null){
@@ -374,7 +405,7 @@
                                     <br>
                                     
                                     <!--filter for Top 5 Most returned products -->
-                                    <center
+                                    <center>
                                         <div class="row">
                                             <div class="col-md-3 pr-1">
                                             <div class="form-group">
@@ -383,11 +414,31 @@
                                                 <select id="filterYear" name="monthReturnedProducts" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
-                                                        out.print("<option value='none'>Select Month");
-                                                        for (int i = 1; i <= allMonths.size(); i++) {
-                                                                String month = allMonths.get(i);
-                                                                out.print("<option value='"+i+"'>"+month+"");
+                                                        String yearProductReturnedRetrieved = request.getParameter("yearReturnedProducts");
+                                                        String monthProductReturnedRetrieved = request.getParameter("monthReturnedProducts");
+                                                        
+                                                        if(monthProductReturnedRetrieved==null || monthProductReturnedRetrieved.equals("none")){
+                                                            out.print("<option value='none'>Select Month</option>");
+                                                            for (int i = 1; i <= allMonths.size(); i++) {
+                                                                    String month = allMonths.get(i);
+                                                                    out.print("<option value='"+i+"'>"+month+"");
 
+                                                            }
+
+                                                        }else{
+                                                            int monthProductReturnedRetrievedInt = Integer.parseInt(monthProductReturnedRetrieved);
+                                                            
+                                                            out.print("<option value='"+monthProductReturnedRetrievedInt+"'>"+allMonths.get(monthProductReturnedRetrievedInt)+"</option>");
+                                                            for (int i = 1; i <= allMonths.size(); i++) {
+                                                                
+                                                                    String month = allMonths.get(i);
+                                                                    
+                                                                    if(monthProductReturnedRetrievedInt != i){
+                                                                        out.print("<option value='"+i+"'>"+month+"");
+                                                                    }
+
+                                                            }
+                                                            
                                                         }
                                                     %>
 
@@ -399,12 +450,28 @@
                                                 <select id="filterMonth" name="yearReturnedProducts" onchange="return setValue();" class="form-control">
                                                     
                                                     <%
-                                                        out.print("<option value='none'>Select Year");
-                                                        for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                int year = availableSalesOrderYears.get(i);
+                                                        if(yearProductReturnedRetrieved==null || yearProductReturnedRetrieved.equals("none")){
+                                                            out.print("<option value='none'>Select Year</option>");
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    out.print("<option value='"+year+"'>"+year+"");
 
-                                                                out.print("<option value='"+year+"'>"+year+"");
+                                                            }
+                                                        }else{
+                                                            int yearRetrievedInt = Integer.parseInt(yearRetrieved);
+                                                            out.print("<option value='"+yearRetrievedInt+"'>"+yearRetrievedInt+"</option>");
+                                                            
+                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                
+                                                                    int year = availableSalesOrderYears.get(i);
+                                                                    
+                                                                    if(yearRetrievedInt != year){
+                                                                        out.print("<option value='"+year+"'>"+year+"");
+                                                                    }
+                                                                    
+                                                                    
 
+                                                            }
                                                         }
                                                     %>
 
@@ -415,31 +482,24 @@
                                                 <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" style="position: relative; left:10px; height: 40px;">
                                             <form>
                                             
-                                           
+                                        </center>   
                                         </div>
                                    
                                                                  
                                     <%
-                                      // Hardcoded for month 6, june
-                                      //Map<Integer, String> getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(6,2018);
-                                      //Map<String, Double> getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(6,2018);
 
                                         Map<Integer, String> getMostReturnedProductsByMonth = null;
                                         Map<String, Double> getMostReturnedProductsByMonthPercentage = null;
                                         Map<String, BreakdownItem> getBreakdownItemForItemDescriptionMonth = null;
                                         
-                                        //DecimalFormat df = new DecimalFormat("0.00");
 
-                                        String yearProductReturnedRetrieved = request.getParameter("yearReturnedProducts");
-                                        String monthProductReturnedRetrieved = request.getParameter("monthReturnedProducts");
                                         int monthReturnedInt = currentMonthInt;
                                         int yearProductReturnedInt = currentYearInt;
 
                                         if(yearProductReturnedRetrieved==null&&monthProductReturnedRetrieved==null){
                                             getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt,currentYearInt);
                                             getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(currentMonthInt,currentYearInt);
-                                            
-                                            //monthRetrieved = 1;
+
                                             yearProductReturnedRetrieved = currentYear;
                                             
                                             getBreakdownItemForItemDescriptionMonth = dashboardUtility.getBreakdownItemForItemDescriptionMonth(currentMonthInt,currentYearInt);
