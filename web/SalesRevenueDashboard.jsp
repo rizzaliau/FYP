@@ -210,15 +210,31 @@
                                                     <select id="filterYear" name="yearTotalRevenue" onchange="return setValue();" class="form-control">
 
                                                         <%
-                                                            out.print("<option value='none'>Select Year</option>");
-                                                            for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
-                                                                int year = availableSalesOrderYears.get(i);
+                                                            String yearRetrieved = request.getParameter("yearTotalRevenue");
+                                                            
+                                                            if(yearRetrieved==null || yearRetrieved.equals("none")){
+                                                                out.print("<option value='none'>Select Year</option>");
+                                                                for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+                                                                        int year = availableSalesOrderYears.get(i);
+                                                                        out.print("<option value='"+year+"'>"+year+"");
 
-                                                                //out.print("<a href='filterSalesDashboard.jsp?year='"+year+"'>"+year+"</a>");
-                                                                //out.print("<option value='filterSalesDashboard.jsp?year="+year+"' >"+year+"</option>");
-                                                                out.print("<option value='" + year + "'>" + year + "");
+                                                                }
+                                                            }else{
+                                                                int yearRetrievedInt = Integer.parseInt(yearRetrieved);
+                                                                out.print("<option value='"+yearRetrievedInt+"'>"+yearRetrievedInt+"</option>");
 
+                                                                for (int i = availableSalesOrderYears.size(); i >= 1; i--) {
+
+                                                                        int year = availableSalesOrderYears.get(i);
+
+                                                                        if(yearRetrievedInt != year){
+                                                                            out.print("<option value='"+year+"'>"+year+"");
+                                                                        }
+
+                                                                }
                                                             }
+                                                            
+                                                            
                                                         %>
 
                                                     </select>
@@ -240,7 +256,7 @@
                                         Map<Integer, Double> salesRevenueByMonthMap = null;
                                         DecimalFormat df = new DecimalFormat("0.00");
 
-                                        String yearRetrieved = request.getParameter("yearTotalRevenue");
+                                        
 
                                         if (yearRetrieved == null) {
                                             salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
@@ -252,8 +268,7 @@
 
                                         } else {
                                             int yearInt = Integer.parseInt(yearRetrieved);
-                                            //map parameters month, revenue
-                                            //hardcoded year to 2018
+
                                             salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(yearInt);
 
                                         }
