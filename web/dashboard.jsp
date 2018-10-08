@@ -161,8 +161,77 @@
                     </div>
                 </nav>
                 <!-- End Navbar -->
+                
+                <%
+                    // Resuable variables
+                    Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();
+
+                    String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+                    String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
+                    String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
+                    int currentMonthInt = Integer.parseInt(currentMonth);
+                    int currentYearInt = Integer.parseInt(currentYear);
+                    
+                    Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
+                    
+                    //for numbers overview
+                    Map<Integer, Double> salesRevenueByMonthMapOverview = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
+                    Map<Integer, String> top10CustomersByYearMonthOverView = dashboardUtility.getTop10CustomersByYearMonth(currentYearInt,currentMonthInt);
+                    Map<Integer, String> getMostReturnedProductsByMonthOverview = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt, currentYearInt);
+                    Map<String, Integer> qtyForItemDescriptionMonthMapOverview = dashboardUtility.getQtyForItemDescriptionMonth(currentMonthInt, currentYearInt);
+                    Map<Integer, String> getTop5ProductsByMonthOverview = dashboardUtility.getTop5ProductsByMonth(currentMonthInt, currentYearInt);
+                    Map<String, Double> getMostReturnedProductsByMonthPercentageOverview = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(currentMonthInt, currentYearInt);
+                    Map<String, Double> allCustomerSalesByYearMonthOverview = dashboardUtility.getAllCustomerSalesByYearMonth(currentYearInt,currentMonthInt);
+                %>
 
                 <div class="content">
+                    
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class ="col-md-3">
+                                
+                                <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
+                                    <div class="card-header ">
+                                        <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Current Month Revenue</font></a></h4>
+                                        <p class="card-category"> <%=allMonths.get(currentMonthInt)%> </p>
+                                        <h2 class="card-title"><font color="black"> <%= salesRevenueByMonthMapOverview.get(currentMonthInt) %> </font></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class ="col-md-3">
+                                
+                                <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
+                                    <div class="card-header ">
+                                        <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Most Returned Product</font></a></h4>
+                                        <p class="card-category"> <%= getMostReturnedProductsByMonthOverview.get(1) %></p>
+                                        <h2 class="card-title"><font color="black"> <%= getMostReturnedProductsByMonthPercentageOverview.get(getMostReturnedProductsByMonthOverview.get(1)) %> </font></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class ="col-md-3">
+                                
+                                <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
+                                    <div class="card-header ">
+                                        <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Customer </font></a></h4>
+                                        <p class="card-category"> <%= top10CustomersByYearMonthOverView.get(1 )%> </p>
+                                        <h2 class="card-title"><font color="black"> <%= allCustomerSalesByYearMonthOverview.get(top10CustomersByYearMonthOverView.get(1)) %> </font></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class ="col-md-3">
+                                
+                                <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
+                                    <div class="card-header ">
+                                        <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Product</font></a></h4>
+                                        <p class="card-category"> <%= getTop5ProductsByMonthOverview.get(1) %>  </p>
+                                        <h2 class="card-title"><font color="black"> <%= qtyForItemDescriptionMonthMapOverview.get(getTop5ProductsByMonthOverview.get(1)) %> </font></h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                     </div>
+                    
                     <div class="container-fluid">
                         <div class="row">
                             <div class ="col-md-6">
@@ -183,24 +252,12 @@
                                     -->
                                     <br>    
 
-                                    <%
-                                        // Resuable variables
-                                        Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();
-                                        
-                                        String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
-                                        String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
-                                        String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
-                                        int currentMonthInt = Integer.parseInt(currentMonth);
-                                        int currentYearInt = Integer.parseInt(currentYear);
-                                        
-                                    %>
-
 
                                     <div>
                                         <div class="col-md-4 pr-1">
-
                                         </div>
                                     </div>
+                                    
 
                                     <!-- Total Revenue Chart -->
                                     <div class="container">
@@ -213,9 +270,6 @@
 
                                         salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
 
-                                        
-                                        
-                                        
                                     %>    
                                     <center>
                                         <script>
@@ -336,7 +390,7 @@
                                         <%
                                             //Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears(); 
 
-                                            Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
+                                            
                                         %>   
 
 
@@ -501,11 +555,11 @@
                                                             fontFamily: 'Segoe UI',
                                                             fontSize: 12,
                                                             data: [
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)))%>,
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2)))%>,
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3)))%>,
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4)))%>,
-                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)))%>
+                                                                <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)))%>,
+                                                                <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2)))%>,
+                                                                <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3)))%>,
+                                                                <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4)))%>,
+                                                                <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)))%>
                                                             ],
                                                             //backgroundColor:'green',
                                                             backgroundColor: 'rgba(245,104,41,100)',
