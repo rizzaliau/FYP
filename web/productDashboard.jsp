@@ -566,6 +566,7 @@
                                                 <th>Item Name</th>
                                                 <th>Quantity</th>
                                                 <th>Returned Quantity</th>
+                                                <th>Percentage Return %</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -579,6 +580,7 @@
                                                     out.print("<td>" + breakdownItem.getItemName() + "</td>");
                                                     out.print("<td>" + df2.format(breakdownItem.getQty()) + "</td>");
                                                     out.print("<td>" + df2.format(breakdownItem.getReturnedQty()) + "</td>");
+                                                    out.print("<td>" + df2.format(breakdownItem.getPercentageReturned()) + "</td>");
                                                     out.print("</tr>");
                                                 }
 

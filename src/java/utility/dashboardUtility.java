@@ -938,10 +938,12 @@ public class dashboardUtility {
                     
             double returnedQty = getReturnedProductQtyForMonth.get(itemDescription);
             
+            double percentageReturned = (returnedQty/(returnedQty+qty))*100;
+            
             if(returnedQty ==0){
                 //getPercentageReturnedProductMap.put(itemDescription, 0.0);
             }else{
-                BreakdownItem breakdownItem = new BreakdownItem(itemDescription,qty,returnedQty);
+                BreakdownItem breakdownItem = new BreakdownItem(itemDescription,qty,returnedQty,percentageReturned);
                 //percentageReturned = (returnedQty/(qty+returnedQty))*100;
 
                 //getPercentageReturnedProductMap.put(itemDescription, percentageReturned);
@@ -1017,9 +1019,11 @@ public class dashboardUtility {
                     
             double returnedQty = getReturnedProductQtyForMonth.get(itemDescription);
             
+            double percentageReturned = (returnedQty/(returnedQty+qty))*100;
+            
             if(returnedQty!=0){
             
-                BreakdownItem breakdownItem = new BreakdownItem(itemDescription,qty,returnedQty);
+                BreakdownItem breakdownItem = new BreakdownItem(itemDescription,qty,returnedQty,percentageReturned);
 
                 breakdownItemForItemDescriptionMonth.put(itemDescription, breakdownItem);
             
