@@ -276,7 +276,7 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
 
                     <footer class="footer">
                                 <p class="copyright text-center">
