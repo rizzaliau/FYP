@@ -194,7 +194,7 @@
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Current Month Revenue</font></a></h4>
                                         <p class="card-category"> <%=allMonths.get(currentMonthInt)%> </p>
-                                        <h2 class="card-title"><font color="black"> <%= salesRevenueByMonthMapOverview.get(currentMonthInt) %> </font></h2>
+                                        <h2 class="card-title"><font color="black"> $<%= salesRevenueByMonthMapOverview.get(currentMonthInt) %> </font></h2>
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +204,7 @@
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Most Returned Product</font></a></h4>
                                         <p class="card-category"> <%= getMostReturnedProductsByMonthOverview.get(1) %></p>
-                                        <h2 class="card-title"><font color="black"> <%= getMostReturnedProductsByMonthPercentageOverview.get(getMostReturnedProductsByMonthOverview.get(1)) %> </font></h2>
+                                        <h2 class="card-title"><font color="black"> <%= getMostReturnedProductsByMonthPercentageOverview.get(getMostReturnedProductsByMonthOverview.get(1)) %> %</font></h2>
                                     </div>
                                 </div>
                             </div>
@@ -213,8 +213,8 @@
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Customer </font></a></h4>
-                                        <p class="card-category"> <%= top10CustomersByYearMonthOverView.get(1 )%> </p>
-                                        <h2 class="card-title"><font color="black"> <%= allCustomerSalesByYearMonthOverview.get(top10CustomersByYearMonthOverView.get(1)) %> </font></h2>
+                                        <p class="card-category"> Customer Code : <%= top10CustomersByYearMonthOverView.get(1 )%> </p>
+                                        <h2 class="card-title"><font color="black"> $<%= allCustomerSalesByYearMonthOverview.get(top10CustomersByYearMonthOverView.get(1)) %> </font></h2>
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +224,7 @@
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Product</font></a></h4>
                                         <p class="card-category"> <%= getTop5ProductsByMonthOverview.get(1) %>  </p>
-                                        <h2 class="card-title"><font color="black"> <%= qtyForItemDescriptionMonthMapOverview.get(getTop5ProductsByMonthOverview.get(1)) %> </font></h2>
+                                        <h2 class="card-title"><font color="black"> $<%= qtyForItemDescriptionMonthMapOverview.get(getTop5ProductsByMonthOverview.get(1)) %> </font></h2>
                                     </div>
                                 </div>
                             </div>
