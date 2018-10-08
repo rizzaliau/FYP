@@ -209,24 +209,13 @@
 
                                     <%
                                         Map<Integer, Double> salesRevenueByMonthMap = null;
-                                        DecimalFormat df = new DecimalFormat("#0.00");
+                                        DecimalFormat df = new DecimalFormat("0.00");
 
                                         salesRevenueByMonthMap = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
-                                        
-                                        //Retrieve and Round up values
-                                        int janValue = (int)Math.rint(salesRevenueByMonthMap.get(1));
-                                        int febValue = (int)Math.rint(salesRevenueByMonthMap.get(2));
-                                        int marValue = (int)Math.rint(salesRevenueByMonthMap.get(3));
-                                        int aprValue = (int)Math.rint(salesRevenueByMonthMap.get(4));
-                                        int mayValue = (int)Math.rint(salesRevenueByMonthMap.get(5));
-                                        int junValue = (int)Math.rint(salesRevenueByMonthMap.get(6));
-                                        int julValue = (int)Math.rint(salesRevenueByMonthMap.get(7));
-                                        int augValue = (int)Math.rint(salesRevenueByMonthMap.get(8));
-                                        int sepValue = (int)Math.rint(salesRevenueByMonthMap.get(9));
-                                        int octValue = (int)Math.rint(salesRevenueByMonthMap.get(10));
-                                        int novValue = (int)Math.rint(salesRevenueByMonthMap.get(11));
-                                        int decValue = (int)Math.rint(salesRevenueByMonthMap.get(12));
 
+                                        
+                                        
+                                        
                                     %>    
                                     <center>
                                         <script>
@@ -250,18 +239,18 @@
                                                                 fontFamily: 'Segoe UI',
                                                                 fontSize: 12,
                                                             data: [
-                                                                <%=janValue%>,
-                                                                <%=febValue%>,
-                                                                <%=marValue%>,
-                                                                <%=aprValue%>,
-                                                                <%=mayValue%>,
-                                                                <%=junValue%>,
-                                                                <%=julValue%>,
-                                                                <%=augValue%>,
-                                                                <%=sepValue%>,
-                                                                <%=octValue%>,
-                                                                <%=novValue%>,
-                                                                <%=decValue%>
+                                                                <%= df.format(salesRevenueByMonthMap.get(1))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(2))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(3))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(4))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(5))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(6))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(7))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(8))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(9))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(10))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(11))%>,
+                                                                <%= df.format(salesRevenueByMonthMap.get(12))%>
                                                             ],
                                                             //backgroundColor:'green',
                                                             backgroundColor: [
@@ -364,13 +353,6 @@
 
                                             getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(currentMonthInt, currentYearInt);
                                             qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(currentMonthInt, currentYearInt);
-                                            
-                                            //Retrieve and Round up values
-                                            int top5Rank1 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1)));
-                                            int top5Rank2 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(2)));
-                                            int top5Rank3 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(3)));
-                                            int top5Rank4 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(4)));
-                                            int top5Rank5 = (int)Math.rint(qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(5)));
 
 
                                         %>
@@ -399,11 +381,11 @@
                                                                 fontFamily: 'Segoe UI',
                                                                 fontSize: 12,
                                                                 data: [
-                                                <%= top5Rank1%>,
-                                                <%= top5Rank2%>,
-                                                <%= top5Rank3%>,
-                                                <%= top5Rank4%>,
-                                                <%= top5Rank5%>
+                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1))%>,
+                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(2))%>,
+                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(3))%>,
+                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(4))%>,
+                                                <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(5))%>
                                                                 ],
                                                                 
                                                                 //backgroundColor:'green',
@@ -485,14 +467,6 @@
 
                                             getMostReturnedProductsByMonth = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt, currentYearInt);
                                             getMostReturnedProductsByMonthPercentage = dashboardUtility.getReturnedQtyPercentageForItemDescriptionMonth(currentMonthInt, currentYearInt);
-                                            
-                                            //Retrieve and Round up values
-                                            int top5MostReturnedRank1 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)));
-                                            int top5MostReturnedRank2 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2)));
-                                            int top5MostReturnedRank3 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3)));
-                                            int top5MostReturnedRank4 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4)));
-                                            int top5MostReturnedRank5 = (int)Math.rint(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)));
-
 
                                         %>
 
@@ -527,11 +501,11 @@
                                                             fontFamily: 'Segoe UI',
                                                             fontSize: 12,
                                                             data: [
-                                                                    <%= top5MostReturnedRank1 %>,
-                                                                    <%= top5MostReturnedRank2 %>,
-                                                                    <%= top5MostReturnedRank3 %>,
-                                                                    <%= top5MostReturnedRank4 %>,
-                                                                    <%= top5MostReturnedRank5 %>
+                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)))%>,
+                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2)))%>,
+                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3)))%>,
+                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4)))%>,
+                                            <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)))%>
                                                             ],
                                                             //backgroundColor:'green',
                                                             backgroundColor: 'rgba(245,104,41,100)',
@@ -594,8 +568,6 @@
                                                     }
                                                 }
                                             });
-                                            
-                                            
 
                                         </script>
                                         <br>

@@ -64,8 +64,9 @@ public class dashboardUtility {
                 }
 
             }
+            double totalForMonthRounded =  (int)Math.rint(totalForMonth);
             
-            salesRevenueByMonthMap.put(month, totalForMonth);
+            salesRevenueByMonthMap.put(month, totalForMonthRounded);
         }   
 
         return salesRevenueByMonthMap;
@@ -667,12 +668,12 @@ public class dashboardUtility {
 
             //allCustomerSalesByYearMonth.put(debtorCode,salesOrdertotalForCustomer);
             //salesRevenueByMonthMap.put(month, totalForMonth);
-
+            double salesOrdertotalForCustomerRounded =  (int)Math.rint(salesOrdertotalForCustomer);
 
             if(allCustomerSalesByYearMonth.get(debtorCode) == null){
-                allCustomerSalesByYearMonth.put(debtorCode, salesOrdertotalForCustomer);
+                allCustomerSalesByYearMonth.put(debtorCode, salesOrdertotalForCustomerRounded);
             }else{
-                double newTotal = salesOrdertotalForCustomer + allCustomerSalesByYearMonth.get(debtorCode);
+                double newTotal = salesOrdertotalForCustomerRounded + allCustomerSalesByYearMonth.get(debtorCode);
                 allCustomerSalesByYearMonth.put(debtorCode, newTotal);
             }    
 
