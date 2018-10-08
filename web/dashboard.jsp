@@ -174,7 +174,7 @@
                     
                     Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
                     
-                    //for numbers overview
+                    //For overview Data
                     Map<Integer, Double> salesRevenueByMonthMapOverview = dashboardUtility.getSalesRevenueByMonth(currentYearInt);
                     Map<Integer, String> top10CustomersByYearMonthOverView = dashboardUtility.getTop10CustomersByYearMonth(currentYearInt,currentMonthInt);
                     Map<Integer, String> getMostReturnedProductsByMonthOverview = dashboardUtility.getMostReturnedProductsByMonth(currentMonthInt, currentYearInt);
@@ -188,6 +188,8 @@
                     
                     <div class="container-fluid">
                         <div class="row">
+                            
+                            <!-- Current Month Revenue -->
                             <div class ="col-md-3">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
@@ -198,6 +200,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Most Returned Product -->
                             <div class ="col-md-3">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
@@ -208,17 +211,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class ="col-md-3">
-                                
+                            <!-- Top Customer -->        
+                            <div class ="col-md-3">  
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Customer </font></a></h4>
                                         <p class="card-category"> Customer Code : <%= top10CustomersByYearMonthOverView.get(1 )%> </p>
-                                        <h2 class="card-title"><font color="black"> $<%= allCustomerSalesByYearMonthOverview.get(top10CustomersByYearMonthOverView.get(1)) %> </font></h2>
+                                        <% 
+                                            if(allCustomerSalesByYearMonthOverview.get(top10CustomersByYearMonthOverView.get(1)) == null){
+                                                out.println("<h2 class='card-title'><font color='black'>$</font></h2>");
+                                            }else{
+                                                out.println("<h2 class='card-title'><font color='black'>$"+allCustomerSalesByYearMonthOverview.get(top10CustomersByYearMonthOverView.get(1))+"</font></h2>");
+                                            }
+                                        %>
+
                                         <br>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Top Product -->
                             <div class ="col-md-3">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
