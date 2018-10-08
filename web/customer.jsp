@@ -216,7 +216,7 @@
                                         <div>
                                             <div>
                                             <input hidden id="mytext" type="text" value="Active" />    
-                                            <select class="example-filter-input" id="3">
+                                            <select class="example-filter-input" id="4">
                                                 <option value="Active">Active</option>
                                                 <option value="Inactive">Inactive</option>
                                                 <option value="Blacklisted">Blacklisted</option>
@@ -232,6 +232,7 @@
                                         <table id="example" class="order-table table table-hover table-striped display" style="width:100%">
                                             <thead>
                                                 <tr>
+                                                    <th>Customer Code</th>
                                                     <th>Contact Person</th>
                                                     <th>Username</th>
                                                     <th>Company Name</th>
@@ -245,6 +246,7 @@
                                                         out.print("<tr>");
                                                         Debtor debtor = debtorMap.get(number);
                                                         //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='" + debtor.getDebtorCode() + "'></td>");
+                                                        out.print("<td>" + debtor.getDebtorCode() + "</td>");
                                                         out.print("<td>" + debtor.getDebtorName() + "</td>");
                                                         out.print("<td>" + debtor.getCompanyCode() + "</td>");
                                                         out.print("<td>" + debtor.getCompanyName() + "</td>");
@@ -315,7 +317,7 @@
                                             var dataTable = $('#example').DataTable({
                                                 // "oSearch": {"sSearch": "Active"}
                                             });
-                                            dataTable.columns(3).search("Active", false, false, false).draw();
+                                            dataTable.columns(4).search("Active", false, false, false).draw();
                                             $('.example-filter-input').on('keyup click change', function () {
                                                 var i = $(this).attr('id');  // getting column index
                                                 var v = $(this).val();  // getting search input value
