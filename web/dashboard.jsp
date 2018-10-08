@@ -216,6 +216,7 @@
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Customer </font></a></h4>
+                                        <br>
                                         <p class="card-category"> Customer Code : <%= top10CustomersByYearMonthOverView.get(1 )%> </p>
                                         <% 
                                             if(allCustomerSalesByYearMonthOverview.get(top10CustomersByYearMonthOverView.get(1)) == null){
@@ -225,7 +226,7 @@
                                             }
                                         %>
 
-                                        <br>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -235,9 +236,10 @@
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
                                     <div class="card-header ">
                                         <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Product</font></a></h4>
+                                        <br>
                                         <p class="card-category"> <%= getTop5ProductsByMonthOverview.get(1) %>  </p>
                                         <h2 class="card-title"><font color="black"> <%= qtyForItemDescriptionMonthMapOverview.get(getTop5ProductsByMonthOverview.get(1)) %> </font></h2>
-                                        <br>
+                                        
                                     </div>
                                 </div>
                             </div>
