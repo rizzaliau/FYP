@@ -312,7 +312,7 @@ public class insertUtility {
             String api_secret = "Infoatlimkee1";  
 
             //get unicode for every character 
-            String appUrl = "https://play.google.com/store/apps/details?id=com.limkee";
+            String appUrl = "https://play.google.com/store/apps/details?id=com.limkee1";
 
             //get unicode of each string
             String dlAddress = "";
