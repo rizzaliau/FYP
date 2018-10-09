@@ -279,7 +279,7 @@
                                                 </select>
                                                     
                                                 <input type="hidden" name="dropdown" id="dropdown">
-                                                <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" style="position: relative; left:250px; bottom:40px;">
+                                                <input type="submit" value="Filter" name="btn_dropdown" class="btn btn-info btn-fill pull-left" type="button" style="position: relative; left:300px; bottom:40px;">
                                             <form>
                                             </div>
                                            
