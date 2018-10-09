@@ -190,13 +190,14 @@
                         <div class="row">
                             
                             <!-- Current Month Revenue -->
-                            <div class ="col-md-3">
+                            <div class ="col-md-4">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
-                                    <div class="card-header ">
-                                        <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Current Month Revenue</font></a></h4>
+                                    <div class="card-header" id="#dashboardBox1">
+                                        <div class="card-title" id="currentMonth">Current Month Revenue</div>
                                         <p class="card-category"> <%=allMonths.get(currentMonthInt)%> </p>
-                                        <h2 class="card-title"><font color="black"> $<%= salesRevenueByMonthMap.get(currentMonthInt) %> </font></h2>
+                                        <div class="card-title" id="amountChange">$<%= salesRevenueByMonthMap.get(currentMonthInt) %> </div>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
@@ -204,42 +205,43 @@
                             <div class ="col-md-3">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
-                                    <div class="card-header ">
-                                        <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Most Returned Product</font></a></h4>
+                                    <div class="card-header" id="#dashboardBox2">
+                                        <div class="card-title" id="currentMonth">Most Returned Product</div>
                                         <p class="card-category"> <%= getMostReturnedProductsByMonth.get(1) %></p>
-                                        <h2 class="card-title"><font color="black"> <%= getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)) %> %</font></h2>
+                                        <div class="card-title" id="amountChange"> <%= getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1))%>%</div>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <!-- Top Customer -->        
                             <div class ="col-md-3">  
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
-                                    <div class="card-header ">
-                                        <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Customer </font></a></h4>
-                                        <br>
+                                    <div class="card-header" id="#dashboardBox3">
+                                        <div class="card-title" id="currentMonth">Top Customer </div>
+                                        
                                         <p class="card-category"> Customer Code : <%= top10CustomersByYearMonth.get(1 )%> </p>
                                         <% 
                                             if(allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(1)) == null){
-                                                out.println("<h2 class='card-title'><font color='black'>$</font></h2>");
+                                                out.println("<div class='card-title' id='amountChange'>$</div>");
                                             }else{
-                                                out.println("<h2 class='card-title'><font color='black'>$"+allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(1))+"</font></h2>");
+                                                out.println("<div class='card-title' id='amountChange'>$"+allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(1))+"</div>");
                                             }
                                         %>
 
-                                        
+                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <!-- Top Product -->
-                            <div class ="col-md-3">
+                            <div class ="col-md-2">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
-                                    <div class="card-header ">
-                                        <h4 class="card-title"><a href="dashboard.jsp"><font color="black">Top Product</font></a></h4>
-                                        <br>
+                                    <div class="card-header"  id="#dashboardBox4">
+                                        <div class="card-title" id="currentMonth">Top Product</div>
+                 
                                         <p class="card-category"> <%= getTop5ProductsByMonth.get(1) %>  </p>
-                                        <h2 class="card-title"><font color="black"> <%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1)) %> </font></h2>
-                                        
+                                        <div class="card-title" id="amountChange"><%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1)) %> </div>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
