@@ -334,7 +334,7 @@
 
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                      Chart.defaults.global.defaultFontSize = 16;
+                                      Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart = new Chart(myChart, {
@@ -539,7 +539,7 @@
 
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                      Chart.defaults.global.defaultFontSize = 16;
+                                      Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart2 = new Chart(mostReturnedChart, {
@@ -572,7 +572,7 @@
                                           title:{
                                             display:true,
                                             text:'Top 5 Most Returned Products <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedRetrieved %>',
-                                            fontSize:16
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
@@ -583,7 +583,7 @@
                                           },
                                           layout:{
                                             padding:{
-                                              left:50,
+                                              left:20,
                                               right:0,
                                               bottom:50,
                                               top:0
@@ -614,7 +614,7 @@
                                     </script>
                                                                        
                                     <center>
-                                        <p class="card-category"><b><font color = "black"><font face = "Segoe UI" >Breakdown Of Top 5 Most Returned Products for <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedInt%> </font></font></b></p>
+                                        <p class="card-category"><b><font color = "black"><font face = "Segoe UI"><font size="4px">Breakdown Of Top 5 Most Returned Products for <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedInt%> </font></font></font></b></p>
                                     </center>
                                     <br>
                                     
