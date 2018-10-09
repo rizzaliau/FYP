@@ -193,9 +193,9 @@
                             <div class ="col-md-4">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
-                                    <div class="card-header" id="#dashboardBox1">
+                                    <div class="card-header" id="dashboardBox1">
                                         <div class="card-title" id="currentMonth">Current Month Revenue</div>
-                                        <p class="card-category"> <%=allMonths.get(currentMonthInt)%> </p>
+                                        <div class="card-category" id="getDetails"> <%=allMonths.get(currentMonthInt)%> </div>
                                         <div class="card-title" id="amountChange">$<%= salesRevenueByMonthMap.get(currentMonthInt) %> </div>
                                         <br>
                                     </div>
@@ -205,9 +205,9 @@
                             <div class ="col-md-3">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
-                                    <div class="card-header" id="#dashboardBox2">
+                                    <div class="card-header" id="dashboardBox2">
                                         <div class="card-title" id="currentMonth">Most Returned Product</div>
-                                        <p class="card-category"> <%= getMostReturnedProductsByMonth.get(1) %></p>
+                                        <div class="card-category"  id="getDetails"> <%= getMostReturnedProductsByMonth.get(1) %></div>
                                         <div class="card-title" id="amountChange"> <%= getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1))%>%</div>
                                         <br>
                                     </div>
@@ -216,10 +216,10 @@
                             <!-- Top Customer -->        
                             <div class ="col-md-3">  
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
-                                    <div class="card-header" id="#dashboardBox3">
+                                    <div class="card-header" id="dashboardBox3">
                                         <div class="card-title" id="currentMonth">Top Customer </div>
                                         
-                                        <p class="card-category"> Customer Code : <%= top10CustomersByYearMonth.get(1 )%> </p>
+                                        <div class="card-category"  id="getDetails"> Customer Code : <%= top10CustomersByYearMonth.get(1 )%> </div>
                                         <% 
                                             if(allCustomerSalesByYearMonth.get(top10CustomersByYearMonth.get(1)) == null){
                                                 out.println("<div class='card-title' id='amountChange'>$</div>");
@@ -236,11 +236,11 @@
                             <div class ="col-md-2">
                                 
                                 <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
-                                    <div class="card-header"  id="#dashboardBox4">
+                                    <div class="card-header"  id="dashboardBox4">
                                         <div class="card-title" id="currentMonth">Top Product</div>
                  
-                                        <p class="card-category"> <%= getTop5ProductsByMonth.get(1) %>  </p>
-                                        <div class="card-title" id="amountChange"><%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1)) %> </div>
+                                        <div class="card-category" id="getDetails"> <%= getTop5ProductsByMonth.get(1) %></div>
+                                        <div class="card-title" id="amountChange" id="getDetails"><%= qtyForItemDescriptionMonthMap.get(getTop5ProductsByMonth.get(1)) %> </div>
                                         <br>
                                     </div>
                                 </div>
