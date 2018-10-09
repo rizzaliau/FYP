@@ -1,3 +1,45 @@
+#dashboardBox1{
+   border-color: black;
+   border-width: 20px;
+   height:150px;
+}
+#dashboardBox2{
+   border-color: black;
+   border-width: 4px;
+   height:150px;
+}
+
+#dashboardBox3{
+   border-color: black;
+   border-width: 4px;
+   height:150px;
+}
+
+#dashboardBox4{
+   border-color: black;
+   border-width: 4px;
+   height:150px;
+}
+
+#currentMonth{
+    font-family: Segoe UI, Charcoal, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+}
+#getDetails{
+    font-family: Segoe UI, Charcoal, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    color: #9A9A9A;
+}
+#amountChange{
+    font-family: Segoe UI, Charcoal, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+}
+
 .tim-row {
     margin-bottom: 20px;
 }
