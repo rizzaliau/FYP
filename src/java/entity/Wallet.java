@@ -15,7 +15,7 @@ public class Wallet {
     private Double rebateAmount;
     private String debtorCode;    
     
-    public Wallet(){
+    public Wallet(String id, Double refundAmount, Double rebateAmount,String debtorCode){
         
         this.id = id;
         this.refundAmount = refundAmount;
