@@ -220,7 +220,7 @@
                                         %>
 
                                         <form method="post" action="editSalesOrderController">
-
+                                            <input type="hidden" name="debtorCode" value="<%= customerCode%>">
                                             <input type="hidden" name="orderID" value="<%= orderID%>">
                                             <input type="hidden" name="preferredLanguage" value="<%= salesOrderdetails.getPreferredLanguage()%>">
 
@@ -435,6 +435,7 @@
 
                                                                 out.print("<input type='hidden' size='10' name='itemCode' value='" + itemDetail.getItemCode() + "'>");
                                                                 out.print("<input type='hidden' size='10' name='originalQty' value='" + itemDetail.getQty() + "'>");
+                                                                out.print("<input type='hidden' size='10' name='unitPrice' value='" + itemDetail.getUnitPrice() + "'>");
                                                                 //out.print("<tr><thead><th>Quantity</th></thead>");
                                                                 out.print("<td><input type='number' required size='10' name='qty' id='indivQty' onChange='updatePrices("+itemDetail.getItemCode()+")' value='" + itemDetail.getQty() + "'></td>");
                                                                 //out.print("<tr><thead><th>Returned Quantity</th></thead>");
