@@ -601,12 +601,7 @@
             return (Number)document.getElementByName("displayTermDropdown").value;
             }
         </script>
-        <!-- Cancel alert pop up -->
-        <script>
-            $('#myModal').on('shown.bs.modal', function () {
-            $('#myInput').trigger('focus')
-            })
-        </script>
+        
         <script>
                     function fillDelivery(f) {
                     if (f.billingtoo.checked == true) {
