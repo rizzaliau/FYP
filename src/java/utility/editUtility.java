@@ -22,7 +22,9 @@ import static java.nio.charset.StandardCharsets.ISO_8859_1;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -101,11 +103,13 @@ public class editUtility {
     public static void updateSalesOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         String orderIDRetrieved = request.getParameter("orderID");
+        String debtorCodeRetrieved = request.getParameter("debtorCode");
         String statusRetrieved = request.getParameter("status");
         String deliveryDateRetrieved = request.getParameter("deliveryDate");
         String[] qtyItemCodeRetrieved = request.getParameterValues("qty"); 
         String[] itemCodeRetrieved = request.getParameterValues("itemCode");
         String[] originalQtyRetrieved = request.getParameterValues("originalQty");
+        String[] unitPriceRetrieved = request.getParameterValues("unitPrice");
         String lastTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
         String paperBagRequiredRetrieved = request.getParameter("paperBagRequired");
@@ -149,11 +153,12 @@ public class editUtility {
                     String itemCode = itemCodeRetrieved[i];
                     String qty = qtyItemCodeRetrieved[i];
                     String originalQty = originalQtyRetrieved[i];
+                    String unitPrice = unitPriceRetrieved[i];
                     
                     int qtyToRefund = Integer.parseInt(originalQty)-Integer.parseInt(qty);
                     String qtyToRefundString = ""+qtyToRefund;
                     
-                    
+                    double unitPriceDouble = Double.parseDouble(unitPrice);
                     
                     String salesOrderQuantitySql = "";
                     
@@ -161,10 +166,17 @@ public class editUtility {
                     if(statusRetrieved.equals("Delivered")){
                         
                         //Update Returned Quantity
-                        if(qtyToRefund >= 0){
+                        if(qtyToRefund > 0){
                             //update item code qty for each item
                             salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"', ReturnedQty = ReturnedQty + '"+qtyToRefundString+"' WHERE orderID = '" + orderIDRetrieved + "' "
                             + "AND itemCode ='"+itemCode+"'";
+                            
+                            double subtotal = qtyToRefund*unitPriceDouble;
+                            
+                            double totalAmount = subtotal*1.07;
+                            
+                            increaseCustomerWalletAmount(debtorCodeRetrieved, totalAmount);
+                            
                         }else if(qtyToRefund == 0){
                             salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
                             + "AND itemCode ='"+itemCode+"'";
@@ -177,10 +189,17 @@ public class editUtility {
                     }else{
                         
                         //Update Reduced Quantity
-                        if(qtyToRefund >= 0){
+                        if(qtyToRefund > 0){
                             //update item code qty for each item
                             salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"', ReducedQty = ReducedQty + '"+qtyToRefundString+"' WHERE orderID = '" + orderIDRetrieved + "' "
                             + "AND itemCode ='"+itemCode+"'";
+                            
+                        double subtotal = qtyToRefund*unitPriceDouble;
+                            
+                        double totalAmount = subtotal*1.07;
+                            
+                        increaseCustomerWalletAmount(debtorCodeRetrieved, totalAmount);
+                        
                         }else if(qtyToRefund == 0){
                             salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
                             + "AND itemCode ='"+itemCode+"'";
@@ -201,11 +220,12 @@ public class editUtility {
                     SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderIDRetrieved, statusRetrieved);
                     String deliverContact = salesOrderdetails.getDeliverContact();                 
                     String debtorName = salesOrderdetails.getDebtorName();
-
+                    
+                    // SMS Notification
                     if (orderIDRetrieved != null && preferredLanguageRetrieved != null && deliverContact != null){
                         if (orderIDRetrieved.length() == 11 &&  preferredLanguageRetrieved.length() == 7 && deliverContact.length() == 8){
 
-                            boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, deliverContact, orderIDRetrieved);
+                            boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, "93201880", orderIDRetrieved);
 
                             if(!smsSentForEditOrder){
                                 //show alert to inform admin sms not sent to customer
@@ -404,6 +424,65 @@ public class editUtility {
         unicode = code.substring(2);
        
         return unicode;
+    }
+    
+    
+    public static double getCustomerWallet(String debtorCode) {
+        double walletAmt = 0;
+        DecimalFormat df = new DecimalFormat("#0.00");
+                  
+        try {
+            Connection conn = ConnectionManager.getConnection();
+        
+            PreparedStatement stmt = conn.prepareStatement("select RefundAmt from wallet where DebtorCode = ?");
+            
+            stmt.setString(1, debtorCode);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                walletAmt = rs.getDouble(1);
+                walletAmt = Double.parseDouble(df.format(walletAmt));
+            }
+                        
+            ConnectionManager.close(conn, stmt, rs);
+        } catch (Exception e) {
+            return 0;
+        }
+        return walletAmt;
+    }
+    
+    public static boolean increaseCustomerWalletAmount(String debtorCode, double totalAmt) {
+        boolean result = false;
+
+        double walletAmt = getCustomerWallet(debtorCode);
+        double newAmt = walletAmt + totalAmt;
+        DecimalFormat df = new DecimalFormat("#0.00");
+
+        
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            
+            /*
+            String sql = "UPDATE `wallet`\n" +
+                "SET RefundAmt = '"+Double.parseDouble(df.format(newAmt))+"'\n" +
+                "WHERE DebtorCode = \""+debtorCode+"\"";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            */
+            
+            PreparedStatement stmt = conn.prepareStatement("update wallet set RefundAmt = ? where DebtorCode = ?");
+                 
+            stmt.setDouble(1, Double.parseDouble(df.format(newAmt)));
+            stmt.setString(2, debtorCode);
+            
+            
+            stmt.executeUpdate();            
+            result = true;
+            
+        } catch (Exception e) {
+            return false;
+        }
+
+        return result;
     }
     
     
