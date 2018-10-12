@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="utility.walletUtility"%>
 <%@page import="entity.Wallet"%>
 <%@page import="utility.notificationUtility"%>
@@ -236,22 +237,24 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Debtor Code</th>
-                                                    <th>Refund Amount</th>
-                                                    <th>Rebate Amount</th>
+                                                    <th>Refund Amount ($)</th>
+                                                    <th>Rebate Amount ($)</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                <%      for (Integer number : allWallets.keySet()) {
+                                                <%      
+                                                    DecimalFormat df = new DecimalFormat("0.00");
+                                                    for (Integer number : allWallets.keySet()) {
                                                     
                                                             out.print("<tr>");
                                                             Wallet wallet = allWallets.get(number);
 
                                                             out.print("<td>" + wallet.getID() + "</td>");
                                                             out.print("<td>" + wallet.getDebtorCode() + "</td>");
-                                                            out.print("<td>" + wallet.getRefundAmount() + "</td>");
-                                                            out.print("<td>" + wallet.getRebateAmount() + "</td>");
+                                                            out.print("<td>" +  df.format(wallet.getRefundAmount()) + "</td>");
+                                                            out.print("<td>" +  df.format(wallet.getRebateAmount()) + "</td>");
                                                             
 
                                                             out.print("</tr>");
