@@ -41,26 +41,7 @@
     </head>
 
     <body>
-         <!-- Modal pop up alert -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Your changes will not be saved. Are you sure you want to leave this page?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "catalogueEdit.jsp">Continue</a></button>
-                        <button type="button" class="btn btn-danger"><a href = "catalogue.jsp">Leave this page</a></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <div class="wrapper">
            <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
@@ -331,7 +312,29 @@
                                             </div>
 
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Done"/>
-                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal"  value="Cancel" style = "margin-right: 10px;"/>
+                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#myModal1"  value="Cancel" style = "margin-right: 10px;"/>
+                                            
+                                             <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header justify-content-center">
+                                                                <div class="modal-profile">
+                                                                    <img src="assets/img/lightbulb_icon.png" height="50px" width="50px"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <p>Your changes will not be saved. Are you sure you want to leave this page?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-link btn-simple" onclick="location.href = 'catalogue.jsp'" >Leave Page</button>
+                                                                <button type="button" class="btn btn-link btn-simple" data-dismiss="modal">Continue</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                            
+                                            
                                         </form>
 
                                     </div>
@@ -376,7 +379,8 @@
 
                         });
                     </script>
-                    <!-- Cancel alert pop up -->
+                    <!-- commented the alert pop up -->
+                    <!-- Cancel alert pop up
                     <script>
                         function cancelFunction() {
                         confirm("Your changes will not be saved. Are you sure you want to continue?");
@@ -387,6 +391,7 @@
                      $('#myInput').trigger('focus')
                      })
                     </script>
+                    -->
                     <script>
                     $(document).ready(                       
                             function() {

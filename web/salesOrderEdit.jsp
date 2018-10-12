@@ -42,26 +42,7 @@
     </head>
 
     <body>
-        <!-- Modal pop up alert -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Your changes will not be saved. Are you sure you want to leave this page?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "salesOrderEdit.jsp">Continue</a></button>
-                        <button type="button" class="btn btn-danger"><a href = "salesOrder.jsp">Leave this page</a></button>
-                    </div>
-                </div>
-            </div>
-        </div>             
+
         <div class="wrapper">
             <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
@@ -91,7 +72,7 @@
                             }
 
                         %>
-                         <li>
+                        <li>
                             <a class="nav-link" href="dashboard.jsp">
                                 <img src="assets/img/dashboard_icon.png"/>
                                 <p>Dashboard</p>
@@ -99,13 +80,13 @@
                         </li>
                         <li>
                             <a class="nav-link" href="customer.jsp">
-                               <img src="assets/img/debtor_icon.png"/>
+                                <img src="assets/img/debtor_icon.png"/>
                                 <p>Customer</p>
                             </a>
                         </li>
                         <li class='nav-item active'>
                             <a class="nav-link" href="salesOrder.jsp">
-                               <img src="assets/img/salesOrder_icon.png"/>
+                                <img src="assets/img/salesOrder_icon.png"/>
                                 <p>Sales Order</p>
                             </a>
                         </li>
@@ -314,7 +295,7 @@
                                                                     out.println("<option value='Pending Delivery'>Pending Delivery</option>");
                                                                     out.println("<option value='Delivered'>Delivered</option>");
 
-                                                                }else if (sts.equals("Cancelled") || sts.equals("cancelled")) {
+                                                                } else if (sts.equals("Cancelled") || sts.equals("cancelled")) {
                                                                     out.println("<option disable value='Cancelled'>Cancelled</option>");
                                                                 } else {
                                                                     out.println("<option value='Delivered'>Delivered</option>");
@@ -437,7 +418,7 @@
                                                                 out.print("<input type='hidden' size='10' name='originalQty' value='" + itemDetail.getQty() + "'>");
                                                                 out.print("<input type='hidden' size='10' name='unitPrice' value='" + itemDetail.getUnitPrice() + "'>");
                                                                 //out.print("<tr><thead><th>Quantity</th></thead>");
-                                                                out.print("<td><input type='number' required size='10' name='qty' id='indivQty' onChange='updatePrices("+itemDetail.getItemCode()+")' value='" + itemDetail.getQty() + "'></td>");
+                                                                out.print("<td><input type='number' required size='10' name='qty' id='indivQty' onChange='updatePrices(" + itemDetail.getItemCode() + ")' value='" + itemDetail.getQty() + "'></td>");
                                                                 //out.print("<tr><thead><th>Returned Quantity</th></thead>");
                                                                 out.print("<td>" + itemDetail.getReturnedQty() + "</td>");
                                                                 out.print("<td>" + itemDetail.getReducedQty() + "</td>");
@@ -445,7 +426,7 @@
                                                                 out.print("<td>" + itemDetail.getUnitPrice2DP() + "</td>");
                                                                 //out.print("<tr><thead><th>Subtotal</th></thead>");
                                                                 DecimalFormat df = new DecimalFormat("0.00");
-                                                                out.print("<td id="+ itemDetail.getItemCode() +"'indivSubtotal' >" + df.format(subtotal) + "</td>");
+                                                                out.print("<td id=" + itemDetail.getItemCode() + "'indivSubtotal' >" + df.format(subtotal) + "</td>");
                                                                 out.print("</tr>");
 
                                                                 total += subtotal;
@@ -507,7 +488,7 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                           
+
                                                             <td><b><font color="red">GST (7%)</font></b></td>
                                                             <td><b><%= df.format(total * 0.07)%></b></td>
                                                         </tr>
@@ -518,7 +499,7 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                            
+
                                                             <td><b><font color="red">TOTAL ($)</font></b></td>
                                                             <td><b><%= df.format(total * 1.07)%></b></td>
                                                         </tr>
@@ -527,7 +508,26 @@
                                                 </table>
 
                                                 <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Done" />
-                                                <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#exampleModal"  value="Cancel" />
+                                                <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#myModal1" value="Cancel" />
+
+                                                <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header justify-content-center">
+                                                                <div class="modal-profile">
+                                                                    <img src="assets/img/lightbulb_icon.png" height="50px" width="50px"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <p>Your changes will not be saved. Are you sure you want to leave this page?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-link btn-simple" onclick="location.href = 'salesOrder.jsp'" >Leave Page</button>
+                                                                <button type="button" class="btn btn-link btn-simple" data-dismiss="modal">Continue</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </form>
 
                                         </tbody>
@@ -575,13 +575,6 @@
                             demo.initDashboardPageCharts();
 
                         });
-</script>
-<!-- Cancel alert pop up -->
-<script>
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    })
-
 </script>
 
 <script>
