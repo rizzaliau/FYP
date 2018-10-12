@@ -224,93 +224,91 @@
 
                                         <form method="post" action="editController">
 
-                                            
-                                                <%  
-                                                    String currentModifier = usernameSession;
-                                                    String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
 
-                                                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                                    String lastModifiedTimeStampFormatted = "";
+                                            <%                                                    String currentModifier = usernameSession;
+                                                String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
 
-                                                    if (!(debtor.getLastModifiedTimeStamp() == null || debtor.getLastModifiedTimeStamp().equals("-") || debtor.getLastModifiedTimeStamp().equals(""))) {
-                                                        Date d2 = sdf2.parse(debtor.getLastModifiedTimeStamp());
-                                                        sdf2.applyPattern("dd-MM-yyyy HH:mm:ss");
-                                                        lastModifiedTimeStampFormatted = sdf2.format(d2);
-                                                    } else {
-                                                        lastModifiedTimeStampFormatted = "-";
-                                                    }
-                                                    
-                                                    String lastModifiedBy = debtor.getLastModifiedBy();
-                                                    if (lastModifiedBy.equals("")) {
-                                                        lastModifiedBy = "-";
-                                                    }
-                                                    
-                                                    
-                                                    // Alert for customer who do not meet the requirements for the past three months starting from the current month
-                                                    String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);                                                
-                                                    String currentYear =  adminUtility.getYearTimestamp(currentTimeStamp);
-                                                    int currentMonthInt = Integer.parseInt(currentMonth);
-                                                    int currentYearInt = Integer.parseInt(currentYear);
-                                                    
-                                                    if(currentMonthInt==1){
-                                                        currentMonthInt = 13;
-                                                    }
-                                                    
-                                                    Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
-                                                    Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth1 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt-1);
-                                                    Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth2 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt-2);
-                                                    Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth3 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt,currentMonthInt-3);
-                                                    
-                                                    String customersWhoDoNotMeetRequirementAlertMessage = "<font color = 'red'>ALERT: Customer "+debtor.getDebtorName()+" did not meet the requirements in  ";
-                                                    
-                                                    int countDoNotMeetRequirements = 0;
-                                                    
-                                                    for (Integer number : customersWhoDoNotMeetRequirementByYearMonth1.keySet()) {
-                                                        if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth1.get(number))){
+                                                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                String lastModifiedTimeStampFormatted = "";
 
-                                                            customersWhoDoNotMeetRequirementAlertMessage += allMonths.get(currentMonthInt-1);
+                                                if (!(debtor.getLastModifiedTimeStamp() == null || debtor.getLastModifiedTimeStamp().equals("-") || debtor.getLastModifiedTimeStamp().equals(""))) {
+                                                    Date d2 = sdf2.parse(debtor.getLastModifiedTimeStamp());
+                                                    sdf2.applyPattern("dd-MM-yyyy HH:mm:ss");
+                                                    lastModifiedTimeStampFormatted = sdf2.format(d2);
+                                                } else {
+                                                    lastModifiedTimeStampFormatted = "-";
+                                                }
+
+                                                String lastModifiedBy = debtor.getLastModifiedBy();
+                                                if (lastModifiedBy.equals("")) {
+                                                    lastModifiedBy = "-";
+                                                }
+
+                                                // Alert for customer who do not meet the requirements for the past three months starting from the current month
+                                                String currentMonth = adminUtility.getMonthTimestamp(currentTimeStamp);
+                                                String currentYear = adminUtility.getYearTimestamp(currentTimeStamp);
+                                                int currentMonthInt = Integer.parseInt(currentMonth);
+                                                int currentYearInt = Integer.parseInt(currentYear);
+
+                                                if (currentMonthInt == 1) {
+                                                    currentMonthInt = 13;
+                                                }
+
+                                                Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
+                                                Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth1 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt, currentMonthInt - 1);
+                                                Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth2 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt, currentMonthInt - 2);
+                                                Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth3 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt, currentMonthInt - 3);
+
+                                                String customersWhoDoNotMeetRequirementAlertMessage = "<font color = 'red'>ALERT: Customer " + debtor.getDebtorName() + " did not meet the requirements in  ";
+
+                                                int countDoNotMeetRequirements = 0;
+
+                                                for (Integer number : customersWhoDoNotMeetRequirementByYearMonth1.keySet()) {
+                                                    if (debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth1.get(number))) {
+
+                                                        customersWhoDoNotMeetRequirementAlertMessage += allMonths.get(currentMonthInt - 1);
+                                                        countDoNotMeetRequirements++;
+
+                                                    }
+                                                }
+
+                                                for (Integer number : customersWhoDoNotMeetRequirementByYearMonth2.keySet()) {
+                                                    if (debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth2.get(number))) {
+
+                                                        if (countDoNotMeetRequirements == 1) {
+                                                            customersWhoDoNotMeetRequirementAlertMessage += ", " + allMonths.get(currentMonthInt - 2);
+                                                        } else {
+                                                            customersWhoDoNotMeetRequirementAlertMessage += allMonths.get(currentMonthInt - 2);
                                                             countDoNotMeetRequirements++;
-                                                            
                                                         }
                                                     }
-                                                    
-                                                    for (Integer number : customersWhoDoNotMeetRequirementByYearMonth2.keySet()) {
-                                                        if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth2.get(number))){
-                                                            
-                                                            if(countDoNotMeetRequirements == 1){
-                                                                customersWhoDoNotMeetRequirementAlertMessage += ", "+allMonths.get(currentMonthInt-2);
-                                                            }else{                                                           
-                                                                customersWhoDoNotMeetRequirementAlertMessage += allMonths.get(currentMonthInt-2);
-                                                                countDoNotMeetRequirements++;
-                                                            }
-                                                        }
-                                                    }
-                                                    
-                                                    for (Integer number : customersWhoDoNotMeetRequirementByYearMonth3.keySet()) {
-                                                        if(debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth3.get(number))){
-                                                            
-                                                            if(countDoNotMeetRequirements == 1){
-                                                                customersWhoDoNotMeetRequirementAlertMessage += ", "+allMonths.get(currentMonthInt-3);
-                                                                countDoNotMeetRequirements++;
-   
-                                                            }else{
-                                                                customersWhoDoNotMeetRequirementAlertMessage += " and "+allMonths.get(currentMonthInt-3);
-                                                                countDoNotMeetRequirements++;
-                                                            }
-                                                        }
-                                                    }
-                                                    
-                                                    customersWhoDoNotMeetRequirementAlertMessage += " "+currentYearInt+"</font>";
-                                                    
-                                                    if(countDoNotMeetRequirements>0){
-                                                        //Final message of customersWhoDoNotMeetRequirementAlertMessage printed if they they do not meet
-                                                        //requirements
-                                                        out.println(customersWhoDoNotMeetRequirementAlertMessage);
-                                                    }
-                                                    
-                                                %>    
+                                                }
 
-                                                <div class="row">
+                                                for (Integer number : customersWhoDoNotMeetRequirementByYearMonth3.keySet()) {
+                                                    if (debtor.getDebtorCode().equals(customersWhoDoNotMeetRequirementByYearMonth3.get(number))) {
+
+                                                        if (countDoNotMeetRequirements == 1) {
+                                                            customersWhoDoNotMeetRequirementAlertMessage += ", " + allMonths.get(currentMonthInt - 3);
+                                                            countDoNotMeetRequirements++;
+
+                                                        } else {
+                                                            customersWhoDoNotMeetRequirementAlertMessage += " and " + allMonths.get(currentMonthInt - 3);
+                                                            countDoNotMeetRequirements++;
+                                                        }
+                                                    }
+                                                }
+
+                                                customersWhoDoNotMeetRequirementAlertMessage += " " + currentYearInt + "</font>";
+
+                                                if (countDoNotMeetRequirements > 0) {
+                                                    //Final message of customersWhoDoNotMeetRequirementAlertMessage printed if they they do not meet
+                                                    //requirements
+                                                    out.println(customersWhoDoNotMeetRequirementAlertMessage);
+                                                }
+
+                                            %>    
+
+                                            <div class="row">
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Customer Code*</label>
@@ -321,7 +319,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Last Modified By</label>
-                                                               <input type="text" class="form-control" placeholder="" required="" value="<%= lastModifiedBy%>" size="10" disabled="">
+                                                        <input type="text" class="form-control" placeholder="" required="" value="<%= lastModifiedBy%>" size="10" disabled="">
                                                         <input type="hidden" class="form-control" value="<%= currentModifier%>" name="lastModifiedBy">
                                                     </div>
                                                 </div>
@@ -522,9 +520,30 @@
                                             </div>
 
                                             <a href="changeCustomerPassword.jsp?debtorCode=<%=debtor.getDebtorCode()%>&hashPassword=<%=debtor.getPassword()%>&companyName=<%= debtor.getCompanyName()%>"><input class="btn btn-info btn-fill pull-right" type="button" name="changeCustomerPassword"  value="Change Customer Password" /></a>
-                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" data-toggle="modal" data-target="#exampleModal"/>
+                                            <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Cancel" data-toggle="modal" data-target="#myModal1"/>
                                             <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Done" style="margin-right:15px;" />
                                             <div class="clearfix"></div>
+
+
+                                            <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header justify-content-center">
+                                                            <div class="modal-profile">
+                                                                <img src="assets/img/lightbulb_icon.png" height="50px" width="50px"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <p>Your changes will not be saved. Are you sure you want to leave this page?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-link btn-simple" onclick="location.href = 'customer.jsp'" >Leave Page</button>
+                                                            <button type="button" class="btn btn-link btn-simple" data-dismiss="modal">Continue</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </form>
 
                                     </div>
