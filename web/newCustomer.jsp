@@ -168,33 +168,40 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Customer Management</h4>
-                                        <p>
-                                        <h5 class="card-title"><font color = "red">Please fill in details below to add new customer</font></h5>
-                                        <p>
-                                        <p class="card-category"><font color = "red">* denotes required fields</font></p>
+                                        <p class="card-category">Customer Details</p>
+                                        <br>
+                                        <div class="alert alert-danger">
+                                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+                                            <i class="nc-icon nc-simple-remove"></i>
+                                        </button>
+                                        <span>
+                                            <b> * denotes required fields - </b> Please fill in details below to add new customer</span>
+                                            
+                                        </div>
+                                        
                                     </div>
-                                    <center>
-                                        <font color="red">
+                                    <div class="col-md-12">
                                         <%
                                             String msgStatus = (String) request.getAttribute("status");
 
                                             if (msgStatus != null) {
                                                 out.print("</br>");
+                                                out.print("<div class = 'alert alert-warning'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                                 out.print(msgStatus);
-                                                out.print("</br>");
+                                                out.print("</span></div>");
                                             }
 
 
                                         %> 
-                                        </font></center>
-
+                                        
+                                    </div>
                                     <div class="card-body">
 
-                                        <br>
+                                        
                                         <form method="post" action="newUserController">
 
                                             <%                                                String currentModifier = usernameSession;
@@ -341,7 +348,7 @@
                         </div>
                     </div>
                 </div>
-
+               
 
 
                     <footer class="footer">

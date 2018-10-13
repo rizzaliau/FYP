@@ -192,6 +192,7 @@
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Customer Management</h4>
+                                        <p class="card-category">Customer Details</p>
                                     </div>
                                     <div class="col-md-12">
                                         <%
