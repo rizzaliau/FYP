@@ -240,7 +240,8 @@
                                                 Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth2 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt, currentMonthInt - 2);
                                                 Map<Integer, String> customersWhoDoNotMeetRequirementByYearMonth3 = dashboardUtility.getCustomersWhoDoNotMeetRequirementByYearMonth(currentYearInt, currentMonthInt - 3);
 
-                                                String customersWhoDoNotMeetRequirementAlertMessage = "<font color = 'red'>ALERT: Customer " + debtor.getDebtorName() + " did not meet the requirements in  ";
+                                                String customersWhoDoNotMeetRequirementAlertMessage = "<div class = 'alert alert-danger'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>"
+                                                        + "ALERT: Customer " + debtor.getDebtorName() + " did not meet the requirements in  ";
 
                                                 int countDoNotMeetRequirements = 0;
 
@@ -279,7 +280,7 @@
                                                     }
                                                 }
 
-                                                customersWhoDoNotMeetRequirementAlertMessage += " " + currentYearInt + "</font>";
+                                                customersWhoDoNotMeetRequirementAlertMessage += " " + currentYearInt + "</span></div>";
 
                                                 if (countDoNotMeetRequirements > 0) {
                                                     //Final message of customersWhoDoNotMeetRequirementAlertMessage printed if they they do not meet
