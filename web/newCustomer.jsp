@@ -179,7 +179,7 @@
                                             <i class="nc-icon nc-simple-remove"></i>
                                         </button>
                                         <span>
-                                            <b> * denotes required fields - </b> Please fill in details below to add new customer</span>
+                                            <b> * denotes required fields-</b> Please fill in details below to add new customer</span>
                                             
                                         </div>
                                         

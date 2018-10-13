@@ -215,7 +215,6 @@
 
 
                                         %> 
-                                        
                                         <div>
                                             <div>
                                             <input hidden id="mytext" type="text" value="Active" />    
