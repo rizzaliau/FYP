@@ -20,6 +20,7 @@ import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import static utility.editUtility.getCustomerWallet;
 
 /**
  *
@@ -133,16 +135,7 @@ public class deleteUtility {
         String lastModifiedTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
         String statusRetrieved = request.getParameter("statusConfirmation");
-        
-        System.out.println(orderIDRetrieved);
-        System.out.println(cancelledReasonRetrieved);
-        System.out.println(preferredLanguageRetrieved);
-        System.out.println(lastModifiedTimeStampRetrieved);
-        System.out.println(lastModifiedByRetrieved);
-        System.out.println(statusRetrieved);
-        
-        System.out.println("Last modified timestamp is: "+lastModifiedTimeStampRetrieved);
-        System.out.println(lastModifiedByRetrieved);
+        String amountToBeAdded = request.getParameter("amountToBeAdded");
         
         if(cancelledReasonRetrieved.equals("")||cancelledReasonRetrieved==null||cancelledReasonRetrieved.equals("null")){
             request.setAttribute("msgStatus", "Please enter a cancelled reason!");
@@ -154,14 +147,6 @@ public class deleteUtility {
                 Connection conn = ConnectionManager.getConnection();
                 out.println("passes conn");
 
-                //String salesOrderDetailSql = "DELETE FROM `sales_order_detail` WHERE orderID = '" + orderIDRetrieved + "' "
-                        //+ "AND DeliveryDate='"+deliveryDateRetrieved+"' ";
-
-                //String salesOrderQtySql = "DELETE FROM `sales_order_quantity` WHERE orderID = '" + orderIDRetrieved + "' ";
-
-                //String salesOrderSql = "DELETE FROM `sales_order` WHERE orderID = '" + orderIDRetrieved + "' "
-                        //+ "AND status='"+statusRetrieved+"' ";
-
                 String cancelSalesOrderSQL = "UPDATE `sales_order` SET Status='Cancelled',"
                         + " CancelledReason = '" + cancelledReasonRetrieved + "',"
                         + " LastModifiedTimestamp = '" + lastModifiedTimeStampRetrieved + "',"
@@ -170,13 +155,11 @@ public class deleteUtility {
 
 
                 PreparedStatement stmt1 = conn.prepareStatement(cancelSalesOrderSQL);
-                //PreparedStatement stmt2 = conn.prepareStatement(salesOrderQtySql);
-                //PreparedStatement stmt3 = conn.prepareStatement(salesOrderSql);
+
                 out.println("passes stmt");
 
                 stmt1.executeUpdate();
-                //stmt2.executeUpdate();
-                //stmt3.executeUpdate();
+
                 out.println("passes rs");
                 
                 
@@ -190,10 +173,18 @@ public class deleteUtility {
                 String deliverContact = salesOrderdetails.getDeliverContact();  
                 String debtorName = salesOrderdetails.getDebtorName();
                 
+                double amountToBeAddedDouble = Double.parseDouble(amountToBeAdded);
+
+                String customerCode = salesOrderUtility.getCustomerCode(orderIDRetrieved, "Cancelled");
+
+                boolean increaseCustomerWallet = increaseCustomerWalletAmount(customerCode,amountToBeAddedDouble);
+                
+                out.print("Customer's wallet credited: "+increaseCustomerWallet);
+                
                 if (orderIDRetrieved != null && preferredLanguageRetrieved != null && deliverContact != null){
                     if (orderIDRetrieved.length() == 11 &&  preferredLanguageRetrieved.length() == 7 && deliverContact.length() == 8){
 
-                        boolean smsSentForCancelOrder = sendSmsForCancelOrder(preferredLanguageRetrieved, deliverContact, orderIDRetrieved);
+                        boolean smsSentForCancelOrder = sendSmsForCancelOrder(preferredLanguageRetrieved, "93201880", orderIDRetrieved);
 
                         if(!smsSentForCancelOrder){
                             //show alert to inform admin sms not sent to customer
@@ -212,10 +203,10 @@ public class deleteUtility {
 
             } catch (SQLException ex) {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("status", "Error updating record!");
+                request.setAttribute("status", "Error updating Sales Order!");
             }
 
-            request.setAttribute("status", "Record cancelled successfully!");
+            request.setAttribute("status", "Sales Order cancelled successfully!");
 
             request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
         
@@ -488,6 +479,35 @@ public class deleteUtility {
         unicode = code.substring(2);
        
         return unicode;
+    }
+    
+    
+    public static boolean increaseCustomerWalletAmount(String debtorCode, double totalAmt) {
+        boolean result = false;
+
+        double walletAmt = getCustomerWallet(debtorCode);
+        double newAmt = walletAmt + totalAmt;
+        DecimalFormat df = new DecimalFormat("#0.00");
+
+        
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            
+            
+            PreparedStatement stmt = conn.prepareStatement("update wallet set RefundAmt = ? where DebtorCode = ?");
+                 
+            stmt.setDouble(1, Double.parseDouble(df.format(newAmt)));
+            stmt.setString(2, debtorCode);
+            
+            
+            stmt.executeUpdate();            
+            result = true;
+            
+        } catch (Exception e) {
+            return false;
+        }
+
+        return result;
     }
     
 }
