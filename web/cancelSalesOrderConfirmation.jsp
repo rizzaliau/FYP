@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="utility.walletUtility"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
@@ -217,9 +219,23 @@
                                             <p>
                                             <input type="submit" class="btn btn-info btn-fill pull-right" value="Confirm Cancel" style="margin-right: 100px; margin-top: 10px; margin-bottom: 20px; "> 
                                             <a href="salesOrder.jsp"><input class="btn btn-info btn-fill pull-left" type="button" name="Cancel"  value="Back" style="margin-left:15px; margin-top: 10px; margin-bottom: 20px;"/></a>
+                                            
+                                            <% 
+                                                //out.print(status); 
+                                                if(status.equals("pendingDelivery")){
+                                                    status = "Pending Delivery";
+                                                }
+
+                                                DecimalFormat df = new DecimalFormat("0.00");
+
+                                                double salesOrderTotal = walletUtility.findSalesOrderTotal(orderID,status);
+                                                //out.print("Sales Order total is"+df.format(salesOrderTotal)); 
+                                            %>
+                                            
+                                            <input type="hidden" value="<%= df.format(salesOrderTotal) %>" name="amountToBeAdded">
                                         </form>   
                                 
-                                
+
                             </div>
                             </div>
                         </div>

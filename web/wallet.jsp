@@ -218,17 +218,7 @@
 
                                         %> 
                                         </font>
-                                        <div>
-                                            <div>
-                                            <input hidden id="mytext" type="text" value="All" />    
-                                            <select class="example-filter-input" id="2">
-                                                <option value="Active">Active</option>
-                                                <option value="Inactive">Inactive</option>
-                                                <option value="All">All</option>
-                                            </select>  
-                                            <label>Wallet</label>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <br>
                                     <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px;">
@@ -238,7 +228,6 @@
                                                     <th>ID</th>
                                                     <th>Debtor Code</th>
                                                     <th>Refund Amount ($)</th>
-                                                    <th>Rebate Amount ($)</th>
 
                                                 </tr>
                                             </thead>
@@ -253,9 +242,7 @@
 
                                                             out.print("<td>" + wallet.getID() + "</td>");
                                                             out.print("<td>" + wallet.getDebtorCode() + "</td>");
-                                                            out.print("<td>" +  df.format(wallet.getRefundAmount()) + "</td>");
-                                                            out.print("<td>" +  df.format(wallet.getRebateAmount()) + "</td>");
-                                                            
+                                                            out.print("<td>" +  df.format(wallet.getRefundAmount()) + "</td>");                                                     
 
                                                             out.print("</tr>");
 
