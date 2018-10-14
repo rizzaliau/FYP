@@ -185,7 +185,7 @@
                                         -->
                                     </div>   
                                     
-                                    <div class="card-body ">
+                                    
                                     <!-- HIDE THE BUTTON FIRST 
                                     <center>    
                                         <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
@@ -210,16 +210,18 @@
                        
                        
                        <!-- Start of Filter month/year for top 10 Customers -->
+                       
                             
                             <form method="post" action="customerDashboard.jsp" name="top10CustomersForm" >
-                            
+                                
                                 <div class="card-body ">
                                     
                                             <%
                                                 Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();
                                                 Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
                                             %>
-                                        
+                                    <div class="row">
+                                         <div class="col-md-5 pr-1">
                                             <div class="form-group">
                                                     <select id="top10Year" name="top10CustomersMonth" onchange="return setValue();" class="form-control">
 
@@ -256,9 +258,9 @@
 
                                                     </select>
                                             </div>
-                                        
+                                         </div>
 
-                                       
+                                        <div class="col-md-4 pr-1">
                                             <div class="form-group">
                                                 <select id="top10Month" name="top10CustomersYear" onchange="return setValue();" class="form-control">
 
@@ -290,11 +292,11 @@
 
                                                 </select>
                                             </div>
-                                      
+                                        </div>
+                                    </div>
 
                                         <input type="hidden" name="dropdown" id="dropdown">
-                                        <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
-                                   
+                                        <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; margin-left: 5px; height: 40px;">
                             
                             <br>
                          <!-- End of Filter month/year for top 10 Customers -->
@@ -502,7 +504,7 @@
                                              </div>
                                          </div>
 
-                                         <div class="col-md-5 pr-1">
+                                         <div class="col-md-4 pr-1">
                                              <div class="form-group">
                                                  <select id="top10Month" name="customersDoNotMeetRequirementYear" onchange="return setValue();" class="form-control">
 
@@ -537,7 +539,7 @@
                                          </div>
 
                                          <input type="hidden" name="dropdown" id="dropdown">
-                                         <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
+                                         <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; margin-top: 5px; margin-left: 5px; height: 40px;">
                                      
                              </center>
                              <br>
@@ -749,7 +751,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-5 pr-1">
+                                                <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <select id="returnProductsByCustomerYear" name="returnProductsByCustomerYear" onchange="return setValue();" class="form-control">
 
@@ -784,7 +786,7 @@
                                                 </div>
 
                                                 <input type="hidden" name="dropdown" id="dropdown">
-                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
+                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; margin-top: 5px; margin-left: 5px; height: 40px;">
                                             
                                     </center>
                                     <br>
@@ -926,7 +928,7 @@
                                         <form method="post" action="customerDashboard.jsp" name="returnProductsBreakdownByCustomerForm" >
                                             <div class="row">
 
-                                                <div class="col-md-5 pr-1">
+                                                <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <select id="returnProductsByCustomerMonth" name="returnProductsBreakdownByCustomerMonth" onchange="return setValue();" class="form-control">
 
@@ -966,7 +968,7 @@
                                                     </div>
                                                 </div>
                                                             
-                                                <div class="col-md-5 pr-1">
+                                                <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <select id="returnProductsByCustomerYear" name="returnProductsBreakdownByCustomerYear" onchange="return setValue();" class="form-control">
 
@@ -1002,7 +1004,7 @@
                                                             
                                                
                                                 
-                                                <div class="col-md-5 pr-1">
+                                                <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                             <select id="returnProductsByCustomerCustomerCode" name="returnProductsBreakdownByCustomerCustomerCode" onchange="return setValue();" class="form-control">
 
@@ -1041,7 +1043,7 @@
                                                             
                                                 
                                                 <input type="hidden" name="dropdown" id="dropdown">
-                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; left:2px;; height: 40px;">
+                                                <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown"  style="position: relative; margin-top: 5px; margin-left: 5px; height: 40px;">
                                             </form>
                                     </center>
                                     <br>
