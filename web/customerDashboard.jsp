@@ -294,7 +294,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                         <input type="hidden" name="dropdown" id="dropdown">
                                         <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; margin-left: 5px; height: 40px;">
                             
