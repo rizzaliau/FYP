@@ -6,6 +6,9 @@
 package utility;
 
 import dao.ConnectionManager;
+import entity.ItemDetails;
+import entity.OrderItem;
+import entity.SalesOrderDetails;
 import entity.Wallet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -72,6 +75,36 @@ public class walletUtility {
            return "0.0";
        }
        return string;
+   }
+    
+   public static Double findSalesOrderTotal(String orderID,String status){
+       
+       double salesOrderTotal=0.0;
+       
+       SalesOrderDetails salesOrderdetails = salesOrderUtility.getSalesOrderDetails(orderID, status);
+
+       String customerCode = salesOrderUtility.getCustomerCode(orderID, status);
+
+       Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(orderID, status);
+       
+
+        for (Integer number : itemDetailsMap.keySet()) {
+            double subtotal = 0;
+
+            ItemDetails itemDetail = itemDetailsMap.get(number);
+            OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
+
+            double qtyDouble = Double.parseDouble(itemDetail.getQty());
+            double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
+
+            subtotal = qtyDouble * unitPriceDouble;
+       
+            salesOrderTotal += subtotal;
+       
+        }
+        
+        
+       return salesOrderTotal*1.07;
    }
     
     
