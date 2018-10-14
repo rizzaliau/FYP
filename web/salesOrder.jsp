@@ -186,23 +186,25 @@
                                         <h4 class="card-title">Current Orders</h4>
 
 
-                                        <div class="col-md-8"><font color="red">
+                                        <div class="col-md-12">
                                             <%  String msgStatus = (String) request.getAttribute("updateSuccess");
                                                 String msgStatus2 = (String) request.getAttribute("status");
 
                                                 if (msgStatus != null) {
                                                     out.print("</br>");
+                                                    out.print("<div class = 'alert alert-danger'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                                     out.print(msgStatus);
-                                                    out.print("</br>");
+                                                    out.print("</span></div>");
                                                 }
 
                                                 if (msgStatus2 != null) {
                                                     out.print("</br>");
+                                                    out.print("<div class = 'alert alert-success'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                                     out.print(msgStatus2);
-                                                    out.print("</br>");
+                                                    out.print("</span></div>");
                                                 }
                                             %> 
-                                        </div></font>
+                                        
                                         <div>
                                             <div>
                                                 <input hidden id="mytext" type="text" value="Active" />    
