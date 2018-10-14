@@ -380,7 +380,7 @@
                                                 </div>
 
                                             </div>
-
+                                            <br>           
                                             <hr>
                                             <div class="card-body table-full-width table-responsive">
                                                 <table class="table table-hover table-striped">
@@ -433,13 +433,24 @@
                                                             }
                                                             DecimalFormat df = new DecimalFormat("0.00");
                                                         %>
+                                                    </tbody>
+                                                </table>
+                                            
+                                            <hr>
+                                            
+                                            
+                                                
+                                                <table class="table table-hover table-striped">
+                                                    
+                                                    <tbody>
 
 
                                                         <%
+                                                            
                                                             double refundedTotal = 0;
 
                                                             if (refundedItemDetailsMap.size() > 0) {
-                                                                out.print("<thead><th><h4 class='card-title'>Returned Items</h4></th>");
+                                                                out.print("<div class='card-header'><h4 class='card-title'>Returned Items</h4><p class='card-category'>List of return items</p>");
                                                                 //out.print("<center><thead><th><b>Returned Items</b></th></center>");
                                                                 out.print("<thead><th><b>Item Code</b></th>"
                                                                         + "<th><b>Item Name</b></th>"
@@ -471,6 +482,7 @@
                                                             }
 
                                                         %>
+                                                        
                                                         <tr bgcolor="white">
                                                             <td></td>
                                                             <td></td>
@@ -506,6 +518,9 @@
 
                                                     </tbody>
                                                 </table>
+                                                        
+                                            </div>
+                                           
 
                                                 <input class="btn btn-info btn-fill pull-right" type="submit" name="submit"  value="Done" />
                                                 <input class="btn btn-info btn-fill pull-left" type="button" name="Cancel" data-toggle="modal" data-target="#myModal1" value="Cancel" />
@@ -529,10 +544,7 @@
                                                     </div>
                                                 </div>
                                         </form>
-
-                                        </tbody>
-                                        </table>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
