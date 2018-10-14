@@ -362,7 +362,7 @@
     $(document).ready(                       
             function() {
                 setInterval(function() {
-                     $('#notification').load('loyaltyProgramme.jsp #notification'); 
+                     $('#notification').load('wallet.jsp #notification'); 
                 }, 5000);
             });
     </script>

@@ -97,7 +97,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="nav-link" href="loyaltyProgramme.jsp">
+                            <a class="nav-link" href="wallet.jsp">
                                 <img src="assets/img/wallet_icon.png"/>
                                 <p>Wallet</p>
                             </a>
@@ -593,7 +593,7 @@
     $(document).ready(
             function () {
                 setInterval(function () {
-                    $('#notification').load('loyaltyProgramme.jsp #notification');
+                    $('#notification').load('wallet.jsp #notification');
                 }, 5000);
                 //document.write($("#status").value);
                 if (document.getElementById('status').value == 'Cancelled') {
