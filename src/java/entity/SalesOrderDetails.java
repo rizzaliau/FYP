@@ -17,6 +17,7 @@ public class SalesOrderDetails {
     private String status;
     private String deliveryDate;
     private String subTotal;
+    private String paidAmt;
     private String companyName;
     private String debtorName;
     private String deliverContact;
@@ -31,7 +32,7 @@ public class SalesOrderDetails {
     private String preferredLanguage;
         
     public SalesOrderDetails(String orderID, String createTimeStamp, String lastModifiedTimeStamp, String status, String deliveryDate,
-            String subTotal, String companyName, String debtorName, String deliverContact ,String displayTerm, 
+            String subTotal, String paidAmt, String companyName, String debtorName, String deliverContact ,String displayTerm, 
             String routeNumber, String deliverAddr1, String deliverAddr2, String deliverAddr3, String deliverAddr4,
             String lastModifiedBy, String paperBagRequired, String preferredLanguage){
         
@@ -41,6 +42,7 @@ public class SalesOrderDetails {
         this.status = status;
         this.deliveryDate = deliveryDate;
         this.subTotal = subTotal;
+        this.paidAmt = paidAmt;
         this.companyName = companyName;
         this.debtorName = debtorName;
         this.deliverContact = deliverContact;
@@ -132,6 +134,15 @@ public class SalesOrderDetails {
     
     public String getPreferredLanguage(){
         return preferredLanguage;
+    }
+    
+    public double getPaidAmt(){
+        
+        if(paidAmt!= null){
+            return Double.parseDouble(paidAmt);
+        }
+        
+        return 0.0;
     }
     
 }
