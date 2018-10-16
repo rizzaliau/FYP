@@ -19,6 +19,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.logging.Level;
@@ -77,6 +78,10 @@ public class insertUtility {
 
             stmt.executeUpdate();
             out.println("passes rs");
+            
+            boolean createNewWallet = createNewWallet(debtorCode,0.0);
+            
+            out.println("Wallet is created: "+createNewWallet);
             
             if (debtorName != null && companyCode != null && preferredLanguage != null && deliverContact != null){
                     if (debtorName.length() > 0 && preferredLanguage.length() == 7 && deliverContact.length() == 8){
@@ -358,5 +363,68 @@ public class insertUtility {
         }
         return result;
     }
+    
+    public static boolean createNewWallet(String debtorCode, Double refundAmt){
+        
+        boolean createNewWallet = false;
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int countInt = 0;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select COUNT(ID) from wallet";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String count = rs.getString("COUNT(ID)");
+                countInt = Integer.parseInt(count);
+
+            }
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by createNewWallet method");
+            System.out.println(e.getMessage());
+            
+        }
+        
+        
+        try{
+            //Connection conn = ConnectionManager.getConnection();
+            out.println("passes conn");
+
+            String sql = "INSERT INTO wallet " + "VALUES('"+ ++countInt +"','"+refundAmt+"','"+0.0+"',"
+                    + "'"+debtorCode+"')";
+                    
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            out.println("passes stmt");
+
+            stmt.executeUpdate();
+            out.println("passes rs");
+            
+            createNewWallet = true;
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by createNewWallet method");
+            System.out.println(e.getMessage());
+            
+        }
+        
+        
+        return createNewWallet;
+
+    }
+        
+    
 
 }
