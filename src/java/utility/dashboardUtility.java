@@ -185,8 +185,10 @@ public class dashboardUtility {
         });
         
         int rank = 1;
+        
+        int rank5Value = 0;
 
-        for (int k = list.size()-1; k>=list.size()-5; k--){    
+        for (int k = list.size()-1; k>=list.size()-6; k--){    
             
             Entry<String, Integer> entry = list.get(k);
             
@@ -195,6 +197,14 @@ public class dashboardUtility {
             
             System.out.println(entry);
             System.out.println("Key is "+key);
+            
+            if(k==list.size()-5){
+                rank5Value = value;
+            }
+            
+            if(rank5Value == value){
+                top5ProductsByMonth.put(rank,key);
+            }
             
             top5ProductsByMonth.put(rank,key);
             rank++;

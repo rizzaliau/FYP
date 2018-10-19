@@ -425,7 +425,13 @@
                                                             '<%= getTop5ProductsByMonth.get(2)%>',
                                                             '<%= getTop5ProductsByMonth.get(3)%>',
                                                             '<%= getTop5ProductsByMonth.get(4)%>',
-                                                            '<%= getTop5ProductsByMonth.get(5)%>'],
+                                                            '<% 
+                                                                out.print(getTop5ProductsByMonth.get(5));
+                                                                if(getTop5ProductsByMonth.get(6)!=null){
+                                                                    out.print(" , "+getTop5ProductsByMonth.get(6));
+                                                                }
+                                                                
+                                                             %>'],
                                                                 fontFamily: 'Segoe UI',
                                                                 fontSize: 12,
                                                         datasets: [{

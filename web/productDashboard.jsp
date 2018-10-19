@@ -340,12 +340,18 @@
                                       let massPopChart = new Chart(myChart, {
                                         type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                                         data:{
-                                          labels:[
-                                              '<%= getTop5ProductsByMonth.get(1)%>', 
-                                              '<%= getTop5ProductsByMonth.get(2)%>', 
-                                              '<%= getTop5ProductsByMonth.get(3)%>', 
-                                              '<%= getTop5ProductsByMonth.get(4)%>', 
-                                              '<%= getTop5ProductsByMonth.get(5)%>'],
+                                            labels: [
+                                                '<%= getTop5ProductsByMonth.get(1)%>',
+                                                '<%= getTop5ProductsByMonth.get(2)%>',
+                                                '<%= getTop5ProductsByMonth.get(3)%>',
+                                                '<%= getTop5ProductsByMonth.get(4)%>',
+                                                '<% 
+                                                    out.print(getTop5ProductsByMonth.get(5));
+                                                    if(getTop5ProductsByMonth.get(6)!=null){
+                                                        out.print(" , "+getTop5ProductsByMonth.get(6));
+                                                    }
+
+                                                 %>'],
                                           datasets:[{
                                             label:'Total Revenue Sales',
                                             data:[
