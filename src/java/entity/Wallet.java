@@ -12,14 +12,12 @@ package entity;
 public class Wallet {
     private String id;
     private Double refundAmount;
-    private Double rebateAmount;
     private String debtorCode;    
     
-    public Wallet(String id, Double refundAmount, Double rebateAmount,String debtorCode){
+    public Wallet(String id, Double refundAmount, String debtorCode){
         
         this.id = id;
         this.refundAmount = refundAmount;
-        this.rebateAmount = rebateAmount;
         this.debtorCode = debtorCode;
         
     }
@@ -32,9 +30,6 @@ public class Wallet {
         return refundAmount;
     }    
     
-    public Double getRebateAmount(){
-        return rebateAmount;
-    }
     
     public String getDebtorCode(){
         return debtorCode;

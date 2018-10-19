@@ -35,7 +35,7 @@ public class walletUtility {
         try {
             conn = ConnectionManager.getConnection();
             
-            String sql = "SELECT ID, RefundAmt, RebateAmt,DebtorCode From `wallet`";
+            String sql = "SELECT ID, RefundAmt, DebtorCode From `wallet`";
 
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -47,11 +47,9 @@ public class walletUtility {
                 String id = rs.getString("ID");
                 String refundAmount = checkForNullNumber(rs.getString("RefundAmt"));
                 Double refundAmountDouble = Double.parseDouble(refundAmount);
-                String rebateAmount = checkForNullNumber(rs.getString("RebateAmt"));
-                Double rebateAmountDouble = Double.parseDouble(rebateAmount);
                 String debtorCode = rs.getString("DebtorCode");
                 
-                Wallet wallet = new Wallet(id, refundAmountDouble, rebateAmountDouble, debtorCode);
+                Wallet wallet = new Wallet(id, refundAmountDouble, debtorCode);
 
                 walletMap.put(count, wallet);
                 count++;

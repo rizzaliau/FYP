@@ -226,7 +226,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Debtor Code</th>
+                                                    <th>Customer Code</th>
                                                     <th>Refund Amount ($)</th>
 
                                                 </tr>
