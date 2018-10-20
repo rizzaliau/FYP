@@ -433,17 +433,12 @@
                                                             }
                                                             DecimalFormat df = new DecimalFormat("0.00");
                                                         %>
-                                                    </tbody>
-                                                </table>
+                                                   
                                             
-                                            <hr>
                                             
                                             
                                                 
-                                                <table class="table table-hover table-striped">
-                                                    
-                                                    <tbody>
-
+                                           
 
                                                         <%
                                                             
@@ -455,7 +450,11 @@
                                                                 out.print("<thead><th><b>Item Code</b></th>"
                                                                         + "<th><b>Item Name</b></th>"
                                                                         + "<th><b></b></th>"
+                                                                        + "<th><b></b></th>"
                                                                         + "<th><b>Returned Quantity</b></th>"
+                                                                        + "<th><b></b></th>"
+                                                                        + "<th><b></b></th>"
+                                                                        + "<th><b></b></th>"
                                                                         + "<th><b>Unit Price($)</b></th>"
                                                                         + "<th><b>Subtotal($)</b></th></thead>");
                                                             }
@@ -473,7 +472,11 @@
                                                                 out.print("<td>" + refundedItemDetail.getItemCode() + "</td>");
                                                                 out.print("<td>" + item.getDescription() + "</td>");
                                                                 out.print("<th><b></b></th>");
+                                                                out.print("<th><b></b></th>");
                                                                 out.print("<td>" + refundedItemDetail.getReturnedQty() + "</td>");
+                                                                out.print("<th><b></b></th>");
+                                                                out.print("<th><b></b></th>");
+                                                                out.print("<th><b></b></th>");
                                                                 out.print("<td>" + refundedItemDetail.getUnitPrice2DP() + "</td>");
                                                                 out.print("<td>" + df.format(refundedSubtotal) + "</td>");
                                                                 out.print("</tr>");
@@ -490,6 +493,7 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
+                                                           
                                                             <td><b><font color="red">SUBTOTAL ($)</font></b></td>
                                                             <td><b><%= df.format(total)%></b></td>
                                                         </tr>                                                     
@@ -500,7 +504,7 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-
+                                                       
                                                             <td><b><font color="red">GST (7%)</font></b></td>
                                                             <td><b><%= df.format(total * 0.07)%></b></td>
                                                         </tr>
@@ -511,7 +515,7 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-
+                                                         
                                                             <td><b><font color="red">Payable Amount</font></b></td>
                                                             <td><b><%= df.format(salesOrderdetails.getPaidAmt()) %></b></td>
                                                         </tr>
