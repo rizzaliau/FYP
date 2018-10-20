@@ -228,7 +228,7 @@
                                                     <th>ID</th>
                                                     <th>Customer Code</th>
                                                     <th>Refund Amount ($)</th>
-
+                                                    <th>View Transactions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -243,7 +243,7 @@
                                                             out.print("<td>" + wallet.getID() + "</td>");
                                                             out.print("<td>" + wallet.getDebtorCode() + "</td>");
                                                             out.print("<td>" +  df.format(wallet.getRefundAmount()) + "</td>");                                                     
-
+                                                            out.print("<td><a href='viewTransactions.jsp?debtorCode=" +wallet.getDebtorCode()+ "'>View Transactions</a></td>");
                                                             out.print("</tr>");
 
                                                     }
