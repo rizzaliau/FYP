@@ -28,6 +28,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import static utility.editUtility.createNewTransaction;
 import static utility.editUtility.getCustomerWallet;
 
 /**
@@ -180,6 +181,10 @@ public class deleteUtility {
                 boolean increaseCustomerWallet = increaseCustomerWalletAmount(customerCode,amountToBeAddedDouble);
                 
                 out.print("Customer's wallet credited: "+increaseCustomerWallet);
+                
+                boolean createdNewTransaction = createNewTransaction("Cancelled",amountToBeAddedDouble,orderIDRetrieved);
+                            
+                out.println("created new transaction: "+createdNewTransaction);
                 
                 if (orderIDRetrieved != null && preferredLanguageRetrieved != null && deliverContact != null){
                     if (orderIDRetrieved.length() == 11 &&  preferredLanguageRetrieved.length() == 7 && deliverContact.length() == 8){
