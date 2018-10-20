@@ -214,9 +214,9 @@
                                         </div>
                                      
                                 </div>
-
+                                <div>
                                 <a href="newCatalogueItem.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="Add New Item"  value="Add New Item" style="margin-right:20px;width:150px;" /></a>
-
+                                </div>
                                 <br>
 
                                 <div class="card-body table-full-width table-responsive" style="margin-right:5px; margin-left: 5px; margin-bottom: 5px;">
