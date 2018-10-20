@@ -8,10 +8,12 @@ package utility;
 import dao.ConnectionManager;
 import entity.Transaction;
 import entity.Wallet;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,6 +70,69 @@ public class transactionUtility {
         }
         
         return allTransactionsCustomerMap;
+    }
+    
+    
+    public static boolean createNewTransaction(String status,Double amount,String orderID){
+
+        boolean createNewTransaction = false;
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int countInt = 0;
+        
+        String createdTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select COUNT(ID) from transaction";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String count = rs.getString("COUNT(ID)");
+                countInt = Integer.parseInt(count);
+
+            }
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by createNewWallet method");
+            System.out.println(e.getMessage());
+            
+        }
+        
+        
+        try{
+            out.println("passes conn");
+
+            String sql = "INSERT INTO transaction " + "VALUES('"+ ++countInt +"','"+status+"',"+createdTimeStamp+",'"+amount+"',"
+                    + "'"+orderID+"')";
+                    
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            out.println("passes stmt");
+
+            stmt.executeUpdate();
+            out.println("passes rs");
+            
+            createNewTransaction = true;
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by createNewTransaction method");
+            System.out.println(e.getMessage());
+            
+        }
+        
+        
+        return createNewTransaction;
+
     }
     
     

@@ -25,6 +25,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -177,6 +178,10 @@ public class editUtility {
                             
                             increaseCustomerWalletAmount(debtorCodeRetrieved, totalAmount);
                             
+                            boolean createdNewTransaction = createNewTransaction(statusRetrieved,totalAmount,orderIDRetrieved);
+                            
+                            out.println("created new transaction: "+createdNewTransaction);
+                            
                         }else if(qtyToRefund == 0){
                             salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
                             + "AND itemCode ='"+itemCode+"'";
@@ -199,6 +204,10 @@ public class editUtility {
                         double totalAmount = subtotal*1.07;
                             
                         increaseCustomerWalletAmount(debtorCodeRetrieved, totalAmount);
+                        
+                        boolean createdNewTransaction = createNewTransaction(statusRetrieved,totalAmount,orderIDRetrieved);
+
+                        out.println("created new transaction: "+createdNewTransaction);
                         
                         }else if(qtyToRefund == 0){
                             salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
@@ -483,6 +492,72 @@ public class editUtility {
         }
 
         return result;
+    }
+    
+    
+    public static boolean createNewTransaction(String status,Double amount,String orderID){
+
+        boolean createNewTransaction = false;
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int countInt = 0;
+        
+        String createdTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+        
+        String str = String.format("%1.2f", amount);
+        double amount2DP = Double.valueOf(str);
+
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select COUNT(ID) from transaction";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String count = rs.getString("COUNT(ID)");
+                countInt = Integer.parseInt(count);
+
+            }
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by createNewWallet method");
+            System.out.println(e.getMessage());
+            
+        }
+        
+        
+        try{
+            out.println("passes conn");
+
+            String sql = "INSERT INTO transaction " + "VALUES('"+ ++countInt +"','"+status+"','"+createdTimeStamp+"','"+amount2DP+"',"
+                    + "'"+orderID+"')";
+                    
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            out.println("passes stmt");
+
+            stmt.executeUpdate();
+            out.println("passes rs");
+            
+            createNewTransaction = true;
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by createNewTransaction method");
+            System.out.println(e.getMessage());
+            
+        }
+        
+        
+        return createNewTransaction;
+
     }
     
     
