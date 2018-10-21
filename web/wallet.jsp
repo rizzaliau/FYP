@@ -1,5 +1,5 @@
 <%-- 
-    Document   : loyaltyProgramme
+    Document   : wallet
     Created on : 12 Aug, 2018, 5:36:15 PM
     Author     : Rizza
 --%>
@@ -228,6 +228,7 @@
                                                     <th>ID</th>
                                                     <th>Customer Code</th>
                                                     <th>Refund Amount ($)</th>
+                                                    <th>Status</th>
                                                     <th>View Transactions</th>
                                                 </tr>
                                             </thead>
@@ -243,6 +244,21 @@
                                                             out.print("<td>" + wallet.getID() + "</td>");
                                                             out.print("<td>" + wallet.getDebtorCode() + "</td>");
                                                             out.print("<td>" +  df.format(wallet.getRefundAmount()) + "</td>");                                                     
+                                                            
+                                                            if(wallet.getStatus().equals("Active") || wallet.getStatus().equals("active")){
+
+                                                                out.print("<td><span class='label activeUser'>Active</span></td>");
+                                                                
+                                                            }else if(wallet.getStatus().equals("Blacklisted") || wallet.getStatus().equals("blacklisted")){
+                                                                out.print("<td><span class='label blacklistUser'>Blacklisted</span></td>");
+                                                            }else if(wallet.getStatus().equals("Inactive") || wallet.getStatus().equals("inactive")){
+                                                                
+                                                                    out.print("<td><span class='label inactiveUser'>Inactive</span></td>");
+                                                                
+
+                                                            }
+                                                            
+                                                            
                                                             out.print("<td><a href='viewTransactions.jsp?debtorCode=" +wallet.getDebtorCode()+ "'>View Transactions</a></td>");
                                                             out.print("</tr>");
 
