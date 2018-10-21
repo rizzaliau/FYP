@@ -539,8 +539,10 @@
                                                             <td><b>
                                                                     <% 
                                                                         double walletDeduction = total * 1.07 - salesOrderdetails.getPaidAmt();
+                                                                        
+                                                                        double walletDeductionPostive = walletDeduction*-1;
                                                                                 
-                                                                        out.println(df.format(walletDeduction)); 
+                                                                        out.println("-"+df.format(walletDeductionPostive)); 
                                                                     %>
                                                             </b></td>
                                                         </tr>                                                                                                                
