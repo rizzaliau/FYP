@@ -127,15 +127,13 @@
                                             <ul class="dropdown-menu">
 
                                                <%
-                                                   //out.println("<div class='notification'>");
                                                    for (int i=1 ; i<=notificationMap.size(); i++){
                                                             if(i<=5){
                                                             Notification notification = notificationMap.get(i);
-                                                            out.print("<a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                            out.print("<a class='dropdown-item' href='salesOrderEdit.jsp?orderID="+notification.getOrderID()+"&status=Pending Delivery&update=true'>" +notification.getDebtorName()+
                                                                     "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a>");
                                                             }     
                                                     }
-                                                    //out.print("</div>");
                                                     out.print("<center><a class='dropdown-item' href='allNotifications.jsp'>View all notifications</a></center>");
                                                     
                                                %>  
