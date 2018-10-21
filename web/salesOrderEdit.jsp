@@ -540,9 +540,15 @@
                                                                     <% 
                                                                         double walletDeduction = total * 1.07 - salesOrderdetails.getPaidAmt();
                                                                         
-                                                                        double walletDeductionPostive = walletDeduction*-1;
+                                                                        if(walletDeduction>0){
+                                                                            walletDeduction = walletDeduction*-1;
+                                                                        }
+                                                                        
+                                                                        if(walletDeduction == 0){
+                                                                            out.println("-");
+                                                                        }
                                                                                 
-                                                                        out.println("-"+df.format(walletDeductionPostive)); 
+                                                                        out.println(df.format(walletDeduction)); 
                                                                     %>
                                                             </b></td>
                                                         </tr>                                                                                                                
