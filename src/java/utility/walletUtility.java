@@ -35,7 +35,9 @@ public class walletUtility {
         try {
             conn = ConnectionManager.getConnection();
             
-            String sql = "SELECT ID, RefundAmt, DebtorCode From `wallet`";
+            String sql = "SELECT w.ID, w.RefundAmt, w.DebtorCode, d.Status\n" +
+                "From wallet w\n" +
+                "inner join debtor d on w.DebtorCode = d.DebtorCode";
 
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
@@ -48,8 +50,9 @@ public class walletUtility {
                 String refundAmount = checkForNullNumber(rs.getString("RefundAmt"));
                 Double refundAmountDouble = Double.parseDouble(refundAmount);
                 String debtorCode = rs.getString("DebtorCode");
+                String status = rs.getString("Status");
                 
-                Wallet wallet = new Wallet(id, refundAmountDouble, debtorCode);
+                Wallet wallet = new Wallet(id, refundAmountDouble, debtorCode,status);
 
                 walletMap.put(count, wallet);
                 count++;
