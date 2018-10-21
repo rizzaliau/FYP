@@ -234,7 +234,7 @@ public class editUtility {
                     if (orderIDRetrieved != null && preferredLanguageRetrieved != null && deliverContact != null){
                         if (orderIDRetrieved.length() == 11 &&  preferredLanguageRetrieved.length() == 7 && deliverContact.length() == 8){
 
-                            boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, "93201880", orderIDRetrieved);
+                            boolean smsSentForEditOrder = sendSmsForEditOrder(preferredLanguageRetrieved, deliverContact, orderIDRetrieved);
 
                             if(!smsSentForEditOrder){
                                 //show alert to inform admin sms not sent to customer
