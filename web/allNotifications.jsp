@@ -218,23 +218,18 @@
                                             <a href="readAllNotifications.jsp"><input class="btn btn-info btn-fill pull-right" type="button" name="readAllNotifications"  value="Read all notifications" style="margin-right:20px; margin-top: 20px; margin-bottom:-20px;" /></a>
                                             <%  
                                                 
-//                                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy h.mm aa");
-//                                            SimpleDateFormat expectedPattern = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-//                                            Date datetime = expectedPattern.parse(orderDate);
-//                                            String createdTimestamp = sdf.format(datetime);
-//                                            orderDateTxt.setText(createdTimestamp);    
-                                            
                                             for (Integer number : notificationMap.keySet()) {
+                                                
                                                 out.print("<tr>");
-                                                Notification notification = notificationMap.get(number);
+                                                
+                                                    Notification notification = notificationMap.get(number);
 
-                                                out.print("<td>" + number + "</td>");
-                                                //out.print("<td>" +notification.getDebtorName()+
-                                                            //"  placed a new order on  "+notification.getCreatedTimeStamp()+"</td>");
-                                                out.print("<td><a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
-                                                            "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a></td>");
-                                                out.print("<td><a href='salesOrderEdit.jsp?orderID="+notification.getOrderID()+"&status=Pending Delivery'>View</a></td>");
-                                                //out.print("<td>View</td>");                                                
+                                                    out.print("<td>" + number + "</td>");
+
+                                                    out.print("<td><a class='dropdown-item' href='updateNotification.jsp?orderID="+notification.getOrderID()+"'>" +notification.getDebtorName()+
+                                                                "  placed a new order #"+notification.getOrderID()+" on "+notification.getFormattedCreatedTimeStamp()+"</a></td>");
+                                                    out.print("<td><a href='salesOrderEdit.jsp?orderID="+notification.getOrderID()+"&status=Pending Delivery&update=true'>View</a></td>");
+                                              
                                                 out.print("</tr>"); 
   
                                             }
