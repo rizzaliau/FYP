@@ -515,10 +515,11 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                         
-                                                            <td><b><font color="red">Payable Amount</font></b></td>
-                                                            <td><b><%= df.format(salesOrderdetails.getPaidAmt()) %></b></td>
+
+                                                            <td><b><font color="red">TOTAL ($)</font></b></td>
+                                                            <td><b><%= df.format(total * 1.07)%></b></td>
                                                         </tr>
+
                                                          <tr bgcolor="white">
                                                             <td></td>
                                                             <td></td>
@@ -527,7 +528,7 @@
                                                             <td></td>
                                                             <td></td>
 
-                                                            <td><b><font color="red">Wallet Deduction</font></b></td>
+                                                            <td><b><font color="red">WALLET DEDUCTION ($)</font></b></td>
                                                             <td><b>
                                                                     <% 
                                                                         double walletDeduction = total * 1.07 - salesOrderdetails.getPaidAmt();
@@ -535,7 +536,7 @@
                                                                         out.println(df.format(walletDeduction)); 
                                                                     %>
                                                             </b></td>
-                                                        </tr>                                                        
+                                                        </tr>                                                                                                                
                                                         <tr bgcolor="white">
                                                             <td></td>
                                                             <td></td>
@@ -543,9 +544,9 @@
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-
-                                                            <td><b><font color="red">TOTAL ($)</font></b></td>
-                                                            <td><b><%= df.format(total * 1.07)%></b></td>
+                                                         
+                                                            <td><b><font color="red">PAYABLE AMOUNT ($)</font></b></td>
+                                                            <td><b><%= df.format(salesOrderdetails.getPaidAmt()) %></b></td>
                                                         </tr>
 
                                                     </tbody>
