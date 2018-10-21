@@ -402,7 +402,7 @@ public class insertUtility {
             //Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
 
-            String sql = "INSERT INTO wallet " + "VALUES('"+ ++countInt +"','"+refundAmt+"','"+0.0+"',"
+            String sql = "INSERT INTO wallet " + "VALUES('"+ ++countInt +"','"+refundAmt+"',"
                     + "'"+debtorCode+"')";
                     
             PreparedStatement stmt = conn.prepareStatement(sql);
