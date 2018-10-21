@@ -185,7 +185,7 @@
                                         <%
                                             String orderID = request.getParameter("orderID");
                                             String status = request.getParameter("status");
-                                            String updateNotification = request.getParameter("update");
+                                            String updateNotification = request.getParameter("update");                                          
 
                                             if (status.equals("pendingDelivery")) {
                                                 status = "Pending Delivery";
@@ -199,10 +199,11 @@
 
                                             Map<Integer, ItemDetails> refundedItemDetailsMap = salesOrderUtility.getRefundedItemDetailsMap(orderID);
                                             
-                                            if(updateNotification.equals("true")){
+                                            if(updateNotification != null){
                                                 
-                                                notificationUtility.updateNotificationsMap(orderID);
-                                                
+                                                if(updateNotification.equals("true")){
+                                                    notificationUtility.updateNotificationsMap(orderID);
+                                                }
                                             }
                                             
 
