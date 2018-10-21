@@ -13,12 +13,14 @@ public class Wallet {
     private String id;
     private Double refundAmount;
     private String debtorCode;    
+    private String status;    
     
-    public Wallet(String id, Double refundAmount, String debtorCode){
+    public Wallet(String id, Double refundAmount, String debtorCode, String status){
         
         this.id = id;
         this.refundAmount = refundAmount;
         this.debtorCode = debtorCode;
+        this.status = status;
         
     }
     
@@ -33,6 +35,10 @@ public class Wallet {
     
     public String getDebtorCode(){
         return debtorCode;
+    }
+    
+    public String getStatus(){
+        return status;
     }
     
 }
