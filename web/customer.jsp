@@ -199,14 +199,14 @@
 
                                             if (msgStatus != null) {
                                                 out.print("</br>");
-                                                out.print("<div class = 'alert alert-success'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
+                                                out.print("<div class = 'alert alert-danger'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                                 out.print(msgStatus);
                                                 out.print("</span></div>");
                                             }
 
                                             if (msgStatus2 != null) {
                                                 out.print("</br>");
-                                                out.print("<div class = 'alert alert-danger'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
+                                                out.print("<div class = 'alert alert-success'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                                 out.print(msgStatus2);
                                                 out.print("</span></div>");
                                             }
