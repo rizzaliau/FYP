@@ -441,58 +441,6 @@
                                                             DecimalFormat df = new DecimalFormat("0.00");
                                                         %>
                                                    
-                                            
-                                            
-                                            
-                                                
-                                           
-
-                                                        <%
-                                                            
-                                                            double refundedTotal = 0;
-
-                                                            if (refundedItemDetailsMap.size() > 0) {
-                                                                out.print("<div class='card-header'><h4 class='card-title'>Returned Items</h4><p class='card-category'>List of return items</p>");
-                                                                //out.print("<center><thead><th><b>Returned Items</b></th></center>");
-                                                                out.print("<thead><th><b>Item Code</b></th>"
-                                                                        + "<th><b>Item Name</b></th>"
-                                                                        + "<th><b></b></th>"
-                                                                        + "<th><b></b></th>"
-                                                                        + "<th><b>Returned Quantity</b></th>"
-                                                                        + "<th><b></b></th>"
-                                                                        + "<th><b></b></th>"
-                                                                        + "<th><b></b></th>"
-                                                                        + "<th><b>Unit Price($)</b></th>"
-                                                                        + "<th><b>Subtotal($)</b></th></thead>");
-                                                            }
-
-                                                            for (Integer number : refundedItemDetailsMap.keySet()) {
-                                                                double refundedSubtotal = 0;
-
-                                                                ItemDetails refundedItemDetail = refundedItemDetailsMap.get(number);
-                                                                OrderItem item = salesOrderUtility.getOrderItem(refundedItemDetail.getItemCode());
-
-                                                                double qtyDouble = Double.parseDouble(refundedItemDetail.getReturnedQty());
-                                                                double unitPriceDouble = Double.parseDouble(refundedItemDetail.getUnitPrice());
-                                                                refundedSubtotal = qtyDouble * unitPriceDouble;
-
-                                                                out.print("<td>" + refundedItemDetail.getItemCode() + "</td>");
-                                                                out.print("<td>" + item.getDescription() + "</td>");
-                                                                out.print("<th><b></b></th>");
-                                                                out.print("<th><b></b></th>");
-                                                                out.print("<td>" + refundedItemDetail.getReturnedQty() + "</td>");
-                                                                out.print("<th><b></b></th>");
-                                                                out.print("<th><b></b></th>");
-                                                                out.print("<th><b></b></th>");
-                                                                out.print("<td>" + refundedItemDetail.getUnitPrice2DP() + "</td>");
-                                                                out.print("<td>" + df.format(refundedSubtotal) + "</td>");
-                                                                out.print("</tr>");
-
-                                                                refundedTotal += refundedSubtotal;
-                                                            }
-
-                                                        %>
-                                                        
                                                         <tr bgcolor="white">
                                                             <td></td>
                                                             <td></td>
@@ -564,6 +512,60 @@
                                                             <td><b><%= df.format(salesOrderdetails.getPaidAmt()) %></b></td>
                                                         </tr>
 
+                                               </tbody>
+                                                </table>
+                                                        
+                                            
+                                                <table class="table table-hover table-striped">
+                                                    <tbody>
+                                           
+                                                        <%
+                                                            
+                                                            double refundedTotal = 0;
+
+                                                            if (refundedItemDetailsMap.size() > 0) {
+                                                                out.print("<div class='card-header'><h4 class='card-title'>Returned Items</h4><p class='card-category'>List of return items</p>");
+                                                                //out.print("<center><thead><th><b>Returned Items</b></th></center>");
+                                                                out.print("<thead><th><b>Item Code</b></th>"
+                                                                        + "<th><b>Item Name</b></th>"
+                                                                        + "<th><b></b></th>"
+                                                                        + "<th><b></b></th>"
+                                                                        + "<th><b>Returned Quantity</b></th>"
+                                                                        + "<th><b></b></th>"
+                                                                        + "<th><b></b></th>"
+                                                                        + "<th><b></b></th>"
+                                                                        + "<th><b>Unit Price($)</b></th>"
+                                                                        + "<th><b>Subtotal($)</b></th></thead>");
+                                                            }
+
+                                                            for (Integer number : refundedItemDetailsMap.keySet()) {
+                                                                double refundedSubtotal = 0;
+
+                                                                ItemDetails refundedItemDetail = refundedItemDetailsMap.get(number);
+                                                                OrderItem item = salesOrderUtility.getOrderItem(refundedItemDetail.getItemCode());
+
+                                                                double qtyDouble = Double.parseDouble(refundedItemDetail.getReturnedQty());
+                                                                double unitPriceDouble = Double.parseDouble(refundedItemDetail.getUnitPrice());
+                                                                refundedSubtotal = qtyDouble * unitPriceDouble;
+
+                                                                out.print("<td>" + refundedItemDetail.getItemCode() + "</td>");
+                                                                out.print("<td>" + item.getDescription() + "</td>");
+                                                                out.print("<th><b></b></th>");
+                                                                out.print("<th><b></b></th>");
+                                                                out.print("<td>" + refundedItemDetail.getReturnedQty() + "</td>");
+                                                                out.print("<th><b></b></th>");
+                                                                out.print("<th><b></b></th>");
+                                                                out.print("<th><b></b></th>");
+                                                                out.print("<td>" + refundedItemDetail.getUnitPrice2DP() + "</td>");
+                                                                out.print("<td>" + df.format(refundedSubtotal) + "</td>");
+                                                                out.print("</tr>");
+
+                                                                refundedTotal += refundedSubtotal;
+                                                            }
+
+                                                        %>
+                                                        
+                                                   
                                                     </tbody>
                                                 </table>
                                                         
