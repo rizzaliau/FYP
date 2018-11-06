@@ -293,9 +293,10 @@
                                         </div>
                                     </div>
                                         <input type="hidden" name="dropdown" id="dropdown">
-                                        <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; margin-left: 5px; height: 40px;">
+                                        <input type="submit" class="btn btn-info btn-fill pull-left" type="button" value="Filter" name="btn_dropdown" style="position: relative; margin-left:760px; bottom:60px; height: 40px;">
                             
                             <br>
+                            
                          <!-- End of Filter month/year for top 10 Customers -->
                                         
                          <!-- Chart for top 10 Customers -->    
