@@ -72,6 +72,68 @@ public class dashboardUtility {
         return salesRevenueByMonthMap;
     }
     
+    
+    //Key Month, Value Revenue for a particular month using new SQL
+    public static Map<Integer, Double> getSalesRevenueByMonthTest(int year){
+        
+        Map<Integer, Double> salesRevenueByMonthMap = new HashMap<>();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int count = 1;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select month(sod.DeliveryDate) as monthSpecific,sum(round(sod.SubTotal*1.07,2)-(soq.ReturnedQty*oi.RetailPrice)-(soq.ReducedQty*oi.RetailPrice)) as revenue \n" +
+"                from sales_order so\n" +
+"                inner join sales_order_detail sod on so.OrderID = sod.OrderID\n" +
+"                inner join sales_order_quantity soq on soq.OrderID = so.OrderID\n" +
+"                inner join order_item oi on soq.ItemCode = oi.ItemCode \n" +
+"                where (so.Status = 'Pending Delivery' and YEAR(`CreatedTimeStamp`) = '"+year+"') OR \n" +
+"                (so.Status = 'Delivered' and YEAR(`CreatedTimeStamp`) = '"+year+"')\n" +
+"                group by month(DeliveryDate)";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String month = checkForNull(rs.getString("monthSpecific"));
+                String revenueForMonth = checkForNull(rs.getString("revenue"));
+                
+                if(month != null || revenueForMonth!= null){
+                    int monthInt = Integer.parseInt(month);
+                    Double revenueDouble = Double.parseDouble(revenueForMonth);
+                    
+                    salesRevenueByMonthMap.put(monthInt, revenueDouble);
+                }
+
+                count++;
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by getSalesOrderMap method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        for(int month = salesRevenueByMonthMap.size(); month<12 ; month++){
+            
+            salesRevenueByMonthMap.put(month+1, 0.0);
+            
+        }   
+
+        return salesRevenueByMonthMap;
+    }
+    
     //Key Month, Value SalesOrder for a particular month
     public static Map<Integer, SalesOrder> getAllRevenueSalesOrderMapByMonth(int month,int year){
         Map<Integer, SalesOrder> salesOrderMap = new HashMap<>();
