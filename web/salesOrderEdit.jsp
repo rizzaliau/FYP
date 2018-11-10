@@ -393,7 +393,8 @@
                                                 <table class="table table-hover table-striped">
                                                     <tbody>
 
-                                                        <%                                                            double total = 0;
+                                                        <%                                                           
+                                                            double total = 0;
                                                             out.print("<tr>");
                                                             out.print("<thead><th><b>Item Code</b></th>"
                                                                     + "<th><b>Item Name</b></th>"
@@ -411,12 +412,15 @@
                                                                 OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
 
                                                                 double qtyDouble = Double.parseDouble(itemDetail.getQty());
+                                                                double returnedQtyDouble = Double.parseDouble(itemDetail.getReturnedQty());
+                                                                double reducedQtyDouble = Double.parseDouble(itemDetail.getReducedQty());
+                                                                double totalQtyDouble = qtyDouble+returnedQtyDouble+reducedQtyDouble;
+                                                                        
                                                                 double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
-                                                                //double returnedQty = itemDetail.getReturnedQty();
+                                
                                                                 double returnedQty = Double.parseDouble(itemDetail.getReturnedQty());
-                                                                subtotal = qtyDouble * unitPriceDouble;
+                                                                subtotal = totalQtyDouble * unitPriceDouble;
 
-                                                                //out.print("<tr><thead><th>Item Code</th></thead>");
                                                                 out.print("<td>" + itemDetail.getItemCode() + "</td>");
                                                                 out.print("<td>" + item.getDescription() + "</td>");
                                                                 out.print("<td>" + "" + "</td>");
@@ -424,14 +428,14 @@
                                                                 out.print("<input type='hidden' size='10' name='itemCode' value='" + itemDetail.getItemCode() + "'>");
                                                                 out.print("<input type='hidden' size='10' name='originalQty' value='" + itemDetail.getQty() + "'>");
                                                                 out.print("<input type='hidden' size='10' name='unitPrice' value='" + itemDetail.getUnitPrice() + "'>");
-                                                                //out.print("<tr><thead><th>Quantity</th></thead>");
+
                                                                 out.print("<td><input type='number' required size='10' name='qty' id='indivQty' onChange='updatePrices(" + itemDetail.getItemCode() + ")' value='" + itemDetail.getQty() + "'></td>");
-                                                                //out.print("<tr><thead><th>Returned Quantity</th></thead>");
+
                                                                 out.print("<td>" + itemDetail.getReturnedQty() + "</td>");
                                                                 out.print("<td>" + itemDetail.getReducedQty() + "</td>");
-                                                                //out.print("<tr><thead><th>Unit Price</th></thead>");
+
                                                                 out.print("<td>" + itemDetail.getUnitPrice2DP() + "</td>");
-                                                                //out.print("<tr><thead><th>Subtotal</th></thead>");
+
                                                                 DecimalFormat df = new DecimalFormat("0.00");
                                                                 out.print("<td id=" + itemDetail.getItemCode() + "'indivSubtotal' >" + df.format(subtotal) + "</td>");
                                                                 out.print("</tr>");
@@ -562,6 +566,20 @@
 
                                                                 refundedTotal += refundedSubtotal;
                                                             }
+                                                            
+                                                            if (refundedItemDetailsMap.size() > 0) {
+                                                                out.print("<td></td>");                                                          
+                                                                out.print("<td></td>");                                                          
+                                                                out.print("<td></td>");                                                          
+                                                                out.print("<td></td>");                                                          
+                                                                out.print("<td></td>");                                                          
+                                                                out.print("<td></td>");                                                          
+                                                                out.print("<td></td>");                                                          
+                                                                out.print("<td></td>");                                                          
+                                                                out.print("<td><b><font color='red'>TOTAL ($)</font></b></td>");
+                                                                out.print("<td><b>"+df.format(refundedTotal)+"</b></td>");
+                                                            }
+                                                            
 
                                                         %>
                                                         
