@@ -418,7 +418,7 @@
                                                                         
                                                                 double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
                                 
-                                                                double returnedQty = Double.parseDouble(itemDetail.getReturnedQty());
+                                                                //double returnedQty = Double.parseDouble(itemDetail.getReturnedQty());
                                                                 subtotal = totalQtyDouble * unitPriceDouble;
 
                                                                 out.print("<td>" + itemDetail.getItemCode() + "</td>");
@@ -528,13 +528,14 @@
                                                             double refundedTotal = 0;
 
                                                             if (refundedItemDetailsMap.size() > 0) {
-                                                                out.print("<div class='card-header'><h4 class='card-title'>Returned Items</h4><p class='card-category'>List of return items</p>");
+                                                                out.print("<div class='card-header'><h4 class='card-title'>Returned/Reduced Items</h4><p class='card-category'>List of returned/reduced items</p>");
                                                                 //out.print("<center><thead><th><b>Returned Items</b></th></center>");
                                                                 out.print("<thead><th><b>Item Code</b></th>"
                                                                         + "<th><b>Item Name</b></th>"
                                                                         + "<th><b></b></th>"
                                                                         + "<th><b></b></th>"
                                                                         + "<th><b>Returned Quantity</b></th>"
+                                                                        + "<th><b>Reduced Quantity</b></th>"
                                                                         + "<th><b></b></th>"
                                                                         + "<th><b></b></th>"
                                                                         + "<th><b></b></th>"
@@ -548,7 +549,10 @@
                                                                 ItemDetails refundedItemDetail = refundedItemDetailsMap.get(number);
                                                                 OrderItem item = salesOrderUtility.getOrderItem(refundedItemDetail.getItemCode());
 
-                                                                double qtyDouble = Double.parseDouble(refundedItemDetail.getReturnedQty());
+                                                                double returnQtyDouble = Double.parseDouble(refundedItemDetail.getReturnedQty());
+                                                                double reducedQtyDouble = Double.parseDouble(refundedItemDetail.getReducedQty());
+                                                                double qtyDouble = returnQtyDouble+reducedQtyDouble;
+                                                                
                                                                 double unitPriceDouble = Double.parseDouble(refundedItemDetail.getUnitPrice());
                                                                 refundedSubtotal = qtyDouble * unitPriceDouble;
 
@@ -557,6 +561,7 @@
                                                                 out.print("<th><b></b></th>");
                                                                 out.print("<th><b></b></th>");
                                                                 out.print("<td>" + refundedItemDetail.getReturnedQty() + "</td>");
+                                                                out.print("<td>" + refundedItemDetail.getReducedQty() + "</td>");
                                                                 out.print("<th><b></b></th>");
                                                                 out.print("<th><b></b></th>");
                                                                 out.print("<th><b></b></th>");
@@ -568,6 +573,7 @@
                                                             }
                                                             
                                                             if (refundedItemDetailsMap.size() > 0) {
+                                                                out.print("<td></td>");                                                          
                                                                 out.print("<td></td>");                                                          
                                                                 out.print("<td></td>");                                                          
                                                                 out.print("<td></td>");                                                          
