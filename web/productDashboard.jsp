@@ -175,13 +175,7 @@
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Product Dashboard Management</h4>
-                                        <!-- <ul class="tabrow" id="my_selection">
-                                             commented the tabs for the dashboard
-                                                    <li><a href="SalesRevenueDashboard.jsp">Sales</a></li>
-                                                    <li class="selected"><a href="productDashboard.jsp">Product</a></li>
-                                                    <li><a href="customerDashboard.jsp">Customer</a></li>
-                                                </ul>
-                                             -->
+
                                     </div>  
                                     
                                    <div class="card-body">
@@ -294,15 +288,12 @@
                                         
                                         DecimalFormat df = new DecimalFormat("0.00");
 
-                                        //String yearRetrieved = request.getParameter("year");
-                                        //String monthRetrieved = request.getParameter("month");
                                         int monthInt = currentMonthInt;
 
                                         if(yearRetrieved==null&&monthRetrieved==null){
                                             getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(currentMonthInt,currentYearInt);
                                             qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(currentMonthInt,currentYearInt);
                                             
-                                            //monthRetrieved = 1;
                                             yearRetrieved = currentYear;
                                             
                                         }else if(yearRetrieved.equals("none")&&monthRetrieved.equals("none") 
@@ -316,8 +307,7 @@
                                         }else{
                                             int yearInt = Integer.parseInt(yearRetrieved);
                                             monthInt = Integer.parseInt(monthRetrieved);
-                                            //map parameters month, revenue
-                                            //hardcoded year to 2018
+
                                             getTop5ProductsByMonth = dashboardUtility.getTop5ProductsByMonth(monthInt,yearInt);
                                             qtyForItemDescriptionMonthMap = dashboardUtility.getQtyForItemDescriptionMonth(monthInt,yearInt);
 
