@@ -111,8 +111,9 @@ public class debtorUtility {
         
         try {
             conn = ConnectionManager.getConnection();
+            
             String populateMap = "SELECT * FROM `debtor` WHERE status = 'INACTIVE' OR status = 'BLACKLISTED'";
-            //String populateMap = "SELECT IFNULL(\"\",DebtorCode),IFNULL(\"\",DebtorCode),IFNULL(\"\",companyCode),IFNULL(\"\",HashPassword),IFNULL(\"\",CompanyName),IFNULL(\"\",DebtorName),IFNULL(\"\",DeliverContact),IFNULL(\"\",DeliverFax1),IFNULL(\"\",InvAddr1),IFNULL(\"\",InvAddr2),IFNULL(\"\",InvAddr3),IFNULL(\"\",InvAddr4),IFNULL(\"\",DeliverAddr1),IFNULL(\"\",DeliverAddr2),IFNULL(\"\",DeliverAddr3),IFNULL(\"\",DeliverAddr4), IFNULL(\"\",DisplayTerm),IFNULL(\"\",Status),IFNULL(\"\",RouteNumber)from debtor WHERE status = 'INACTIVE' OR status = 'BLACKLISTED';";
+
             pstmt = conn.prepareStatement(populateMap);
             rs = pstmt.executeQuery();
             

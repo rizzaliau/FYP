@@ -29,17 +29,12 @@ public class changePasswordUtility {
     public static void changePassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
         HttpSession session = request.getSession();
+        
         String userNameRetrieved = (String)session.getAttribute("username");
         String passwordRetrieved = (String)session.getAttribute("password");
-        //out.println("User retrieved is :"+userNameRetrieved);
         String currentPasswordEntered = request.getParameter("currentPass");
         String newPassword1 = request.getParameter("newPass1");
-        out.println("Password is is :"+newPassword1);
-        //out.println("User retrieved is :"+newUserName);
         String newPassword2 = request.getParameter("newPass2");
-        //out.println("Password retrieved is :"+newPassword);
-        out.println("Password is is :"+newPassword2);
-        
   
         if(currentPasswordEntered.equals("") || newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
             request.setAttribute("status", "Blank fields detected. Please enter all fields");
@@ -52,8 +47,6 @@ public class changePasswordUtility {
             request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
         }else{
             String newPasswordHash = loginUtility.getSha256(newPassword2);
-
-            //out.println("Printed values in changePasswordUtility are "+newUserName+newPassword+newPasswordHash);
 
             UserDAO.update(userNameRetrieved,newPasswordHash);
 
@@ -69,8 +62,6 @@ public class changePasswordUtility {
         String debtorCodeRetrieved = request.getParameter("debtorCode");
         String companyNameRetrieved = request.getParameter("companyName");
 
-        //String currentPasswordEntered = request.getParameter("currentPass");
-        
         String newPassword1 = request.getParameter("newPass1");
         String newPassword2 = request.getParameter("newPass2");
 
@@ -78,11 +69,6 @@ public class changePasswordUtility {
             
             request.setAttribute("status", "Blank fields detected.Please enter all fields");
             request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);
-            
-        //}else if(!loginUtility.getSha256(currentPasswordEntered).equals(hashPasswordRetrieved)){
-            
-           // request.setAttribute("status", "Current password entered is invalid.Please re-enter.");
-            //request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);  
             
         } else if (!(newPassword1.equals(newPassword2))){           
             
@@ -92,8 +78,6 @@ public class changePasswordUtility {
         }else{
             
             String newPasswordHash = loginUtility.getSha256(newPassword2);
-
-            //out.println("Printed values in changePasswordUtility are "+newUserName+newPassword+newPasswordHash);
 
             changePasswordUtility.UpdateCustomerPassword(debtorCodeRetrieved,newPasswordHash);
 
@@ -112,7 +96,7 @@ public class changePasswordUtility {
             out.println("passes conn");
             
             String sql = "UPDATE `Debtor` SET HashPassword = '" + newPasswordHash + "' WHERE DebtorCode = '" + debtorCodeRetrieved + "'";
-            //String sql = "UPDATE `user` SET Id='3', Password = '123456' WHERE Username = 'admin3'";
+
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
             

@@ -1,4 +1,9 @@
+<%-- 
+    Document   : orderHistory
+    Created on : 12 May, 2018, 1:04:11 AM
+    Author     : Rizza
 
+--%>
 
 <%@page import="utility.notificationUtility"%>
 <%@page import="entity.Notification"%>
@@ -243,29 +248,29 @@
 
                                                             if (!salesOrderdetails.getStatus().equals("Pending Delivery")) {
                                                                 out.print("<tr>");
-                                                                //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ salesOrder.getOrderID() +"'></td>");
-                                                                out.print("<td>" + pendingCount + "</td>");
-                                                                pendingCount++;
-                                                                out.print("<td class='orderId'>" + salesOrder.getOrderID().toString() + "</td>");
-                                                                out.print("<td>" + salesOrder.getDebtorCode() + "</td>");
-                                                                out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
+                                                                
+                                                                    out.print("<td>" + pendingCount + "</td>");
+                                                                    pendingCount++;
+                                                                    out.print("<td class='orderId'>" + salesOrder.getOrderID().toString() + "</td>");
+                                                                    out.print("<td>" + salesOrder.getDebtorCode() + "</td>");
+                                                                    out.print("<td>" + salesOrder.getRouteNumber() + "</td>");
 
-                                                                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-                                                                Date d2 = sdf2.parse(salesOrderdetails.getDeliveryDate());
-                                                                sdf2.applyPattern("dd-MM-yyyy");
-                                                                String deliveryDateFormatted = sdf2.format(d2);
+                                                                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                                                                    Date d2 = sdf2.parse(salesOrderdetails.getDeliveryDate());
+                                                                    sdf2.applyPattern("dd-MM-yyyy");
+                                                                    String deliveryDateFormatted = sdf2.format(d2);
 
-                                                                out.print("<td>" + deliveryDateFormatted + "</td>");
-                                                                // }
-                                                                if (salesOrderdetails.getStatus().equals("Delivered") || salesOrderdetails.getStatus().equals("delivered")) {
-                                                                    //out.print("active");<span class='label activeUser'>
-                                                                    out.print("<td><span class='label activeUser'>Delivered</span></td>");
-                                                                } else {
-                                                                    out.print("<td><span class='label cancelUser'>&nbspCancelled&nbsp</span></td>");
-                                                                }
-                                                                out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Edit/View</a></td>");
-                                                                out.print("<td><input type='checkbox' value='" + salesOrder.getOrderID().toString() + "," + salesOrderdetails.getStatus() + "' name='orderInfo'></input>");
-                                                                //out.print("<td><a href='invoice.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Print</a></td>");
+                                                                    out.print("<td>" + deliveryDateFormatted + "</td>");
+
+                                                                    if (salesOrderdetails.getStatus().equals("Delivered") || salesOrderdetails.getStatus().equals("delivered")) {
+
+                                                                        out.print("<td><span class='label activeUser'>Delivered</span></td>");
+                                                                    } else {
+                                                                        out.print("<td><span class='label cancelUser'>&nbspCancelled&nbsp</span></td>");
+                                                                    }
+                                                                    out.print("<td><a href='salesOrderEdit.jsp?orderID=" + salesOrder.getOrderID() + "&status=" + salesOrderdetails.getStatus() + "'>Edit/View</a></td>");
+                                                                    out.print("<td><input type='checkbox' value='" + salesOrder.getOrderID().toString() + "," + salesOrderdetails.getStatus() + "' name='orderInfo'></input>");
+
                                                                 out.print("</tr>");
                                                             }
                                                         }
@@ -273,38 +278,11 @@
                                                     %>
                                                 </tbody> 
                                             </table>
-                                            <!--
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <input type="text" class="search form-control" style="margin-left:20px; width: 250px;" size="13" placeholder="Search Order" />
-                                                </div>
-                                            <!-- 
-                                            <a href="searchSalesOrder.jsp?status=pendingDelivery&deliveryDate=2018-06-25"><input class="btn btn-info btn-fill pull-left" type="button" name="search" value="Search" style="margin-left:20px;"/></a>
-                                            
-                                            <div class="col-md-8">
-                                                <div class ="row">
-                                                    <div class="col-md-7" style="margin-left:50px;">
-                                                        <label><input type="radio" value="All" name="status" class="statusFilter-all" style="margin-left:60px; margin-top: 20px;"/> All </label>
-                                                        <label><input type="radio" value="Delivered" name="status" class="statusFilter" checked style="margin-left:12px;"/>Delivered</label>
-                                                        <label><input type="radio" value="Cancelled" name="status" class="statusFilter" style="margin-left:12px;" />Cancelled</label>
-                                            <!--<img src="assets/img/search_icon.png" style="width:3vw;height:6vh; max-width:50%;height:auto;">-->
+
                                         </div>
-                                        <!--
-                                        <a href="subsequentDaysOrder.jsp"><input class="btn btn-info btn-fill pull-right" type="button" margin-right:20px name="SubsequentDaysOrder"  value="Subsequent Days Order"/></a>
-                                        
-                                    </div>
-                                    <div class="col-md-2">
-                                        <!--
-                                        <a href="cancelledSalesOrders.jsp"><input class="btn btn-info btn-fill pull-right" type="button"  style="margin-right:10px;" name="cancelledSalesOrders"  value="Cancelled Sales Orders" style="margin-right:20px;"/></a>
-                                        
-                                    </div>
-                                </div>
-                                </table>
-                                        -->
+
                                         <br>
-                                        <!--
-                                        <input type="submit" class="btn btn-info btn-fill pull-right" value="Delete records"> 
-                                        -->
+
                                     </form>   
 
                                 </div>

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : userMGMT
+    Document   : catalogue
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
 <%@include file="protect.jsp" %>
@@ -231,28 +231,26 @@
                                             </tr>                                           
                                         </thead>
                                         <tbody>
-                                            <%                                                    int count = 0;
+                                            <%                                                    
+                                                int count = 0;
                                                 for (Integer number : catalogueMap.keySet()) {
                                                     out.print("<tr>");
                                                     OrderItem orderItem = catalogueMap.get(number);
-                                                    //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='"+ orderItem.getItemCode() +"'></td>");
-                                                    //out.println("<td>"+count+"</td>");
+
                                                     out.print("<td>" + orderItem.getItemCode() + "</td>");
                                                     out.print("<td><img src='" + orderItem.getImageURL() + "' style='width:50px;height:50px;' ></td>");
                                                     out.print("<td class='name'>" + orderItem.getDescription() + "</td>");
                                                     out.print("<td>" + orderItem.getDescriptionChinese() + "</td>");
                                                     out.print("<td>" + orderItem.getUnitPrice2DP() + "</td>");
-                                                    //out.print("<td>" + orderItem.getStatus() + "</td>");
+
                                                     if (orderItem.getStatus().equals("Active") || orderItem.getStatus().equals("active")) {
-                                                            //out.print("active");<span class='label activeUser'>
                                                             out.print("<td><span class='label activeUser'>Active</span></td>");
                                                             out.print("<td><a href='catalogueEdit.jsp?serial=" + number + "'>Edit/View</a>&nbsp;&nbsp;&nbsp;<a href='deleteCatalogueConfirmation.jsp?itemCode=" + orderItem.getItemCode() + "'>Deactivate</a></td>");
                                                     }else{
                                                             out.print("<td><span class='label inactiveUser'>Inactive</span></td>");
                                                             out.print("<td><a href='catalogueEdit.jsp?serial=" + number + "'>Edit/View</a>&nbsp;&nbsp;&nbsp;<a href='activateCatalogueConfirmation.jsp?itemCode=" + orderItem.getItemCode() + "'>Activate</a></td>");
                                                     }
-                                                    //out.print("<td><a href='catalogueEdit.jsp?serial=" + number + "'>Edit/View</a>&nbsp;&nbsp;&nbsp;<a href='deleteCatalogueConfirmation.jsp?itemCode=" + orderItem.getItemCode() + "'>Deactivate</a></td>");
-                                                    //out.print("<td ><a href='deleteCatalogueConfirmation.jsp?itemCode="+orderItem.getItemCode()+"'>Deactivate</a></td>");
+
                                                     out.print("</tr>");
                                                     count++;
                                                 }

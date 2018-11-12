@@ -1,5 +1,5 @@
 <%-- 
-    Document   : login2
+    Document   : login
     Created on : 9 May, 2018, 4:36:59 PM
     Author     : Rizza
 --%>
@@ -24,8 +24,6 @@
     <body>
         
 
-        <!-- <body style="background-image:url('https://s3-ap-southeast-1.amazonaws.com/media.redmart.com/marketplace/logos/subvendors/unnamed-1497317987343.jpg')"> -->
-        
         <img src="assets/img/limkee_wallpaper1.png" style="width:100vw;height:98vh">
 
         <div class="logmod">
@@ -70,11 +68,10 @@
                             </div>
                         </div>
                         <div class="simform__actions">
+                            
                             <input class="btn btn-info btn-fill pull-right" name="commit" type="submit" value="Log In" style="border-radius: 10px; width: 520px; "/>
-                            <!--    
-                            <span class="simform__actions-sidetext"><a class="special" role="link" href="adminHome.jsp">Forgot your password?<br>Click here</a></span>
-                            -->
-                            </div> 
+
+                        </div> 
                     </form>
                 </div> 
                 <div class="logmod__alter">

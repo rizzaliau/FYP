@@ -1,5 +1,5 @@
 <%-- 
-    Document   : userMGMT
+    Document   : catalogueEdit
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
 --%>
@@ -271,9 +271,6 @@
                                                 </div>
 
                                             </div>
-
-
-
                                                         <div class="row" style="margin-left: -5px;">
 
                                                 <input type="hidden" class="form-control" value="<%= orderItem.getImageURL()%>" name="imageURL">
@@ -330,9 +327,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            
-                                            
-                                            
+
                                         </form>
 
                                     </div>
@@ -377,19 +372,7 @@
 
                         });
                     </script>
-                    <!-- commented the alert pop up -->
-                    <!-- Cancel alert pop up
-                    <script>
-                        function cancelFunction() {
-                        confirm("Your changes will not be saved. Are you sure you want to continue?");
-                        }
-                    </script>
-                    <script>
-                     $('#myModal').on('shown.bs.modal', function () {
-                     $('#myInput').trigger('focus')
-                     })
-                    </script>
-                    -->
+
                     <script>
                     $(document).ready(                       
                             function() {

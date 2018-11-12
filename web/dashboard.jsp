@@ -258,13 +258,6 @@
                                       
                                     </div>   
 
-                                    <!-- HIDE THE BUTTON FIRST 
-                                    <center>    
-                                        <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
-                                        <a href="productDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="productDashboard"  value="Product"  /></a>
-                                        <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
-                                    </center>
-                                    -->
                                     <br>    
 
 

@@ -2,7 +2,6 @@
     Document   : salesOrderEdit
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
-<%@include file="protect.jsp" %>
 --%>
 
 
@@ -20,6 +19,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="protect.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,9 +47,9 @@
             <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
                 <!--
-            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-    
-            Tip 2: you can also add an image using data-image tag
+                    Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+                    Tip 2: you can also add an image using data-image tag
                 -->
                 <div class="sidebar-wrapper">
                     <div class="logo">

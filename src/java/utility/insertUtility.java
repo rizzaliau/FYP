@@ -5,7 +5,6 @@
  */
 package utility;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-//import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import dao.ConnectionManager;
 import dao.UserDAO;
 import java.io.BufferedReader;
@@ -153,60 +152,43 @@ public class insertUtility {
         String lastModifiedBy = catalogueCheckForNull(request.getParameter("lastModifiedBy"));
         
         if(imageURLRetrieved==null){
+            
             request.setAttribute("status", "Error: Please upload an image! ");
 
             request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
-        }else{
-        
-//        out.println(itemCodeRetrieved);
-//        out.println(descriptionRetrieved);
-//        out.println(chineseDescriptionRetrieved);
-//        out.println(unitPriceRetrieved);
-//        out.println(imageURLRetrieved);
-//        out.println(defaultQuantityRetrieved);
-//        out.println(quantityMultiplesRetrieved);
-//        out.println(unitofMetricRetrieved);
-//        out.println(retailPriceRetrieved);
-        
-        
-//        if(itemCodeRetrieved.equals("")||descriptionRetrieved.equals("")||descriptionChineseRetrieved.equals("")
-//            ||unitPriceRetrieved.equals("")||imageURLRetrieved.equals("")||defaultQuantityRetrieved.equals("")
-//            ||quantityMultiplesRetrieved.equals("")){
-//            
-//            request.setAttribute("status", "Fields cannot be left blank!");
-//            request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
-//        }
-
-        try {
-
-            Connection conn = ConnectionManager.getConnection();
-            out.println("passes conn");
-
-            String sql = "INSERT INTO order_item " + "VALUES('"+ itemCodeRetrieved+"','"+descriptionRetrieved+"','"+chineseDescriptionRetrieved+"',"
-                    + "'"+unitPriceRetrieved+"','"+retailPriceRetrieved+"','"+unitofMetricRetrieved+"','"
-                    +imageURLRetrieved+"','"+defaultQuantityRetrieved
-                    +"','"+quantityMultiplesRetrieved+"','"+status+"','"+lastModifiedTimeStamp+"','"+lastModifiedBy+"')";
-
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            out.println("passes stmt");
-
-            stmt.executeUpdate();
-            out.println("passes rs");
-
-        } catch (SQLException ex) {
             
-            if(ex instanceof MySQLIntegrityConstraintViolationException){
-                request.setAttribute("status", "Please enter a unique Item code!");
-                request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
-            }else{
-                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("status", "Error creating new catalogue Item!");
-            }
-        }
-        
-        request.setAttribute("status", "Record inserted successfully! ");
+        }else{
 
-        request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+            try {
+
+                Connection conn = ConnectionManager.getConnection();
+                out.println("passes conn");
+
+                String sql = "INSERT INTO order_item " + "VALUES('"+ itemCodeRetrieved+"','"+descriptionRetrieved+"','"+chineseDescriptionRetrieved+"',"
+                        + "'"+unitPriceRetrieved+"','"+retailPriceRetrieved+"','"+unitofMetricRetrieved+"','"
+                        +imageURLRetrieved+"','"+defaultQuantityRetrieved
+                        +"','"+quantityMultiplesRetrieved+"','"+status+"','"+lastModifiedTimeStamp+"','"+lastModifiedBy+"')";
+
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                out.println("passes stmt");
+
+                stmt.executeUpdate();
+                out.println("passes rs");
+
+            } catch (SQLException ex) {
+
+                if(ex instanceof MySQLIntegrityConstraintViolationException){
+                    request.setAttribute("status", "Please enter a unique Item code!");
+                    request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
+                }else{
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    request.setAttribute("status", "Error creating new catalogue Item!");
+                }
+            }
+
+            request.setAttribute("status", "Record inserted successfully! ");
+
+            request.getRequestDispatcher("catalogue.jsp").forward(request, response);
         }
     }
     

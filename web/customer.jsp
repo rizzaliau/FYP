@@ -1,8 +1,7 @@
 <%-- 
-    Document   : userMGMT
+    Document   : customer.jsp
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
-<%@include file="protect.jsp" %>
 --%>
 
 
@@ -180,7 +179,8 @@
                 </nav>
                 <!-- End Navbar -->
 
-                <%                Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
+                <%                
+                    Map<Integer, Debtor> debtorMap = debtorUtility.getDebtorMap();
                 %>
 
                 <div class="content">
@@ -244,31 +244,29 @@
                                             </thead>
                                             <tbody>
 
-                                                <%      for (Integer number : debtorMap.keySet()) {
-                                                        out.print("<tr>");
-                                                        Debtor debtor = debtorMap.get(number);
-                                                        //out.print("<td><input type='checkbox' name='recordsToBeDeleted' value='" + debtor.getDebtorCode() + "'></td>");
-                                                        out.print("<td>" + debtor.getDebtorCode() + "</td>");
-                                                        out.print("<td>" + debtor.getDebtorName() + "</td>");
-                                                        out.print("<td>" + debtor.getCompanyCode() + "</td>");
-                                                        out.print("<td>" + debtor.getCompanyName() + "</td>");
-                                                        if (debtor.getStatus().equals("Active") || debtor.getStatus().equals("active")) {
-                                                            //out.print("active");<span class='label activeUser'>
-                                                            out.print("<td><span class='label activeUser'>Active</span></td>");
-                                                        } else if (debtor.getStatus().equals("Blacklisted") || debtor.getStatus().equals("blacklisted")) {
-                                                            out.print("<td><span class='label blacklistUser'>Blacklisted</span></td>");
-                                                        } else if (debtor.getStatus().equals("Inactive") || debtor.getStatus().equals("inactive")) {
-                                                            {
-                                                                //out.print("inactive");
-                                                                out.print("<td><span class='label inactiveUser'>Inactive</span></td>");
-                                                            }
+                                                <%      
+                                                        for (Integer number : debtorMap.keySet()) {
+                                                            out.print("<tr>");
+                                                                Debtor debtor = debtorMap.get(number);
 
-                                                        }
-                                                        out.print("<td><a href='edit.jsp?serial=" + number + "&status=active'>Edit/View</a></td>");
-                                                        //out.print("<td><a href='deleteConfirmation.jsp?debtorCode=" + debtor.getDebtorCode() + "'>Delete</a></td>");
-                                                        out.print("</tr>");
+                                                                out.print("<td>" + debtor.getDebtorCode() + "</td>");
+                                                                out.print("<td>" + debtor.getDebtorName() + "</td>");
+                                                                out.print("<td>" + debtor.getCompanyCode() + "</td>");
+                                                                out.print("<td>" + debtor.getCompanyName() + "</td>");
 
-                                                        //out.print("<td><a href='deleteConfirmation.jsp?debtorCode=" + debtor.getDebtorCode() + "'>Delete</a></td>");
+                                                                if (debtor.getStatus().equals("Active") || debtor.getStatus().equals("active")) {
+                                                                    out.print("<td><span class='label activeUser'>Active</span></td>");
+                                                                } else if (debtor.getStatus().equals("Blacklisted") || debtor.getStatus().equals("blacklisted")) {
+                                                                    out.print("<td><span class='label blacklistUser'>Blacklisted</span></td>");
+                                                                } else if (debtor.getStatus().equals("Inactive") || debtor.getStatus().equals("inactive")) {
+                                                                    {
+                                                                        out.print("<td><span class='label inactiveUser'>Inactive</span></td>");
+                                                                    }
+
+                                                                }
+                                                                out.print("<td><a href='edit.jsp?serial=" + number + "&status=active'>Edit/View</a></td>");
+                                                            out.print("</tr>");
+
                                                     }
 
                                                 %>

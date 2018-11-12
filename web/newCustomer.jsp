@@ -1,8 +1,8 @@
 <%-- 
-    Document   : userMGMT
+    Document   : newCustomer
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
-<%@include file="protect.jsp" %>
+
 --%>
 
 
@@ -13,6 +13,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="protect.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 

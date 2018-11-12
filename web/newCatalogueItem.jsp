@@ -42,25 +42,25 @@
 
 <body>
      <!-- Modal pop up alert -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Your changes will not be saved. Are you sure you want to leave this page?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "newCatalogueItem.jsp">Continue</a></button>
-                                                                <button type="button" class="btn btn-danger"><a href = "catalogue.jsp">Leave this page</a></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Your changes will not be saved. Are you sure you want to leave this page?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "newCatalogueItem.jsp">Continue</a></button>
+                        <button type="button" class="btn btn-danger"><a href = "catalogue.jsp">Leave this page</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="wrapper">
            <!-- Sidebar -->
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
@@ -224,11 +224,7 @@
                                         </div>
                                         <script type="text/javascript" src="./js/imgur.js"></script>
                                         <script type="text/javascript" src="./js/upload.js"></script>
-<!--                                        <form action="uploadController" method="post" enctype="multipart/form-data">
-                                            <input type="file" name="file" /></br>
-                                            <input type="hidden" value='123456' name="test2" />
-                                            <input type="submit" name="submit"value="Upload" />
-                                        </form> -->
+
                                         <br>
                                         <br> 
                                         <div class="title">

@@ -72,7 +72,6 @@ public class notificationUtility {
     }
     
     public static void updateNotificationsMap(String orderID){
-        //Map<Integer, Notification> notificationMap = new HashMap<>();
         
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -86,7 +85,6 @@ public class notificationUtility {
                 "WHERE OrderID = \""+orderID+"\"";
 
             pstmt = conn.prepareStatement(updateNotificationSQL);
-                    //out.println("passes stmt");
 
             pstmt.executeUpdate();
             
@@ -117,7 +115,6 @@ public class notificationUtility {
             String updateNotificationSQL = "UPDATE sales_order SET flag = '0'";
 
             pstmt = conn.prepareStatement(updateNotificationSQL);
-                    //out.println("passes stmt");
 
             pstmt.executeUpdate();
             

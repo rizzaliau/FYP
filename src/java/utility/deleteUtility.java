@@ -70,10 +70,8 @@ public class deleteUtility {
     
     public static void deleteMultiple(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //String debtorCodeRetrived = request.getParameter("recordToBeDeleted");
         String[] debtorCodesRetrived = request.getParameterValues("recordsToBeDeleted"); 
-        //System.out.println("length of string array is : "+debtorCodesRetrived.length);
-        
+
         if(debtorCodesRetrived==null){
             request.getRequestDispatcher("customer.jsp").forward(request, response);
         }else{ 
@@ -81,7 +79,6 @@ public class deleteUtility {
             int stringArrayCount = getActualSize(debtorCodesRetrived);
             int count = 0;
 
-            //System.out.println("debtorCodeRetrived is : "+debtorCodesRetrived);
             for(int i=0; i<stringArrayCount; i++){
 
                 try {
@@ -90,7 +87,6 @@ public class deleteUtility {
                     Connection conn = ConnectionManager.getConnection();
                     out.println("passes conn");
 
-                    //String sql = "DELETE FROM `debtor` WHERE DebtorCode = '" + debtorCode + "'";
                     String sql = "UPDATE `debtor` SET Status='Inactive'"
                     + "WHERE DebtorCode = '" + debtorCode + "'";
                     
@@ -222,22 +218,19 @@ public class deleteUtility {
     public static void deleteMultipleSalesOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        //String[] orderIDsRetrived = (String[])request.getAttribute("orderIDArray");
+
         String[] orderIDsRetrived = (String[])session.getAttribute("orderIDArrayCancelled");
         
         String statusRetrieved = request.getParameter("status");
         String deliveryDateRetrieved = request.getParameter("deliveryDate");
-        //System.out.println("testing"+orderIDsRetrived[0]);
-        //String[] orderIDsRetrived = request.getParameterValues("recordsToBeDeleted"); 
+
 
         if(orderIDsRetrived == null){
             request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
         }else{ 
             
             int stringArrayCount = getActualSize(orderIDsRetrived);
-            //int count = 0;
 
-            //System.out.println("debtorCodeRetrived is : "+debtorCodesRetrived);
             for(int i=0; i<stringArrayCount; i++){
 
                 try {
@@ -274,7 +267,6 @@ public class deleteUtility {
                     request.setAttribute("status", "Error updating!");
                 }
 
-                //count++;
             }
             
             request.setAttribute("status", "Records deleted successfully!");
@@ -288,8 +280,6 @@ public class deleteUtility {
         String itemCodeRetrieved = request.getParameter("recordToBeDeleted");
         String lastModifiedTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
-        
-        //System.out.println("debtorCodeRetrived is : "+debtorCodeRetrived);
 
         try {
 
@@ -363,15 +353,12 @@ public class deleteUtility {
         String itemCodeRetrieved = request.getParameter("recordToBeActivated");
         String lastModifiedTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
-        
-        //System.out.println("debtorCodeRetrived is : "+debtorCodeRetrived);
 
         try {
 
             Connection conn = ConnectionManager.getConnection();
             out.println("passes conn");
 
-            //String sql = "DELETE FROM `order_item` WHERE itemCode = '" + itemCodeRetrieved + "'";
             String sql = "UPDATE `order_item` SET Status='Active'," 
                 + " LastModifiedTimestamp = '" + lastModifiedTimeStampRetrieved + "',"
                 + " LastModifiedBy = '" + lastModifiedByRetrieved + "'"

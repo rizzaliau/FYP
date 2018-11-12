@@ -167,22 +167,10 @@
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Sales Dashboard Management</h4>
-                                        <!--commented the tabs for the dashboard
-                                        <ul class="tabrow" id="my_selection">
-                                                    <li class="selected"><a href="SalesRevenueDashboard.jsp">Sales</a></li>
-                                                    <li><a href="productDashboard.jsp">Product</a></li>
-                                                    <li><a href="customerDashboard.jsp">Customer</a></li>
-                                        </ul>
-                                        -->
+
                                     </div>   
 
-                                    <!-- HIDE THE BUTTON FIRST 
-                                    <center>    
-                                        <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
-                                        <a href="productDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="productDashboard"  value="Product"  /></a>
-                                        <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
-                                    </center>
-                                    -->
+
                                     <br>    
 
                                     <%

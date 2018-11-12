@@ -185,28 +185,14 @@
 
                                     <div class="card-body">
                                         <form method="post" accept-charset="utf-8" action="changeCustomerPasswordController" >
-<!--                                            <div class="row">
-                                                <div class="col-md-5 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Enter current password</label>
-                                                        <input type="password" name="currentPass" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                            </div>-->
-                                    <%                            
 
-                                        String userName = request.getParameter("user");
-                                        String passWord = request.getParameter("password");
-                                        String debtorCodeRetrieved = request.getParameter("debtorCode");
-                                        String hashPasswordRetrieved = request.getParameter("hashPassword");
-                                        //String companyNameRetrieved = request.getParameter("companyName");
+                                            <%                            
+                                                String userName = request.getParameter("user");
+                                                String passWord = request.getParameter("password");
+                                                String debtorCodeRetrieved = request.getParameter("debtorCode");
+                                                String hashPasswordRetrieved = request.getParameter("hashPassword");
 
-                                        //String usernameSession = (String) session.getAttribute("username");
-
-                                        //out.println(usernameSession);
-                                        //out.println("Username retrieved from session is:"+usernameSession);
-
-                                    %>
+                                            %>
                                             <div class="row">
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">

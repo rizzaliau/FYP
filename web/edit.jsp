@@ -2,7 +2,6 @@
     Document   : edit
     Created on : 12 May, 2018, 1:04:11 AM
     Author     : Rizza
-<%@include file="protect.jsp" %>
 --%>
 
 
@@ -204,7 +203,8 @@
                                         <form method="post" action="editController">
 
 
-                                            <%                                                    String currentModifier = usernameSession;
+                                            <%                                                    
+                                                String currentModifier = usernameSession;
                                                 String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
 
                                                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -416,17 +416,17 @@
                                                                 String sts = debtor.getStatus();
                                                                 out.println(sts);
                                                                 if (sts.equals("blacklisted") || sts.equals("Blacklisted")) {
-                                                                    //out.println("equals blacklist");
+
                                                                     out.println("<option value='Blacklisted'>Blacklisted</option>");
                                                                     out.println("<option value='Inactive'>Inactive</option>");
                                                                     out.println("<option value='Active'>Active</option>");
                                                                 } else if (sts.equals("inactive") || sts.equals("Inactive")) {
-                                                                    //out.println("equals inactive");
+
                                                                     out.println("<option value='Inactive'>Inactive</option>");
                                                                     out.println("<option value='Active'>Active</option>");
                                                                     out.println("<option value='Blacklisted'>Blacklisted</option>");
                                                                 } else {
-                                                                    //out.println("equals active");
+
                                                                     out.println("<option value='Active'>Active</option>");
                                                                     out.println("<option value='Blacklisted'>Blacklisted</option>");
                                                                     out.println("<option value='Inactive'>Inactive</option>");
@@ -437,45 +437,16 @@
                                                     </div>
                                                 </div>
 
-                                                <!--                                                <div class="col-md-4 pr-1">
-                                                                                                    <div class="form-group">
-                                                                                                        <label>Payment Term</label>
-                                                                                                        <select name="displayTerm" class="form-control" required > -->
-                                                <%                                                                 /*                                                               String displayTerm = debtor.getDisplayTerm();
-                                                   if (displayTerm.equals("C.O.D")) {
-                                                       out.println("<option value='C.O.D'>C.O.D</option>");
-                                                       out.println("<option value='1 day'>1 day</option>");
-                                                       out.println("<option value='15 days'>15 days</option>");
-                                                       out.println("<option value='30 days'>30 days</option>");
-                                                   } else if (displayTerm.equals("1 day")) {
-                                                       out.println("<option value='1 day'>1 day</option>");
-                                                       out.println("<option value='15 days'>15 days</option>");
-                                                       out.println("<option value='30 days'>30 days</option>");
-                                                       out.println("<option value='C.O.D'>C.O.D</option>");
-
-                                                   } else if (displayTerm.equals("15 days")) {
-                                                       out.println("<option value='15 days'>15 days</option>");
-                                                       out.println("<option value='30 days'>30 days</option>");
-                                                       out.println("<option value='C.O.D'>C.O.D</option>");
-                                                       out.println("<option value='1 day'>1 day</option>");
-                                                   } else {
-                                                       out.println("<option value='30 days'>30 days</option>");
-                                                       out.println("<option value='C.O.D'>C.O.D</option>");
-                                                       out.println("<option value='1 day'>1 day</option>");
-                                                       out.println("<option value='15 days'>15 days</option>");
-                                                   }
-                                                     */
-                                                %>
-                                                <!--                                                        </select>                                                        
-                                                                                                    </div>
-                                                                                                </div>
-                                                -->
                                                 <input type="hidden" value='C.O.D' name="displayTerm" />
 
                                                 <div class="col-md-4 pr-1">
-                                                    <div class="form-group">                                                                                                         <label>Route*</label>
+                                                    <div class="form-group">                                                                                                         
+                                                        <label>Route*</label>
                                                         <select name ="routeNumber" class="form-control" required>
-                                                            <%                                                                                String routeNum = debtor.getRouteNumber();
+                                                            
+                                                            <%                                                                                
+                                                                String routeNum = debtor.getRouteNumber();
+                                                                
                                                                 for (int i = 1; i <= 18; i++) {
                                                                     if ((Integer.parseInt(routeNum) == i)) {
                                                                         out.print("<option value='" + i + "' selected>" + i + "</option>");
@@ -484,16 +455,13 @@
                                                                     }
                                                                 }
                                                             %>  
+                                                            
                                                         </select>
                                                         <script>
-                                                            //sdocument.write(document.getElementByName('routeNumberDropdown').value);
+
                                                             document.write('<input type="hidden" name="displayTerm" value="' + document.getElementByName('routeNumberDropdown').value + ">");
                                                         </script>
-                                                        <!--
-                                                        <input type="hidden" name="routeNumber" id="routeNumber" value="<script>
-                                                               document.getElementByName('routeNumberDropdown').value 
-                                                               </script>">
-                                                        -->
+
                                                     </div>
                                                 </div>
 

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : test.jsp
+    Document   : invoice.jsp
     Created on : 2 Sep, 2018, 12:15:02 AM
-    Author     : Zx Low
+    Author     : 
 --%>
 <%@page import="java.util.Arrays"%>
 <%@page import="dao.UserDAO"%>
@@ -81,10 +81,7 @@
                     int marker = order.indexOf(',');
                     String orderID = order.substring(0, marker);
                     String status = order.substring(marker + 1);
-                    //out.println(Arrays.toString(orderIDs));
-                    //out.print("Order Id:" + orderID);
-                    //out.print("Status:" + status);
-                    //out.print("</br>");
+
                     if (status.equals("pendingDelivery")) {
                         status = "Pending Delivery";
                     }
@@ -107,19 +104,7 @@
                     Date d = sdf.parse(orderDate);
                     sdf.applyPattern("dd-MM-yyyy");
                     String orderDateFormatted = sdf.format(d);
-                    /*
-                    out.println("<p id='left2-col'>");
-                    out.print(orderID);
-                    out.print("<br>");
-                    out.println(orderDateFormatted);
-                    out.println("<br>");
-                    out.println(salesOrderdetails.getDisplayTerm());
-                    out.println("<br>");
-                    out.println("Route No." + salesOrderdetails.getRouteNumber());
 
-                    out.println("</p>");
-                    out.println("<p id='left-col'>");
-                     */
                     out.println("<div>");
                     out.println("<table id='t1' border='0'>");
                     out.println("<thead>");

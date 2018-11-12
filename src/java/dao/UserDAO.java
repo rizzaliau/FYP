@@ -37,8 +37,7 @@ public class UserDAO {
             out.println("enters user retrived method");
 
             while (rs.next()) {
-                //String id = rs.getString("ID");
-                //int idInt = Integer.parseInt(id);
+
                 String name = rs.getString("Username");
                 out.println(name + " is printed out in userDAO ");
                 String password = rs.getString("HashPassword");
@@ -69,7 +68,7 @@ public class UserDAO {
             out.println("passes conn");
             
             String sql = "UPDATE `user` SET HashPassword = '" + password + "' WHERE Username = '" + username + "'";
-            //String sql = "UPDATE `user` SET Id='3', Password = '123456' WHERE Username = 'admin3'";
+
             PreparedStatement stmt = conn.prepareStatement(sql);
             out.println("passes stmt");
             

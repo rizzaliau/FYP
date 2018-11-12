@@ -43,25 +43,25 @@
 
 <body>
      <!-- Modal pop up alert -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Your changes will not be saved. Are you sure you want to leave this page?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "newCatalogueItem.jsp">Continue</a></button>
-                                                                <button type="button" class="btn btn-danger"><a href = "admin.jsp">Leave this page</a></button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><font color = "red">*Alert*</font></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Your changes will not be saved. Are you sure you want to leave this page?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal"><a href = "newCatalogueItem.jsp">Continue</a></button>
+                        <button type="button" class="btn btn-danger"><a href = "admin.jsp">Leave this page</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="wrapper">
         
             <!-- Sidebar -->
@@ -80,15 +80,16 @@
                     </div>
                     <ul class="nav">
                         <%
-                           //if(){ 
-                                out.print("<li class='nav-item active'>");
+                           String isMasterAdmin = (String) session.getAttribute("isMaster");
+                                   
+                           if(isMasterAdmin.equals("1")){ 
+                                out.print("<li>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
                                 out.print("<img src='assets/img/masterAdmin_icon.png'/>");
                                 out.print("<p>&nbspAdmin</p>");
                                 out.print("</a>");
                                 out.print("</li>");
-                           //}
-                           
+                           }                         
                         %>
                         <li>
                             <a class="nav-link" href="dashboard.jsp">

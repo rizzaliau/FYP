@@ -51,10 +51,8 @@ public class dashboardUtility {
                 Map<Integer, ItemDetails> itemDetailsMap = salesOrderUtility.getItemDetailsMap(salesOrder.getOrderID(), salesOrderdetails.getStatus());
                 
                 for (Integer itemNumber : itemDetailsMap.keySet()) {
-                    //double subtotal = 0;
 
                     ItemDetails itemDetail = itemDetailsMap.get(itemNumber);
-                    //OrderItem item = salesOrderUtility.getOrderItem(itemDetail.getItemCode());
 
                     double qtyDouble = Double.parseDouble(itemDetail.getQty());
                     double unitPriceDouble = Double.parseDouble(itemDetail.getUnitPrice());
@@ -414,10 +412,6 @@ public class dashboardUtility {
 
                 getPercentageReturnedProductMap.put(itemDescription, percentageReturned);
                 
-                System.out.println("item description is "+itemDescription);
-                System.out.println("qty is "+qty);
-                System.out.println("returnedQty is "+returnedQty);
-                System.out.println("Percentage Returned is"+percentageReturned);
             }
         }
         
@@ -524,8 +518,6 @@ public class dashboardUtility {
 
                 getPercentageReturnedProductMap.put(itemDescription, percentageReturnedRounded);
 
-                //System.out.println("returnedQty is "+returnedQty);
-                //System.out.println("Percentage Returned is"+percentageReturned);
             }
         }
         
@@ -534,8 +526,7 @@ public class dashboardUtility {
     
     //Key index, Value Year
     public static Map<Integer, Integer> getAvailableSalesOrderYears(){    
-    
-        //String sql = "SELECT DISTINCT YEAR(CreatedTimeStamp) FROM sales_order Where so.Status = 'Pending Delivery'";
+
         Map<Integer,Integer> availableSalesOrderYears = new HashMap<>();
         
         Connection conn = null;
@@ -638,10 +629,6 @@ public class dashboardUtility {
 
             }
 
-            //allCustomerSalesByYearMonth.put(debtorCode,salesOrdertotalForCustomer);
-            //salesRevenueByMonthMap.put(month, totalForMonth);
-
-
             if(allCustomerSalesByYearMonth.get(debtorCode) == null){
                 allCustomerSalesByYearMonth.put(debtorCode, salesOrdertotalForCustomer);
             }else{
@@ -650,10 +637,6 @@ public class dashboardUtility {
             }    
 
         }
-
-        //System.out.print("Value is"+allCustomerSalesByYearMonth.get("301-C028"));
-        //System.out.print("Code reaches this point");
-        
         
         List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(allCustomerSalesByYearMonth.entrySet());
         
@@ -684,9 +667,6 @@ public class dashboardUtility {
             
         }
         
-//        if(rank != top10CustomersByYearMonth.size()){
-//            rank--;
-//        }
         
         while(top10CustomersByYearMonth.size() < 10){
             
@@ -696,9 +676,6 @@ public class dashboardUtility {
             System.out.println("Rank is "+rank);
         }
         
-        
-        //top10CustomersByYearMonth.put(1,"Test");
-
         return top10CustomersByYearMonth;
     }
     
@@ -738,8 +715,6 @@ public class dashboardUtility {
 
             }
 
-            //allCustomerSalesByYearMonth.put(debtorCode,salesOrdertotalForCustomer);
-            //salesRevenueByMonthMap.put(month, totalForMonth);
             double salesOrdertotalForCustomerRounded =  (int)Math.rint(salesOrdertotalForCustomer);
 
             if(allCustomerSalesByYearMonth.get(debtorCode) == null){

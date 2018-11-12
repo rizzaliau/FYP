@@ -174,23 +174,8 @@
                                 <div class="card striped-tabled-with-hover">
                                     <div class="card-header ">
                                         <h4 class="card-title">Customer Dashboard Management</h4>
-                                        <!--commented the tabs for the dashboard
-                                        <ul class="tabrow" id="my_selection">
-                                                    <li><a href="SalesRevenueDashboard.jsp">Sales</a></li>
-                                                    <li><a href="productDashboard.jsp">Product</a></li>
-                                                    <li class="selected"><a href="customerDashboard.jsp">Customer</a></li>
-                                                </ul>
-                                        -->
                                     </div>   
-                                    
-                                    
-                                    <!-- HIDE THE BUTTON FIRST 
-                                    <center>    
-                                        <a href="dashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="salesDashboard"  value="Sales" /></a>
-                                        <a href="productDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="productDashboard"  value="Product"  /></a>
-                                        <a href="customerDashboard.jsp"><input class="btn btn-info btn-fill pull-center" type="button" name="customerDashboard"  value="Customer"/></a>
-                                    </center>
-                                    -->
+
                                       
                        <!-- Start of Dashboard II charts -->  
                        
@@ -214,10 +199,10 @@
                                 
                                 <div class="card-body ">
                                     
-                                            <%
-                                                Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();
-                                                Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
-                                            %>
+                                    <%
+                                        Map<Integer, Integer> availableSalesOrderYears = dashboardUtility.getAvailableSalesOrderYears();
+                                        Map<Integer, String> allMonths = dashboardUtility.getAllMonths();
+                                    %>
                                     <div class="row">
                                          <div class="col-md-5 pr-1">
                                             <div class="form-group">
@@ -457,9 +442,7 @@
                                     </center>
                                     <br>
 
-                        
-                                    
-           
+
                         <!-- Start of Filter month/year for Customers Who Do Not Meet the Requirement Chart -->
                              <center>
                                  <form method="post" action="customerDashboard.jsp" name="customersDoNotMeetRequirementForm" >
@@ -696,9 +679,6 @@
                                     <br>
                                     <br>
                                     <!-- End of Customers Who Do Not Meet the Requirement Chart -->  
-                                    
-                                    
-                                    
                                     
                                     <!-- Start of Filter year/customer for Return Products By Customers Chart -->
                                     
@@ -1158,15 +1138,6 @@
 <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="assets/js/demo.js"></script>
-<!--<script type="text/javascript">
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-
-        demo.showNotification();
-
-    });
-</script>-->
 
 <script>
 $(document).ready(                       
@@ -1184,4 +1155,4 @@ document.getElementById('my_selection').onchange = function() {
 </script>
 
 
-                </html>
+</html>

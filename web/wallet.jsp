@@ -36,7 +36,6 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="assets/css/demo.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
-<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>-->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>      
         <style>
             .no-result {

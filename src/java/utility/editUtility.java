@@ -116,13 +116,6 @@ public class editUtility {
         String paperBagRequiredRetrieved = request.getParameter("paperBagRequired");
         int paperBagRequiredInt = Integer.parseInt(paperBagRequiredRetrieved);
         String preferredLanguageRetrieved = request.getParameter("preferredLanguage");
-        //out.println("qtyRetrieved " + qtyItemCodeRetrieved.length);
-        //out.println("qtyRetrieved " + qtyItemCodeRetrieved[0]);
-        //out.println("qtyRetrieved " + qtyItemCodeRetrieved[1]);
-        //out.println("ItemCodeRetrieved " + itemCodeRetrieved.length);
-        //out.println("ItemCodeRetrieved " + itemCodeRetrieved[0]);
-        //out.println("ItemCodeRetrieved " + itemCodeRetrieved[1]);
-        //out.println("itemCodeRetrieved " + itemCodeRetrieved.length);
 
         try {
 
@@ -288,18 +281,6 @@ public class editUtility {
         String lastTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedBy = request.getParameter("lastModifiedBy");
         
-// Debugging lines
-//        System.out.println("Debugging line: "+itemCodeRetrieved);
-//        System.out.println("Debugging line: "+descriptionRetrieved);
-//        System.out.println("Debugging line: "+chineseDescriptionRetrieved);
-//        System.out.println("Debugging line: "+unitOfMetricRetrieved);
-//        System.out.println("Debugging line: "+unitPriceRetrieved);
-//        System.out.println("Debugging line: "+retailPriceRetrieved);
-//        System.out.println("Debugging line: "+imageURLRetrieved);
-//        System.out.println("Debugging line: "+defaultQuantityRetrieved);
-//        System.out.println("Debugging line: "+quantityMultiplesRetrieved);
-
-        //to determine which image URL to use, current URL or New URL
         if(newImageURLRetrieved==null){
             imageURLToUpdate=imageURLRetrieved;
         }else{
@@ -470,13 +451,6 @@ public class editUtility {
         
         try {
             Connection conn = ConnectionManager.getConnection();
-            
-            /*
-            String sql = "UPDATE `wallet`\n" +
-                "SET RefundAmt = '"+Double.parseDouble(df.format(newAmt))+"'\n" +
-                "WHERE DebtorCode = \""+debtorCode+"\"";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            */
             
             PreparedStatement stmt = conn.prepareStatement("update wallet set RefundAmt = ? where DebtorCode = ?");
                  

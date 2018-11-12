@@ -194,15 +194,13 @@ public class salesOrderUtility {
     }
     
     public static SalesOrderDetails getSalesOrderDetails(String orderID,String statusInput){
-        //Map<Integer, SalesOrderDetails> salesOrderDetailsMap = new HashMap<>();
         
         SalesOrderDetails salesOrderDetailsReturn = null;
         
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        
-        //int count = 1;
+
         
         try {
             conn = ConnectionManager.getConnection();
@@ -263,8 +261,7 @@ public class salesOrderUtility {
     public static Map<Integer,ItemDetails> getItemDetailsMap(String orderID, String status){
         
         Map<Integer,ItemDetails> itemDetailsMap = new HashMap<>();
-        //ItemDetails itemDetailsReturn = null;
-        
+
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -292,9 +289,7 @@ public class salesOrderUtility {
                 String unitPrice=checkForNull(rs.getString("UnitPrice"));
 
                 ItemDetails itemDetails = new ItemDetails (itemCode,qty,returnedQty,reducedQty, unitPrice);
-                
-                //itemDetailsReturn = itemDetails;
-                
+
                 itemDetailsMap.put(count, itemDetails);
                 count++;
                 
@@ -382,16 +377,13 @@ public class salesOrderUtility {
    }
     
   public static SalesOrderDetails getAllSalesOrderDetails(String orderID){
-        //Map<Integer, SalesOrderDetails> salesOrderDetailsMap = new HashMap<>();
-        
+
         SalesOrderDetails salesOrderDetailsReturn = null;
         
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        
-        //int count = 1;
-        
+
         try {
             conn = ConnectionManager.getConnection();
             String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp, so.LastModifiedBy, so.PaperBagRequired, \n" +
@@ -449,16 +441,13 @@ public class salesOrderUtility {
         return salesOrderDetailsReturn;
     } 
     public static SalesOrderDetails getAllSalesOrderDetailsDesc(String orderID){
-        //Map<Integer, SalesOrderDetails> salesOrderDetailsMap = new HashMap<>();
-        
+
         SalesOrderDetails salesOrderDetailsReturn = null;
         
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        
-        //int count = 1;
-        
+
         try {
             conn = ConnectionManager.getConnection();
             String populateMap = "Select so.OrderID, so.CreatedTimeStamp, so.Status, so.LastModifiedTimeStamp, so.LastModifiedBy, so.PaperBagRequired \n" +
@@ -547,9 +536,7 @@ public class salesOrderUtility {
                 String unitPrice=checkForNull(rs.getString("UnitPrice"));
 
                 ItemDetails itemDetails = new ItemDetails (itemCode,qty,returnedQty,reducedQty,unitPrice);
-                
-                //itemDetailsReturn = itemDetails;
-                
+
                 itemDetailsMap.put(count, itemDetails);
                 count++;
                 
@@ -627,8 +614,6 @@ public class salesOrderUtility {
             Connection conn = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
-
-            //int count = 1;
 
             try {
                 conn = ConnectionManager.getConnection();

@@ -352,12 +352,12 @@
                                             //backgroundColor:'green',
                                             backgroundColor:[
                                               'rgba(245, 104, 41, 1)',
-                                                                    'rgba(14, 61, 89, 1)',
-                                                                    'rgba(135, 166, 28,1)',
-                                                                    'rgba(242, 159, 5, 1)',
-                                                                    'rgba(217, 37, 38, 1)',
-                                                                    'rgba(255, 159, 64, 0.6)',
-                                                                    'rgba(255, 99, 132, 0.6)'
+                                                'rgba(14, 61, 89, 1)',
+                                                'rgba(135, 166, 28,1)',
+                                                'rgba(242, 159, 5, 1)',
+                                                'rgba(217, 37, 38, 1)',
+                                                'rgba(255, 159, 64, 0.6)',
+                                                'rgba(255, 99, 132, 0.6)'
                                             ],
                                             borderWidth:1,
                                             borderColor:'#777',
@@ -684,15 +684,7 @@
 <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="assets/js/demo.js"></script>
-<!--<script type="text/javascript">
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
 
-        demo.showNotification();
-
-    });
-</script>-->
 
 <script>
 $(document).ready(                       
