@@ -3,10 +3,8 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Map"%>
 <!DOCTYPE html>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@include file="protect.jsp" %>
 
 <html lang="en">
 
@@ -54,7 +52,7 @@
                         <%
                            String isMasterAdmin = (String) session.getAttribute("isMaster");
                                    
-                           if(isMasterAdmin.equals("1")){ 
+                           if (isMasterAdmin!=null && isMasterAdmin.equals("1")) {
                                 out.print("<li>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
                                 out.print("<img src='assets/img/masterAdmin_icon.png'/>");
