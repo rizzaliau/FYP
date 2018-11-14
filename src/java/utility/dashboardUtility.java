@@ -12,6 +12,7 @@ import entity.OrderItem;
 import entity.SalesOrder;
 import entity.SalesOrderDetails;
 import entity.User;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -191,7 +192,7 @@ public class dashboardUtility {
    }
     
     //Key Rank, Value OrderItem Description
-    public static Map<Integer, String> getTop5ProductsByMonth(int month,int year){
+    public static Map<Integer, String> getTop5ProductsByMonthOriginal(int month,int year){
         
         //return map 
         Map<Integer, String> top5ProductsByMonth = new HashMap<>();
@@ -274,6 +275,64 @@ public class dashboardUtility {
         return top5ProductsByMonth;
     }
     
+    public static Map<Integer, String> getTop5ProductsByMonth(int month,int year){
+        
+        //return map 
+        Map<Integer, String> top5ProductsByMonth = new HashMap<>();
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int count = 1;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "Select distinct t1.itemcode,t1.qty from "
+                    + "(SELECT soq.itemcode,SUM(soq.`Qty`) as qty FROM sales_order_quantity soq ,"
+                    + "`sales_order_detail` sod where soq.`OrderID` = sod.`OrderId` "
+                    + "and month(sod.deliveryDate) = "+month+" and "
+                    + "year(sod.deliveryDate) = "+year+" "
+                    + "group by soq.ItemCode order by SUM(soq.`Qty`) desc limit 6) "
+                    + "as t1 inner join (SELECT soq.itemcode,SUM(soq.`Qty`) "
+                    + "as qty FROM sales_order_quantity soq ,`sales_order_detail` sod "
+                    + "where soq.`OrderID` = sod.`OrderId` and month(sod.deliveryDate) = "+month+" "
+                    + "and year(sod.deliveryDate) = "+year+" "
+                    + "group by soq.ItemCode order by SUM(soq.`Qty`) desc) as t2 on t1.qty = t2.qty";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String itemCode = checkForNull(rs.getString("t1.itemcode"));
+                
+                if(itemCode != null){
+                    OrderItem orderItem = salesOrderUtility.getOrderItem(itemCode);
+                    String orderDescription = orderItem.getDescription();
+                    
+                    top5ProductsByMonth.put(count, orderDescription);
+                }
+
+                count++;
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by top5ProductsByMonth method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        return top5ProductsByMonth;
+    }
+    
+
     //Get list of all availabe orderitems
     public static List<String> getOrderItemList(){
         
@@ -291,7 +350,7 @@ public class dashboardUtility {
     }
     
     //Key order description, Value qty for that particular month
-    public static Map<String, Integer> getQtyForItemDescriptionMonth(int month, int year){
+    public static Map<String, Integer> getQtyForItemDescriptionMonthOriginal(int month, int year){
         
         //key orderitem description, value quantiy of product ordered
         Map<String, Integer> getProductQtyForMonth = new HashMap<>();
@@ -336,7 +395,73 @@ public class dashboardUtility {
         
         return getProductQtyForMonth;
     }
+
+    //Key order description, Value qty for that particular month
+    public static Map<String, Integer> getQtyForItemDescriptionMonth(int month, int year){
         
+        //key orderitem description, value quantiy of product ordered
+        Map<String, Integer> getProductQtyForMonth = new HashMap<>();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int count = 1;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "Select distinct t1.itemcode,t1.qty from "
+                    + "(SELECT soq.itemcode,SUM(soq.`Qty`) as qty FROM sales_order_quantity soq ,"
+                    + "`sales_order_detail` sod where soq.`OrderID` = sod.`OrderId` "
+                    + "and month(sod.deliveryDate) = "+month+" and "
+                    + "year(sod.deliveryDate) = "+year+" "
+                    + "group by soq.ItemCode order by SUM(soq.`Qty`) desc limit 6) "
+                    + "as t1 inner join (SELECT soq.itemcode,SUM(soq.`Qty`) "
+                    + "as qty FROM sales_order_quantity soq ,`sales_order_detail` sod "
+                    + "where soq.`OrderID` = sod.`OrderId` and month(sod.deliveryDate) = "+month+" "
+                    + "and year(sod.deliveryDate) = "+year+" "
+                    + "group by soq.ItemCode order by SUM(soq.`Qty`) desc) as t2 on t1.qty = t2.qty";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String itemCode = checkForNull(rs.getString("t1.itemcode"));
+                String qty = checkForNull(rs.getString("t1.qty"));
+                
+                if(qty != null){
+                    
+                    OrderItem orderItem = salesOrderUtility.getOrderItem(itemCode);
+                    String orderDescription = orderItem.getDescription();
+                    
+                    int qtyInt = Integer.parseInt(qty);
+                    
+                    getProductQtyForMonth.put(orderDescription,qtyInt);
+
+                }
+
+                count++;
+            }
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by top5ProductsByMonth method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        return getProductQtyForMonth;
+    }
+    
+    
+    
+    
     //Key Rank, Value, Top Return product name
     public static Map<Integer, String> getMostReturnedProductsByMonth(int month,int year){
         
