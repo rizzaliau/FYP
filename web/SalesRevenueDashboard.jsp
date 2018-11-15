@@ -55,7 +55,7 @@
                     <ul class="nav">
                         <%  String isMasterAdmin = (String) session.getAttribute("isMaster");
 
-                            if (isMasterAdmin.equals("1")) {
+                           if (isMasterAdmin!=null && isMasterAdmin.equals("1")) {
                                 out.print("<li>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
                                 out.print("<img src='assets/img/masterAdmin_icon.png'/>");
