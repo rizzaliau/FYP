@@ -17,7 +17,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="utility.debtorUtility"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%--<%@include file="protectAdmin.jsp" %>--%>
+<%@include file="protectAdmin.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
