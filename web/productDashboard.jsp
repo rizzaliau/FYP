@@ -627,6 +627,7 @@
 
                                             <%  
                                                 DecimalFormat df2 = new DecimalFormat("0");
+                                                DecimalFormat df3 = new DecimalFormat("0.00");
                                                 for (String itemDescription : getBreakdownItemForItemDescriptionMonth.keySet()) {
                                                     out.print("<tr>");
                                                     BreakdownItem breakdownItem = getBreakdownItemForItemDescriptionMonth.get(itemDescription);
@@ -634,7 +635,7 @@
                                                     out.print("<td>" + breakdownItem.getItemName() + "</td>");
                                                     out.print("<td>" + df2.format(breakdownItem.getQty()) + "</td>");
                                                     out.print("<td>" + df2.format(breakdownItem.getReturnedQty()) + "</td>");
-                                                    out.print("<td>" + df2.format(breakdownItem.getPercentageReturned()) + "</td>");
+                                                    out.print("<td>" + df3.format(breakdownItem.getPercentageReturned()) + "</td>");
                                                     out.print("</tr>");
                                                 }
 

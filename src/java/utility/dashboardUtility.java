@@ -463,7 +463,7 @@ public class dashboardUtility {
     
     
     //Key Rank, Value, Top Return product name
-    public static Map<Integer, String> getMostReturnedProductsByMonth(int month,int year){
+    public static Map<Integer, String> getMostReturnedProductsByMonthOriginal(int month,int year){
         
         //return map 
         Map<Integer, String> mostReturnedProductsByMonth = new HashMap<>();
@@ -568,8 +568,80 @@ public class dashboardUtility {
         return mostReturnedProductsByMonth;
     }
     
+    //Key Rank, Value, Top Return product name
+    public static Map<Integer, String> getMostReturnedProductsByMonth(int month,int year){
+        
+        //return map 
+        Map<Integer, String> mostReturnedProductsByMonth = new HashMap<>();
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        int count = 1;
+        
+        out.println("test 1");
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select temp1.* from (select itemCode,sum(qty),sum(returnedQty),sum(returnedQty)/sum(Qty)*100 as ReturnedRate from sales_order_quantity\n" +
+            "inner join sales_order \n" +
+            "inner join sales_order_detail\n" +
+            "on sales_order_quantity.OrderID = sales_order.OrderID\n" +
+            "and sales_order.OrderID = sales_order_detail.OrderID\n" +
+            "where month(sales_order_detail.DeliveryDate) = "+month+" \n" +
+            "and year(sales_order_detail.DeliveryDate) = "+year+" \n" +
+            "group by itemCode order by ReturnedRate desc limit 5)temp1\n" +
+            "inner JOIN\n" +
+            "(select itemCode,sum(qty),sum(returnedQty),sum(returnedQty)/sum(Qty)*100 as ReturnedRate from sales_order_quantity\n" +
+            "inner join sales_order \n" +
+            "inner join sales_order_detail\n" +
+            "on sales_order_quantity.OrderID = sales_order.OrderID\n" +
+            "and sales_order.OrderID = sales_order_detail.OrderID\n" +
+            "where month(sales_order_detail.DeliveryDate) = "+month+" \n" +
+            "and year(sales_order_detail.DeliveryDate) = "+year+" \n" +
+            "group by itemCode order by ReturnedRate desc)temp2\n" +
+            "on temp1.itemCode = temp2.itemCode";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+            
+            out.println("test 2 before while loop");
+
+            while (rs.next()) {
+
+                String itemCode = checkForNull(rs.getString("itemcode"));
+
+                if(itemCode != null){
+                    
+                    OrderItem orderItem = salesOrderUtility.getOrderItem(itemCode);
+                    String orderDescription = orderItem.getDescription();
+ 
+                    mostReturnedProductsByMonth.put(count,orderDescription);
+
+                }
+
+                count++;
+            }
+
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by mostReturnedProductsByMonth method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+        return mostReturnedProductsByMonth;
+    }
+    
     // key item name, value returned qty percentage for a particular month and year
-    public static Map<String, Double> getReturnedQtyPercentageForItemDescriptionMonth(int month, int year){
+    public static Map<String, Double> getReturnedQtyPercentageForItemDescriptionMonthOriginal(int month, int year){
         
         //key orderitem description, value % returned quantity of product ordered
         Map<String, Double> getPercentageReturnedProductMap = new HashMap<>();
@@ -648,6 +720,81 @@ public class dashboardUtility {
         
         return getPercentageReturnedProductMap;
     }
+    
+    
+    // key item name, value returned qty percentage for a particular month and year
+    public static Map<String, Double> getReturnedQtyPercentageForItemDescriptionMonth(int month, int year){
+        
+        //key orderitem description, value % returned quantity of product ordered
+        Map<String, Double> getPercentageReturnedProductMap = new HashMap<>();
+        
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select temp1.* from (select itemCode,sum(qty),sum(returnedQty),sum(returnedQty)/sum(Qty)*100 as ReturnedRate from sales_order_quantity\n" +
+            "inner join sales_order \n" +
+            "inner join sales_order_detail\n" +
+            "on sales_order_quantity.OrderID = sales_order.OrderID\n" +
+            "and sales_order.OrderID = sales_order_detail.OrderID\n" +
+            "where month(sales_order_detail.DeliveryDate) = "+month+"\n" +
+            "and year(sales_order_detail.DeliveryDate) = "+year+"\n" +
+            "group by itemCode order by ReturnedRate desc limit 5)temp1\n" +
+            "inner JOIN\n" +
+            "(select itemCode,sum(qty),sum(returnedQty),sum(returnedQty)/sum(Qty)*100 as ReturnedRate from sales_order_quantity\n" +
+            "inner join sales_order \n" +
+            "inner join sales_order_detail\n" +
+            "on sales_order_quantity.OrderID = sales_order.OrderID\n" +
+            "and sales_order.OrderID = sales_order_detail.OrderID\n" +
+            "where month(sales_order_detail.DeliveryDate) = "+month+"\n" +
+            "and year(sales_order_detail.DeliveryDate) = "+year+"\n" +
+            "group by itemCode order by ReturnedRate desc)temp2\n" +
+            "on temp1.itemCode = temp2.itemCode";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+                
+                String itemCode = checkForNull(rs.getString("itemcode"));
+                String returnedRate = checkForNull(rs.getString("ReturnedRate"));
+
+                if(itemCode != null && returnedRate!=null){
+                    
+                    OrderItem orderItem = salesOrderUtility.getOrderItem(itemCode);
+                    String orderDescription = orderItem.getDescription();
+                    
+                    out.println("Percentage added to map"+returnedRate);
+                    
+                    Double returnedRateDouble = Double.parseDouble(returnedRate);
+
+                    getPercentageReturnedProductMap.put(orderDescription,returnedRateDouble);
+
+                }
+                
+                
+
+            }
+            getPercentageReturnedProductMap.put(null,0.0);
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by getPercentageReturnedProductMap method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+
+
+        return getPercentageReturnedProductMap;
+    }
+    
     
     //Key index, Value Year
     public static Map<Integer, Integer> getAvailableSalesOrderYears(){    
@@ -1132,7 +1279,7 @@ public class dashboardUtility {
         return breakdownProductsMap;
     }
     
-    public static Map<String, BreakdownItem> getBreakdownItemForItemDescriptionMonth(int month, int year){
+    public static Map<String, BreakdownItem> getBreakdownItemForItemDescriptionMonthOriginal(int month, int year){
         
         //key orderitem description, value Breakdown Item for corresponding item description and date
         Map<String, BreakdownItem> breakdownItemForItemDescriptionMonth = new HashMap<>();
@@ -1210,5 +1357,83 @@ public class dashboardUtility {
         
         return breakdownItemForItemDescriptionMonth;
     }
+    
+    //key orderitem description, value Breakdown Item for corresponding item description and date
+    public static Map<String, BreakdownItem> getBreakdownItemForItemDescriptionMonth(int month, int year){
+        
+        //key orderitem description, value Breakdown Item for corresponding item description and date
+        Map<String, BreakdownItem> breakdownItemForItemDescriptionMonth = new HashMap<>();
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            
+            String populateMap = "select temp1.* from (select itemCode,sum(qty),sum(returnedQty),sum(returnedQty)/sum(Qty)*100 as ReturnedRate from sales_order_quantity\n" +
+            "inner join sales_order \n" +
+            "inner join sales_order_detail\n" +
+            "on sales_order_quantity.OrderID = sales_order.OrderID\n" +
+            "and sales_order.OrderID = sales_order_detail.OrderID\n" +
+            "where month(sales_order_detail.DeliveryDate) = "+month+" \n" +
+            "and year(sales_order_detail.DeliveryDate) = "+year+" \n" +
+            "group by itemCode order by ReturnedRate desc limit 5)temp1\n" +
+            "inner JOIN\n" +
+            "(select itemCode,sum(qty),sum(returnedQty),sum(returnedQty)/sum(Qty)*100 as ReturnedRate from sales_order_quantity\n" +
+            "inner join sales_order \n" +
+            "inner join sales_order_detail\n" +
+            "on sales_order_quantity.OrderID = sales_order.OrderID\n" +
+            "and sales_order.OrderID = sales_order_detail.OrderID\n" +
+            "where month(sales_order_detail.DeliveryDate) = "+month+" \n" +
+            "and year(sales_order_detail.DeliveryDate) = "+year+" \n" +
+            "group by itemCode order by ReturnedRate desc)temp2\n" +
+            "on temp1.itemCode = temp2.itemCode";
+
+            pstmt = conn.prepareStatement(populateMap);
+            rs = pstmt.executeQuery();
+            
+            System.out.println("Passed connection");
+
+            while (rs.next()) {
+
+                String itemCode = checkForNull(rs.getString("itemcode"));
+                String qty = checkForNull(rs.getString("sum(qty)"));
+                String returnedQty = checkForNull(rs.getString("sum(returnedQty)"));
+                String returnedRate = checkForNull(rs.getString("ReturnedRate"));
+
+                if(itemCode != null && qty !=null && returnedQty != null && returnedRate != null){
+                    
+                    OrderItem orderItem = salesOrderUtility.getOrderItem(itemCode);
+                    String itemDescription = orderItem.getDescription();
+                    
+                    Double qtyDouble = Double.parseDouble(qty);
+                    Double returnedQtyDouble = Double.parseDouble(returnedQty);
+                    Double returnedRateDouble = Double.parseDouble(returnedRate);
+                    
+                    BreakdownItem breakdownItem = new BreakdownItem(itemDescription,qtyDouble,returnedQtyDouble,returnedRateDouble);
+                    
+                    if(returnedRateDouble!=0){
+                        breakdownItemForItemDescriptionMonth.put(itemDescription,breakdownItem);
+                    }
+
+                }
+
+            }
+
+            
+        }catch(SQLException e){
+            
+            System.out.println("SQLException thrown by breakdownItemForItemDescriptionMonth method");
+            System.out.println(e.getMessage());
+            
+        }finally{
+            ConnectionManager.close(conn, pstmt, rs);
+        }
+        
+        return breakdownItemForItemDescriptionMonth;
+    }
+    
+    
     
 }
