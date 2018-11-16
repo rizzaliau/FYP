@@ -548,11 +548,11 @@
                                           datasets:[{
                                             label:'% Returned Rate',
                                             data:[
-                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1))) %>,
-                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2))) %>,
-                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3))) %>,
-                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4))) %>,
-                                              <%= df.format(getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5))) %>
+                                              <%= getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(1)) %>,
+                                              <%= getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(2)) %>,
+                                              <%= getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(3)) %>,
+                                              <%= getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(4)) %>,
+                                              <%= getMostReturnedProductsByMonthPercentage.get(getMostReturnedProductsByMonth.get(5)) %>
                                             ],
                                             //backgroundColor:'green',
                                             backgroundColor:'rgba(245,104,41,100)',

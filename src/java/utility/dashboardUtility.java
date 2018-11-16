@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -771,7 +772,13 @@ public class dashboardUtility {
                     
                     out.println("Percentage added to map"+returnedRate);
                     
+                    //DecimalFormat df = new DecimalFormat("0.00");
+                    
+
+                    //String returnedRateFormatted = df.format(returnedRate);
                     Double returnedRateDouble = Double.parseDouble(returnedRate);
+                    
+                    returnedRateDouble = (int)(returnedRateDouble * 100 + 0.5) / 100.0;
 
                     getPercentageReturnedProductMap.put(orderDescription,returnedRateDouble);
 
