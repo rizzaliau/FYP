@@ -581,8 +581,6 @@ public class dashboardUtility {
         
         int count = 1;
         
-        out.println("test 1");
-        
         try {
             conn = ConnectionManager.getConnection();
             
@@ -609,20 +607,32 @@ public class dashboardUtility {
             rs = pstmt.executeQuery();
             
             System.out.println("Passed connection");
-            
-            out.println("test 2 before while loop");
 
             while (rs.next()) {
 
                 String itemCode = checkForNull(rs.getString("itemcode"));
+                String returnedRate = rs.getString("ReturnedRate");
 
                 if(itemCode != null){
                     
-                    OrderItem orderItem = salesOrderUtility.getOrderItem(itemCode);
-                    String orderDescription = orderItem.getDescription();
- 
-                    mostReturnedProductsByMonth.put(count,orderDescription);
+                    if(returnedRate!=null){
+                        
+                        double returnedRateDouble = Double.parseDouble(returnedRate);
+                        
+                        if(returnedRateDouble>0){
+                            OrderItem orderItem = salesOrderUtility.getOrderItem(itemCode);
+                            String orderDescription = orderItem.getDescription();
 
+                            mostReturnedProductsByMonth.put(count,orderDescription);
+                        
+                        }else{
+
+                            mostReturnedProductsByMonth.put(count,"");
+                        }
+                    }
+                    
+                    
+                    
                 }
 
                 count++;
