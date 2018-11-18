@@ -582,8 +582,34 @@
                                                                 out.print("<td></td>");                                                          
                                                                 out.print("<td></td>");                                                          
                                                                 out.print("<td></td>");                                                          
-                                                                out.print("<td><b><font color='red'>TOTAL ($)</font></b></td>");
+                                                                out.print("<td><b><font color='red'>SUBTOTAL ($)</font></b></td>");
                                                                 out.print("<td><b>"+df.format(refundedTotal)+"</b></td>");
+                                                                out.print("<tr>");
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");   
+                                                                    out.print("<td><b><font color='red'>GST (7%)</font></b></td>");
+                                                                    out.print("<td><b>"+df.format(refundedTotal*0.07)+"</b></td>");
+                                                                out.print("</tr>");
+                                                                out.print("<tr>");
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");                                                          
+                                                                    out.print("<td></td>");   
+                                                                    out.print("<td><b><font color='red'>TOTAL ($)</font></b></td>");
+                                                                    out.print("<td><b>"+df.format(refundedTotal*1.07)+"</b></td>");
+                                                                out.print("</tr>");
                                                             }
                                                             
 
