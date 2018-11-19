@@ -215,13 +215,13 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Customer Code*</label>
-                                                        <input type="text" class="form-control" required placeholder="Customer Code" required value="" size="10" name="debtorCode">
+                                                        <input type="text" class="form-control" required placeholder="Customer Code" required value="301-C101" size="10" name="debtorCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
                                                     <div class="form-group">
                                                         <label>Company Name*</label>
-                                                        <input type="text" class="form-control" required placeholder="Company Name" value="" size="10" name="companyName" title="Please only enter alphabets">                                            
+                                                        <input type="text" class="form-control" required placeholder="Company Name" value="Highway Kopitiam" size="10" name="companyName" title="Please only enter alphabets">                                            
                                                     </div>
                                                 </div>
 
@@ -230,11 +230,11 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Billing Address*</label>
-                                                        <input type="text" class="form-control" required placeholder="Billing Address Line 1" value="" size="10" name="inAddr1">
+                                                        <input type="text" class="form-control" required placeholder="Billing Address Line 1" value="1 Tanjong Pagar" size="10" name="inAddr1">
                                                         <br>
-                                                        <input type="text" class="form-control" required placeholder="Billing Address Line 2" value="" size="10" name="invAddr2">
+                                                        <input type="text" class="form-control" required placeholder="Billing Address Line 2" value="Tanjong Pagar Plaza #01-32" size="10" name="invAddr2">
                                                         <br>
-                                                        <input type="text" class="form-control" placeholder="Postal Code" value="" size="10" name="invAddr3" >
+                                                        <input type="text" class="form-control" placeholder="Postal Code" value="Singapore 080008" size="10" name="invAddr3" >
                                                         <br>
                                                         <input type="text" class="form-control" placeholder="" value="" size="10" name="invAddr4d">
                                                     </div>
@@ -258,7 +258,7 @@
                                                 <div class="col-md-6 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Person*</label>
-                                                        <input type="text" class="form-control" required placeholder="Contact Person" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="" size="10" name="debtorName">                                               
+                                                        <input type="text" class="form-control" required placeholder="Contact Person" pattern="[A-Za-z ]{1,30}" title="Please only enter alphabets" value="Ming" size="10" name="debtorName">                                               
                                                     </div>
                                                 </div>
                                             </div>
@@ -266,14 +266,14 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Username*</label>
-                                                        <input type="text" class="form-control" required placeholder="Username" value="" size="10" name="companyCode">
+                                                        <input type="text" class="form-control" required placeholder="Username" value="Ming" size="10" name="companyCode">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3 pl-1">
                                                     <div class="form-group">
                                                         <label for = "password">Password*</label>
-                                                        <input type="password" minLength="8" required placeholder="min 8 characters" class="form-control" value="" size="10" name="hashPassword">
+                                                        <input type="password" minLength="8" required placeholder="min 8 characters" class="form-control" value="301-C101" size="10" name="hashPassword">
 
                                                     </div>
                                                 </div>
@@ -283,7 +283,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Contact Number</label>
-                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter 8 digit numbers" required placeholder="Contact Number" value="" size="10" name="deliverContact">
+                                                        <input type="text" class="form-control" pattern="[0-9]{8}" title="Please enter 8 digit numbers" required placeholder="Contact Number" value="97597790" size="10" name="deliverContact">
                                                     </div>
                                                 </div>
                                                 <!-- not required placeholder-->
