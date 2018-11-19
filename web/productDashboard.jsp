@@ -368,7 +368,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Top 5 Products by Volume <%= allMonths.get(monthInt) %> <%= yearRetrieved %>',
+                                            text:'Top 5 Products by Volume (<%= allMonths.get(monthInt) %> <%= yearRetrieved %>)',
                                             fontSize:18
                                           },
                                           legend:{
@@ -565,7 +565,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Top 5 Most Returned Products <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedRetrieved %>',
+                                            text:'Top 5 Most Returned Products (<%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedRetrieved %>)',
                                             fontSize:18
                                           },
                                           legend:{
@@ -608,7 +608,7 @@
                                     </script>
                                                                        
                                     <center>
-                                        <p class="card-category"><b><font color = "black"><font face = "Segoe UI"><font size="4px">Breakdown Of Top 5 Most Returned Products for <%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedInt%> </font></font></font></b></p>
+                                        <p class="card-category"><b><font color = "black"><font face = "Segoe UI"><font size="4px">Breakdown Of Top 5 Most Returned Products for (<%= allMonths.get(monthReturnedInt) %> <%= yearProductReturnedInt%>)</font></font></font></b></p>
                                     </center>
                                     <br>
                                     

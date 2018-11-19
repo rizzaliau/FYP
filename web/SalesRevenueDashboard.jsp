@@ -267,7 +267,7 @@
 
                                             // Global Options
                                             Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                            Chart.defaults.global.defaultFontSize = 16;
+                                            Chart.defaults.global.defaultFontSize = 18;
                                             Chart.defaults.global.defaultFontColor = 'black';
 
                                             let massPopChart = new Chart(totalRevenueChart, {
@@ -309,7 +309,7 @@
                                                 options: {
                                                     title: {
                                                         display: true,
-                                                        text: 'Total Revenue Monthly Breakdown By Year <%= yearRetrieved%>',
+                                                        text: 'Total Revenue Monthly Breakdown By Year (<%= yearRetrieved%>)',
                                                         fontSize: 18,
                                                         fontFamily: 'Segoe UI'
 
@@ -318,7 +318,7 @@
                                                         display: true,
                                                         position: 'bottom',
                                                         fontFamily: 'Segoe UI',
-                                                        fontSize: 12,
+                                                        fontSize: 18,
                                                         labels: {
                                                             fontColor: 'black'
                                                             
@@ -342,7 +342,7 @@
                                                                 scaleLabel: {
                                                                     display: true,
                                                                     labelString: 'Revenue ($)',
-                                                                    fontSize: 12,
+                                                                    fontSize: 18,
                                                                     fontFamily: 'Segoe UI'
                                                                 }
                                                             }],
@@ -351,7 +351,7 @@
                                                                 scaleLabel: {
                                                                     display: true,
                                                                     labelString: 'Month',
-                                                                    fontSize: 12,
+                                                                    fontSize: 18,
                                                                     fontFamily: 'Segoe UI'
                                                                 }
                                                             }]

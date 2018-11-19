@@ -458,7 +458,7 @@
                                                     options: {
                                                         title: {
                                                             display: true,
-                                                            text: 'Top 5 Products by Volume <%= allMonths.get(currentMonthInt)%> <%= currentYearInt%>',
+                                                            text: 'Top 5 Products by Volume (<%= allMonths.get(currentMonthInt)%> <%= currentYearInt%>)',
                                                             fontFamily: 'Segoe UI',
                                                             fontSize: 12,
                                                     
@@ -504,7 +504,7 @@
                                 <div class="card" onclick="window.location = 'productDashboard.jsp';" onmouseover="" style="cursor: pointer;">
                                     <div class="card-header ">
                                         <h4 class="card-title">Return Products</h4>
-                                        <p class="card-category">Return performances</p>
+                                        <p class="card-category">Return rates</p>
                                     </div>
                                     <div class="card-body ">
 
@@ -560,7 +560,7 @@
                                                 options: {
                                                     title: {
                                                         display: true,
-                                                        text: 'Top 5 Most Returned Products <%= allMonths.get(currentMonthInt)%> <%= currentYearInt%>',
+                                                        text: 'Top 5 Most Returned Products (<%= allMonths.get(currentMonthInt)%> <%= currentYearInt%>)',
                                                         fontFamily: 'Segoe UI',
                                                         fontSize: 12,
                                                     },
@@ -708,7 +708,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Top 10 Customers <%= allMonths.get(currentMonthInt)%> <%= currentYearInt %> ',
+                                            text:'Top 10 Customers (<%= allMonths.get(currentMonthInt)%> <%= currentYearInt %>) ',
                                             fontFamily: 'Segoe UI',
                                             fontSize: 12,
                                             
@@ -850,7 +850,7 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Customers Do Not Meet Requirements <%= allMonths.get(currentMonthInt)%> <%= currentYearInt %>',
+                                            text:'Customers Do Not Meet Requirements (<%= allMonths.get(currentMonthInt)%> <%= currentYearInt %>)',
                                             fontSize:12,
                                             fontFamily: 'Segoe UI',
 

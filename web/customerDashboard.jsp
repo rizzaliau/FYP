@@ -331,7 +331,7 @@
 
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                      Chart.defaults.global.defaultFontSize = 12;
+                                      Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart4 = new Chart(top10CustomersChart, {
@@ -348,7 +348,7 @@
                                                   '<%= top10CustomersByYearMonth.get(9) %>', 
                                                   '<%= top10CustomersByYearMonth.get(10)%>'],
                                                                 fontFamily: 'Segoe UI',
-                                                                fontSize: 12,
+                                                                fontSize: 18,
                                           datasets:[{
                                             label:'Sales By Customer ($)',
                                             data:[
@@ -386,20 +386,20 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Top 10 Customers <%= allMonths.get(top10MonthInt)%> <%= yearRetrievedTop10Customers%> ',
+                                            text:'Top 10 Customers (<%= allMonths.get(top10MonthInt)%> <%= yearRetrievedTop10Customers%>) ',
                                             fontFamily: 'Segoe UI',
-                                            fontSize: 12,
+                                            fontSize: 18,
                                             
                                           },
                                           legend:{
                                             display:true,
                                             position:'bottom',
                                             fontFamily: 'Segoe UI',
-                                            fontSize: 12,
+                                            fontSize: 18,
                                             labels:{
                                               fontColor:'#000',
                                               fontFamily: 'Segoe UI',
-                                              fontSize: 12,
+                                              fontSize: 18,
                                             }
                                           },
                                           layout:{
@@ -421,7 +421,7 @@
                                                 display: true,
                                                 labelString: 'Customer Code',
                                                 fontFamily: 'Segoe UI',
-                                                fontSize: 12,
+                                                fontSize: 18,
                                               }
                                             }],
 
@@ -430,7 +430,7 @@
                                                 display: true,
                                                 labelString: 'Sales ($)',
                                                 fontFamily: 'Segoe UI',
-                                                fontSize: 12,
+                                                fontSize: 18,
                                               }
                                             }]
 
@@ -577,7 +577,7 @@
                                       let customerWhoDoNotMeetRequirement = document.getElementById('customerWhoDoNotMeetRequirement').getContext('2d');
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                      Chart.defaults.global.defaultFontSize = 12;
+                                      Chart.defaults.global.defaultFontSize = 18;
                                       Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart5 = new Chart(customerWhoDoNotMeetRequirement, {
@@ -622,8 +622,8 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Customers Do Not Meet Requirements <%= allMonths.get(customersDoNotMeetRequirementMonthInt)%> <%= yearRetrievedCustomersDoNotMeetRequirement%>',
-                                            fontSize:12,
+                                            text:'Customers Do Not Meet Requirements (<%= allMonths.get(customersDoNotMeetRequirementMonthInt)%> <%= yearRetrievedCustomersDoNotMeetRequirement%>)',
+                                            fontSize:18,
                                             fontFamily: 'Segoe UI',
 
                                           },
@@ -631,12 +631,12 @@
                                             display:true,
                                             position:'bottom',
                                             fontFamily: 'Segoe UI',
-                                            fontSize: 12,
+                                            fontSize: 18,
                                             
                                             labels:{
                                               fontColor:'#000',
                                               fontFamily: 'Segoe UI',
-                                              fontSize: 12,
+                                              fontSize: 18,
                                             }
                                           },
                                           layout:{
@@ -658,7 +658,7 @@
                                                 display: true,
                                                 labelString: 'Customer Code',
                                                 fontFamily: 'Segoe UI',
-                                                fontSize: 12
+                                                fontSize: 18
                                               }
                                             }],
 
@@ -667,7 +667,7 @@
                                                 display: true,
                                                 labelString: 'Sales ($)',
                                                 fontFamily: 'Segoe UI',
-                                                fontSize: 12
+                                                fontSize: 18
                                               }
                                             }]
 
@@ -818,8 +818,8 @@
 
                                       // Global Options
                                       Chart.defaults.global.defaultFontFamily = 'Segoe UI';
-                                      Chart.defaults.global.defaultFontSize = 12;
-                                      Chart.defaults.global.defaultFontColor = '#777';
+                                      Chart.defaults.global.defaultFontSize = 18;
+                                      Chart.defaults.global.defaultFontColor = 'black';
 
                                       let massPopChart6 = new Chart(returnProductsByCustomerChart, {
                                         type:'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -855,12 +855,14 @@
                                         options:{
                                           title:{
                                             display:true,
-                                            text:'Returned Products For Customer <%= customerCodeRetrievedReturnProductsByCustomer%> for Year <%= yearRetrievedReturnProductsByCustomer%>',
-                                            fontSize:12
+                                            text:'Returned Products For Customer <%= customerCodeRetrievedReturnProductsByCustomer%> for Year (<%= yearRetrievedReturnProductsByCustomer%>)',
+                                            fontSize:18
                                           },
                                           legend:{
                                             display:true,
                                             position:'bottom',
+                                            fontFamily: 'Segoe UI',
+                                                fontSize: 18,
                                             labels:{
                                               fontColor:'#000'
                                             }
@@ -880,14 +882,18 @@
                                             yAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Return Quantity'
+                                                labelString: 'Return Quantity',
+                                                fontFamily: 'Segoe UI',
+                                                fontSize: 18,
                                               }
                                             }],
 
                                             xAxes: [{
                                               scaleLabel: {
                                                 display: true,
-                                                labelString: 'Month'
+                                                labelString: 'Month',
+                                                fontFamily: 'Segoe UI',
+                                                fontSize: 18,
                                               }
                                             }]
 
@@ -1064,7 +1070,7 @@
                                 
                                     
                                     <center>
-                                        <p class="card-category"><b>Breakdown Of Returned Products For Customer <%= returnProductsBreakdownByCustomerCustomerCode%> for <%= allMonths.get(returnProductsBreakdownByCustomerMonthInt) %> <%= returnProductsBreakdownByCustomerYearInt%></b></p>
+                                        <p class="card-category"><b><font size="4" color="black">Breakdown Of Returned Products For Customer <%= returnProductsBreakdownByCustomerCustomerCode%> for (<%= allMonths.get(returnProductsBreakdownByCustomerMonthInt) %> <%= returnProductsBreakdownByCustomerYearInt%>)</font></b></p>
                                     </center>
                                     <br>
                                     
