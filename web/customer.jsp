@@ -207,7 +207,7 @@
 
                                             if (customerStatus != null) {
                                                 out.print("</br>");
-                                                out.print("<div class = 'alert alert-danger'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
+                                                out.print("<div class = 'alert alert-success'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                                 out.print(customerStatus);
                                                 out.print("</span></div>");
                                                 session.removeAttribute("customerStatus");

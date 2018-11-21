@@ -198,7 +198,7 @@
                                     <h4 class="card-title">Admin Management</h4>
                                     <p class="card-category">New Admin</p>
                                 </div>
-                                <center><b><font color="red">
+                                
                                 
                             <%                                
 
@@ -206,23 +206,21 @@
 
                                 if (adminStatus != null) {
                                     out.print("</br>");
+                                    out.print("<div class = 'alert alert-success'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                     out.print(adminStatus);
-                                    out.print("</br>");
+                                    out.print("</span></div>");
                                     session.removeAttribute("adminStatus");
                                 }
 
                             %> 
                             
-                            </font></b></center>
+                            
                             
                             <!--start of form UI-->
                                 <div class="card-body">
-                                    <h5 class="card-title"><font color = "red">Enter required fields to create a new Admin</font></h5>
-                                    <br>
-                                    <p class="card-category"><font color = "red">* denotes required fields</font></p>
-                                         <p>
-                                       
-                                        
+                                    <h5 class="card-title"><div class = 'alert alert-danger'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>* denotes required fields - Enter required fields to create a new Admin</div></span></h5>
+                                    
+                                
                                         <form method="post" action="newAdminController">
                                             <%
                                                 String currentModifier = usernameSession;

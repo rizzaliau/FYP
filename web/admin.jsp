@@ -196,22 +196,25 @@
                                     <div class="card-header ">
                                         <h4 class="card-title">Admin Management</h4>
                                     </div>
-                                    <div class="col-md-8"><font color="red">
+                                    <div class="col-md-12"><font color="red">
                                         <%
                                             String msgStatus = (String) request.getAttribute("updateSuccess");
                                             //String msgStatus2 = (String) request.getAttribute("status");
                                             String adminStatus = (String) session.getAttribute("adminStatus");
+                                           
 
                                             if (msgStatus != null) {
                                                 out.print("</br>");
+                                                out.print("<div class = 'alert alert-success'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                                 out.print(msgStatus);
-                                                out.print("</br>");
+                                                out.print("</span></div>");
                                             }
 
                                             if (adminStatus != null) {
                                                 out.print("</br>");
+                                                out.print("<div class = 'alert alert-success'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                                 out.print(adminStatus);
-                                                out.print("</br>");
+                                                out.print("</span></div>");
                                                 session.removeAttribute("adminStatus");
                                             }
 

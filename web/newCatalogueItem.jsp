@@ -195,27 +195,28 @@
                                     <h4 class="card-title">Catalogue Management</h4>
                                     <p class="card-category">New Catalogue Item</p>
                                 </div>
-                                <center><b><font color="red">
+                                
+                                  <div class="card-body">   
                                 
                             <%                                
                                 String catalogueStatus = (String) session.getAttribute("catalogueStatus");
 
                                 if (catalogueStatus != null) {
                                     out.print("</br>");
+                                    out.print("<div class = 'alert alert-danger'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
                                     out.print(catalogueStatus);
-                                    out.print("</br>");
+                                    out.print("</div></span>");
                                     session.removeAttribute("catalogueStatus");
                                 }
 
                             %> 
                             
-                            </font></b></center>
+                          
+                            
                             <!--start of form UI-->
-                                <div class="card-body">
-                                    <h5 class="card-title"><font color = "red">Please complete the 2 Step Process to add a new catalogue item</font></h5>
-                                         <p>
-                                        <br>
-                                        <br>
+                               
+                                    <h5 class="card-title"><div class = 'alert alert-danger'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>* denotes required fields - Please complete the 2 Step Process to add a new catalogue item</div></span>                                        <p>
+                                       
                                         <form method="post" action="newCatalogueItemController">
                                          <div class="title">
                                              <p><b>Step 1:</b> Upload Image</p>
@@ -230,7 +231,7 @@
                                         <br> 
                                         <div class="title">
                                             <p><b>Step 2:</b> Enter required fields</p>
-                                            <p class="card-category"><font color = "red">* denotes required fields</font></p>
+                                            
                                          </div>
                                             <%
                                                 String currentModifier = usernameSession;
