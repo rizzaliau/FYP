@@ -28,41 +28,37 @@ public class loginUtility {
         String passWord = request.getParameter("password");
         String passWordHash = loginUtility.getSha256(passWord);
         
-        out.println("username retrieved is "+userName);
+        HttpSession session = request.getSession();
         
-        out.println(passWordHash);
-
         User user = UserDAO.retrieve(userName);
         
         if("".equals(userName)||"".equals(passWord)){
-            request.setAttribute("errorMsg", "Please enter username and/or password");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+
+            session.setAttribute("loginStatus", "Please enter username and/or password"); 
+            response.sendRedirect("login.jsp");
             return;           
         }
         if (user == null || !user.authenticate(passWordHash)) {
-            // TODO: include error messages before redirecting
-            request.setAttribute("errorMsg", "Invalid username and/or password");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+
+            session.setAttribute("loginStatus", "Invalid username and/or password"); 
+            response.sendRedirect("login.jsp");
             return;
         }
         
         if (user.getStatus().equals("Inactive") ) {
-            request.setAttribute("errorMsg", "Error: Inactive user");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+
+            session.setAttribute("loginStatus", "Error: Inactive user"); 
+            response.sendRedirect("login.jsp");
+            
             return;
         }
-        
-        out.println("The result of authentication is :"+user.authenticate(passWordHash));
-        
-        HttpSession session = request.getSession();
         
         session.setAttribute("username", userName);        
         session.setAttribute("password", loginUtility.getSha256(passWord));
         session.setAttribute("isMaster", ""+user.getIsMaster());
-        out.println("Before redirection");
-        //request.getRequestDispatcher("customer.jsp").forward(request, response);
+
         response.sendRedirect("customer.jsp");
-        out.println("After redirection");
+
     }
     
     public static String getSha256(String value) {

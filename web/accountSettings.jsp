@@ -167,14 +167,15 @@
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
-                                        <%                                     //String passwordErrorMsg = (String) request.getAttribute("diffPassword");
-                                            //String passwordUpdate = (String)request.getAttribute("updateSuccess");
-                                            String status = (String) request.getAttribute("status");
+                                        <%                                     
 
-                                            if (status != null) {
+                                            String passwordStatus = (String) session.getAttribute("passwordStatus");
+
+                                            if (passwordStatus != null) {
                                                 out.print("</br>");
-                                                out.print(status);
+                                                out.print(passwordStatus);
                                                 out.print("</br>");
+                                                session.removeAttribute("orderStatus");
                                             }
 
 

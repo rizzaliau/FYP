@@ -198,12 +198,13 @@
                                 <center><b><font color="red">
                                 
                             <%                                
-                                String msgStatus = (String) request.getAttribute("status");
+                                String catalogueStatus = (String) session.getAttribute("catalogueStatus");
 
-                                if (msgStatus != null) {
+                                if (catalogueStatus != null) {
                                     out.print("</br>");
-                                    out.print(msgStatus);
+                                    out.print(catalogueStatus);
                                     out.print("</br>");
+                                    session.removeAttribute("catalogueStatus");
                                 }
 
                             %> 

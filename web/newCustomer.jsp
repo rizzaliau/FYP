@@ -185,13 +185,15 @@
                                     </div>
                                     <div class="col-md-12">
                                         <%
-                                            String msgStatus = (String) request.getAttribute("status");
+                                            //String msgStatus = (String) request.getAttribute("status");
+                                            String customerStatus = (String) session.getAttribute("customerStatus");
 
-                                            if (msgStatus != null) {
+                                            if (customerStatus != null) {
                                                 out.print("</br>");
                                                 out.print("<div class = 'alert alert-warning'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
-                                                out.print(msgStatus);
+                                                out.print(customerStatus);
                                                 out.print("</span></div>");
+                                                session.removeAttribute("customerStatus");
                                             }
 
 
@@ -203,7 +205,8 @@
                                         
                                         <form method="post" action="newUserController">
 
-                                            <%                                                String currentModifier = usernameSession;
+                                            <%                                                
+                                                String currentModifier = usernameSession;
                                                 String currentTimeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
                                             %>
 

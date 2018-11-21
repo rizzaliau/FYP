@@ -201,8 +201,10 @@
                                         %>
                                     </select>  
                                     <div class="col-md-8"><font color="red">
-                                        <%  String msgStatus = (String) request.getAttribute("updateSuccess");
-                                            String msgStatus2 = (String) request.getAttribute("status");
+                                        <%  
+                                            String msgStatus = (String) request.getAttribute("updateSuccess");
+                                            //String msgStatus2 = (String) request.getAttribute("status");
+                                            String orderStatus = (String) session.getAttribute("orderStatus");
 
                                             if (msgStatus != null) {
                                                 out.print("</br>");
@@ -210,10 +212,11 @@
                                                 out.print("</br>");
                                             }
 
-                                            if (msgStatus2 != null) {
+                                            if (orderStatus != null) {
                                                 out.print("</br>");
-                                                out.print(msgStatus2);
+                                                out.print(orderStatus);
                                                 out.print("</br>");
+                                                session.removeAttribute("orderStatus");
                                             }
                                         %> 
                                         </font>

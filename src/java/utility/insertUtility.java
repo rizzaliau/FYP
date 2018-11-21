@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -57,6 +58,8 @@ public class insertUtility {
         String preferredLanguage = request.getParameter("language");
         String lastModifiedTimeStamp = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedBy = request.getParameter("lastModifiedBy");
+        
+        HttpSession session = request.getSession();
         
         //Converts normal password to hashpassword
         String newPasswordHash = loginUtility.getSha256(hashPassword);
@@ -119,20 +122,22 @@ public class insertUtility {
                 System.out.println("Null in preferred language / contact number.");
                 }
             
+                session.setAttribute("customerStatus", "Record inserted successfully!"); 
+                response.sendRedirect("customer.jsp");
+            
         }catch (SQLException ex) {
             
             if(ex instanceof MySQLIntegrityConstraintViolationException){
-                request.setAttribute("status", "Please enter a unique customer code!");
-                request.getRequestDispatcher("newCustomer.jsp").forward(request, response);
+
+                session.setAttribute("customerStatus", "Please enter a unique customer code!"); 
+                response.sendRedirect("newCustomer.jsp");
             }else{
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("status", "Error updating!");
+
+                session.setAttribute("customerStatus", "Error updating!"); 
+                response.sendRedirect("newCustomer.jsp");
             }
         }
-
-        request.setAttribute("status", "Record inserted successfully!");
-
-        request.getRequestDispatcher("customer.jsp").forward(request, response);
         
     }
     
@@ -151,11 +156,13 @@ public class insertUtility {
         String lastModifiedTimeStamp = catalogueCheckForNull(request.getParameter("lastModifiedTimeStamp"));
         String lastModifiedBy = catalogueCheckForNull(request.getParameter("lastModifiedBy"));
         
+        HttpSession session = request.getSession();
+        
         if(imageURLRetrieved==null){
             
-            request.setAttribute("status", "Error: Please upload an image! ");
-
-            request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
+            session.setAttribute("catalogueStatus", "Error: Please upload an image! "); 
+            response.sendRedirect("newCatalogueItem.jsp");
+            
             
         }else{
 
@@ -174,21 +181,29 @@ public class insertUtility {
 
                 stmt.executeUpdate();
                 out.println("passes rs");
+                
+
+                session.setAttribute("catalogueStatus", "Record inserted successfully!"); 
+                response.sendRedirect("catalogue.jsp");
+            
 
             } catch (SQLException ex) {
 
                 if(ex instanceof MySQLIntegrityConstraintViolationException){
-                    request.setAttribute("status", "Please enter a unique Item code!");
-                    request.getRequestDispatcher("newCatalogueItem.jsp").forward(request, response);
+                    session.setAttribute("catalogueStatus", "Please enter a unique Item code!");
+                    response.sendRedirect("newCatalogueItem.jsp");
+                    
                 }else{
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    request.setAttribute("status", "Error creating new catalogue Item!");
+
+                    session.setAttribute("catalogueStatus", "Error creating new catalogue Item!");
+                    response.sendRedirect("catalogue.jsp");
+                    
                 }
+                
+                
             }
-
-            request.setAttribute("status", "Record inserted successfully! ");
-
-            request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+            
         }
     }
     

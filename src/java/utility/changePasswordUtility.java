@@ -37,22 +37,26 @@ public class changePasswordUtility {
         String newPassword2 = request.getParameter("newPass2");
   
         if(currentPasswordEntered.equals("") || newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
-            request.setAttribute("status", "Blank fields detected. Please enter all fields");
-            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);   
+
+            session.setAttribute("passwordStatus", "Blank fields detected. Please enter all fields");
+            response.sendRedirect("accountSettings.jsp");
+            
         }else if(!loginUtility.getSha256(currentPasswordEntered).equals(passwordRetrieved)){
-            request.setAttribute("status", "Current password entered is invalid. Please re-enter.");
-            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);          
+
+            session.setAttribute("passwordStatus", "Current password entered is invalid. Please re-enter.");
+            response.sendRedirect("accountSettings.jsp");
         } else if (!(newPassword1.equals(newPassword2))){           
-            request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
-            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
+
+            session.setAttribute("passwordStatus", "Passwords do not match! Please re-enter passwords.");
+            response.sendRedirect("accountSettings.jsp");
+            
         }else{
             String newPasswordHash = loginUtility.getSha256(newPassword2);
 
             UserDAO.update(userNameRetrieved,newPasswordHash);
 
-            request.setAttribute("status", "Password updated successfully!");
-
-            request.getRequestDispatcher("accountSettings.jsp").forward(request, response);
+            session.setAttribute("passwordStatus", "Password updated successfully!");
+            response.sendRedirect("accountSettings.jsp");
         }
     }
     
@@ -64,16 +68,18 @@ public class changePasswordUtility {
 
         String newPassword1 = request.getParameter("newPass1");
         String newPassword2 = request.getParameter("newPass2");
+        
+        HttpSession session = request.getSession();
 
         if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
             
-            request.setAttribute("status", "Blank fields detected.Please enter all fields");
-            request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);
+            session.setAttribute("customerPasswordStatus", "Blank fields detected.Please enter all fields"); 
+            response.sendRedirect("changeCustomerPassword.jsp");
             
         } else if (!(newPassword1.equals(newPassword2))){           
             
-            request.setAttribute("status", "Passwords do not match. Please re-enter passwords.");
-            request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);
+            session.setAttribute("customerPasswordStatus", "Passwords do not match. Please re-enter passwords."); 
+            response.sendRedirect("changeCustomerPassword.jsp");
             
         }else{
             
@@ -81,10 +87,9 @@ public class changePasswordUtility {
 
             changePasswordUtility.UpdateCustomerPassword(debtorCodeRetrieved,newPasswordHash);
 
-            request.setAttribute("status", "Password updated successfully!");
-            request.setAttribute("companyName", companyNameRetrieved);
-            
-            request.getRequestDispatcher("changeCustomerPassword.jsp").forward(request, response);
+            session.setAttribute("customerPasswordStatus", "Password updated successfully!"); 
+            session.setAttribute("companyName", companyNameRetrieved); 
+            response.sendRedirect("changeCustomerPassword.jsp");
         }
     }
     

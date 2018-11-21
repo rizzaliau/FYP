@@ -199,7 +199,8 @@
                                     <div class="col-md-8"><font color="red">
                                         <%
                                             String msgStatus = (String) request.getAttribute("updateSuccess");
-                                            String msgStatus2 = (String) request.getAttribute("status");
+                                            //String msgStatus2 = (String) request.getAttribute("status");
+                                            String adminStatus = (String) session.getAttribute("adminStatus");
 
                                             if (msgStatus != null) {
                                                 out.print("</br>");
@@ -207,10 +208,11 @@
                                                 out.print("</br>");
                                             }
 
-                                            if (msgStatus2 != null) {
+                                            if (adminStatus != null) {
                                                 out.print("</br>");
-                                                out.print(msgStatus2);
+                                                out.print(adminStatus);
                                                 out.print("</br>");
+                                                session.removeAttribute("adminStatus");
                                             }
 
 

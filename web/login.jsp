@@ -39,11 +39,13 @@
                     <font color="red">
                     
                     <%                                
-                        String errorMsgs = (String) request.getAttribute("errorMsg");
+                        //String errorMsgs = (String) request.getAttribute("errorMsg");
+                        String loginStatus = (String) session.getAttribute("loginStatus");
                    
-                        if (errorMsgs != null) {
-                            out.print(errorMsgs);
+                        if (loginStatus != null) {
+                            out.print(loginStatus);
                             out.print("</br>");
+                            session.removeAttribute("loginStatus");
                         }
 
                     %> 

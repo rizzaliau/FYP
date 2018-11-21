@@ -165,18 +165,30 @@
                                     <div class="card-header">
                                         <h4 class="card-title">Change Password for Company </h4>
                                         <p>
-                                        <% String companyNameRetrieved = request.getParameter("companyName"); %>
-                                        <h4 class="card-title"> "<%= companyNameRetrieved %>" </h4>
+                                        <% 
+                                            String companyNameRetrieved = request.getParameter("companyName");
+                                            String companyNameSession = (String) session.getAttribute("companyName");
+                                        %>
+                                        <h4 class="card-title"> "
+                                            <% 
+                                                if(companyNameRetrieved==null){
+                                                    out.print(companyNameSession);
+                                                }else{
+                                                    out.print(companyNameRetrieved);
+                                                }
+                                            %>" </h4>
                                     </div>
 
                                     <div class="col-md-8"><font color="red">
                                         <%                                     
-                                            String status = (String) request.getAttribute("status");
+                                            //String status = (String) request.getAttribute("status");
+                                            String customerPasswordStatus = (String) session.getAttribute("customerPasswordStatus");
 
-                                            if (status != null) {
+                                            if (customerPasswordStatus != null) {
                                                 out.print("</br>");
-                                                out.print(status);
+                                                out.print(customerPasswordStatus);
                                                 out.print("</br>");
+                                                session.removeAttribute("customerPasswordStatus");
                                             }
 
 

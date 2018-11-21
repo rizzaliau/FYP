@@ -74,7 +74,7 @@ public class newCatalogueItemController extends HttpServlet {
             throws ServletException, IOException {
         
         insertUtility.newCatalogueItem(request,response);
-    
+        
     }
 
     /**

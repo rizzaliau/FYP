@@ -83,7 +83,7 @@
                            String isMasterAdmin = (String) session.getAttribute("isMaster");
                                    
                            if (isMasterAdmin!=null && isMasterAdmin.equals("1")) {
-                                out.print("<li>");
+                                out.print("<li class='nav-item active'>");
                                 out.print("<a class='nav-link' href='admin.jsp'>");
                                 out.print("<img src='assets/img/masterAdmin_icon.png'/>");
                                 out.print("<p>&nbspAdmin</p>");
@@ -201,12 +201,14 @@
                                 <center><b><font color="red">
                                 
                             <%                                
-                                String msgStatus = (String) request.getAttribute("status");
 
-                                if (msgStatus != null) {
+                                String adminStatus = (String) session.getAttribute("adminStatus");
+
+                                if (adminStatus != null) {
                                     out.print("</br>");
-                                    out.print(msgStatus);
+                                    out.print(adminStatus);
                                     out.print("</br>");
+                                    session.removeAttribute("adminStatus");
                                 }
 
                             %> 

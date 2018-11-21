@@ -201,12 +201,14 @@
                                     <center><font color="red">
 
                                         <%                                
-                                            String msgStatus = (String) request.getAttribute("status");
+                                            //String msgStatus = (String) request.getAttribute("status");
+                                            String adminStatus = (String) session.getAttribute("adminStatus");
 
-                                            if (msgStatus != null) {
+                                            if (adminStatus != null) {
                                                 out.print("</br>");
-                                                out.print(msgStatus);
+                                                out.print(adminStatus);
                                                 out.print("</br>");
+                                                session.removeAttribute("adminStatus");
                                             }
 
                                         %> 
@@ -216,6 +218,7 @@
                                         <%
                                             Map<Integer, User> adminMap = adminUtility.getAllAdmins();
                                             String serial = request.getParameter("serial");
+                                            //String serial = (String) session.getAttribute("serial");
                                             int numInt = Integer.parseInt(serial);
 
                                             User admin = adminMap.get(numInt);

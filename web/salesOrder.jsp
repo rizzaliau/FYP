@@ -184,7 +184,9 @@
 
                                         <div class="col-md-12">
                                             <%  String msgStatus = (String) request.getAttribute("updateSuccess");
-                                                String msgStatus2 = (String) request.getAttribute("status");
+                                                //String msgStatus2 = (String) request.getAttribute("status");
+                                                
+                                                String orderStatus = (String) session.getAttribute("orderStatus");
 
                                                 if (msgStatus != null) {
                                                     out.print("</br>");
@@ -193,11 +195,12 @@
                                                     out.print("</span></div>");
                                                 }
 
-                                                if (msgStatus2 != null) {
+                                                if (orderStatus != null) {
                                                     out.print("</br>");
                                                     out.print("<div class = 'alert alert-success'><button type = 'button' aria-hidden= 'true' class='close' data-dismiss ='alert'><i class = 'nc-icon nc-simple-remove'></i></button><span>");
-                                                    out.print(msgStatus2);
+                                                    out.print(orderStatus);
                                                     out.print("</span></div>");
+                                                    session.removeAttribute("orderStatus");
                                                 }
                                             %> 
                                         

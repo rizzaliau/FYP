@@ -62,7 +62,7 @@ public class deleteUtility {
             request.setAttribute("status", "Error updating!");
         }
         
-        request.setAttribute("status", "Record deleted successfully!");
+        request.setAttribute("status", "Customer deactivated successfully!");
 
         request.getRequestDispatcher("customer.jsp").forward(request, response);
         
@@ -134,9 +134,12 @@ public class deleteUtility {
         String statusRetrieved = request.getParameter("statusConfirmation");
         String amountToBeAdded = request.getParameter("amountToBeAdded");
         
+        HttpSession session = request.getSession();
+        
         if(cancelledReasonRetrieved.equals("")||cancelledReasonRetrieved==null||cancelledReasonRetrieved.equals("null")){
-            request.setAttribute("msgStatus", "Please enter a cancelled reason!");
-            request.getRequestDispatcher("cancelSalesOrderConfirmation.jsp").forward(request, response);
+
+            session.setAttribute("orderStatus", "Please enter a cancelled reason!"); 
+            response.sendRedirect("cancelSalesOrderConfirmation.jsp");
         }else{
 
             try {
@@ -201,15 +204,15 @@ public class deleteUtility {
                 } else {
                     System.out.println("Null in preferred language / orderID / contact number.");
                 }
+                
+                session.setAttribute("orderStatus", "Sales Order cancelled successfully!"); 
+                response.sendRedirect("salesOrder.jsp");
 
             } catch (SQLException ex) {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("status", "Error updating Sales Order!");
+                session.setAttribute("orderStatus", "Error updating Sales Order!"); 
+                response.sendRedirect("salesOrder.jsp");
             }
-
-            request.setAttribute("status", "Sales Order cancelled successfully!");
-
-            request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
         
         }
     }
@@ -280,6 +283,7 @@ public class deleteUtility {
         String itemCodeRetrieved = request.getParameter("recordToBeDeleted");
         String lastModifiedTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
+        HttpSession session = request.getSession();
 
         try {
 
@@ -297,16 +301,16 @@ public class deleteUtility {
 
             stmt.executeUpdate();
             out.println("passes rs");
+            
+            session.setAttribute("catalogueStatus", "Catalogue item deactivated successfully!"); 
+            response.sendRedirect("catalogue.jsp");
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error deactivating catalogue item!");
-        }
-        
-        request.setAttribute("status", "Catalogue item deactivated successfully!");
 
-        request.getRequestDispatcher("catalogue.jsp").forward(request, response);
-        
+            session.setAttribute("catalogueStatus", "Error deactivating catalogue item!"); 
+            response.sendRedirect("catalogue.jsp");
+        }        
     }
     
     public static void deleteMultipleCatalogue(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -353,6 +357,7 @@ public class deleteUtility {
         String itemCodeRetrieved = request.getParameter("recordToBeActivated");
         String lastModifiedTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedByRetrieved = request.getParameter("lastModifiedBy");
+        HttpSession session = request.getSession();
 
         try {
 
@@ -369,15 +374,16 @@ public class deleteUtility {
 
             stmt.executeUpdate();
             out.println("passes rs");
+            
+            session.setAttribute("catalogueStatus", "Catalogue item activated successfully!"); 
+            response.sendRedirect("catalogue.jsp");
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error deactivating catalogue item!");
-        }
-        
-        request.setAttribute("status", "Catalogue item activated successfully!");
 
-        request.getRequestDispatcher("catalogue.jsp").forward(request, response);
+            session.setAttribute("catalogueStatus", "Error deactivating catalogue item!"); 
+            response.sendRedirect("catalogue.jsp");
+        }
         
     }
     

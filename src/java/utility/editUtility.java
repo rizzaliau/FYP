@@ -32,6 +32,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -64,6 +65,8 @@ public class editUtility {
         String lastModifiedByRetrieved = checkForNull(request.getParameter("lastModifiedBy"));
         String preferredLanguageRetrieved = checkForNull(request.getParameter("preferredLanguage"));
         
+        HttpSession session = request.getSession();
+        
         try {
 
             Connection conn = ConnectionManager.getConnection();
@@ -87,16 +90,17 @@ public class editUtility {
 
             stmt.executeUpdate();
             out.println("passes rs");
-
+            
+            session.setAttribute("customerStatus", "Record updated successfully!"); 
+            response.sendRedirect("customer.jsp");
+            
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("updateSuccess", "Record updated unsuccessfully!");
+
+            session.setAttribute("customerStatus", "Error updating!"); 
+            response.sendRedirect("customer.jsp");
             
         }
-        
-        request.setAttribute("updateSuccess", "Record updated successfully!");
-
-        request.getRequestDispatcher("customer.jsp").forward(request, response);
         
     }
     
@@ -116,6 +120,8 @@ public class editUtility {
         String paperBagRequiredRetrieved = request.getParameter("paperBagRequired");
         int paperBagRequiredInt = Integer.parseInt(paperBagRequiredRetrieved);
         String preferredLanguageRetrieved = request.getParameter("preferredLanguage");
+        
+        HttpSession session = request.getSession();
 
         try {
 
@@ -141,8 +147,6 @@ public class editUtility {
             out.println("passes rs");
 
             for(int i=0; i<qtyItemCodeRetrieved.length; i++){
-
-                try {
                     
                     String itemCode = itemCodeRetrieved[i];
                     String qty = qtyItemCodeRetrieved[i];
@@ -179,9 +183,9 @@ public class editUtility {
                             salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
                             + "AND itemCode ='"+itemCode+"'";
                         }else{
-                            request.setAttribute("status", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode);
-
-                            request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
+                            
+                            session.setAttribute("orderStatus", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode); 
+                            response.sendRedirect("salesOrder.jsp");
                         } 
                     
                     }else{
@@ -206,9 +210,9 @@ public class editUtility {
                             salesOrderQuantitySql = "UPDATE `sales_order_quantity` SET qty ='"+qty+"' WHERE orderID = '" + orderIDRetrieved + "' "
                             + "AND itemCode ='"+itemCode+"'";
                         }else{
-                            request.setAttribute("status", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode);
 
-                            request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
+                            session.setAttribute("orderStatus", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode); 
+                            response.sendRedirect("salesOrder.jsp");
                         } 
                         
                     }
@@ -244,24 +248,19 @@ public class editUtility {
                          System.out.println("Null in preferred language / orderID / contact number.");
                     }
 
-                } catch (SQLException ex) {
-                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    request.setAttribute("status", "Error updating!");
-                }
-
             }
 
-            
+        session.setAttribute("orderStatus", "Record updated successfully!"); 
+        response.sendRedirect("salesOrder.jsp");
+   
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error updating!");
+
+            session.setAttribute("orderStatus", "Error updating!"); 
+            response.sendRedirect("salesOrder.jsp");
             
         }
 
-        request.setAttribute("status", "Record updated successfully!");
-
-        request.getRequestDispatcher("salesOrder.jsp").forward(request, response);
-        
     }
     
     
@@ -280,6 +279,8 @@ public class editUtility {
         String imageURLToUpdate = "";
         String lastTimeStampRetrieved = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedBy = request.getParameter("lastModifiedBy");
+        
+        HttpSession session = request.getSession();
         
         if(newImageURLRetrieved==null){
             imageURLToUpdate=imageURLRetrieved;
@@ -304,17 +305,18 @@ public class editUtility {
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.executeUpdate();
+            
+            session.setAttribute("catalogueStatus", "Record updated successfully!");
+            response.sendRedirect("catalogue.jsp");
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("status", "Error updating!");
+
+            session.setAttribute("catalogueStatus", "Error updating!");
+            response.sendRedirect("catalogue.jsp");
             
         }
 
-        request.setAttribute("status", "Record updated successfully!");
-
-        request.getRequestDispatcher("catalogue.jsp").forward(request, response);
-        
     }
     
     private static String checkForNull(String string){

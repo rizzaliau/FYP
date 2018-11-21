@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -87,17 +88,19 @@ public class adminUtility {
         String status = "Active";
         String lastTimeStamp = request.getParameter("lastModifiedTimeStamp");
         String lastModifiedBy = request.getParameter("lastModifiedBy");
+        HttpSession session = request.getSession();
         
         //Validation for password
-        if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){           
-            request.setAttribute("status", "Blank fields detected. Please enter all fields");
-            request.getRequestDispatcher("newAdmin.jsp").forward(request, response);   
+        if(newPassword1.equals("") || newPassword2.equals("") || newPassword1.equals("") && newPassword2.equals("")){  
+            session.setAttribute("adminStatus", "Blank fields detected. Please enter all fields"); 
+            response.sendRedirect("newAdmin.jsp");
+
         } else if (!(newPassword1.equals(newPassword2))){           
-            request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
-            request.getRequestDispatcher("newAdmin.jsp").forward(request, response);
+
+            session.setAttribute("adminStatus", "Passwords do not match! Please re-enter passwords."); 
+            response.sendRedirect("newAdmin.jsp");
         }else{
             String newPasswordHash = loginUtility.getSha256(newPassword2);
-        
         
             try {
 
@@ -112,21 +115,23 @@ public class adminUtility {
 
                 stmt.executeUpdate();
                 out.println("passes rs");
+                
+                session.setAttribute("adminStatus", "Record inserted successfully!"); 
+                response.sendRedirect("admin.jsp");
          
             }catch (SQLException ex) {
 
                 if(ex instanceof MySQLIntegrityConstraintViolationException){
-                    request.setAttribute("status", "Please enter a unique Username!");
-                    request.getRequestDispatcher("admin.jsp").forward(request, response);
+
+                    session.setAttribute("adminStatus", "Please enter a unique Username!"); 
+                    response.sendRedirect("admin.jsp");
                 }else{
                     Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    request.setAttribute("status", "Error updating!");
+
+                    session.setAttribute("adminStatus", "Error updating!"); 
+                    response.sendRedirect("admin.jsp");
                 }
             }
-
-            request.setAttribute("status", "Record inserted successfully!");
-
-            request.getRequestDispatcher("admin.jsp").forward(request, response);
         
         }
     }
@@ -148,19 +153,22 @@ public class adminUtility {
         String newPassword1 = request.getParameter("newPass1");
         String newPassword2 = request.getParameter("newPass2");
         
+        HttpSession session = request.getSession();
+        
         //Validation for Password
         if (!(newPassword1.equals(newPassword2))){   
             
             if(newPassword1.equals("") || newPassword2.equals("")){
-                request.setAttribute("serial", serialInt);
-                request.setAttribute("status", "Blank fields detected. Please enter all fields.");
-                request.getRequestDispatcher("editAdmin.jsp?serial="+serialInt).forward(request, response); 
+
+                session.setAttribute("adminStatus", "Blank fields detected. Please enter all fields."); 
+                session.setAttribute("serial", serialInt); 
+                response.sendRedirect("editAdmin.jsp?serial="+serialInt);
                 
             }else{
-            
-                request.setAttribute("serial", serialInt);
-                request.setAttribute("status", "Passwords do not match! Please re-enter passwords.");
-                request.getRequestDispatcher("editAdmin.jsp?serial="+serialInt).forward(request, response); 
+
+                session.setAttribute("adminStatus", "Passwords do not match! Please re-enter passwords."); 
+                session.setAttribute("serial", serialInt); 
+                response.sendRedirect("editAdmin.jsp?serial="+serialInt);
             }
             
         }else{
@@ -188,16 +196,15 @@ public class adminUtility {
 
                 stmt.executeUpdate();
                 out.println("passes rs");
+                
+                session.setAttribute("adminStatus", "Record updated successfully!"); 
+                response.sendRedirect("admin.jsp");
 
             } catch (SQLException ex) {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
                 request.setAttribute("updateSuccess", "Record updated unsuccessfully!");
 
             }
-
-            request.setAttribute("updateSuccess", "Record updated successfully!");
-
-            request.getRequestDispatcher("admin.jsp").forward(request, response);
 
         }
     }
