@@ -186,6 +186,7 @@ public class editUtility {
                             
                             session.setAttribute("orderStatus", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode); 
                             response.sendRedirect("salesOrder.jsp");
+                            return;
                         } 
                     
                     }else{
@@ -213,6 +214,7 @@ public class editUtility {
 
                             session.setAttribute("orderStatus", "Error updating! Please enter a quanty that is lower than the current quantity for item "+itemCode); 
                             response.sendRedirect("salesOrder.jsp");
+                            return;
                         } 
                         
                     }
@@ -250,8 +252,8 @@ public class editUtility {
 
             }
 
-        session.setAttribute("orderStatus", "Record updated successfully!"); 
-        response.sendRedirect("salesOrder.jsp");
+            session.setAttribute("orderStatus", "Record updated successfully!"); 
+            response.sendRedirect("salesOrder.jsp");
    
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
