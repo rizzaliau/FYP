@@ -190,7 +190,7 @@
                             <!-- Current Month Revenue -->
                             <div class ="col-md-4">
                                 
-                                <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
+                                <div class="card striped-tabled-with-hover">
                                     <div class="card-header" id="dashboardBox1">
                                         <div class="card-title" id="currentMonth">Current Month Revenue</div>
                                         <div class="card-category" id="getDetails"> <%=allMonths.get(currentMonthInt)%> </div>
@@ -202,7 +202,7 @@
                             <!-- Most Returned Product -->
                             <div class ="col-md-3">
                                 
-                                <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
+                                <div class="card striped-tabled-with-hover">
                                     <div class="card-header" id="dashboardBox2">
                                         <div class="card-title" id="currentMonth">Most Returned Product</div>
                                         <div class="card-category"  id="getDetails"> <%= getMostReturnedProductsByMonth.get(1) %></div>
@@ -213,7 +213,7 @@
                             </div>
                             <!-- Top Customer -->        
                             <div class ="col-md-3">  
-                                <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
+                                <div class="card striped-tabled-with-hover">
                                     <div class="card-header" id="dashboardBox3">
                                         <div class="card-title" id="currentMonth">Top Customer </div>
                                         
@@ -233,7 +233,7 @@
                             <!-- Top Product -->
                             <div class ="col-md-2">
                                 
-                                <div class="card striped-tabled-with-hover" onclick="window.location = 'dashboard.jsp' ;" onmouseover="" style="cursor: pointer;">
+                                <div class="card striped-tabled-with-hover">
                                     <div class="card-header"  id="dashboardBox4">
                                         <div class="card-title" id="currentMonth">Top Product</div>
                  
