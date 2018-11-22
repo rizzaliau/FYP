@@ -224,7 +224,7 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Customer Code</th>
-                                                    <th>Refund Amount ($)</th>
+                                                    <th>Wallet ($)</th>
                                                     <th>Status</th>
                                                     <th>View Transactions</th>
                                                 </tr>
