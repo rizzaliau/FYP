@@ -325,7 +325,7 @@
                                                 options: {
                                                     title: {
                                                         display: true,
-                                                        text: 'Total Revenue Monthly Breakdown By Year <%= currentYearInt%>',
+                                                        text: 'Total Revenue Monthly Breakdown By Year (<%= currentYearInt%>)',
                                                         fontSize: 12,
                                                         fontFamily: 'Segoe UI'
 
