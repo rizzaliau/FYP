@@ -245,7 +245,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Item Code*</label>
-                                                        <input type="text" pattern="[0-9]{1,8}" title="Please enter numeric numbers" class="form-control" placeholder="Item Code" required value="16" size="5" name="itemCode">
+                                                        <input type="text" pattern="[0-9]{1,8}" title="Please enter numeric numbers" class="form-control" placeholder="Item Code" required value="7" size="5" name="itemCode">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5 px-1">
