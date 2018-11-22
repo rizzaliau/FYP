@@ -306,6 +306,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         <footer class="footer">
             <p class="copyright text-center">
                 This website's content is Copyright 

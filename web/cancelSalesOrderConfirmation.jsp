@@ -39,6 +39,7 @@
 
 <body>
 <!-- Sidebar -->
+<div class="wrapper">
             <div class="sidebar" data-image="assets/img/navbar.png" data-color="orange">
                 <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
@@ -242,8 +243,6 @@
                         </div>
                 </div>
             </div>
-        
-                       
 
             <footer class="footer">
                         <p class="copyright text-center">
