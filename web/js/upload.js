@@ -1,9 +1,11 @@
 var feedback = function(res) {
     if (res.success === true) {
         var get_link = res.data.link.replace(/^http:\/\//i, 'https://');
-        document.querySelector('.status').classList.add('bg-success');
+        document.querySelector('.status').classList.add('bg-white');
         document.querySelector('.status').innerHTML =
-            'Image Uploaded Successfully! ' + '<br><input type="hidden" value=\"' + get_link + '\"/ name="imageURL" >' ;
+            'Image Uploaded Successfully!' + '<br><input type="hidden" value=\"' + get_link + '\"/ name="imageURL" ><img style="width:100px;height:100px;" src=\"' + get_link + '\"/>' ;
+        document.querySelector('.status').style.color = "green";
+        document.querySelector('.status').style.fontWeight = "bold";
         document.getElementById('outputURL').innerHTML = get_link;
     }
 };
