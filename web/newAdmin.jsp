@@ -234,7 +234,7 @@
                                                 <div class="col-md-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Username*</label>
-                                                        <input type="text" title="Please enter at least 5 characters" class="form-control" placeholder="Username" required value="keekee" size="5" name="userName">
+                                                        <input type="text" title="Please enter at least 5 characters" class="form-control" placeholder="Username" required value="" size="5" name="userName">
                                                     </div>
                                                 </div>
 
@@ -244,7 +244,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label>Enter new password*</label>
-                                                        <input type="password" name="newPass1" class="form-control" value="keekee!">
+                                                        <input type="password" name="newPass1" class="form-control" value="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -252,7 +252,7 @@
                                                 <div class="col-md-5 pr-1">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Confirm new password*</label>
-                                                        <input type="password" name="newPass2" class="form-control" value="keekee!">
+                                                        <input type="password" name="newPass2" class="form-control" value="">
                                                     </div>
                                                 </div>
 
